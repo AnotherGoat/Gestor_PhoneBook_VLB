@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Gestor_PhoneBook_VLB" target="" />
+      <module name="Gestor_PhoneBook_VLB" target="1.14" />
     </bytecodeTargetLevel>
   </component>
 </project>
