@@ -33,7 +33,11 @@ public class PhoneBook {
      */
 
     public static void main(String[] args){
+        // Crea un objeto de la clase Agenda
+        Agenda agenda = new Agenda();
 
+        // Muestra el menú principal de la agenda
+        agenda.menu();
     }
 
 }
