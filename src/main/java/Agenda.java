@@ -40,7 +40,7 @@ public class Agenda {
                 repetir = false;
             } catch (Exception e) {
                 this.teclado.next();
-                System.out.println("Ingrese un número, por favor");
+                System.out.println("Error: "+e.getMessage()+". Ingrese un número, por favor");
                 repetir = true;
             }
         }
