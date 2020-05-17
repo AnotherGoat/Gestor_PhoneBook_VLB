@@ -8,17 +8,25 @@
     <artifactId>Gestor PhoneBook VLB</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.4</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>RELEASE</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <properties>
-        <maven.compiler.release>1.14</maven.compiler.release>
-    </properties>
 
 </project>
 
