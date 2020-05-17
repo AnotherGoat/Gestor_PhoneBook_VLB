@@ -1,5 +1,6 @@
 
 // Importa la clase Scanner
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Agenda {
@@ -48,4 +49,22 @@ public class Agenda {
         return a;
     }
 
+    //// Getters y Setters
+    public int getOpcion() {
+        return opcion;
+    }
+
+    public void setOpcion(int opcion) {
+        this.opcion = opcion;
+    }
+
+    //// toString
+    @Override
+    public String toString() {
+        return "Agenda{" +
+                "opciones=" + Arrays.toString(opciones) +
+                ", teclado=" + teclado +
+                ", opcion=" + opcion +
+                '}';
+    }
 }
