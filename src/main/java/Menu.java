@@ -22,7 +22,8 @@ public class Menu {
     /**
      * Opción que ingresa el usuario
      */
-    int seleccion;
+    int seleccion; //Se usa en el metodo despliegue menú y switch case
+    int seleccionContacto; //se usa en Switch case para la seleccion de numero de lista de contacto
     //intanciar
     PhoneBook clasePhoneBook = new PhoneBook();
 
@@ -53,14 +54,51 @@ public class Menu {
      * Metodo para la Seleccion de menú
      */
     public void seleccionMenu() {
-
+        //Switch para la seleccion, tomando variable seleccion del metodo despliegueMenu
+        switch (seleccion) {
+            case 1:
+                System.out.println("Usted ha seleccionado mostrar lista de contactos");
+                //metodo mostrar contactos de clase agenda
+                linea();
+                break;
+            case 2:
+                System.out.println("Usted ha seleccionado ver un contacto");
+                //metodo mostrar contacto enumerado
+                System.out.println("Eliga el N° de lista del contacto que desea ver");
+                seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
+                linea();
+            case 3:
+                System.out.println("Usted ha seleccionado crear un contacto nuevo");
+                //metodo crear contacto
+                linea();
+            case 4:
+                System.out.println("Usted ha seleccionado editar un contacto");
+                //metodo editar
+            case 5:
+                System.out.println("Usted ha seleccionado eliminar un contacto");
+                //metodo eliminar
+                linea();
+            case 6:
+                salir();
+                linea();
+                break;
+            default:
+                System.out.println("La opción ingresada no existe");
+                linea();
+        }
+    }
+    /**
+     * Metodo salir
+     */
+    public void salir(){
+        
     }
 
     /**
      * Metodo de decoracion
      */
     private void linea() {
-
+        System.out.println("------------------------------------------------");
     }
 
     //Validaciones
