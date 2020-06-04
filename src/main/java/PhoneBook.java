@@ -33,14 +33,14 @@ public class PhoneBook {
     //atributos
     public static boolean seguir = true;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         // Crea un objeto de la clase Menu
         Menu menu = new Menu();
-        do{
+        do {
             menu.desPliegueMenu();
             menu.seleccionMenu();
-        }while (seguir);
+        } while (seguir);
         // Muestra el menú principal de la agenda
     }
 
-}}
+}

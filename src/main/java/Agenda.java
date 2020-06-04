@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class Agenda {
 
     //// Atributos
-    /** ArrayList con los contactos registrados */
+    /**
+     * ArrayList con los contactos registrados
+     */
     ArrayList<Contacto> contactos = new ArrayList;
 
     //// Constructores
