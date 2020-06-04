@@ -14,7 +14,7 @@ public class Menu {
     /**
      * Arreglo de Strings que contiene las opciones del menú
      */
-    private String[] opciones = {"Crear contacto", "", "salir"};
+    private String[] opciones = {"Mostras lista de Contactos","Ver un Contacto", "Crear Contacto Nuevo", "Editar un Contacto", "Eliminar un Contacto", "Cerrar Programa"};
     /**
      * Scanner para recibir la entrada por teclado
      */
