@@ -24,6 +24,7 @@ public class Menu {
      */
     int seleccion; //Se usa en el metodo despliegue menú y switch case
     int seleccionContacto; //se usa en Switch case para la seleccion de numero de lista de contacto
+    int eleccion; //se usa en metodo salir para ingreso de datos
     //intanciar
     PhoneBook clasePhoneBook = new PhoneBook();
 
@@ -87,11 +88,27 @@ public class Menu {
                 linea();
         }
     }
+
     /**
      * Metodo salir
      */
-    public void salir(){
-        
+    public void salir() {
+        boolean valido = false;
+        do {
+            System.out.println("¿Desea salir del programa? 1=Sí 0=No");
+            eleccion = validarInt();
+            switch (eleccion) {
+                case 1:
+                    clasePhoneBook.seguir = false;
+                    valido = true;
+                    break;
+                case 0:
+                    valido = true;
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no existe");
+            }
+        } while (!valido);
     }
 
     /**
