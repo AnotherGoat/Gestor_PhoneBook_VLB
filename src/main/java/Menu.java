@@ -68,17 +68,21 @@ public class Menu {
                 System.out.println("Eliga el N° de lista del contacto que desea ver");
                 seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
                 linea();
+                break:
             case 3:
                 System.out.println("Usted ha seleccionado crear un contacto nuevo");
                 //metodo crear contacto
                 linea();
+                break;
             case 4:
                 System.out.println("Usted ha seleccionado editar un contacto");
                 //metodo editar
+                break;
             case 5:
                 System.out.println("Usted ha seleccionado eliminar un contacto");
                 //metodo eliminar
                 linea();
+                break;
             case 6:
                 salir();
                 linea();
