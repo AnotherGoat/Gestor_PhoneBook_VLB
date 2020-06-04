@@ -46,7 +46,7 @@ public class Menu {
 
         while (repetir) {
             try {
-                System.out.print("Ingrese la opción: ");
+                System.out.print("Escoja una opción: ");
                 a = this.teclado.nextInt();
                 repetir = false;
             } catch (Exception e) {
