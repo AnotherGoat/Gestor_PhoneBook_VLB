@@ -1,5 +1,6 @@
 
 // Importa la clase Scanner
+
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -10,36 +11,63 @@ public class Menu {
 
     //// Atributos
 
-    /** Arreglo de Strings que contiene las opciones del menú */
+    /**
+     * Arreglo de Strings que contiene las opciones del menú
+     */
     private String[] opciones = {"Crear contacto", "", "salir"};
-    /** Scanner para recibir la entrada por teclado */
+    /**
+     * Scanner para recibir la entrada por teclado
+     */
     Scanner teclado = new Scanner(System.in);
-    /** Opción que ingresa el usuario */
-    int opcion;
+    /**
+     * Opción que ingresa el usuario
+     */
+    int seleccion;
+    //intanciar
+    PhoneBook clasePhoneBook = new PhoneBook();
 
     //// Constructores
-
-    public Menu(){
+    public Menu() {
     }
 
     //// Métodos
 
-    /** Muestra un menú con las opciones del gestor */
-    public void mostrarMenu(){
+    /**
+     * Metodo que muestra un menú con las opciones del gestor
+     */
+    public void desPliegueMenu() {
         System.out.println("******************************************");
         System.out.println("=========\\\\Gestor PhoneBook VLB//=========");
         System.out.println("******************************************");
-        System.out.println("Opciones:");
+        System.out.println("Menu de Selección:");
 
         // Muestra las opciones
-        for (int i=1; i<=opciones.length; i++){
-            System.out.println(i+".- "+opciones[i-1]);
+        for (int i = 1; i <= opciones.length; i++) {
+            System.out.println(i + ".- " + opciones[i - 1]);
         }
 
-        this.opcion = validarInt();
+        this.seleccion = validarInt();
     }
 
-    /** Valida entrada de tipo int */
+    /**
+     * Metodo para la Seleccion de menú
+     */
+    public void seleccionMenu() {
+
+    }
+
+    /**
+     * Metodo de decoracion
+     */
+    private void linea() {
+
+    }
+
+    //Validaciones
+
+    /**
+     * Valida entrada de tipo int
+     */
     private int validarInt() {
         boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo
         int a = 0; // Variable con la que se trabaja
@@ -51,7 +79,7 @@ public class Menu {
                 repetir = false;
             } catch (Exception e) {
                 this.teclado.next();
-                System.out.println("Error: "+e.getMessage()+". Ingrese un número, por favor");
+                System.out.println("Error: " + e.getMessage() + ". Ingrese un número, por favor");
                 repetir = true;
             }
         }
@@ -65,7 +93,7 @@ public class Menu {
         return opciones;
     }
 
-    public void setOpciones(String[] op@ciones) {
+    public void setOpciones(String[] opciones) {
         this.opciones = opciones;
     }
 

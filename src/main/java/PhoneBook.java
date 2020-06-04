@@ -33,10 +33,9 @@ public class PhoneBook {
 
     public static void main(String[] args){
         // Crea un objeto de la clase Menu
-        Menu menu = new menu();
+        Menu menu = new Menu();
 
         // Muestra el menú principal de la agenda
-        menu.mostrarMenu();
     }
 
 }
