@@ -1,25 +1,35 @@
 
 // Importa la clase Scanner
+
 import java.util.Scanner;
 // Importa la clase ArrayList
 import java.util.ArrayList;
 
-/** Esta clase almacena todos los contactos y métodos para trabajar con ellos */
+/**
+ * Esta clase almacena todos los contactos y métodos para trabajar con ellos
+ */
 public class Agenda {
 
     //// Atributos
-    /** ArrayList con los contactos registrados */
+    /**
+     * ArrayList con los contactos registrados
+     */
     ArrayList<Contacto> contactos = new ArrayList<>();
-    /** Scanner para tomar entrada */
+    /**
+     * Scanner para tomar entrada
+     */
     Scanner teclado = new Scanner(System.in);
+
     //// Constructores
     public Agenda() {
     }
 
     //// Métodos
 
-    /** Método para crear un contacto nuevo */
-    public void crearContacto(){
+    /**
+     * Método para crear un contacto nuevo
+     */
+    public void crearContacto() {
         // Pide el nombre del contacto
 
         System.out.print("Ingrese el nombre del contacto: ");
@@ -31,113 +41,135 @@ public class Agenda {
         System.out.println("El contacto fue guardado exitosamente.");
     }
 
-    /** Método para mostrar una lista de todos los contactos guardados */
+    /**
+     * Método para mostrar una lista de todos los contactos guardados
+     */
     public void listarContactos() {
         // Verificar que hayan contactos guardados antes de usar
-        if(contactos.size() == 0){
+        if (contactos.size() == 0) {
             System.out.println("Todavía no ha guardado ningún contacto.");
-        }
-
-        else {
+        } else {
             System.out.println("Contactos registrados:");
 
             for (int i = 1; i <= contactos.size(); i++) {
-                System.out.println(i + ".- " + contactos.get(i-1).getNombre());
+                System.out.println(i + ".- " + contactos.get(i - 1).getNombre());
             }
         }
     }
 
-    /** Método para mostrar detalles de un contacto específico */
-    public void mostrarContacto(){
+    /**
+     * Método para mostrar detalles de un contacto específico
+     */
+    public void mostrarContacto() {
         // Verificar que hayan contactos guardados antes de usar
-        if(contactos.size() == 0){
+        if (contactos.size() == 0) {
             System.out.println("Todavía no ha guardado ningún contacto.");
-        }
-
-        else {
+        } else {
             // Muestra la lista de contactos
             listarContactos();
-            int a = validarInt("Escoja el contacto que quiere ver: ");
-
-            if(a<1 || a>contactos.size()){
-                System.out.println("El contacto ingresado no existe.");
+            int a = 0;
+            boolean f = false;
+            //while para repetir en caso de que no se ingrese un rango deseado
+            while (!f) {
+                a = validarInt("Escoja el contacto que quiere ver: ");
+                if (a < 1 || a > contactos.size()) {
+                    System.out.println("El contacto ingresado no existe.");
+                    f = false;
+                } else {
+                    System.out.println(contactos.get(a - 1).toString());
+                    f = true;
+                }
             }
 
-            else{
-                System.out.println(contactos.get(a-1).toString());
-            }
         }
     }
 
-    /** Método para editar datos de un contacto */
-    public void editarContacto(){
+    /**
+     * Método para editar datos de un contacto
+     */
+    public void editarContacto() {
         // Verificar que hayan contactos guardados antes de usar
-        if(contactos.size() == 0){
+        if (contactos.size() == 0) {
             System.out.println("Todavía no ha guardado ningún contacto.");
-        }
-
-        else {
+        } else {
             listarContactos();
-            int a = validarInt("Escoja el contacto que quiere editar: ");
-
-            if(a<1 || a>contactos.size()){
-                System.out.println("El contacto ingresado no existe.");
-            }
-            else{
-                menuEdicion(a);
+            int a = 0;
+            boolean f = false;
+            while (!f) {
+                a = validarInt("Escoja el contacto que quiere editar: ");
+                if (a < 1 || a > contactos.size()) {
+                    System.out.println("El contacto ingresado no existe.");
+                    f = false;
+                } else {
+                    menuEdicion(a);
+                    f = true;
+                }
             }
         }
     }
 
-    /** Método para hacer y confirmar los cambios hechos a un contacto */
-    public void menuEdicion(int a){
+    /**
+     * Método para hacer y confirmar los cambios hechos a un contacto
+     */
+    public void menuEdicion(int a) {
         boolean repetir = true;
 
         do {
             Menu edicion = crearOpciones(a);
             repetir = switchEdicion(a, edicion);
-        }while (repetir);
+        } while (repetir);
     }
 
-    public Menu crearOpciones(int a){
-        Contacto aux = contactos.get(a-1);
+    public void eliminarContacto() {
+        // Verificar que hayan contactos guardados antes de usar
+        if (contactos.size() == 0) {
+            System.out.println("Todavía no ha guardado ningún contacto.");
+        } else {
+            listarContactos();
+            int a = validarInt("Escoja el contacto que quiere eliminar: ");
+
+            if (a < 1 || a > contactos.size()) {
+                System.out.println("El contacto ingresado no existe.");
+            } else {
+                confirmarBorrado(a);
+            }
+        }
+    }
+
+    public Menu crearOpciones(int a) {
+        Contacto aux = contactos.get(a - 1);
 
         // Cambia las opciones del menú
         ArrayList<String> opcionesEd = new ArrayList<>();
         opcionesEd.add("Cambiar nombre");
 
-        if(aux.telefonoCelular==-1){
+        if (aux.telefonoCelular == -1) {
             opcionesEd.add("Agregar número de celular");
-        }
-        else{
+        } else {
             opcionesEd.add("Cambiar número de celular");
         }
 
-        if(aux.telefonoCasa==-1){
+        if (aux.telefonoCasa == -1) {
             opcionesEd.add("Agregar número de casa");
-        }
-        else{
+        } else {
             opcionesEd.add("Cambiar número de casa");
         }
 
-        if(aux.telefonoTrabajo==-1){
+        if (aux.telefonoTrabajo == -1) {
             opcionesEd.add("Agregar número de trabajo");
-        }
-        else{
+        } else {
             opcionesEd.add("Cambiar número de trabajo");
         }
 
-        if(aux.direccion==null){
+        if (aux.direccion == null) {
             opcionesEd.add("Agregar dirección");
-        }
-        else{
+        } else {
             opcionesEd.add("Cambiar dirección");
         }
 
-        if(aux.correoElectronico==null){
+        if (aux.correoElectronico == null) {
             opcionesEd.add("Agregar correo electrónico");
-        }
-        else{
+        } else {
             opcionesEd.add("Cambiar correo electrónico");
         }
 
@@ -171,8 +203,8 @@ public class Agenda {
         return ed;
     }
 
-    public boolean switchEdicion(int a, Menu ed){
-        if(ed!=null) {
+    public boolean switchEdicion(int a, Menu ed) {
+        if (ed != null) {
             Contacto aux = contactos.get(a - 1);
             ed.desplegarMenu();
             String s;
@@ -186,28 +218,25 @@ public class Agenda {
                     return true;
                 case 2: // Número de celular
                     b = validarInt("Ingrese el número de celular: ");
-                    if (b<1){
+                    if (b < 1) {
                         System.out.println("El número ingresado no es válido.");
-                    }
-                    else{
+                    } else {
                         aux.setTelefonoCelular(b);
                     }
                     return true;
                 case 3: // Número de casa
                     b = validarInt("Ingrese el número de casa: ");
-                    if (b<1){
+                    if (b < 1) {
                         System.out.println("El número ingresado no es válido.");
-                    }
-                    else{
+                    } else {
                         aux.setTelefonoCasa(b);
                     }
                     return true;
                 case 4: // Número de trabajo
                     b = validarInt("Ingrese el número de trabajo: ");
-                    if (b<1){
+                    if (b < 1) {
                         System.out.println("El número ingresado no es válido.");
-                    }
-                    else{
+                    } else {
                         aux.setTelefonoTrabajo(b);
                     }
                     return true;
@@ -228,7 +257,7 @@ public class Agenda {
                         b = validarInt("Escoja una opción: ");
                         switch (b) {
                             case 1:
-                                contactos.set(a-1, aux);
+                                contactos.set(a - 1, aux);
                                 System.out.println("Los cambios han sido guardados.");
                                 break;
                             case 0:
@@ -243,43 +272,28 @@ public class Agenda {
                     System.out.println("La opción ingresada no existe.");
                     return true;
             }
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    /** Método para eliminar un contacto */
-    public void eliminarContacto(){
-        // Verificar que hayan contactos guardados antes de usar
-        if(contactos.size() == 0){
-            System.out.println("Todavía no ha guardado ningún contacto.");
-        }
+    /**
+     * Método para eliminar un contacto
+     */
 
-        else {
-            listarContactos();
-            int a = validarInt("Escoja el contacto que quiere eliminar: ");
-
-            if(a<1 || a>contactos.size()){
-                System.out.println("El contacto ingresado no existe.");
-            }
-            else{
-                confirmarBorrado(a);
-            }
-        }
-    }
-
-    /** Método para confirmar la eliminación de un contacto */
-    private void confirmarBorrado(int num){
+    /**
+     * Método para confirmar la eliminación de un contacto
+     */
+    private void confirmarBorrado(int num) {
         int x;
         boolean valido = false;
         do {
-            System.out.println("Se borrará el contacto " + contactos.get(num-1).getNombre());
+            System.out.println("Se borrará el contacto " + contactos.get(num - 1).getNombre());
             System.out.println("¿Está seguro? 1=Sí 0=No");
             x = validarInt("Escoja una opción: ");
             switch (x) {
                 case 1:
-                    contactos.remove(num-1);
+                    contactos.remove(num - 1);
                     System.out.println("El contacto ha sido borrado exitosamente.");
                     valido = true;
                     break;
@@ -293,7 +307,9 @@ public class Agenda {
         } while (!valido);
     }
 
-    /** Valida entrada de tipo int */
+    /**
+     * Valida entrada de tipo int
+     */
     private int validarInt(String s) {
         boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo
         int a = 0; // Variable con la que se trabaja

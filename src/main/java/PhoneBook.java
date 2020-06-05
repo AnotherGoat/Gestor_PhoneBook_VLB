@@ -30,19 +30,30 @@
  */
 
 // Importa la clase ArrayList
+
 import java.util.ArrayList;
 
-/** Clase principal del programa, aquí comienza toda la ejecución */
+/**
+ * Clase principal del programa, aquí comienza toda la ejecución
+ */
 public class PhoneBook {
 
     ////atributos
-    /** Boolean global que permite repetir el menú hasta que el usuario escoja salir */
+    /**
+     * Boolean global que permite repetir el menú hasta que el usuario escoja salir
+     */
     public static boolean seguir = true;
-    /** Objeto de la clase Agenda en el cual se almacenan todos los contactos */
+    /**
+     * Objeto de la clase Agenda en el cual se almacenan todos los contactos
+     */
     public static Agenda agenda = new Agenda();
-    /** ArrayList de Strings usado para el menú */
+    /**
+     * ArrayList de Strings usado para el menú
+     */
     public static ArrayList<String> opciones = new ArrayList<>();
-    /** Objeto de clase Menu que se inicia para mostrar el menú */
+    /**
+     * Objeto de clase Menu que se inicia para mostrar el menú
+     */
     public static Menu menu = new Menu(opciones);
 
     public static void main(String[] args) {

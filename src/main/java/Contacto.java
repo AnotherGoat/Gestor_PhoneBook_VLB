@@ -1,30 +1,51 @@
 
 // Importa la clase ArrayList
+
 import java.util.ArrayList;
 // Importa la clase Date
 import java.util.Date;
 
-/** Esta clase contiene los datos que se guardarán para cada contacto */
+/**
+ * Esta clase contiene los datos que se guardarán para cada contacto
+ */
 public class Contacto {
 
     //// Atributos
-    /** Nombre del contacto */
+    /**
+     * Nombre del contacto
+     */
     String nombre;
-    /** Número de celular del contacto */
+    /**
+     * Número de celular del contacto
+     */
     int telefonoCelular;
-    /** Número de teléfono de la casa del contacto */
+    /**
+     * Número de teléfono de la casa del contacto
+     */
     int telefonoCasa;
-    /** Número de teléfono de trabajo del contacto */
+    /**
+     * Número de teléfono de trabajo del contacto
+     */
     int telefonoTrabajo;
-    /** Dirección de residencia del contacto */
+    /**
+     * Dirección de residencia del contacto
+     */
     String direccion;
-    /** Dirección de correo electrónico del contacto */
+    /**
+     * Dirección de correo electrónico del contacto
+     */
     String correoElectronico;
-    /** Sobrenombre con el que se conoce al contacto */
+    /**
+     * Sobrenombre con el que se conoce al contacto
+     */
     String sobrenombre;
-    /** Fecha de cumpleaños del contacto */
+    /**
+     * Fecha de cumpleaños del contacto
+     */
     Date fechaCumple;
-    /** Notas adicionales que se quieran agregar sobre el contacto */
+    /**
+     * Notas adicionales que se quieran agregar sobre el contacto
+     */
     String notas;
 
     //// Constructores
@@ -118,29 +139,29 @@ public class Contacto {
         String s;
         s = "Nombre: " + nombre;
 
-        if(telefonoCelular!=-1){
-            s+="\nTeléfono Celular: " + telefonoCelular;
+        if (telefonoCelular != -1) {
+            s += "\nTeléfono Celular: " + telefonoCelular;
         }
-        if(telefonoCasa!=-1) {
+        if (telefonoCasa != -1) {
             s += "\nTeléfono Casa: " + telefonoCasa;
         }
-        if(telefonoTrabajo!=-1){
-            s+="\nTeléfono Trabajo: " + telefonoTrabajo;
+        if (telefonoTrabajo != -1) {
+            s += "\nTeléfono Trabajo: " + telefonoTrabajo;
         }
-        if(direccion!=null){
-            s+="\nDirección: " + direccion;
+        if (direccion != null) {
+            s += "\nDirección: " + direccion;
         }
-        if(correoElectronico!=null){
-            s+="\nCorreo electónico: " + correoElectronico;
+        if (correoElectronico != null) {
+            s += "\nCorreo electónico: " + correoElectronico;
         }
-        if(sobrenombre!=null){
-            s+="\nSobrenombre: " + sobrenombre;
+        if (sobrenombre != null) {
+            s += "\nSobrenombre: " + sobrenombre;
         }
-        if(fechaCumple!=null){
-            s+="\nFecha de cumpleaños: " + fechaCumple;
+        if (fechaCumple != null) {
+            s += "\nFecha de cumpleaños: " + fechaCumple;
         }
-        if(notas!=null){
-            s+="\nNotas adicionales: " + notas;
+        if (notas != null) {
+            s += "\nNotas adicionales: " + notas;
         }
 
         return s;
