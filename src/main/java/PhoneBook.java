@@ -30,7 +30,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /** Clase principal del programa, aquí comienza toda la ejecución */
 public class PhoneBook {
@@ -38,6 +37,8 @@ public class PhoneBook {
     ////atributos
     /** Boolean global que permite repetir el menú hasta que el usuario escoja salir */
     public static boolean seguir = true;
+    // Crea un objeto de la clase Agenda (en el cual se almacenan todos los contactos)
+    public static Agenda agenda = new Agenda();
 
     public static void main(String[] args) {
         /** ArrayList de Strings usado para el menú */
@@ -52,13 +53,12 @@ public class PhoneBook {
 
         // Crea un objeto de la clase Menu
         Menu menu = new Menu(opciones);
-        // Crea un objeto de la clase Agenda (en el cual se almacenan todos los contactos)
-        Agenda agenda = new Agenda();
+
 
         // Muestra el menú principal de la agenda y lo repite
         do {
             menu.desplegarMenu();
-            menu.seleccionMenu();
+            menu.switchMenu();
         } while (seguir);
     }
 

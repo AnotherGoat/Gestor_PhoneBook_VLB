@@ -20,14 +20,11 @@ public class Menu {
      */
     private int seleccion;
     private int seleccionContacto; //se usa en Switch case para la seleccion de numero de lista de contacto
-    // Intanciar
-    PhoneBook clasePhoneBook = new PhoneBook();
 
     //// Constructores
     public Menu(ArrayList opciones) {
         this.opciones = opciones;
     }
-
 
     //// Métodos
     /**
@@ -48,42 +45,58 @@ public class Menu {
     }
 
     /**
-     * Metodo para la selección de menú
+     * Método para tomar la selección en el menú principal
      */
-    public void seleccionMenu() {
-        //Switch para la seleccion, tomando variable seleccion del metodo despliegueMenu
+    public void switchMenu() {
+        //Switch para la selección, tomando variable seleccion del método desplegarMenu
         switch (seleccion) {
             case 1:
-                System.out.println("Usted ha seleccionado mostrar lista de contactos");
-                //metodo mostrar contactos de clase agenda
-                linea();
+                if(PhoneBook.agenda.contactos == null){
+                    System.out.println("Todavía no ha guardado ningún contacto.");
+                }
+                else {
+                    //metodo mostrar contactos de clase agenda
+                    linea();
+                }
                 break;
             case 2:
-                System.out.println("Usted ha seleccionado ver un contacto");
-                //metodo mostrar contacto enumerado
-                System.out.println("Eliga el N° de lista del contacto que desea ver");
-                seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
-                linea();
+                if(PhoneBook.agenda.contactos == null){
+                    System.out.println("Todavía no ha guardado ningún contacto.");
+                }
+                else{
+                    //metodo mostrar contacto enumerado
+                    System.out.println("Eliga el N° de lista del contacto que desea ver");
+                    seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
+                    linea();
+                }
                 break;
             case 3:
-                System.out.println("Usted ha seleccionado crear un contacto nuevo");
                 //metodo crear contacto
                 linea();
                 break;
             case 4:
-                System.out.println("Usted ha seleccionado editar un contacto");
-                //metodo editar
+                if(PhoneBook.agenda.contactos == null){
+                    System.out.println("Todavía no ha guardado ningún contacto.");
+                }
+                else{
+                    //metodo editar
+                }
                 break;
             case 5:
-                System.out.println("Usted ha seleccionado eliminar un contacto");
-                //metodo eliminar
-                linea();
+                if(PhoneBook.agenda.contactos == null){
+                    System.out.println("Todavía no ha guardado ningún contacto.");
+                }
+                else {
+                    //metodo eliminar
+                    System.out.println("");
+                    linea();
+                }
                 break;
             case 6:
                 salir();
                 break;
             default:
-                System.out.println("La opción ingresada no existe");
+                System.out.println("La opción ingresada no existe.");
                 linea();
         }
     }
@@ -100,19 +113,17 @@ public class Menu {
             switch (a) {
                 case 1:
                     PhoneBook.seguir = false;
-                    valido = true;
-                    break;
                 case 0:
                     valido = true;
                     break;
                 default:
-                    System.out.println("La opción ingresada no existe");
+                    System.out.println("La opción ingresada no existe.");
             }
         } while (!valido);
     }
 
     /**
-     * Metodo de decoracion
+     * Método de decoración, agrega una línea
      */
     private void linea() {
         System.out.println("------------------------------------------------");
@@ -134,7 +145,7 @@ public class Menu {
                 repetir = false;
             } catch (Exception e) {
                 this.teclado.next();
-                System.out.println("Error: " + e.getMessage() + ". Ingrese un número, por favor");
+                System.out.println("Error: " + e.getMessage() + ". Ingrese un número válido, por favor.");
                 repetir = true;
             }
         }
