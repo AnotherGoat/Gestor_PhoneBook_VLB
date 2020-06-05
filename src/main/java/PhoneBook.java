@@ -40,10 +40,12 @@ public class PhoneBook {
     public static boolean seguir = true;
     /** Objeto de la clase Agenda en el cual se almacenan todos los contactos */
     public static Agenda agenda = new Agenda();
+    /** ArrayList de Strings usado para el menú */
+    public static ArrayList<String> opciones = new ArrayList<String>();
+    /** Objeto de clase Menu que se inicia para mostrar el menú */
+    public static Menu menu = new Menu(opciones);
 
     public static void main(String[] args) {
-        /** ArrayList de Strings usado para el menú */
-        ArrayList<String> opciones = new ArrayList<String>();
         // Opciones del ArrayList
         opciones.add("Mostrar lista de contactos");
         opciones.add("Ver detalles de un contacto");
@@ -51,9 +53,6 @@ public class PhoneBook {
         opciones.add("Editar un contacto");
         opciones.add("Eliminar un contacto");
         opciones.add("Salir");
-
-        /** Objeto de clase Menu que se inicia para mostrar el menú */
-        Menu menu = new Menu(opciones);
 
         // Muestra el menú principal de la agenda y lo repite
         do {

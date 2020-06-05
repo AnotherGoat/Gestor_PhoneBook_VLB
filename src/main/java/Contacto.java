@@ -30,6 +30,11 @@ public class Contacto {
     //// Constructores
     public Contacto(String nombre) {
         this.nombre = nombre;
+
+        // Inician en -1 para no mostrarlos en el toString()
+        this.telefonoCelular = -1;
+        this.telefonoCasa = -1;
+        this.telefonoTrabajo = -1;
     }
 
     //// Métodos
@@ -50,8 +55,29 @@ public class Contacto {
         String s;
         s = "Nombre: " + nombre;
 
+        if(telefonoCelular!=-1){
+            s+="\nTeléfono Celular: " + telefonoCelular;
+        }
+        if(telefonoCasa!=-1) {
+            s += "\nTeléfono Casa: " + telefonoCasa;
+        }
+        if(telefonoTrabajo!=-1){
+            s+="\nTeléfono Trabajo: " + telefonoTrabajo;
+        }
         if(direccion!=null){
             s+="\nDirección: " + direccion;
+        }
+        if(correoElectronico!=null){
+            s+="\nCorreo electónico: " + correoElectronico;
+        }
+        if(sobrenombre!=null){
+            s+="\nSobrenombre: " + sobrenombre;
+        }
+        if(fechaCumple!=null){
+            s+="\nFecha de cumpleaños: " + fechaCumple;
+        }
+        if(notas!=null){
+            s+="\nNotas adicionales: " + notas;
         }
 
         return s;
