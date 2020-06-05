@@ -35,8 +35,10 @@ public class PhoneBook {
     public static boolean seguir = true;
 
     public static void main(String[] args) {
+        String[] opciones = {"Mostrar lista de Contactos", "Ver detalles de un Contacto", "Crear Contacto Nuevo", "Editar un Contacto", "Eliminar un Contacto", "Cerrar Programa"};
         // Crea un objeto de la clase Menu
-        Menu menu = new Menu();
+        Menu menu = new Menu(opciones);
+
 
         // Muestra el menú principal de la agenda y lo repite
         do {

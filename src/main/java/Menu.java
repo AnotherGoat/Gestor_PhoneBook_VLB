@@ -1,35 +1,35 @@
 
 // Importa la clase Scanner
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /** Acá ira el menú del proyecto phoneBook /coordinar con compañeros */
 public class Menu {
-    //// Atributos
 
+    //// Atributos
     /**
      * Arreglo de Strings que contiene las opciones del menú
      */
-    private String[] opciones = {"Mostrar lista de Contactos", "Ver detalles de un Contacto", "Crear Contacto Nuevo", "Editar un Contacto", "Eliminar un Contacto", "Cerrar Programa"};
+    private ArrayList<String> opciones;
     /**
      * Scanner para recibir la entrada por teclado
      */
     private Scanner teclado = new Scanner(System.in);
     /**
-     * Opción que ingresa el usuario
+     * Opción que ingresa el usuario, se usa en los métodos desplegarMenu y seleccionMenu
      */
-    private int seleccion; //Se usa en el metodo despliegue menú y switch case
+    private int seleccion;
     private int seleccionContacto; //se usa en Switch case para la seleccion de numero de lista de contacto
-    /** */
-    private int eleccion; //se usa en metodo salir para ingreso de datos
     // Intanciar
     PhoneBook clasePhoneBook = new PhoneBook();
 
     //// Constructores
-    public Menu() {
+    public Menu(String opciones) {
+        this.opciones = opciones;
     }
 
-    //// Métodos
 
+    //// Métodos
     /**
      * Metodo que muestra un menú con las opciones del gestor
      */
@@ -40,8 +40,8 @@ public class Menu {
         System.out.println("Menu de Selección:");
 
         // Muestra las opciones
-        for (int i = 1; i <= opciones.length; i++) {
-            System.out.println(i + ".- " + opciones[i - 1]);
+        for (int i = 1; i <= opciones.size(); i++) {
+            System.out.println(i + ".- " + opciones.get(i-1));
         }
 
         this.seleccion = validarInt();
@@ -94,19 +94,20 @@ public class Menu {
      */
     private void salir() {
         boolean valido = false;
+        int a;
         do {
             System.out.println("¿Desea salir del programa? 1=Sí 0=No");
-            eleccion = validarInt();
+            a = validarInt();
             switch (eleccion) {
                 case 1:
-                    clasePhoneBook.seguir = false;
+                    PhoneBook.seguir = false;
                     valido = true;
                     break;
                 case 0:
                     valido = true;
                     break;
                 default:
-                    System.out.println("La opcion ingresada no existe");
+                    System.out.println("La opción ingresada no existe");
             }
         } while (!valido);
     }
