@@ -8,7 +8,7 @@ public class Agenda {
     /**
      * ArrayList con los contactos registrados
      */
-    //
+    ArrayList<Contacto> contactos = new ArrayList<Contacto>;
     //// Constructores
     public Agenda() {
     }

@@ -1,31 +1,27 @@
 
 // Importa la clase Scanner
-
 import java.util.Scanner;
-import java.util.Arrays;
 
+/** Acá ira el menú del proyecto phoneBook /coordinar con compañeros */
 public class Menu {
-    /*
-    Aca ira el menú del proyecto phoneBook /coordinar con compañeros
-     */
-
     //// Atributos
 
     /**
      * Arreglo de Strings que contiene las opciones del menú
      */
-    private String[] opciones = {"Mostras lista de Contactos","Ver un Contacto", "Crear Contacto Nuevo", "Editar un Contacto", "Eliminar un Contacto", "Cerrar Programa"};
+    private String[] opciones = {"Mostrar lista de Contactos", "Ver detalles de un Contacto", "Crear Contacto Nuevo", "Editar un Contacto", "Eliminar un Contacto", "Cerrar Programa"};
     /**
      * Scanner para recibir la entrada por teclado
      */
-    Scanner teclado = new Scanner(System.in);
+    private Scanner teclado = new Scanner(System.in);
     /**
      * Opción que ingresa el usuario
      */
-    int seleccion; //Se usa en el metodo despliegue menú y switch case
-    int seleccionContacto; //se usa en Switch case para la seleccion de numero de lista de contacto
-    int eleccion; //se usa en metodo salir para ingreso de datos
-    //intanciar
+    private int seleccion; //Se usa en el metodo despliegue menú y switch case
+    private int seleccionContacto; //se usa en Switch case para la seleccion de numero de lista de contacto
+    /** */
+    private int eleccion; //se usa en metodo salir para ingreso de datos
+    // Intanciar
     PhoneBook clasePhoneBook = new PhoneBook();
 
     //// Constructores
@@ -37,7 +33,7 @@ public class Menu {
     /**
      * Metodo que muestra un menú con las opciones del gestor
      */
-    public void desPliegueMenu() {
+    private void desPliegueMenu() {
         System.out.println("******************************************");
         System.out.println("=========\\\\Gestor PhoneBook VLB//=========");
         System.out.println("******************************************");
@@ -54,7 +50,7 @@ public class Menu {
     /**
      * Metodo para la Seleccion de menú
      */
-    public void seleccionMenu() {
+    private void seleccionMenu() {
         //Switch para la seleccion, tomando variable seleccion del metodo despliegueMenu
         switch (seleccion) {
             case 1:
@@ -96,7 +92,7 @@ public class Menu {
     /**
      * Metodo salir
      */
-    public void salir() {
+    private void salir() {
         boolean valido = false;
         do {
             System.out.println("¿Desea salir del programa? 1=Sí 0=No");

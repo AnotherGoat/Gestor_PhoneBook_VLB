@@ -1,8 +1,10 @@
+import java.util.ArrayList
+
 public class Contacto {
 
     //// Atributos
     /** Nombre del contacto */
-    String nombre;
+    String nombreCompleto;
 
 
     //// Constructores
