@@ -38,7 +38,7 @@ public class PhoneBook {
     ////atributos
     /** Boolean global que permite repetir el menú hasta que el usuario escoja salir */
     public static boolean seguir = true;
-    // Crea un objeto de la clase Agenda (en el cual se almacenan todos los contactos)
+    /** Objeto de la clase Agenda en el cual se almacenan todos los contactos */
     public static Agenda agenda = new Agenda();
 
     public static void main(String[] args) {
@@ -52,7 +52,7 @@ public class PhoneBook {
         opciones.add("Eliminar un contacto");
         opciones.add("Salir");
 
-        // Crea un objeto de la clase Menu
+        /** Objeto de clase Menu que se inicia para mostrar el menú */
         Menu menu = new Menu(opciones);
 
         // Muestra el menú principal de la agenda y lo repite

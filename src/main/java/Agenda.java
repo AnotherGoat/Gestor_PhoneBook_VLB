@@ -4,19 +4,13 @@ import java.util.Scanner;
 // Importa la clase ArrayList
 import java.util.ArrayList;
 
-/**
- * Esta clase almacena todos los contactos y métodos para trabajar con ellos
- */
+/** Esta clase almacena todos los contactos y métodos para trabajar con ellos */
 public class Agenda {
 
     //// Atributos
-    /**
-     * ArrayList con los contactos registrados
-     */
+    /** ArrayList con los contactos registrados */
     ArrayList<Contacto> contactos = new ArrayList<Contacto>();
-    /**
-     * Scanner para tomar entrada
-     */
+    /** Scanner para tomar entrada */
     Scanner teclado = new Scanner(System.in);
     //// Constructores
     public Agenda() {
@@ -24,9 +18,7 @@ public class Agenda {
 
     //// Métodos
 
-    /**
-     * Método para crear un contacto nuevo
-     */
+    /** Método para crear un contacto nuevo */
     public void crearContacto(){
         // Pide el nombre del contacto
 
@@ -39,9 +31,7 @@ public class Agenda {
         System.out.println("El contacto fue guardado exitosamente.");
     }
 
-    /**
-     * Método para mostrar una lista de todos los contactos guardados
-     */
+    /** Método para mostrar una lista de todos los contactos guardados */
     public void listarContactos() {
         // Verificar que hayan contactos guardados antes de usar
         if(contactos.size() == 0){
@@ -57,9 +47,7 @@ public class Agenda {
         }
     }
 
-    /**
-     * Método para mostrar detalles de un contacto específico
-     */
+    /** Método para mostrar detalles de un contacto específico */
     public void mostrarContacto(){
         // Verificar que hayan contactos guardados antes de usar
         if(contactos.size() == 0){
@@ -82,9 +70,7 @@ public class Agenda {
         }
     }
 
-    /**
-     * Método para editar datos de un contacto
-     */
+    /** Método para editar datos de un contacto */
     public void editarContacto(){
         // Verificar que hayan contactos guardados antes de usar
         if(contactos.size() == 0){
@@ -96,9 +82,7 @@ public class Agenda {
         }
     }
 
-    /**
-     * Método para eliminar un contacto
-     */
+    /** Método para eliminar un contacto */
     public void eliminarContacto(){
         // Verificar que hayan contactos guardados antes de usar
         if(contactos.size() == 0){
@@ -110,9 +94,7 @@ public class Agenda {
         }
     }
 
-    /**
-     * Valida entrada de tipo int
-     */
+    /** Valida entrada de tipo int */
     private int validarInt(String s) {
         boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo
         int a = 0; // Variable con la que se trabaja
