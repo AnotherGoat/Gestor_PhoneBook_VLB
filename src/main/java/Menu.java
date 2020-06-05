@@ -3,7 +3,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-/** Acá ira el menú del proyecto phoneBook /coordinar con compañeros */
+/** Acá ira el menú del proyecto PhoneBook y todo lo relacionado con él */
 public class Menu {
 
     //// Atributos

@@ -29,16 +29,20 @@
 
  */
 
+/** Clase principal del programa, aquí comienza toda la ejecución */
 public class PhoneBook {
 
     ////atributos
+    /** Boolean global que permite repetir el menú hasta que el usuario escoja salir */
     public static boolean seguir = true;
 
     public static void main(String[] args) {
+        // Arreglo de Strings usado para el menú
         String[] opciones = {"Mostrar lista de Contactos", "Ver detalles de un Contacto", "Crear Contacto Nuevo", "Editar un Contacto", "Eliminar un Contacto", "Cerrar Programa"};
         // Crea un objeto de la clase Menu
         Menu menu = new Menu(opciones);
-
+        // Crea un objeto de la clase Agenda (en el cual se almacenan todos los contactos)
+        Agenda agenda = new Agenda();
 
         // Muestra el menú principal de la agenda y lo repite
         do {

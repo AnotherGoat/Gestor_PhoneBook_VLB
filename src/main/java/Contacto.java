@@ -1,15 +1,19 @@
-import java.util.ArrayList
+import java.util.ArrayList;
 
+/** Esta clase contiene los datos que se guardarán para cada contacto */
 public class Contacto {
 
     //// Atributos
     /** Nombre del contacto */
     String nombreCompleto;
+    /** Dirección de residencia del contacto */
+    String direccion;
 
 
     //// Constructores
-    public Contacto(String nombre) {
-        this.nombre = nombre;
+    public Contacto(String nombreCompleto, String direccion) {
+        this.nombreCompleto = nombreCompleto;
+        this.direccion = direccion;
     }
 
     //// Métodos
