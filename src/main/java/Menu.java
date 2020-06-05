@@ -24,7 +24,7 @@ public class Menu {
     PhoneBook clasePhoneBook = new PhoneBook();
 
     //// Constructores
-    public Menu(String opciones) {
+    public Menu(ArrayList opciones) {
         this.opciones = opciones;
     }
 
@@ -33,11 +33,11 @@ public class Menu {
     /**
      * Metodo que muestra un menú con las opciones del gestor
      */
-    private void desPliegueMenu() {
+    public void desplegarMenu() {
         System.out.println("******************************************");
         System.out.println("=========\\\\Gestor PhoneBook VLB//=========");
         System.out.println("******************************************");
-        System.out.println("Menu de Selección:");
+        System.out.println("Menu de selección:");
 
         // Muestra las opciones
         for (int i = 1; i <= opciones.size(); i++) {
@@ -48,9 +48,9 @@ public class Menu {
     }
 
     /**
-     * Metodo para la Seleccion de menú
+     * Metodo para la selección de menú
      */
-    private void seleccionMenu() {
+    public void seleccionMenu() {
         //Switch para la seleccion, tomando variable seleccion del metodo despliegueMenu
         switch (seleccion) {
             case 1:
@@ -64,7 +64,7 @@ public class Menu {
                 System.out.println("Eliga el N° de lista del contacto que desea ver");
                 seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
                 linea();
-                break:
+                break;
             case 3:
                 System.out.println("Usted ha seleccionado crear un contacto nuevo");
                 //metodo crear contacto
@@ -81,7 +81,6 @@ public class Menu {
                 break;
             case 6:
                 salir();
-                linea();
                 break;
             default:
                 System.out.println("La opción ingresada no existe");
@@ -90,7 +89,7 @@ public class Menu {
     }
 
     /**
-     * Metodo salir
+     * Método que se usa para confirmar la salida del programa
      */
     private void salir() {
         boolean valido = false;
@@ -98,7 +97,7 @@ public class Menu {
         do {
             System.out.println("¿Desea salir del programa? 1=Sí 0=No");
             a = validarInt();
-            switch (eleccion) {
+            switch (a) {
                 case 1:
                     PhoneBook.seguir = false;
                     valido = true;
@@ -144,13 +143,5 @@ public class Menu {
     }
 
     //// Setters y Getters
-
-    public String[] getOpciones() {
-        return opciones;
-    }
-
-    public void setOpciones(String[] opciones) {
-        this.opciones = opciones;
-    }
 
 }

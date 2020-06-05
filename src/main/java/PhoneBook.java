@@ -29,6 +29,9 @@
 
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /** Clase principal del programa, aquí comienza toda la ejecución */
 public class PhoneBook {
 
@@ -37,8 +40,16 @@ public class PhoneBook {
     public static boolean seguir = true;
 
     public static void main(String[] args) {
-        // Arreglo de Strings usado para el menú
-        String[] opciones = {"Mostrar lista de Contactos", "Ver detalles de un Contacto", "Crear Contacto Nuevo", "Editar un Contacto", "Eliminar un Contacto", "Cerrar Programa"};
+        /** ArrayList de Strings usado para el menú */
+        ArrayList<String> opciones = new ArrayList<String>();
+        // Opciones del ArrayList
+        opciones.add("Mostrar lista de contactos");
+        opciones.add("Ver detalles de un contacto");
+        opciones.add("Crear contacto nuevo");
+        opciones.add("Editar un contacto");
+        opciones.add("Eliminar un contacto");
+        opciones.add("Salir");
+
         // Crea un objeto de la clase Menu
         Menu menu = new Menu(opciones);
         // Crea un objeto de la clase Agenda (en el cual se almacenan todos los contactos)
@@ -46,7 +57,7 @@ public class PhoneBook {
 
         // Muestra el menú principal de la agenda y lo repite
         do {
-            menu.desPliegueMenu();
+            menu.desplegarMenu();
             menu.seleccionMenu();
         } while (seguir);
     }
