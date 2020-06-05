@@ -41,7 +41,11 @@ public class Agenda {
         }
 
         else {
+            System.out.println("Contactos registrados:");
 
+            for (int i = 1; i <= contactos.size(); i++) {
+                System.out.println(i + ".- " + contactos.get(i-1).getNombreCompleto());
+            }
         }
     }
 
