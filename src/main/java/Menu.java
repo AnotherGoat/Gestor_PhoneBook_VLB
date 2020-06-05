@@ -51,42 +51,24 @@ public class Menu {
         //Switch para la selección, tomando variable seleccion del método desplegarMenu
         switch (seleccion) {
             case 1:
-                if(PhoneBook.agenda.contactos.size() == 0){
-                    System.out.println("Todavía no ha guardado ningún contacto.");
-                }
-                else {
-                    //metodo mostrar contactos de clase agenda
-                }
+                PhoneBook.agenda.listarContactos();
                 break;
             case 2:
-                if(PhoneBook.agenda.contactos.size() == 0){
-                    System.out.println("Todavía no ha guardado ningún contacto.");
-                }
-                else{
+                PhoneBook.agenda.mostrarContacto();
+                /*
                     //metodo mostrar contacto enumerado
                     System.out.println("Eliga el N° de lista del contacto que desea ver");
                     seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
-                }
+                } */
                 break;
             case 3:
                 PhoneBook.agenda.crearContacto();
                 break;
             case 4:
-                if(PhoneBook.agenda.contactos.size() == 0){
-                    System.out.println("Todavía no ha guardado ningún contacto.");
-                }
-                else{
-                    //metodo editar
-                }
+                PhoneBook.agenda.editarContacto();
                 break;
             case 5:
-                if(PhoneBook.agenda.contactos.size() == 0){
-                    System.out.println("Todavía no ha guardado ningún contacto.");
-                }
-                else {
-                    //metodo eliminar
-                    System.out.println("");
-                }
+                PhoneBook.agenda.eliminarContacto();
                 break;
             case 6:
                 salir();

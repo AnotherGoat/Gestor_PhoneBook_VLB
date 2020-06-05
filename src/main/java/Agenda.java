@@ -15,16 +15,67 @@ public class Agenda {
     }
 
     //// Métodos
-    public void crearContacto(){
-        Scanner teclado = new Scanner(System.in);
-        String s;
-        System.out.print("Ingrese el nombre del contacto: ");
-        s = teclado.nextLine();
 
+    /**
+     * Método para crear un contacto nuevo
+     */
+    public void crearContacto(){
+        // Pide el nombre del contacto
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("Ingrese el nombre del contacto: ");
+        String s = teclado.nextLine();
+
+        // Crea el contacto nuevo y lo agrega al ArrayList
         Contacto a = new Contacto(s);
         contactos.add(a);
+        System.out.println("El contacto fue guardado exitosamente.");
+    }
 
-        System.out.println("El contacto fue guardado exitosamente");
+    /**
+     * Método para mostrar una lista de todos los contactos guardados
+     */
+    public void listarContactos() {
+        // Verificar que hayan contactos guardados antes de usar
+        if(PhoneBook.agenda.contactos.size() == 0){
+            System.out.println("Todavía no ha guardado ningún contacto.");
+        }
+
+        else {
+
+        }
+    }
+
+    public void mostrarContacto(){
+        // Verificar que hayan contactos guardados antes de usar
+        if(PhoneBook.agenda.contactos.size() == 0){
+            System.out.println("Todavía no ha guardado ningún contacto.");
+        }
+
+        else {
+
+        }
+    }
+
+    public void editarContacto(){
+        // Verificar que hayan contactos guardados antes de usar
+        if(PhoneBook.agenda.contactos.size() == 0){
+            System.out.println("Todavía no ha guardado ningún contacto.");
+        }
+
+        else {
+
+        }
+    }
+
+    public void eliminarContacto(){
+        // Verificar que hayan contactos guardados antes de usar
+        if(PhoneBook.agenda.contactos.size() == 0){
+            System.out.println("Todavía no ha guardado ningún contacto.");
+        }
+
+        else {
+
+        }
     }
 
     //// Getters y Setters
