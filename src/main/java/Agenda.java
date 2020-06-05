@@ -139,8 +139,7 @@ public class Agenda {
         boolean repetir = true;
 
         do {
-            Menu edicion = crearOpciones(a);
-            repetir = switchEdicion(a, edicion);
+            repetir = switchEdicion(a, crearOpciones(a));
         } while (repetir);
     }
 
