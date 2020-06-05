@@ -42,7 +42,7 @@ public class Menu {
             System.out.println(i + ".- " + opciones.get(i-1));
         }
 
-        this.seleccion = validarInt();
+        this.seleccion = validarInt("Escoja una opción: ");
     }
 
     /**
@@ -103,15 +103,15 @@ public class Menu {
     // Validaciones
 
     /**
-     * Valida entrada de tipo int, con texto "Escoja una opción:"
+     * Valida entrada de tipo int
      */
-    private int validarInt() {
+    private int validarInt(String s) {
         boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo
         int a = 0; // Variable con la que se trabaja
 
         while (repetir) {
             try {
-                System.out.print("Escoja una opción: ");
+                System.out.print(s);
                 a = this.teclado.nextInt();
                 repetir = false;
             } catch (Exception e) {

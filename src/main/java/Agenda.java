@@ -70,7 +70,7 @@ public class Agenda {
             // Muestra la lista de contactos
             Scanner teclado = new Scanner(System.in);
             listarContactos();
-            int a = validarInt();
+            int a = validarInt("Escoja un contacto: ");
 
             if(a<1 || a>contactos.size()){
                 System.out.println("El contacto ingresado no existe.");
@@ -111,15 +111,15 @@ public class Agenda {
     }
 
     /**
-     * Valida entrada de tipo int, con texto "Escoja un contacto:"
+     * Valida entrada de tipo int
      */
-    private int validarInt() {
+    private int validarInt(String s) {
         boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo
         int a = 0; // Variable con la que se trabaja
 
         while (repetir) {
             try {
-                System.out.print("Escoja un contacto: ");
+                System.out.print(s);
                 a = teclado.nextInt();
                 repetir = false;
             } catch (Exception e) {
