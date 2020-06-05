@@ -264,6 +264,7 @@ public class Agenda {
                             case 1:
                                 contactos.set(a - 1, aux);
                                 System.out.println("Los cambios han sido guardados.");
+                                valido = true;
                                 break;
                             case 0:
                                 valido = true;
