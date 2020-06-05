@@ -33,7 +33,7 @@ public class Agenda {
         // Pide el nombre del contacto
 
         System.out.print("Ingrese el nombre del contacto: ");
-        String s = teclado.nextLine();
+        String s = teclado.next();
 
         // Crea el contacto nuevo y lo agrega al ArrayList
         Contacto a = new Contacto(s);
@@ -108,6 +108,9 @@ public class Agenda {
         }
     }
 
+    /**
+     * Método para eliminar un contacto
+     */
     public void eliminarContacto() {
         // Verificar que hayan contactos guardados antes de usar
         if (contactos.size() == 0) {
@@ -282,10 +285,6 @@ public class Agenda {
             return false;
         }
     }
-
-    /**
-     * Método para eliminar un contacto
-     */
 
     /**
      * Método para confirmar la eliminación de un contacto
