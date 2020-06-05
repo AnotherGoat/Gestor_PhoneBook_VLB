@@ -33,7 +33,7 @@ public class Agenda {
         // Pide el nombre del contacto
 
         System.out.print("Ingrese el nombre del contacto: ");
-        String s = teclado.next();
+        String s = teclado.nextLine();
 
         // Crea el contacto nuevo y lo agrega al ArrayList
         Contacto a = new Contacto(s);
@@ -212,77 +212,75 @@ public class Agenda {
     public boolean switchEdicion(int a, ArrayList<String> opcionesEd) {
         Menu ed = new Menu(opcionesEd);
 
-        if (ed != null) {
-            Contacto aux = contactos.get(a - 1);
-            ed.desplegarMenu();
-            String s = "";
-            int b;
+        Contacto aux = contactos.get(a - 1);
+        ed.desplegarMenu();
+        String s;
+        int b;
+        Scanner teclado2 = new Scanner(System.in);
 
-            switch (ed.getSeleccion()) {
-                case 1: // Nombre
-                    System.out.print("Ingrese el nombre del contacto: ");
-                    s = teclado.nextLine();
-                    aux.setNombre(s);
-                    return true;
-                case 2: // Número de celular
-                    b = validarInt("Ingrese el número de celular: ");
-                    if (b < 1) {
-                        System.out.println("El número ingresado no es válido.");
-                    } else {
-                        aux.setTelefonoCelular(b);
+        switch (ed.getSeleccion()) {
+            case 1: // Nombre
+                System.out.print("Ingrese el nombre del contacto: ");
+                s = teclado2.nextLine();
+                System.out.println(s);
+                aux.setNombre(s);
+                return true;
+            case 2: // Número de celular
+                b = validarInt("Ingrese el número de celular: ");
+                if (b < 1) {
+                    System.out.println("El número ingresado no es válido.");
+                } else {
+                    aux.setTelefonoCelular(b);
+                }
+                return true;
+            case 3: // Número de casa
+                b = validarInt("Ingrese el número de casa: ");
+                if (b < 1) {
+                    System.out.println("El número ingresado no es válido.");
+                } else {
+                    aux.setTelefonoCasa(b);
+                }
+                return true;
+            case 4: // Número de trabajo
+                b = validarInt("Ingrese el número de trabajo: ");
+                if (b < 1) {
+                    System.out.println("El número ingresado no es válido.");
+                } else {
+                    aux.setTelefonoTrabajo(b);
+                }
+                return true;
+            case 5: // Dirección
+                System.out.print("Ingrese la dirección: ");
+                s = teclado2.nextLine();
+                aux.setDireccion(s);
+                return true;
+            case 6: // Correo electrónico
+                System.out.print("Ingrese la dirección de correo electrónico: ");
+                s = teclado2.nextLine();
+                aux.setCorreoElectronico(s);
+                return true;
+            case 7: // Salir
+                boolean valido = false;
+                do {
+                    System.out.println("¿Desea guardar los cambios realizados? 1=Sí 0=No");
+                    b = validarInt("Escoja una opción: ");
+                    switch (b) {
+                        case 1:
+                            contactos.set(a - 1, aux);
+                            System.out.println("Los cambios han sido guardados.");
+                            valido = true;
+                            break;
+                        case 0:
+                            valido = true;
+                            break;
+                        default:
+                             System.out.println("La opción ingresada no existe.");
                     }
-                    return true;
-                case 3: // Número de casa
-                    b = validarInt("Ingrese el número de casa: ");
-                    if (b < 1) {
-                        System.out.println("El número ingresado no es válido.");
-                    } else {
-                        aux.setTelefonoCasa(b);
-                    }
-                    return true;
-                case 4: // Número de trabajo
-                    b = validarInt("Ingrese el número de trabajo: ");
-                    if (b < 1) {
-                        System.out.println("El número ingresado no es válido.");
-                    } else {
-                        aux.setTelefonoTrabajo(b);
-                    }
-                    return true;
-                case 5: // Dirección
-                    System.out.print("Ingrese la dirección: ");
-                    s = teclado.next();
-                    aux.setDireccion(s);
-                    return true;
-                case 6: // Correo electrónico
-                    System.out.print("Ingrese la dirección de correo electrónico: ");
-                    s = teclado.next();
-                    aux.setCorreoElectronico(s);
-                    return true;
-                case 7: // Salir
-                    boolean valido = false;
-                    do {
-                        System.out.println("¿Desea guardar los cambios realizados? 1=Sí 0=No");
-                        b = validarInt("Escoja una opción: ");
-                        switch (b) {
-                            case 1:
-                                contactos.set(a - 1, aux);
-                                System.out.println("Los cambios han sido guardados.");
-                                valido = true;
-                                break;
-                            case 0:
-                                valido = true;
-                                break;
-                            default:
-                                System.out.println("La opción ingresada no existe.");
-                        }
-                    } while (!valido);
-                    return false;
-                default:
-                    System.out.println("La opción ingresada no existe.");
-                    return true;
-            }
-        } else {
-            return false;
+                } while (!valido);
+                return false;
+            default:
+                System.out.println("La opción ingresada no existe.");
+                return true;
         }
     }
 
