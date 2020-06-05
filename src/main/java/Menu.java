@@ -42,9 +42,12 @@ public class Menu {
         //Switch para la selección, tomando variable seleccion del método desplegarMenu
         switch (seleccion) {
             case 1:
-                PhoneBook.agenda.listarContactos();
+                PhoneBook.agenda.crearContacto();
                 break;
             case 2:
+                PhoneBook.agenda.listarContactos();
+                break;
+            case 3:
                 PhoneBook.agenda.mostrarContacto();
                 /*
                     //metodo mostrar contacto enumerado
@@ -52,9 +55,7 @@ public class Menu {
                     seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
                 } */
                 break;
-            case 3:
-                PhoneBook.agenda.crearContacto();
-                break;
+
             case 4:
                 PhoneBook.agenda.editarContacto();
                 break;

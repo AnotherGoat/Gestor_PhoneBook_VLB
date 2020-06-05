@@ -47,9 +47,9 @@ public class PhoneBook {
 
     public static void main(String[] args) {
         // Opciones del ArrayList
+        opciones.add("Crear contacto nuevo");
         opciones.add("Mostrar lista de contactos");
         opciones.add("Ver detalles de un contacto");
-        opciones.add("Crear contacto nuevo");
         opciones.add("Editar un contacto");
         opciones.add("Eliminar un contacto");
         opciones.add("Salir");
