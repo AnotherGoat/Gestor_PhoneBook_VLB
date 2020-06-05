@@ -41,7 +41,7 @@ public class PhoneBook {
     /** Objeto de la clase Agenda en el cual se almacenan todos los contactos */
     public static Agenda agenda = new Agenda();
     /** ArrayList de Strings usado para el menú */
-    public static ArrayList<String> opciones = new ArrayList<String>();
+    public static ArrayList<String> opciones = new ArrayList<>();
     /** Objeto de clase Menu que se inicia para mostrar el menú */
     public static Menu menu = new Menu(opciones);
 

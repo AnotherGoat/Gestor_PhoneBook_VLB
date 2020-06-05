@@ -14,7 +14,6 @@ public class Menu {
     private Scanner teclado = new Scanner(System.in);
     /** Opción que ingresa el usuario, se usa en los métodos desplegarMenu y switchMenu */
     private int seleccion;
-    private int seleccionContacto; //se usa en Switch case para la seleccion de numero de lista de contacto
 
     //// Constructores
     public Menu(ArrayList opciones) {
@@ -44,27 +43,27 @@ public class Menu {
             case 1:
                 PhoneBook.agenda.crearContacto();
                 break;
+
             case 2:
                 PhoneBook.agenda.listarContactos();
                 break;
+
             case 3:
                 PhoneBook.agenda.mostrarContacto();
-                /*
-                    //metodo mostrar contacto enumerado
-                    System.out.println("Eliga el N° de lista del contacto que desea ver");
-                    seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
-                } */
                 break;
 
             case 4:
                 PhoneBook.agenda.editarContacto();
                 break;
+
             case 5:
                 PhoneBook.agenda.eliminarContacto();
                 break;
+
             case 6:
                 salir();
                 break;
+
             default:
                 System.out.println("La opción ingresada no existe.");
         }
@@ -112,5 +111,7 @@ public class Menu {
     }
 
     //// Setters y Getters
-
+    public int getSeleccion() {
+        return seleccion;
+    }
 }

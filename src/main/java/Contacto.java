@@ -48,6 +48,69 @@ public class Contacto {
         this.nombre = nombre;
     }
 
+    public int getTelefonoCelular() {
+        return telefonoCelular;
+    }
+
+    public void setTelefonoCelular(int telefonoCelular) {
+        this.telefonoCelular = telefonoCelular;
+    }
+
+    public int getTelefonoCasa() {
+        return telefonoCasa;
+    }
+
+    public void setTelefonoCasa(int telefonoCasa) {
+        this.telefonoCasa = telefonoCasa;
+    }
+
+    public int getTelefonoTrabajo() {
+        return telefonoTrabajo;
+    }
+
+    public void setTelefonoTrabajo(int telefonoTrabajo) {
+        this.telefonoTrabajo = telefonoTrabajo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public String getSobrenombre() {
+        return sobrenombre;
+    }
+
+    public void setSobrenombre(String sobrenombre) {
+        this.sobrenombre = sobrenombre;
+    }
+
+    public Date getFechaCumple() {
+        return fechaCumple;
+    }
+
+    public void setFechaCumple(Date fechaCumple) {
+        this.fechaCumple = fechaCumple;
+    }
+
+    public String getNotas() {
+        return notas;
+    }
+
+    public void setNotas(String notas) {
+        this.notas = notas;
+    }
 
     //// toString
     @Override
