@@ -11,9 +11,8 @@ public class Contacto {
 
 
     //// Constructores
-    public Contacto(String nombreCompleto, String direccion) {
+    public Contacto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
-        this.direccion = direccion;
     }
 
     //// Métodos

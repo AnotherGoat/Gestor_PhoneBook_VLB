@@ -51,31 +51,28 @@ public class Menu {
         //Switch para la selección, tomando variable seleccion del método desplegarMenu
         switch (seleccion) {
             case 1:
-                if(PhoneBook.agenda.contactos == null){
+                if(PhoneBook.agenda.contactos.size() == 0){
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
                     //metodo mostrar contactos de clase agenda
-                    linea();
                 }
                 break;
             case 2:
-                if(PhoneBook.agenda.contactos == null){
+                if(PhoneBook.agenda.contactos.size() == 0){
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else{
                     //metodo mostrar contacto enumerado
                     System.out.println("Eliga el N° de lista del contacto que desea ver");
                     seleccionContacto = validarInt(); //No olvidar Validar rango de numero de 0 a largo total de contactos
-                    linea();
                 }
                 break;
             case 3:
-                //metodo crear contacto
-                linea();
+                PhoneBook.agenda.crearContacto();
                 break;
             case 4:
-                if(PhoneBook.agenda.contactos == null){
+                if(PhoneBook.agenda.contactos.size() == 0){
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else{
@@ -83,13 +80,12 @@ public class Menu {
                 }
                 break;
             case 5:
-                if(PhoneBook.agenda.contactos == null){
+                if(PhoneBook.agenda.contactos.size() == 0){
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
                     //metodo eliminar
                     System.out.println("");
-                    linea();
                 }
                 break;
             case 6:
@@ -97,7 +93,6 @@ public class Menu {
                 break;
             default:
                 System.out.println("La opción ingresada no existe.");
-                linea();
         }
     }
 
@@ -122,14 +117,7 @@ public class Menu {
         } while (!valido);
     }
 
-    /**
-     * Método de decoración, agrega una línea
-     */
-    private void linea() {
-        System.out.println("------------------------------------------------");
-    }
-
-    //Validaciones
+    // Validaciones
 
     /**
      * Valida entrada de tipo int

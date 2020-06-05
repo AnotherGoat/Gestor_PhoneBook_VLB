@@ -54,7 +54,6 @@ public class PhoneBook {
         // Crea un objeto de la clase Menu
         Menu menu = new Menu(opciones);
 
-
         // Muestra el menú principal de la agenda y lo repite
         do {
             menu.desplegarMenu();

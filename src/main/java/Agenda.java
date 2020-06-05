@@ -15,6 +15,17 @@ public class Agenda {
     }
 
     //// Métodos
+    public void crearContacto(){
+        Scanner teclado = new Scanner(System.in);
+        String s;
+        System.out.print("Ingrese el nombre del contacto: ");
+        s = teclado.nextLine();
+
+        Contacto a = new Contacto(s);
+        contactos.add(a);
+
+        System.out.println("El contacto fue guardado exitosamente");
+    }
 
     //// Getters y Setters
 
