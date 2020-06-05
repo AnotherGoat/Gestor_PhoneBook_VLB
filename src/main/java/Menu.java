@@ -1,6 +1,7 @@
 
 // Importa la clase Scanner
 import java.util.Scanner;
+// Importa la clase ArrayList
 import java.util.ArrayList;
 
 /** Acá ira el menú del proyecto PhoneBook y todo lo relacionado con él */
@@ -102,7 +103,7 @@ public class Menu {
     // Validaciones
 
     /**
-     * Valida entrada de tipo int
+     * Valida entrada de tipo int, con texto "Escoja una opción:"
      */
     private int validarInt() {
         boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo

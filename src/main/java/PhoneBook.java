@@ -29,6 +29,7 @@
 
  */
 
+// Importa la clase ArrayList
 import java.util.ArrayList;
 
 /** Clase principal del programa, aquí comienza toda la ejecución */
