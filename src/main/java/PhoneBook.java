@@ -56,6 +56,8 @@ public class PhoneBook {
      */
     public static Menu menu = new Menu(opciones);
 
+    public static Contacto aux = new Contacto();
+
     public static void main(String[] args) {
         // Opciones del ArrayList
         opciones.add("Crear contacto nuevo");

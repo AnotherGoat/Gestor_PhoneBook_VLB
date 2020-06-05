@@ -49,6 +49,9 @@ public class Contacto {
     String notas;
 
     //// Constructores
+    public Contacto(){
+    }
+
     public Contacto(String nombre) {
         this.nombre = nombre;
 
@@ -56,6 +59,15 @@ public class Contacto {
         this.telefonoCelular = -1;
         this.telefonoCasa = -1;
         this.telefonoTrabajo = -1;
+    }
+
+    public Contacto(String nombre, int telefonoCelular, int telefonoCasa, int telefonoTrabajo, String direccion, String correoElectronico) {
+        this.nombre = nombre;
+        this.telefonoCelular = telefonoCelular;
+        this.telefonoCasa = telefonoCasa;
+        this.telefonoTrabajo = telefonoTrabajo;
+        this.direccion = direccion;
+        this.correoElectronico = correoElectronico;
     }
 
     //// Métodos
