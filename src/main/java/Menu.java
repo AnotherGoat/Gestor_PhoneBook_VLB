@@ -4,7 +4,9 @@ import java.util.Scanner;
 // Importa la clase ArrayList
 import java.util.ArrayList;
 
-/** Acá ira el menú del proyecto PhoneBook y todo lo relacionado con él */
+/**
+ * Acá ira el menú del proyecto PhoneBook y todo lo relacionado con él
+ */
 public class Menu {
 
     //// Atributos
@@ -17,7 +19,7 @@ public class Menu {
      */
     private Scanner teclado = new Scanner(System.in);
     /**
-     * Opción que ingresa el usuario, se usa en los métodos desplegarMenu y seleccionMenu
+     * Opción que ingresa el usuario, se usa en los métodos desplegarMenu y switchMenu
      */
     private int seleccion;
     private int seleccionContacto; //se usa en Switch case para la seleccion de numero de lista de contacto
@@ -46,7 +48,7 @@ public class Menu {
     }
 
     /**
-     * Método para tomar la selección en el menú principal
+     * Método para interpretar la selección en el menú principal
      */
     public void switchMenu() {
         //Switch para la selección, tomando variable seleccion del método desplegarMenu
