@@ -212,7 +212,7 @@ public class Agenda {
         if (ed != null) {
             Contacto aux = contactos.get(a - 1);
             ed.desplegarMenu();
-            String s;
+            String s = "";
             int b;
 
             switch (ed.getSeleccion()) {
@@ -247,12 +247,12 @@ public class Agenda {
                     return true;
                 case 5: // Dirección
                     System.out.print("Ingrese la dirección: ");
-                    s = teclado.nextLine();
+                    s = teclado.next();
                     aux.setDireccion(s);
                     return true;
                 case 6: // Correo electrónico
                     System.out.print("Ingrese la dirección de correo electrónico: ");
-                    s = teclado.nextLine();
+                    s = teclado.next();
                     aux.setCorreoElectronico(s);
                     return true;
                 case 7: // Salir
