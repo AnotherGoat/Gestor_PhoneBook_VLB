@@ -211,7 +211,7 @@ public class Agenda {
     }
 
     public boolean switchEdicion(int a, ArrayList<String> opcionesEd) {
-        Menu ed = new Menu(opcionesEd):
+        Menu ed = new Menu(opcionesEd);
 
         if (ed != null) {
             Contacto aux = contactos.get(a - 1);
