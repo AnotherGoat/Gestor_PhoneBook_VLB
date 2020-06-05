@@ -87,7 +87,7 @@ public class Menu {
         int a;
         do {
             System.out.println("¿Desea salir del programa? 1=Sí 0=No");
-            a = validarInt();
+            a = validarInt("Escoja una opción: ");
             switch (a) {
                 case 1:
                     PhoneBook.seguir = false;
