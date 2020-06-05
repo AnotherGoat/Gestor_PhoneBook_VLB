@@ -108,6 +108,27 @@ public class Agenda {
         }
     }
 
+    public void eliminarContacto() {
+        // Verificar que hayan contactos guardados antes de usar
+        if (contactos.size() == 0) {
+            System.out.println("Todavía no ha guardado ningún contacto.");
+        } else {
+            listarContactos();
+            int a = 0;
+            boolean f = false;
+            while (!f) {
+                a = validarInt("Escoja el contacto que quiere eliminar: ");
+                if (a < 1 || a > contactos.size()) {
+                    System.out.println("El contacto ingresado no existe.");
+                    f = false;
+                } else {
+                    confirmarBorrado(a);
+                    f = true;
+                }
+            }
+        }
+    }
+
     /**
      * Método para hacer y confirmar los cambios hechos a un contacto
      */
@@ -118,22 +139,6 @@ public class Agenda {
             Menu edicion = crearOpciones(a);
             repetir = switchEdicion(a, edicion);
         } while (repetir);
-    }
-
-    public void eliminarContacto() {
-        // Verificar que hayan contactos guardados antes de usar
-        if (contactos.size() == 0) {
-            System.out.println("Todavía no ha guardado ningún contacto.");
-        } else {
-            listarContactos();
-            int a = validarInt("Escoja el contacto que quiere eliminar: ");
-
-            if (a < 1 || a > contactos.size()) {
-                System.out.println("El contacto ingresado no existe.");
-            } else {
-                confirmarBorrado(a);
-            }
-        }
     }
 
     public Menu crearOpciones(int a) {
