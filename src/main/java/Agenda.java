@@ -144,7 +144,7 @@ public class Agenda {
         } while (repetir);
     }
 
-    public Menu crearOpciones(int a) {
+    public ArrayList crearOpciones(int a) {
         Contacto aux = contactos.get(a - 1);
 
         // Cambia las opciones del menú
@@ -207,11 +207,12 @@ public class Agenda {
 
         opcionesEd.add("Salir");
 
-        Menu ed = new Menu(opcionesEd);
-        return ed;
+        return opcionesEd;
     }
 
-    public boolean switchEdicion(int a, Menu ed) {
+    public boolean switchEdicion(int a, ArrayList<String> opcionesEd) {
+        Menu ed = new Menu(opcionesEd):
+
         if (ed != null) {
             Contacto aux = contactos.get(a - 1);
             ed.desplegarMenu();
