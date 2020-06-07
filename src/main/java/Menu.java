@@ -11,7 +11,7 @@ public class Menu {
     /**
      * Arreglo de Strings que contiene las opciones del menú
      */
-    private ArrayList<String> opciones;
+    private final ArrayList<String> opciones;
     /**
      * Opción que ingresa el usuario, se usa en los métodos desplegarMenu y switchMenu
      */

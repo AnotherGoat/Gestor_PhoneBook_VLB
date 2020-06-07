@@ -22,6 +22,7 @@ public class Validador {
     /**
      * Valida entrada de tipo int
      * @param texto String que mostrará el programa antes de recibir entrada
+     * @deprecated
      */
     public int validarInt(String texto) {
 

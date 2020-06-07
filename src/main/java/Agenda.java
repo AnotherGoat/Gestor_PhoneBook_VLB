@@ -86,11 +86,9 @@ public class Agenda {
         listarContactos();
 
         // Toma la entrada entre 1 y el contacto de rango máximo
-        int a = v.validarInt(1, contactos.size(),
+        return v.validarInt(1, contactos.size(),
                 "Escoja el contacto que quiere "+verbo+":",
                 "El contacto ingresado no existe.");
-
-        return a;
     }
 
     /**
@@ -128,7 +126,6 @@ public class Agenda {
      * @param posicion posición del contacto en el ArrayList
      */
     public void menuEdicion(int posicion) {
-        boolean repetir = true;
         Contacto c = contactos.get(posicion);
         Contacto p = App.aux;
 
@@ -139,32 +136,27 @@ public class Agenda {
         p.setDireccion(c.getDireccion());
         p.setCorreoElectronico(c.getCorreoElectronico());
 
-        do {
-            repetir = switchEdicion(crearOpciones());
-        } while (repetir);
+        switchEdicion(crearOpciones());
 
         int b;
-        while(!repetir) {
-            System.out.println("¿Desea guardar los cambios realizados? 1=Sí 0=No");
-            b = v.validarInt("Escoja una opción: ");
-            switch (b) {
-                case 1:
-                    c.setNombre(p.getNombre());
-                    c.setTelefonoCelular(p.getTelefonoCelular());
-                    c.setTelefonoCasa(p.getTelefonoCasa());
-                    c.setTelefonoTrabajo(p.getTelefonoTrabajo());
-                    c.setDireccion(p.getDireccion());
-                    c.setCorreoElectronico(p.getCorreoElectronico());
-                    System.out.println("Los cambios han sido guardados.");
-                    repetir = true;
-                    break;
-                case 0:
-                    System.out.println("Los cambios no se han guardado.");
-                    repetir = true;
-                    break;
-                default:
-                    System.out.println("La opción ingresada no existe.");
-            }
+
+        System.out.println("¿Desea guardar los cambios realizados? 1=Sí 0=No");
+        b = v.validarInt(0, 1,
+                "Escoja una opción: ",
+                "La opción ingresada no existe.");
+
+        switch (b) {
+            case 1:
+                c.setNombre(p.getNombre());
+                c.setTelefonoCelular(p.getTelefonoCelular());
+                c.setTelefonoCasa(p.getTelefonoCasa());
+                c.setTelefonoTrabajo(p.getTelefonoTrabajo());
+                c.setDireccion(p.getDireccion());
+                c.setCorreoElectronico(p.getCorreoElectronico());
+                System.out.println("Los cambios han sido guardados.");
+                break;
+            case 0:
+                System.out.println("Los cambios no se han guardado.");
         }
     }
 
@@ -173,7 +165,7 @@ public class Agenda {
      * <p>Cambia el texto entre "Agregar" (si no existe un dato de ese tipo) o "Cambiar" (si ya existe un dato de ese tipo).</p>
      * @return ArrayList con las opciones
      */
-    public ArrayList crearOpciones() {
+    public ArrayList<String> crearOpciones() {
         // a=agregar, c=cambiar
         String a = "Agregar ", c = "Cambiar ";
         // Crea opciones para guardarlas en un ArrayList
@@ -225,9 +217,8 @@ public class Agenda {
     /**
      * Método que maneja las opciones del menú de edición
      * @param opcionesEd ArrayList con las opciones del menú de edición
-     * @return retorna un boolean para dejar de repetir el proceso
      */
-    public boolean switchEdicion(ArrayList<String> opcionesEd) {
+    public void switchEdicion(ArrayList<String> opcionesEd) {
         Menu ed = new Menu(opcionesEd);
 
         ed.desplegarMenu();
@@ -238,43 +229,39 @@ public class Agenda {
             case 1: // Nombre
                 s = v.recibirString("Ingrese el nombre del contacto: ");
                 App.aux.setNombre(s);
-                return true;
+                break;
 
             case 2: // Número de celular
                 b = v.validarInt(1, 999999999,
                         "Ingrese el número de celular: ",
                         "El número ingresado no es válido.");
                 App.aux.setTelefonoCelular(b);
-                return true;
+                break;
 
             case 3: // Número de casa
                 b = v.validarInt(1, 999999999,
                         "Ingrese el número de teléfono de casa: ",
                         "El número ingresado no es válido.");
                 App.aux.setTelefonoCasa(b);
-                return true;
+                break;
 
             case 4: // Número de trabajo
                 b = v.validarInt(1, 999999999,
                         "Ingrese el número de trabajo: ",
                         "El número ingresado no es válido.");
                 App.aux.setTelefonoTrabajo(b);
-                return true;
+                break;
 
             case 5: // Dirección
                 s = v.recibirString("Ingrese la dirección: ");
                 App.aux.setDireccion(s);
-                return true;
+                break;
 
             case 6: // E-mail
                 s = v.recibirString("Ingrese la dirección de e-mail: ");
                 App.aux.setCorreoElectronico(s);
-                return true;
-
-            case 7: // Salir
-                return false;
+                break;
         }
-        return true;
     }
 
     /**

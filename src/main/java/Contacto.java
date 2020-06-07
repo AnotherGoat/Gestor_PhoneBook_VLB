@@ -46,10 +46,6 @@ public class Contacto {
      * Notas adicionales que se quieran agregar sobre el contacto
      */
     String notas;
-    /**
-     * Validador usado en la clase Agenda
-     */
-    private final Validador v = new Validador();
 
     //// Constructores
     public Contacto(){
@@ -65,10 +61,6 @@ public class Contacto {
     }
 
     //// Métodos
-
-    private void cambiarNombre(String nombre){
-        setNombre(nombre);
-    }
 
     //// Getters y Setters
     public String getNombre() {
