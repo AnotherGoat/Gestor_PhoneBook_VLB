@@ -1,6 +1,4 @@
 
-// Importa la clase Scanner
-import java.util.Scanner;
 // Importa la clase ArrayList
 import java.util.ArrayList;
 
@@ -15,9 +13,9 @@ public class Agenda {
      */
     ArrayList<Contacto> contactos = new ArrayList<>();
     /**
-     * Scanner para tomar entrada
+     * Validador usado en la clase Menu
      */
-    Scanner teclado = new Scanner(System.in);
+    private Validador v = new Validador();
 
     //// Constructores
     public Agenda() {
@@ -30,9 +28,7 @@ public class Agenda {
      */
     public void crearContacto() {
         // Pide el nombre del contacto
-
-        System.out.print("Ingrese el nombre del contacto: ");
-        String s = teclado.nextLine();
+        String s = v.recibirString("Ingrese el nombre del contacto: ");
 
         // Crea el contacto nuevo y lo agrega al ArrayList
         Contacto a = new Contacto(s);
@@ -67,7 +63,7 @@ public class Agenda {
             boolean f = false;
             //while para repetir en caso de que no se ingrese un rango deseado
             while (!f) {
-                a = validarInt("Escoja el contacto que quiere ver: ");
+                a = v.validarInt("Escoja el contacto que quiere ver: ");
                 if (a < 1 || a > contactos.size()) {
                     System.out.println("El contacto ingresado no existe.");
                     f = false;
@@ -76,7 +72,6 @@ public class Agenda {
                     f = true;
                 }
             }
-
         }
     }
 
@@ -92,7 +87,7 @@ public class Agenda {
             int a = 0;
             boolean f = false;
             while (!f) {
-                a = validarInt("Escoja el contacto que quiere editar: ");
+                a = v.validarInt("Escoja el contacto que quiere editar: ");
                 if (a < 1 || a > contactos.size()) {
                     System.out.println("El contacto ingresado no existe.");
                     f = false;
@@ -116,7 +111,7 @@ public class Agenda {
             int a = 0;
             boolean f = false;
             while (!f) {
-                a = validarInt("Escoja el contacto que quiere eliminar: ");
+                a = v.validarInt("Escoja el contacto que quiere eliminar: ");
                 if (a < 1 || a > contactos.size()) {
                     System.out.println("El contacto ingresado no existe.");
                     f = false;
@@ -130,6 +125,7 @@ public class Agenda {
 
     /**
      * Método para hacer y confirmar los cambios hechos a un contacto
+     * @param posicion posición del contacto en el ArrayList
      */
     public void menuEdicion(int posicion) {
         boolean repetir = true;
@@ -150,7 +146,7 @@ public class Agenda {
         int b;
         while(!repetir) {
             System.out.println("¿Desea guardar los cambios realizados? 1=Sí 0=No");
-            b = validarInt("Escoja una opción: ");
+            b = v.validarInt("Escoja una opción: ");
             switch (b) {
                 case 1:
                     c.setNombre(p.getNombre());
@@ -172,41 +168,29 @@ public class Agenda {
         }
     }
 
+    /**
+     * <p>Este método crea opciones para un ArrayList que se usará en un menú.</p>
+     * <p>Cambia el texto entre "Agregar" (si no existe un dato de ese tipo) o "Cambiar" (si ya existe un dato de ese tipo).</p>
+     * @return ArrayList con las opciones
+     */
     public ArrayList crearOpciones() {
+        // a=agregar, c=cambiar
         String a = "Agregar ", c = "Cambiar ";
-
-        // Cambia las opciones del menú
+        // Crea opciones para guardarlas en un ArrayList
         ArrayList<String> opcionesEd = new ArrayList<>();
-        opcionesEd.add(a+"nombre");
+        opcionesEd.add(c+"nombre");
 
-        if (PhoneBook.aux.telefonoCelular == -1) {
-            opcionesEd.add(a+ " " +"número de celular");
-        } else {
-            opcionesEd.add("Cambiar número de celular");
-        }
+        // Arreglos para ahorrar espacio
+        boolean[] check = {PhoneBook.aux.telefonoCelular == -1, PhoneBook.aux.telefonoTrabajo == -1, PhoneBook.aux.direccion == null, PhoneBook.aux.email == null};
+        String[] datos = {"número de celular", "número de casa", "número de trabajo", "dirección", "e-mail",};
 
-        if (PhoneBook.aux.telefonoCasa == -1) {
-            opcionesEd.add("Agregar número de casa");
-        } else {
-            opcionesEd.add("Cambiar número de casa");
-        }
-
-        if (PhoneBook.aux.telefonoTrabajo == -1) {
-            opcionesEd.add("Agregar número de trabajo");
-        } else {
-            opcionesEd.add("Cambiar número de trabajo");
-        }
-
-        if (PhoneBook.aux.direccion == null) {
-            opcionesEd.add("Agregar dirección");
-        } else {
-            opcionesEd.add("Cambiar dirección");
-        }
-
-        if (PhoneBook.aux.correoElectronico == null) {
-            opcionesEd.add("Agregar correo electrónico");
-        } else {
-            opcionesEd.add("Cambiar correo electrónico");
+        for(int i=0; i<check.length; i++){
+            if(check[i]){
+                opcionesEd.add(a + datos[i]);
+            }
+            else{
+                opcionesEd.add(c + datos[i]);
+            }
         }
 
         /*
@@ -238,22 +222,25 @@ public class Agenda {
         return opcionesEd;
     }
 
+    /**
+     * Método que maneja las opciones del menú de edición
+     * @param opcionesEd ArrayList con las opciones del menú de edición
+     * @return retorna un boolean para dejar de repetir el proceso
+     */
     public boolean switchEdicion(ArrayList<String> opcionesEd) {
         Menu ed = new Menu(opcionesEd);
 
         ed.desplegarMenu();
         String s;
         int b;
-        Scanner teclado2 = new Scanner(System.in);
 
-        switch (ed.getSeleccion()) {
+        switch (ed.getEleccion()) {
             case 1: // Nombre
-                System.out.print("Ingrese el nombre del contacto: ");
-                s = teclado2.nextLine();
+                s = v.recibirString("Ingrese el nombre del contacto: ");
                 PhoneBook.aux.setNombre(s);
                 return true;
             case 2: // Número de celular
-                b = validarInt("Ingrese el número de celular: ");
+                b = v.validarInt("Ingrese el número de celular: ");
                 if (b < 1) {
                     System.out.println("El número ingresado no es válido.");
                 } else {
@@ -261,7 +248,7 @@ public class Agenda {
                 }
                 return true;
             case 3: // Número de casa
-                b = validarInt("Ingrese el número de casa: ");
+                b = v.validarInt("Ingrese el número de casa: ");
                 if (b < 1) {
                     System.out.println("El número ingresado no es válido.");
                 } else {
@@ -269,7 +256,7 @@ public class Agenda {
                 }
                 return true;
             case 4: // Número de trabajo
-                b = validarInt("Ingrese el número de trabajo: ");
+                b = v.validarInt("Ingrese el número de trabajo: ");
                 if (b < 1) {
                     System.out.println("El número ingresado no es válido.");
                 } else {
@@ -277,13 +264,11 @@ public class Agenda {
                 }
                 return true;
             case 5: // Dirección
-                System.out.print("Ingrese la dirección: ");
-                s = teclado2.nextLine();
+                s = v.recibirString("Ingrese la dirección: ");
                 PhoneBook.aux.setDireccion(s);
                 return true;
-            case 6: // Correo electrónico
-                System.out.print("Ingrese la dirección de correo electrónico: ");
-                s = teclado2.nextLine();
+            case 6: // E-mail
+                s = v.recibirString("Ingrese la dirección de e-mail: ");
                 PhoneBook.aux.setCorreoElectronico(s);
                 return true;
             case 7: // Salir
@@ -303,42 +288,23 @@ public class Agenda {
         do {
             System.out.println("Se borrará el contacto " + contactos.get(num - 1).getNombre());
             System.out.println("¿Está seguro? 1=Sí 0=No");
-            x = validarInt("Escoja una opción: ");
+            x = v.validarInt("Escoja una opción: ");
             switch (x) {
                 case 1:
                     contactos.remove(num - 1);
                     System.out.println("El contacto ha sido borrado exitosamente.");
                     valido = true;
                     break;
+
                 case 0:
                     System.out.println("El contacto no se borró.");
                     valido = true;
                     break;
+
                 default:
                     System.out.println("La opción ingresada no existe.");
             }
         } while (!valido);
-    }
-
-    /**
-     * Valida entrada de tipo int
-     */
-    private int validarInt(String s) {
-        boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo
-        int a = 0; // Variable con la que se trabaja
-
-        while (repetir) {
-            try {
-                System.out.print(s);
-                a = teclado.nextInt();
-                repetir = false;
-            } catch (Exception e) {
-                teclado.next();
-                System.out.println("Error: " + e.getMessage() + ". Ingrese un número válido, por favor.");
-                repetir = true;
-            }
-        }
-        return a;
     }
 
     //// Getters y Setters

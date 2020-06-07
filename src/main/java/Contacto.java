@@ -1,5 +1,5 @@
 
-// Importa la clase ArrayList
+// Importa la clase ArrayList (todavía no se usa en esta clase)
 import java.util.ArrayList;
 // Importa la clase Date
 import java.util.Date;
@@ -33,7 +33,7 @@ public class Contacto {
     /**
      * Dirección de correo electrónico del contacto
      */
-    String correoElectronico;
+    String email;
     /**
      * Sobrenombre con el que se conoce al contacto
      */
@@ -60,13 +60,13 @@ public class Contacto {
         this.telefonoTrabajo = -1;
     }
 
-    public Contacto(String nombre, int telefonoCelular, int telefonoCasa, int telefonoTrabajo, String direccion, String correoElectronico) {
+    public Contacto(String nombre, int telefonoCelular, int telefonoCasa, int telefonoTrabajo, String direccion, String email) {
         this.nombre = nombre;
         this.telefonoCelular = telefonoCelular;
         this.telefonoCasa = telefonoCasa;
         this.telefonoTrabajo = telefonoTrabajo;
         this.direccion = direccion;
-        this.correoElectronico = correoElectronico;
+        this.email = email;
     }
 
     //// Métodos
@@ -113,11 +113,11 @@ public class Contacto {
     }
 
     public String getCorreoElectronico() {
-        return correoElectronico;
+        return email;
     }
 
     public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+        this.email = correoElectronico;
     }
 
     public String getSobrenombre() {
@@ -162,8 +162,8 @@ public class Contacto {
         if (direccion != null) {
             s += "\nDirección: " + direccion;
         }
-        if (correoElectronico != null) {
-            s += "\nCorreo electónico: " + correoElectronico;
+        if (email != null) {
+            s += "\nCorreo electónico: " + email;
         }
         if (sobrenombre != null) {
             s += "\nSobrenombre: " + sobrenombre;
