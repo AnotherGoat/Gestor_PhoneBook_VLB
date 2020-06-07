@@ -3,7 +3,7 @@
 import java.util.ArrayList;
 
 /**
- * Acá ira el menú del proyecto PhoneBook y todo lo relacionado con él
+ * Acá ira el menú principal del proyecto PhoneBook y todo lo relacionado con él
  */
 public class Menu {
 
@@ -22,7 +22,7 @@ public class Menu {
     private Validador v = new Validador();
 
     //// Abreviaturas de variables globales
-    Agenda agenda = PhoneBook.agenda;
+    Agenda agenda = App.agenda;
 
     //// Constructores
     public Menu(ArrayList opciones) {
@@ -117,7 +117,7 @@ public class Menu {
             a = v.validarInt("Escoja una opción: ");
             switch (a) {
                 case 1:
-                    PhoneBook.seguir = false;
+                    App.seguir = false;
                 case 0:
                     valido = true;
                     break;

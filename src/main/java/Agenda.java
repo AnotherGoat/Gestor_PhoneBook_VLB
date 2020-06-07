@@ -13,7 +13,7 @@ public class Agenda {
      */
     ArrayList<Contacto> contactos = new ArrayList<>();
     /**
-     * Validador usado en la clase Menu
+     * Validador usado en la clase Agenda
      */
     private Validador v = new Validador();
 
@@ -45,7 +45,7 @@ public class Agenda {
             System.out.println("Todavía no ha guardado ningún contacto.");
         } else {
             System.out.println("Contactos registrados:");
-            PhoneBook.menu.enumerarArrayList(contactos);
+            App.menu.enumerarArrayList(contactos);
         }
     }
 
@@ -130,7 +130,7 @@ public class Agenda {
     public void menuEdicion(int posicion) {
         boolean repetir = true;
         Contacto c = contactos.get(posicion);
-        Contacto p = PhoneBook.aux;
+        Contacto p = App.aux;
 
         p.setNombre(c.getNombre());
         p.setTelefonoCelular(c.getTelefonoCelular());
@@ -181,7 +181,7 @@ public class Agenda {
         opcionesEd.add(c+"nombre");
 
         // Arreglos para ahorrar espacio
-        boolean[] check = {PhoneBook.aux.telefonoCelular == -1, PhoneBook.aux.telefonoTrabajo == -1, PhoneBook.aux.direccion == null, PhoneBook.aux.email == null};
+        boolean[] check = {App.aux.telefonoCelular == -1,App.aux.telefonoCasa == -1, App.aux.telefonoTrabajo == -1, App.aux.direccion == null, App.aux.email == null};
         String[] datos = {"número de celular", "número de casa", "número de trabajo", "dirección", "e-mail",};
 
         for(int i=0; i<check.length; i++){
@@ -236,15 +236,16 @@ public class Agenda {
 
         switch (ed.getEleccion()) {
             case 1: // Nombre
+
                 s = v.recibirString("Ingrese el nombre del contacto: ");
-                PhoneBook.aux.setNombre(s);
+                App.aux.setNombre(s);
                 return true;
             case 2: // Número de celular
                 b = v.validarInt("Ingrese el número de celular: ");
                 if (b < 1) {
                     System.out.println("El número ingresado no es válido.");
                 } else {
-                    PhoneBook.aux.setTelefonoCelular(b);
+                    App.aux.setTelefonoCelular(b);
                 }
                 return true;
             case 3: // Número de casa
@@ -252,7 +253,7 @@ public class Agenda {
                 if (b < 1) {
                     System.out.println("El número ingresado no es válido.");
                 } else {
-                    PhoneBook.aux.setTelefonoCasa(b);
+                    App.aux.setTelefonoCasa(b);
                 }
                 return true;
             case 4: // Número de trabajo
@@ -260,16 +261,16 @@ public class Agenda {
                 if (b < 1) {
                     System.out.println("El número ingresado no es válido.");
                 } else {
-                    PhoneBook.aux.setTelefonoTrabajo(b);
+                    App.aux.setTelefonoTrabajo(b);
                 }
                 return true;
             case 5: // Dirección
                 s = v.recibirString("Ingrese la dirección: ");
-                PhoneBook.aux.setDireccion(s);
+                App.aux.setDireccion(s);
                 return true;
             case 6: // E-mail
                 s = v.recibirString("Ingrese la dirección de e-mail: ");
-                PhoneBook.aux.setCorreoElectronico(s);
+                App.aux.setCorreoElectronico(s);
                 return true;
             case 7: // Salir
                 return false;
