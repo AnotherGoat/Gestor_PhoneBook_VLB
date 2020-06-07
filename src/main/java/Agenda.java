@@ -44,9 +44,26 @@ public class Agenda {
         if (contactos.size() == 0) {
             System.out.println("Todavía no ha guardado ningún contacto.");
         } else {
+            // Crear ArrayList con los nombres de los contactos
+            ArrayList<String> nombresC = obtenerNombres();
+
+            // Mostrar nombres de los contactos registrados
             System.out.println("Contactos registrados:");
-            App.menu.enumerarArrayList(contactos);
+            App.menu.enumerarArrayList(nombresC);
         }
+    }
+
+    /**
+     * Método para obtener los nombres de todos los contactos
+     * @return ArrayList con los nombres
+     */
+    public ArrayList<String> obtenerNombres(){
+        ArrayList<String> al = new ArrayList<>();
+
+        for(int i=0; i<contactos.size(); i++){
+            al.add(contactos.get(i).getNombre());
+        }
+        return al;
     }
 
     /**
