@@ -1,8 +1,7 @@
 
 // Importa la clase Scanner
-
 import java.util.Scanner;
-// Importa la clase ArrayList
+// Importa la clase ArrayList (todavía no se usa;
 import java.util.ArrayList;
 
 /**
@@ -41,11 +40,20 @@ public class Menu {
         System.out.println("Menu de selección:");
 
         // Muestra las opciones
-        for (int i = 1; i <= opciones.size(); i++) {
-            System.out.println(i + ".- " + opciones.get(i - 1));
-        }
+        enumerarArrayList(opciones);
 
         this.seleccion = validarInt("Escoja una opción: ");
+    }
+
+    public void enumerarArrayList(ArrayList al){
+        if(al != null) {
+            for (int i = 1; i <= al.size(); i++) {
+                System.out.println(i + ".- " + al.get(i - 1));
+            }
+        }
+        else{
+            System.out.println("Error: ArrayList nulo");
+        }
     }
 
     /**

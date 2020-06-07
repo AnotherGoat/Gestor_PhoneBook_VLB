@@ -30,7 +30,6 @@
  */
 
 // Importa la clase ArrayList
-
 import java.util.ArrayList;
 
 /**

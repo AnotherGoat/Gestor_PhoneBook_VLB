@@ -1,6 +1,5 @@
 
 // Importa la clase ArrayList
-
 import java.util.ArrayList;
 // Importa la clase Date
 import java.util.Date;

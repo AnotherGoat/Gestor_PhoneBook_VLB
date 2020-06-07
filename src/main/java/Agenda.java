@@ -1,6 +1,5 @@
 
 // Importa la clase Scanner
-
 import java.util.Scanner;
 // Importa la clase ArrayList
 import java.util.ArrayList;
@@ -50,10 +49,7 @@ public class Agenda {
             System.out.println("Todavía no ha guardado ningún contacto.");
         } else {
             System.out.println("Contactos registrados:");
-
-            for (int i = 1; i <= contactos.size(); i++) {
-                System.out.println(i + ".- " + contactos.get(i - 1).getNombre());
-            }
+            PhoneBook.menu.enumerarArrayList(contactos);
         }
     }
 
@@ -177,13 +173,14 @@ public class Agenda {
     }
 
     public ArrayList crearOpciones() {
+        String a = "Agregar ", c = "Cambiar ";
 
         // Cambia las opciones del menú
         ArrayList<String> opcionesEd = new ArrayList<>();
-        opcionesEd.add("Cambiar nombre");
+        opcionesEd.add(a+"nombre");
 
         if (PhoneBook.aux.telefonoCelular == -1) {
-            opcionesEd.add("Agregar número de celular");
+            opcionesEd.add(a+ " " +"número de celular");
         } else {
             opcionesEd.add("Cambiar número de celular");
         }
