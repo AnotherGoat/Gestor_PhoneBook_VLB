@@ -19,13 +19,13 @@ public class Menu {
     /**
      * Validador usado en la clase Menu
      */
-    private Validador v = new Validador();
+    private final Validador v = new Validador();
 
     //// Abreviaturas de variables globales
     Agenda agenda = App.agenda;
 
     //// Constructores
-    public Menu(ArrayList opciones) {
+    public Menu(ArrayList<String> opciones) {
         this.opciones = opciones;
     }
 
@@ -44,7 +44,7 @@ public class Menu {
         // Muestra las opciones
         enumerarArrayList(opciones);
 
-        this.eleccion = v.validarInt("Escoja una opción: ");
+        this.eleccion = v.validarInt(1, opciones.size(), "Escoja una opción: ");
     }
 
     /**
@@ -60,7 +60,7 @@ public class Menu {
      * Método para enumerar los datos dentro de un ArrayList
      * @param al ArrayList que se quiere ordenar
      */
-    public void enumerarArrayList(ArrayList al){
+    public void enumerarArrayList(ArrayList<String> al){
         if(al != null) {
             for (int i = 1; i <= al.size(); i++) {
                 System.out.println(i + ".- " + al.get(i - 1));
@@ -100,9 +100,6 @@ public class Menu {
             case 6:
                 salir();
                 break;
-
-            default:
-                System.out.println("La opción ingresada no existe.");
         }
     }
 
@@ -110,21 +107,11 @@ public class Menu {
      * Método que se usa para confirmar la salida del programa
      */
     private void salir() {
-        boolean valido = false;
-        int a;
-        do {
-            System.out.println("¿Desea salir del programa? 1=Sí 0=No");
-            a = v.validarInt("Escoja una opción: ");
-            switch (a) {
-                case 1:
-                    App.seguir = false;
-                case 0:
-                    valido = true;
-                    break;
-                default:
-                    System.out.println("La opción ingresada no existe.");
-            }
-        } while (!valido);
+        int a = v.validarInt(0, 1, "¿Desea salir del programa? 1=Sí 0=No\nEscoja una opción: ");
+
+        if (a == 1) {
+            App.seguir = false;
+        }
     }
 
     //// Getters y Setters

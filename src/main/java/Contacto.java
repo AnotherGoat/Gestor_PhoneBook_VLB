@@ -49,7 +49,7 @@ public class Contacto {
     /**
      * Validador usado en la clase Agenda
      */
-    private Validador v = new Validador();
+    private final Validador v = new Validador();
 
     //// Constructores
     public Contacto(){
@@ -62,15 +62,6 @@ public class Contacto {
         this.telefonoCelular = -1;
         this.telefonoCasa = -1;
         this.telefonoTrabajo = -1;
-    }
-
-    public Contacto(String nombre, int telefonoCelular, int telefonoCasa, int telefonoTrabajo, String direccion, String email) {
-        this.nombre = nombre;
-        this.telefonoCelular = telefonoCelular;
-        this.telefonoCasa = telefonoCasa;
-        this.telefonoTrabajo = telefonoTrabajo;
-        this.direccion = direccion;
-        this.email = email;
     }
 
     //// Métodos

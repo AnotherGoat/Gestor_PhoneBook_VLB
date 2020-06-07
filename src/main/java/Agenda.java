@@ -15,7 +15,7 @@ public class Agenda {
     /**
      * Validador usado en la clase Agenda
      */
-    private Validador v = new Validador();
+    private final Validador v = new Validador();
 
     //// Constructores
     public Agenda() {
@@ -302,27 +302,18 @@ public class Agenda {
      */
     private void confirmarBorrado(int num) {
         int x;
-        boolean valido = false;
-        do {
-            System.out.println("Se borrará el contacto " + contactos.get(num - 1).getNombre());
-            System.out.println("¿Está seguro? 1=Sí 0=No");
-            x = v.validarInt("Escoja una opción: ");
-            switch (x) {
-                case 1:
-                    contactos.remove(num - 1);
-                    System.out.println("El contacto ha sido borrado exitosamente.");
-                    valido = true;
-                    break;
+        x = v.validarInt(0, 1, "Se borrará el contacto "+contactos.get(num - 1).getNombre()+"¿Está seguro? 1=Sí 0=No\nEscoja una opción: ");
 
-                case 0:
-                    System.out.println("El contacto no se borró.");
-                    valido = true;
-                    break;
+        switch (x) {
+            case 1:
+                contactos.remove(num - 1);
+                System.out.println("El contacto ha sido borrado exitosamente.");
+                break;
+            case 0:
+                System.out.println("El contacto no se borró.");
+                break;
+        }
 
-                default:
-                    System.out.println("La opción ingresada no existe.");
-            }
-        } while (!valido);
     }
 
     //// Getters y Setters
