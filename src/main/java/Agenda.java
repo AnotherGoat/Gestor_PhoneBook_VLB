@@ -76,19 +76,15 @@ public class Agenda {
         } else {
             // Muestra la lista de contactos
             listarContactos();
-            int a = 0;
-            boolean f = false;
-            //while para repetir en caso de que no se ingrese un rango deseado
-            while (!f) {
-                a = v.validarInt("Escoja el contacto que quiere ver: ");
-                if (a < 1 || a > contactos.size()) {
-                    System.out.println("El contacto ingresado no existe.");
-                    f = false;
-                } else {
-                    System.out.println(contactos.get(a - 1).toString());
-                    f = true;
-                }
-            }
+
+            // Toma la entrada entre 1 y el contacto de rango máximo
+            int a = v.validarInt(1, contactos.size(),
+                    "Escoja el contacto que quiere ver: ",
+                    "El contacto ingresado no existe.");
+
+            // Muestra los detalles del contacto
+            System.out.println("Contacto #"+a);
+            System.out.println(contactos.get(a - 1).toString());
         }
     }
 
@@ -253,48 +249,45 @@ public class Agenda {
 
         switch (ed.getEleccion()) {
             case 1: // Nombre
-
                 s = v.recibirString("Ingrese el nombre del contacto: ");
                 App.aux.setNombre(s);
                 return true;
+
             case 2: // Número de celular
-                b = v.validarInt("Ingrese el número de celular: ");
-                if (b < 1) {
-                    System.out.println("El número ingresado no es válido.");
-                } else {
-                    App.aux.setTelefonoCelular(b);
-                }
+                b = v.validarInt(1, 999999999,
+                        "Ingrese el número de celular: ",
+                        "El número ingresado no es válido.");
+                App.aux.setTelefonoCelular(b);
                 return true;
+
             case 3: // Número de casa
-                b = v.validarInt("Ingrese el número de casa: ");
-                if (b < 1) {
-                    System.out.println("El número ingresado no es válido.");
-                } else {
-                    App.aux.setTelefonoCasa(b);
-                }
+                b = v.validarInt(1, 999999999,
+                        "Ingrese el número de teléfono de casa: ",
+                        "El número ingresado no es válido.");
+                App.aux.setTelefonoCasa(b);
                 return true;
+
             case 4: // Número de trabajo
-                b = v.validarInt("Ingrese el número de trabajo: ");
-                if (b < 1) {
-                    System.out.println("El número ingresado no es válido.");
-                } else {
-                    App.aux.setTelefonoTrabajo(b);
-                }
+                b = v.validarInt(1, 999999999,
+                        "Ingrese el número de trabajo: ",
+                        "El número ingresado no es válido.");
+                App.aux.setTelefonoTrabajo(b);
                 return true;
+
             case 5: // Dirección
                 s = v.recibirString("Ingrese la dirección: ");
                 App.aux.setDireccion(s);
                 return true;
+
             case 6: // E-mail
                 s = v.recibirString("Ingrese la dirección de e-mail: ");
                 App.aux.setCorreoElectronico(s);
                 return true;
+
             case 7: // Salir
                 return false;
-            default:
-                System.out.println("La opción ingresada no existe.");
-                return true;
         }
+        return true;
     }
 
     /**
@@ -302,7 +295,9 @@ public class Agenda {
      */
     private void confirmarBorrado(int num) {
         int x;
-        x = v.validarInt(0, 1, "Se borrará el contacto "+contactos.get(num - 1).getNombre()+"¿Está seguro? 1=Sí 0=No\nEscoja una opción: ");
+        x = v.validarInt(0, 1,
+                "Se borrará el contacto "+contactos.get(num - 1).getNombre()+"¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "La opción ingresada no existe.");
 
         switch (x) {
             case 1:

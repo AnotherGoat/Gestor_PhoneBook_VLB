@@ -37,7 +37,7 @@ public class Contacto {
     /**
      * Sobrenombre con el que se conoce al contacto
      */
-    String sobrenombre;
+    String apodo;
     /**
      * Fecha de cumpleaños del contacto
      */
@@ -66,7 +66,9 @@ public class Contacto {
 
     //// Métodos
 
-
+    private void cambiarNombre(String nombre){
+        setNombre(nombre);
+    }
 
     //// Getters y Setters
     public String getNombre() {
@@ -117,12 +119,12 @@ public class Contacto {
         this.email = correoElectronico;
     }
 
-    public String getSobrenombre() {
-        return sobrenombre;
+    public String getApodo() {
+        return apodo;
     }
 
     public void setSobrenombre(String sobrenombre) {
-        this.sobrenombre = sobrenombre;
+        this.apodo = sobrenombre;
     }
 
     public Date getFechaCumple() {
@@ -162,8 +164,8 @@ public class Contacto {
         if (email != null) {
             s += "\nCorreo electónico: " + email;
         }
-        if (sobrenombre != null) {
-            s += "\nSobrenombre: " + sobrenombre;
+        if (apodo != null) {
+            s += "\nSobrenombre: " + apodo;
         }
         if (fechaCumple != null) {
             s += "\nFecha de cumpleaños: " + fechaCumple;

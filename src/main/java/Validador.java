@@ -49,8 +49,9 @@ public class Validador {
      * @param texto String que mostrará el programa antes de recibir entrada
      * @param min Valor mínimo que se acepta como válido
      * @param max Valor máximo que se acepta como válido
+     * @param mensajeError Mensaje de error en caso de que no se cumpla la condición
      */
-    public int validarInt(int min, int max, String texto) {
+    public int validarInt(int min, int max, String texto, String mensajeError) {
         boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo
         int x = 0; // Variable con la que se trabaja
 
@@ -68,7 +69,7 @@ public class Validador {
                 continue;
             }
             if(x<min || x>max){
-                System.out.println("Error: La opción ingresada no existe.");
+                System.out.println(mensajeError);
                 repetir = true;
             }
         }

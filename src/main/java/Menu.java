@@ -44,7 +44,9 @@ public class Menu {
         // Muestra las opciones
         enumerarArrayList(opciones);
 
-        this.eleccion = v.validarInt(1, opciones.size(), "Escoja una opción: ");
+        eleccion = v.validarInt(1, opciones.size(),
+                "Escoja una opción: ",
+                "La opción ingresada no existe.");
     }
 
     /**
@@ -107,7 +109,9 @@ public class Menu {
      * Método que se usa para confirmar la salida del programa
      */
     private void salir() {
-        int a = v.validarInt(0, 1, "¿Desea salir del programa? 1=Sí 0=No\nEscoja una opción: ");
+        int a = v.validarInt(0, 1,
+                "¿Desea salir del programa? 1=Sí 0=No\nEscoja una opción: ",
+                "La opción ingresada no existe.");
 
         if (a == 1) {
             App.seguir = false;
