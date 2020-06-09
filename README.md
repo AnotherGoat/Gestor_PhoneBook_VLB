@@ -1,8 +1,7 @@
 # Gestor PhoneBook VLB / PhoneBook VLB Manager
 ***
-<img src="/archivos/icono_phonebook_nuevo.png" height="25%" width="25%>
-<img src="/archivos/logo_phonebook.png" height="25%" width="25%>
-<img src="/archivos/logo_phonebook_en.png" height="25%" width="25%>
+<img src="/archivos/logo_phonebook.png" height="25%" width="25%">
+<img src="/archivos/logo_phonebook_en.png" height="25%" width="25%">
 
 ## Integrantes
 * Luis Burgos (@luisburgoro)
