@@ -34,7 +34,6 @@ public class ValidadorTest {
         v = null; // Liberar memoria
     }
 
-
     /**
      * Test para revisar que la entrada mantiene el int ingresado
      */

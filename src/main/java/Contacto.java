@@ -49,6 +49,10 @@ public class Contacto {
 
     //// Constructores
     public Contacto(){
+        // Inician en -1 para no mostrarlos en el toString()
+        this.telefonoCelular = -1;
+        this.telefonoCasa = -1;
+        this.telefonoTrabajo = -1;
     }
 
     public Contacto(String nombre) {
@@ -103,11 +107,11 @@ public class Contacto {
         this.direccion = direccion;
     }
 
-    public String getCorreoElectronico() {
+    public String getEmail() {
         return email;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
+    public void setEmail(String correoElectronico) {
         this.email = correoElectronico;
     }
 
@@ -135,7 +139,10 @@ public class Contacto {
         this.notas = notas;
     }
 
-    //// toString
+    /**
+     * Método toString con un formato personalizado
+     * @return String detallando los datos del contacto, no muestra los que todavía no existen
+     */
     @Override
     public String toString() {
         String s;
@@ -154,7 +161,7 @@ public class Contacto {
             s += "\nDirección: " + direccion;
         }
         if (email != null) {
-            s += "\nCorreo electónico: " + email;
+            s += "\nE-mail: " + email;
         }
         if (apodo != null) {
             s += "\nSobrenombre: " + apodo;

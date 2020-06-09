@@ -25,8 +25,7 @@ public class Validador {
      * @return int ingresado
      */
     public int validarInt(String texto) {
-
-        boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo
+        boolean repetir = true; // Boolean para repetir en caso de ingresar un símbolo
         int x = 0; // Variable con la que se trabaja
 
         while (repetir) {
@@ -80,6 +79,7 @@ public class Validador {
     /**
      * Toma entrada de tipo String (no necesita validación)
      * @param texto String que mostrará el programa antes de recibir entrada
+     * @return String ingresado
      */
     public String recibirString(String texto){
         // Crea nueva instancia del teclado, para evitar errores

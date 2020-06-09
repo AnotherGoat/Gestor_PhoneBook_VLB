@@ -129,12 +129,7 @@ public class Agenda {
         Contacto c = contactos.get(posicion);
         Contacto p = App.aux;
 
-        p.setNombre(c.getNombre());
-        p.setTelefonoCelular(c.getTelefonoCelular());
-        p.setTelefonoCasa(c.getTelefonoCasa());
-        p.setTelefonoTrabajo(c.getTelefonoTrabajo());
-        p.setDireccion(c.getDireccion());
-        p.setCorreoElectronico(c.getCorreoElectronico());
+        p = copiarContacto(c);
 
         switchEdicion(crearOpciones());
 
@@ -147,17 +142,31 @@ public class Agenda {
 
         switch (b) {
             case 1:
-                c.setNombre(p.getNombre());
-                c.setTelefonoCelular(p.getTelefonoCelular());
-                c.setTelefonoCasa(p.getTelefonoCasa());
-                c.setTelefonoTrabajo(p.getTelefonoTrabajo());
-                c.setDireccion(p.getDireccion());
-                c.setCorreoElectronico(p.getCorreoElectronico());
+                c = copiarContacto(c);
                 System.out.println("Los cambios han sido guardados.");
                 break;
             case 0:
                 System.out.println("Los cambios no se han guardado.");
         }
+    }
+
+    /**
+     * Copia datos de un contacto a otro, pero manteniendo ambas instancias distintas
+     * @return Contacto nuevo
+     */
+    public Contacto copiarContacto(Contacto base){
+        Contacto objetivo = new Contacto();
+
+        if(base!=null) {
+            objetivo.setNombre(base.getNombre());
+            objetivo.setTelefonoCelular(base.getTelefonoCelular());
+            objetivo.setTelefonoCasa(base.getTelefonoCasa());
+            objetivo.setTelefonoTrabajo(base.getTelefonoTrabajo());
+            objetivo.setDireccion(base.getDireccion());
+            objetivo.setEmail(base.getEmail());
+        }
+
+        return objetivo;
     }
 
     /**
@@ -259,7 +268,7 @@ public class Agenda {
 
             case 6: // E-mail
                 s = v.recibirString("Ingrese la dirección de e-mail: ");
-                App.aux.setCorreoElectronico(s);
+                App.aux.setEmail(s);
                 break;
         }
     }
