@@ -25,3 +25,5 @@ Este repositorio incluye el código fuente y todos los archivos relacionados a n
 * [Diagrama de Estructura](https://docs.google.com/drawings/d/1hd4YHceJR3SvHM320ALIMN6bfhUhFbo2lYSMqHg369s/edit?usp=sharing)
 
 * [Diseño de Interfaz Gráfica](https://app.moqups.com/xblfzqRdYi/view/page/a7e8cd9b8)
+
+* [Defensa y PPT](https://drive.google.com/drive/folders/1L7B_Nk0ljEXgTYxvfaua4JwaWtehGo5C?usp=sharing)
