@@ -1,4 +1,14 @@
-# Gestor PhoneBook VLB
+# Gestor PhoneBook VLB / PhoneBook VLB Manager
+***
+<img src="/archivos/icono_phonebook.png">
+
+## Integrantes
+* Luis Burgos (@luisburgoro)
+* Víctor Mardones (@VictorMardones)
+* Bayron Muñoz (@bayron997-deb)
+
+## Descripción
+Este repositorio incluye todos los archivos relacionados y el código fuente de nuestro proyecto, el Gestor PhoneBook VLB.
 
 ## Enlaces de utilidad
 
