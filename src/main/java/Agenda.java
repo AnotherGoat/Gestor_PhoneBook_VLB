@@ -81,13 +81,18 @@ public class Agenda {
         }
     }
 
+    /**
+     * Método que muestra una lista de los contactos registrados y pide al usuario que escoja uno
+     * @param verbo Verbo usado en el String "Escoja el contacto que quiere... :"
+     * @return int con el contacto elegido
+     */
     public int elegirContacto(String verbo){
         // Muestra la lista de contactos
         listarContactos();
 
         // Toma la entrada entre 1 y el contacto de rango máximo
         return v.validarInt(1, contactos.size(),
-                "Escoja el contacto que quiere "+verbo+":",
+                "Escoja el contacto que quiere "+verbo+": ",
                 "El contacto ingresado no existe.");
     }
 
@@ -103,21 +108,6 @@ public class Agenda {
 
             // Abre el menú de edición
             menuEdicion(a-1);
-        }
-    }
-
-    /**
-     * Método para eliminar un contacto
-     */
-    public void eliminarContacto() {
-        // Verificar que hayan contactos guardados antes de usar
-        if (contactos.size() == 0) {
-            System.out.println("Todavía no ha guardado ningún contacto.");
-        } else {
-            int a = elegirContacto("eliminar");
-
-            // Pide confirmación para borrar el contacto elegido
-            confirmarBorrado(a);
         }
     }
 
@@ -151,10 +141,8 @@ public class Agenda {
     /**
      * Copia datos de un contacto a otro, pero manteniendo ambas instancias distintas
      * @param base Contacto que se va a copiar
-     * @return Contacto nuevo
      */
     public void copiarContacto(Contacto base, Contacto objetivo){
-
         if(base!=null && objetivo!=null) {
             objetivo.setNombre(base.getNombre());
             objetivo.setTelefonoCelular(base.getTelefonoCelular());
@@ -166,11 +154,64 @@ public class Agenda {
     }
 
     /**
-     * <p>Este método crea opciones para un ArrayList que se usará en un menú.</p>
+     * Método que maneja las opciones del menú de edición
+     */
+    public void switchEdicion() {
+        Menu ed;
+        String s;
+        int b;
+
+        do {
+            ArrayList<String> opcionesEd = crearOpcionesEditor();
+            ed = new Menu(opcionesEd);
+            ed.desplegarMenu();
+
+            switch (ed.getEleccion()) {
+                case 1: // Nombre
+                    s = v.recibirString("Ingrese el nombre del contacto: ");
+                    App.aux.setNombre(s);
+                    break;
+
+                case 2: // Número de celular
+                    b = v.validarInt(1, 999999999,
+                            "Ingrese el número de celular: ",
+                            "El número ingresado no es válido.");
+                    App.aux.setTelefonoCelular(b);
+                    break;
+
+                case 3: // Número de casa
+                    b = v.validarInt(1, 999999999,
+                            "Ingrese el número de teléfono de casa: ",
+                            "El número ingresado no es válido.");
+                    App.aux.setTelefonoCasa(b);
+                    break;
+
+                case 4: // Número de trabajo
+                    b = v.validarInt(1, 999999999,
+                            "Ingrese el número de trabajo: ",
+                            "El número ingresado no es válido.");
+                    App.aux.setTelefonoTrabajo(b);
+                    break;
+
+                case 5: // Dirección
+                    s = v.recibirString("Ingrese la dirección: ");
+                    App.aux.setDireccion(s);
+                    break;
+
+                case 6: // E-mail
+                    s = v.recibirString("Ingrese la dirección de e-mail: ");
+                    App.aux.setEmail(s);
+                    break;
+            }
+        } while(ed.getEleccion()!=7);
+    }
+
+    /**
+     * <p>Este método crea opciones para un ArrayList que se usará en el menú edición.</p>
      * <p>Cambia el texto entre "Agregar" (si no existe un dato de ese tipo) o "Cambiar" (si ya existe un dato de ese tipo).</p>
      * @return ArrayList con las opciones
      */
-    public ArrayList<String> crearOpciones() {
+    public ArrayList<String> crearOpcionesEditor() {
         // a=agregar, c=cambiar
         String a = "Agregar ", c = "Cambiar ";
         // Crea opciones para guardarlas en un ArrayList
@@ -220,56 +261,18 @@ public class Agenda {
     }
 
     /**
-     * Método que maneja las opciones del menú de edición
+     * Método para eliminar un contacto
      */
-    public void switchEdicion() {
-        Menu ed;
-        String s;
-        int b = 0;
+    public void eliminarContacto() {
+        // Verificar que hayan contactos guardados antes de usar
+        if (contactos.size() == 0) {
+            System.out.println("Todavía no ha guardado ningún contacto.");
+        } else {
+            int a = elegirContacto("eliminar");
 
-        do {
-            ArrayList<String> opcionesEd = crearOpciones();
-            ed = new Menu(opcionesEd);
-            ed.desplegarMenu();
-
-            switch (ed.getEleccion()) {
-                case 1: // Nombre
-                    s = v.recibirString("Ingrese el nombre del contacto: ");
-                    App.aux.setNombre(s);
-                    break;
-
-                case 2: // Número de celular
-                    b = v.validarInt(1, 999999999,
-                            "Ingrese el número de celular: ",
-                            "El número ingresado no es válido.");
-                    App.aux.setTelefonoCelular(b);
-                    break;
-
-                case 3: // Número de casa
-                    b = v.validarInt(1, 999999999,
-                            "Ingrese el número de teléfono de casa: ",
-                            "El número ingresado no es válido.");
-                    App.aux.setTelefonoCasa(b);
-                    break;
-
-                case 4: // Número de trabajo
-                    b = v.validarInt(1, 999999999,
-                            "Ingrese el número de trabajo: ",
-                            "El número ingresado no es válido.");
-                    App.aux.setTelefonoTrabajo(b);
-                    break;
-
-                case 5: // Dirección
-                    s = v.recibirString("Ingrese la dirección: ");
-                    App.aux.setDireccion(s);
-                    break;
-
-                case 6: // E-mail
-                    s = v.recibirString("Ingrese la dirección de e-mail: ");
-                    App.aux.setEmail(s);
-                    break;
-            }
-        } while(ed.getEleccion()!=7);
+            // Pide confirmación para borrar el contacto elegido
+            confirmarBorrado(a);
+        }
     }
 
     /**
@@ -290,11 +293,5 @@ public class Agenda {
                 System.out.println("El contacto no se borró.");
                 break;
         }
-
     }
-
-    //// Getters y Setters
-
-    //// toString
-
 }

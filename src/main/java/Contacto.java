@@ -64,8 +64,6 @@ public class Contacto {
         this.telefonoTrabajo = -1;
     }
 
-    //// Métodos
-
     //// Getters y Setters
     public String getNombre() {
         return nombre;

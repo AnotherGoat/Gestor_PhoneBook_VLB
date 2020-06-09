@@ -1,5 +1,5 @@
 
-// Importa la clase ArrayList (todavía no se usa;
+// Importa la clase ArrayList
 import java.util.ArrayList;
 
 /**
@@ -30,7 +30,6 @@ public class Menu {
     }
 
     //// Métodos
-
     /**
      * Método que muestra un menú con las opciones del gestor
      */
@@ -59,7 +58,7 @@ public class Menu {
     }
 
     /**
-     * Método para enumerar los datos dentro de un ArrayList
+     * Método para mostrar una lista numerada de los datos dentro de un ArrayList
      * @param al ArrayList que se quiere ordenar
      */
     public void enumerarArrayList(ArrayList<String> al){
@@ -74,39 +73,23 @@ public class Menu {
     }
 
     /**
-     * Método para interpretar la selección en el menú principal
+     * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
      */
     public void switchMenu() {
         //Switch para la selección, tomando variable seleccion del método desplegarMenu
         switch (eleccion) {
-            case 1:
-                agenda.crearContacto();
-                break;
-
-            case 2:
-                agenda.listarContactos();
-                break;
-
-            case 3:
-                agenda.mostrarContacto();
-                break;
-
-            case 4:
-                agenda.editarContacto();
-                break;
-
-            case 5:
-                agenda.eliminarContacto();
-                break;
-
-            case 6:
-                App.seguir = salir();
-                break;
+            case 1 -> agenda.crearContacto(); // recordar que agenda = App.agenda
+            case 2 -> agenda.listarContactos();
+            case 3 -> agenda.mostrarContacto();
+            case 4 -> agenda.editarContacto();
+            case 5 -> agenda.eliminarContacto();
+            case 6 -> App.seguir = salir();
         }
     }
 
     /**
      * Método que se usa para confirmar la salida del programa
+     * @return Boolean que le indica al programa si debe seguir funcionando (true) o no (false)
      */
     public boolean salir() {
         int a = v.validarInt(0, 1,

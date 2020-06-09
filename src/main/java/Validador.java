@@ -90,7 +90,7 @@ public class Validador {
     }
 
     /**
-     * Versión simple del try-catch usado en validarInt, se usa para los tests unitarios
+     * Versión simple del try-catch usado en validarInt, se usa para las pruebas unitarias
      * @param texto String que mostrará el programa antes de recibir entrada
      * @return int ingresado, en caso de ingresar un símbolo retorna -1
      */

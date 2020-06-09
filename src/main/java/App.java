@@ -31,26 +31,28 @@ public class App {
 
     //// Atributos
     /**
-     * Boolean global que permite repetir el menú hasta que el usuario escoja salir
-     */
-    public static boolean seguir = true;
-    /**
-     * Objeto de la clase Agenda en el cual se almacenan todos los contactos
-     */
-    public static Agenda agenda = new Agenda();
-    /**
-     * ArrayList de Strings usado para el menú
+     * ArrayList de Strings usado para las opciones del menú
      */
     public static ArrayList<String> opciones = new ArrayList<>();
     /**
      * Objeto de clase Menu que se inicia para mostrar el menú
      */
     public static Menu menu = new Menu(opciones);
-
+    /**
+     * Boolean global que permite repetir el menú hasta que el usuario escoja salir
+     */
+    public static boolean seguir = true;
+    /**
+     * Objeto de la clase Agenda en el cual se almacenan todos los contactos durante la ejecución del programa
+     */
+    public static Agenda agenda = new Agenda();
+    /**
+     * Contacto auxiliar, se usa cuando se edita un contacto para permitir elegir si guardar los cambios o no
+     */
     public static Contacto aux = new Contacto();
 
     public static void main(String[] args) {
-        // Opciones del ArrayList
+        // Llenar ArrayList con opciones
         opciones.add("Crear contacto nuevo");
         opciones.add("Mostrar lista de contactos");
         opciones.add("Ver detalles de un contacto");
