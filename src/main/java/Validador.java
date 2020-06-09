@@ -22,7 +22,7 @@ public class Validador {
     /**
      * Valida entrada de tipo int
      * @param texto String que mostrará el programa antes de recibir entrada
-     * @deprecated
+     * @return int ingresado
      */
     public int validarInt(String texto) {
 
@@ -79,17 +79,34 @@ public class Validador {
 
     /**
      * Toma entrada de tipo String (no necesita validación)
-     * @param s String que mostrará el programa antes de recibir entrada
+     * @param texto String que mostrará el programa antes de recibir entrada
      */
-    public String recibirString(String s){
+    public String recibirString(String texto){
         // Crea nueva instancia del teclado, para evitar errores
         this.teclado = new Scanner(System.in);
 
-        System.out.print(s);
+        System.out.print(texto);
         return this.teclado.nextLine();
     }
 
-    //// Getters y Setters
+    /**
+     * Versión simple del try-catch usado en validarInt, se usa para los tests unitarios
+     * @param texto String que mostrará el programa antes de recibir entrada
+     * @return int ingresado, en caso de ingresar un símbolo retorna -1
+     */
+    public int tryCatchInt(String texto){
+        int x = -1; // Variable con la que se trabaja
 
-    //// toString();
+        // Crea nueva instancia del teclado, para evitar errores
+        this.teclado = new Scanner(System.in);
+
+        try {
+            System.out.print(texto);
+            x = this.teclado.nextInt();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage() + ". Ingrese un número válido, por favor.");
+        }
+
+        return x;
+    }
 }
