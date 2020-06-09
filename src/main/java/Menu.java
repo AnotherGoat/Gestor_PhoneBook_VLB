@@ -108,7 +108,7 @@ public class Menu {
     /**
      * Método que se usa para confirmar la salida del programa
      */
-    private boolean salir() {
+    public boolean salir() {
         int a = v.validarInt(0, 1,
                 "¿Desea salir del programa? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
