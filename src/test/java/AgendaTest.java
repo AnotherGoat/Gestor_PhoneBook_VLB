@@ -8,10 +8,12 @@ public class AgendaTest {
 
     @Before
     public void setUp() throws Exception {
+        Validador v = new Validador();
     }
 
     @After
     public void tearDown() throws Exception {
+        Validador v = null;
     }
 
     @Test
