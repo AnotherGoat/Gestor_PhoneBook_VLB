@@ -39,17 +39,12 @@ public class Agenda {
      * Método para mostrar una lista de todos los contactos guardados
      */
     public void listarContactos() {
-        // Verificar que hayan contactos guardados antes de usar
-        if (contactos.size() == 0) {
-            System.out.println("Todavía no ha guardado ningún contacto.");
-        } else {
-            // Crear ArrayList con los nombres de los contactos
-            ArrayList<String> nombresC = obtenerNombres();
+        // Crear ArrayList con los nombres de los contactos
+        ArrayList<String> nombresC = obtenerNombres();
 
-            // Mostrar nombres de los contactos registrados
-            System.out.println("Contactos registrados:");
-            App.menu.enumerarArrayList(nombresC);
-        }
+        // Mostrar nombres de los contactos registrados
+        System.out.println("Contactos registrados:");
+        App.menu.enumerarArrayList(nombresC);
     }
 
     /**
@@ -62,6 +57,7 @@ public class Agenda {
         for (Contacto contacto : contactos) {
             al.add(contacto.getNombre());
         }
+
         return al;
     }
 
@@ -69,16 +65,11 @@ public class Agenda {
      * Método para mostrar detalles de un contacto específico
      */
     public void mostrarContacto() {
-        // Verificar que hayan contactos guardados antes de usar
-        if (contactos.size() == 0) {
-            System.out.println("Todavía no ha guardado ningún contacto.");
-        } else {
-            int a = elegirContacto("ver");
+        int a = elegirContacto("ver");
 
-            // Muestra los detalles del contacto
-            System.out.println("Contacto #"+a);
-            System.out.println(contactos.get(a - 1).toString());
-        }
+        // Muestra los detalles del contacto
+        System.out.println("Contacto #"+a);
+        System.out.println(contactos.get(a - 1).toString());
     }
 
     /**
@@ -100,15 +91,10 @@ public class Agenda {
      * Método para editar datos de un contacto
      */
     public void editarContacto() {
-        // Verificar que hayan contactos guardados antes de usar
-        if (contactos.size() == 0) {
-            System.out.println("Todavía no ha guardado ningún contacto.");
-        } else {
-            int a = elegirContacto("editar");
+        int a = elegirContacto("editar");
 
-            // Abre el menú de edición
-            menuEdicion(a-1);
-        }
+        // Abre el menú de edición
+        menuEdicion(a-1);
     }
 
     /**
@@ -264,15 +250,9 @@ public class Agenda {
      * Método para eliminar un contacto
      */
     public void eliminarContacto() {
-        // Verificar que hayan contactos guardados antes de usar
-        if (contactos.size() == 0) {
-            System.out.println("Todavía no ha guardado ningún contacto.");
-        } else {
-            int a = elegirContacto("eliminar");
-
-            // Pide confirmación para borrar el contacto elegido
-            confirmarBorrado(a);
-        }
+        int a = elegirContacto("eliminar");
+        // Pide confirmación para borrar el contacto elegido
+        confirmarBorrado(a);
     }
 
     /**
@@ -281,7 +261,7 @@ public class Agenda {
     private void confirmarBorrado(int num) {
         int x;
         x = v.validarInt(0, 1,
-                "Se borrará el contacto "+contactos.get(num - 1).getNombre()+"¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "Se borrará el contacto "+contactos.get(num - 1).getNombre()+" ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         switch (x) {

@@ -19,7 +19,7 @@
 import java.util.ArrayList;
 
 /**
- * <h2>"Gestor PhoneBook VLB</h1>
+ * <h2>"Gestor PhoneBook VLB"</h1>
  *
  * @author Bayron Muñoz
  * @author Luis Burgos

@@ -22,7 +22,9 @@ public class Menu {
     private final Validador v = new Validador();
 
     //// Abreviaturas de variables globales
+    /*
     Agenda agenda = App.agenda;
+    */
 
     //// Constructores
     public Menu(ArrayList<String> opciones) {
@@ -78,12 +80,47 @@ public class Menu {
     public void switchMenu() {
         //Switch para la selección, tomando variable seleccion del método desplegarMenu
         switch (eleccion) {
-            case 1 -> agenda.crearContacto(); // recordar que agenda = App.agenda
-            case 2 -> agenda.listarContactos();
-            case 3 -> agenda.mostrarContacto();
-            case 4 -> agenda.editarContacto();
-            case 5 -> agenda.eliminarContacto();
-            case 6 -> App.seguir = salir();
+            case 1:
+                App.agenda.crearContacto(); // recordar que agenda = App.agenda
+                break;
+            case 2:
+                // Verificar que hayan contactos guardados antes de usar
+                if (App.agenda.contactos.size() == 0) {
+                    System.out.println("Todavía no ha guardado ningún contacto.");
+                }
+                else {
+                    App.agenda.listarContactos();
+                }
+                break;
+            case 3:
+                // Verificar que hayan contactos guardados antes de usar
+                if (App.agenda.contactos.size() == 0) {
+                    System.out.println("Todavía no ha guardado ningún contacto.");
+                }
+                else {
+                    App.agenda.mostrarContacto();
+                }
+                break;
+            case 4:
+                // Verificar que hayan contactos guardados antes de usar
+                if (App.agenda.contactos.size() == 0) {
+                    System.out.println("Todavía no ha guardado ningún contacto.");
+                }
+                else {
+                    App.agenda.editarContacto();
+                }
+                break;
+            case 5:
+                // Verificar que hayan contactos guardados antes de usar
+                if (App.agenda.contactos.size() == 0) {
+                    System.out.println("Todavía no ha guardado ningún contacto.");
+                }
+                else {
+                    App.agenda.eliminarContacto();
+                }
+                break;
+            case 6:
+                App.seguir = salir();
         }
     }
 
