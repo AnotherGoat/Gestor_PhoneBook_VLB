@@ -125,7 +125,7 @@ public class Agenda {
     }
 
     /**
-     * Copia datos de un contacto a otro, pero manteniendo ambas instancias distintas
+     * Copia datos de un contacto a otro, pero manteniendo ambas instancias distintas (paso por valor)
      * @param base Contacto que se va a copiar
      */
     public void copiarContacto(Contacto base, Contacto objetivo){
