@@ -18,7 +18,11 @@ public class Agenda {
      */
     ArrayList<String> listaNombres = new ArrayList<>();
     /**
-     * com.vlb.phonebook.Validador usado en la clase com.vlb.phonebook.Agenda
+     * Boolean que indica si se va a seguir editando
+     */
+    private boolean seguirEditando;
+    /**
+     * Validador usado en la clase Agenda
      */
     private final Validador v = new Validador();
 
@@ -57,7 +61,7 @@ public class Agenda {
         int a = elegirContacto("ver");
 
         // Muestra los detalles del contacto
-        System.out.println("com.vlb.phonebook.Contacto #"+a);
+        System.out.println("****Contacto #"+a+"****");
         System.out.println(contactos.get(a - 1).toString());
     }
 
@@ -77,46 +81,25 @@ public class Agenda {
     }
 
     /**
-     * Método para editar datos de un contacto
+     * Método para mostrar un menú de edición de un contacto
      */
     public void editarContacto() {
         int a = elegirContacto("editar");
 
-        // Abre el menú de edición
-        menuEdicion(a-1);
-    }
+        seguirEditando = true;
+        Contacto c = contactos.get(a-1);
+        MenuEditor ed = new MenuEditor(c, a-1);
 
-    /**
-     * Método para hacer y confirmar los cambios hechos a un contacto
-     * @param posicion posición del contacto en el ArrayList
-     */
-    public void menuEdicion(int posicion) {
-        Contacto c = contactos.get(posicion);
-
-        copiarContacto(c, App.aux);
-
-        // Muestra el switch con el menú de edición
-        switchEdicion();
-
-        System.out.println("¿Desea guardar los cambios realizados? 1=Sí 0=No");
-        int b = v.validarInt(0, 1,
-                "Escoja una opción: ",
-                "La opción ingresada no existe.");
-
-        switch (b) {
-            case 1:
-                copiarContacto(App.aux, c);
-                // listaNombres.add(c.getNombre());
-                System.out.println("Los cambios han sido guardados.");
-                break;
-            case 0:
-                System.out.println("Los cambios no se han guardado.");
-        }
+        // Repite el menú de edición hasta que el usuario escoja salir
+        do {
+            ed.desplegarMenu();
+            ed.switchMenu();
+        } while (seguirEditando);
     }
 
     /**
      * Método para copiar datos de un contacto a otro, pero manteniendo ambas instancias distintas (paso por valor)
-     * @param base com.vlb.phonebook.Contacto que se va a copiar
+     * @param base Contacto que se va a copiar
      */
     public void copiarContacto(Contacto base, Contacto objetivo){
         if(base!=null && objetivo!=null) {
@@ -127,113 +110,6 @@ public class Agenda {
             objetivo.setDireccion(base.getDireccion());
             objetivo.setEmail(base.getEmail());
         }
-    }
-
-    /**
-     * Método que maneja las opciones del menú de edición
-     */
-    public void switchEdicion() {
-        MenuEditor ed;
-        String s;
-        int b;
-
-        do {
-            ArrayList<String> opcionesEd = crearOpcionesEditor();
-            ed = new MenuEditor();
-            ed.desplegarMenu();
-
-            switch (ed.getEleccion()) {
-                case 1: // Nombre
-                    s = v.recibirString("Ingrese el nombre del contacto: ");
-                    App.aux.setNombre(s);
-                    break;
-
-                case 2: // Número de celular
-                    b = v.validarInt(1, 999999999,
-                            "Ingrese el número de celular: ",
-                            "El número ingresado no es válido.");
-                    App.aux.setTelefonoCelular(b);
-                    break;
-
-                case 3: // Número de casa
-                    b = v.validarInt(1, 999999999,
-                            "Ingrese el número de teléfono de casa: ",
-                            "El número ingresado no es válido.");
-                    App.aux.setTelefonoCasa(b);
-                    break;
-
-                case 4: // Número de trabajo
-                    b = v.validarInt(1, 999999999,
-                            "Ingrese el número de trabajo: ",
-                            "El número ingresado no es válido.");
-                    App.aux.setTelefonoTrabajo(b);
-                    break;
-
-                case 5: // Dirección
-                    s = v.recibirString("Ingrese la dirección: ");
-                    App.aux.setDireccion(s);
-                    break;
-
-                case 6: // E-mail
-                    s = v.recibirString("Ingrese la dirección de e-mail: ");
-                    App.aux.setEmail(s);
-                    break;
-            }
-        } while(ed.getEleccion()!=7);
-    }
-
-    /**
-     * <p>Este método crea opciones para un ArrayList que se usará en el menú edición.</p>
-     * <p>Cambia el texto entre "Agregar" (si no existe un dato de ese tipo) o "Cambiar" (si ya existe un dato de ese tipo).</p>
-     * @return ArrayList con las opciones
-     */
-    public ArrayList<String> crearOpcionesEditor() {
-        // a=agregar, c=cambiar
-        String a = "Agregar ", c = "Cambiar ";
-        // Crea opciones para guardarlas en un ArrayList
-        ArrayList<String> opcionesEd = new ArrayList<>();
-        opcionesEd.add(c+"nombre");
-
-        // Arreglos para ahorrar espacio
-        boolean[] check = {App.aux.telefonoCelular == -1,App.aux.telefonoCasa == -1, App.aux.telefonoTrabajo == -1, App.aux.direccion == null, App.aux.email == null};
-        String[] datos = {"número de celular", "número de casa", "número de trabajo", "dirección", "e-mail",};
-
-        for(int i=0; i<check.length; i++){
-            if(check[i]){
-                opcionesEd.add(a + datos[i]);
-            }
-            else{
-                opcionesEd.add(c + datos[i]);
-            }
-        }
-
-        /*
-        // Todavía no implementado (no borrar)
-        if(aux.sobrenombre==null){
-            opcionesEd.add("Agregar sobrenombre");
-        }
-        else{
-            opcionesEd.add("Cambiar sobrenombre");
-        }
-
-        if(aux.fechaCumple==null){
-            opcionesEd.add("Agregar fecha de cumpleaños");
-        }
-        else{
-            opcionesEd.add("Cambiar fecha de cumpleaños");
-        }
-
-        if(aux.notas==null){
-            opcionesEd.add("Agregar notas adicionales");
-        }
-        else{
-            opcionesEd.add("Cambiar notas adicionales");
-        }
-        */
-
-        opcionesEd.add("Salir");
-
-        return opcionesEd;
     }
 
     /**
@@ -257,11 +133,21 @@ public class Agenda {
         switch (x) {
             case 1:
                 contactos.remove(num - 1);
+                listaNombres.remove(num-1);
                 System.out.println("El contacto ha sido borrado exitosamente.");
                 break;
             case 0:
                 System.out.println("El contacto no se borró.");
                 break;
         }
+    }
+
+    //// Getters y Setters
+    public boolean isSeguirEditando() {
+        return seguirEditando;
+    }
+
+    public void setSeguirEditando(boolean seguirEditando) {
+        this.seguirEditando = seguirEditando;
     }
 }

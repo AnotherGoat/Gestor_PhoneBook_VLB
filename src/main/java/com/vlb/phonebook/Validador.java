@@ -19,7 +19,6 @@ public class Validador {
     }
 
     //// Métodos
-
     /**
      * Valida entrada de tipo int
      * @param texto String que mostrará el programa antes de recibir entrada

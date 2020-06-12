@@ -40,9 +40,9 @@ public class MenuTest {
     @Test
     public void salir1() {
         simularInput("1");
-        assertFalse(m.salir());
+        assertFalse(m.salir(""));
         System.out.println("");
         simularInput("0");
-        assertTrue(m.salir());
+        assertTrue(m.salir(""));
     }
 }

@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class ValidadorTest {
 
     /**
-     * com.vlb.phonebook.Validador usado en com.vlb.phonebook.ValidadorTest
+     * Validador usado en ValidadorTest
      */
     Validador v;
 

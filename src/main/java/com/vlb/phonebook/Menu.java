@@ -21,12 +21,16 @@ public class Menu {
      */
     protected int eleccion;
     /**
-     * com.vlb.phonebook.Validador usado en la clase com.vlb.phonebook.Menu
+     * Validador usado en la clase Menu
      */
     protected final Validador v = new Validador();
 
     //// Constructores
     public Menu() {
+    }
+
+    public Menu(ArrayList<String> opciones) {
+        this.opciones = opciones;
     }
 
     //// Métodos
@@ -56,14 +60,14 @@ public class Menu {
 
     /**
      * Método que se usa para confirmar la salida del programa
-     * @return Boolean que le indica al programa si debe seguir funcionando (true) o no (false)
+     * @return Boolean que le indica al programa si se quiere salir (true) o no (false)
      */
-    public boolean salir() {
+    public boolean salir(String palabra) {
         int a = v.validarInt(0, 1,
-                "¿Desea salir del programa? 1=Sí 0=No\nEscoja una opción: ",
+                "¿Desea salir del "+palabra+"? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
-        return a != 1;
+        return a == 1;
     }
 
     //// Getters y Setters
@@ -97,7 +101,7 @@ class MenuPrincipal extends Menu {
         // Muestra el nombre del gestor con algo de decoración
         mostrarLogo();
 
-        System.out.println("com.vlb.phonebook.Menu principal:");
+        System.out.println("Menú principal:");
 
         // Muestra las opciones
         enumerarArrayList(opciones);
@@ -111,10 +115,9 @@ class MenuPrincipal extends Menu {
      * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
      */
     public void switchMenu() {
-        // Switch para la selección, tomando la variable eleccion del método desplegarMenu
         switch (eleccion) {
             case 1: //// "Crear contacto nuevo"
-                agenda.crearContacto(); // recordar que agenda = com.vlb.phonebook.App.agenda
+                agenda.crearContacto(); // recordar que agenda = App.agenda
                 break;
 
             case 2: //// "Mostrar lista de contactos"
@@ -158,7 +161,7 @@ class MenuPrincipal extends Menu {
                 break;
 
             case 6: //// "Salir"
-                App.seguir = salir();
+                App.seguir = !salir("programa"); // Si se escoge salir, no seguir con el menú principal
         }
     }
 }
@@ -168,8 +171,22 @@ class MenuPrincipal extends Menu {
  */
 class MenuEditor extends Menu {
 
+    //// Atributos
+    /**
+     * Contacto original de la agenda
+     */
+    private Contacto original;
+    /**
+     * Posicion del contacto original
+     */
+    private int posicionOriginal;
+    /**
+     * Contacto auxiliar, se usa para permitir elegir si guardar los cambios o no
+     */
+    private Contacto aux = new Contacto();
+
     //// Constructores
-    public MenuEditor() {
+    public MenuEditor(Contacto original, int posicionOriginal) {
         // Llenar ArrayList con opciones
         this.opciones.add("Cambiar nombre");
         this.opciones.add("Editar números de celular");
@@ -178,6 +195,14 @@ class MenuEditor extends Menu {
         this.opciones.add("Editar direcciones");
         this.opciones.add("Editar e-mails");
         this.opciones.add("Salir");
+
+        // Tomar contacto que se va a editar (paso por referencia)
+        this.original = original;
+
+        // Copia el contacto original a uno auxiliar (paso por valor)
+        agenda.copiarContacto(original, aux);
+
+        this.posicionOriginal = posicionOriginal;
     }
 
     //// Métodos
@@ -203,39 +228,138 @@ class MenuEditor extends Menu {
      * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
      */
     public void switchMenu() {
-        // Switch para la selección, tomando la variable eleccion del método desplegarMenu
+
+        // Se usan temporalmente para recibir entrada
+        String s;
+        int b;
+
         switch (eleccion) {
             case 1: //// "Cambiar nombre"
+                switchNombre();
                 break;
 
             case 2: //// "Editar números de celular"
-
+                switchCelular();
                 break;
 
             case 3: //// "Editar números de casa"
-
+                switchCasa();
                 break;
 
             case 4: //// "Editar números de trabajo"
-
+                switchTrabajo();
                 break;
 
             case 5: //// "Editar direcciones"
+                switchDireccion();
                 break;
 
             case 6: //// "Editar e-mails"
+                switchEmail();
                 break;
 
             case 7: //// "Salir"
-                App.seguir = salirConfirmarCambios();
+                agenda.setSeguirEditando(!salirConfirmarCambios()); // Si se escoge salir, no seguir editando
         }
     }
 
     /**
-     * Método que se usa para confirmar la salida del programa
-     * @return Boolean que le indica al programa si debe seguir funcionando (true) o no (false)
+     * Método con la opción 1 del menú, cambiar nombre
+     */
+    public void switchNombre(){
+        String s;
+
+        s = v.recibirString("Ingrese el nombre del contacto: ");
+        aux.setNombre(s);
+    }
+
+    /**
+     * Método con la opción 2 del menú, editar números de celular
+     */
+    public void switchCelular(){
+        int b;
+
+        b = v.validarInt(1, 999999999,
+                "Ingrese el número de celular: ",
+                "El número ingresado no es válido.");
+        aux.setTelefonoCelular(b);
+    }
+
+    /**
+     * Método con la opción 3 del menú, editar números de casa
+     */
+    public void switchCasa(){
+        int b;
+
+        b = v.validarInt(1, 999999999,
+                "Ingrese el número de teléfono de casa: ",
+                "El número ingresado no es válido.");
+        aux.setTelefonoCasa(b);;
+    }
+
+    /**
+     * Método con la opción 4 del menú, editar números de trabajo
+     */
+    public void switchTrabajo(){
+        int b;
+
+        b = v.validarInt(1, 999999999,
+                "Ingrese el número de trabajo: ",
+                "El número ingresado no es válido.");
+        aux.setTelefonoTrabajo(b);
+    }
+
+    /**
+     * Método con la opción 5 del menú, editar direcciones
+     */
+    public void switchDireccion(){
+        String s;
+
+        s = v.recibirString("Ingrese la dirección: ");
+        aux.setDireccion(s);
+    }
+
+    /**
+     * Método con la opción 6 del menú, editar direcciones
+     */
+    public void switchEmail(){
+        String s;
+
+        s = v.recibirString("Ingrese la dirección de e-mail: ");
+        aux.setEmail(s);
+    }
+
+    /**
+     * Método que se usa para confirmar la salida del programa y los cambios realizados
+     * @return Boolean que le indica al programa si el usuario quiere salir (true) o no (false)
      */
     public boolean salirConfirmarCambios() {
-        return salir();
+        boolean salirEditor = salir("menú de edición");
+
+        // En caso de querer salir, hacer lo siguiente
+        if(salirEditor) {
+            System.out.println("¿Desea guardar los cambios realizados? 1=Sí 0=No");
+            int b = v.validarInt(0, 1,
+                    "Escoja una opción: ",
+                    "La opción ingresada no existe.");
+
+            switch (b) {
+                case 1:
+                    // Copia el contacto de vuelta
+                    agenda.copiarContacto(aux, original);
+                    // Vacía el contacto auxiliar
+                    aux = null;
+
+                    // Actualiza la lista de nombres de la agenda
+                    agenda.listaNombres.set(posicionOriginal, original.getNombre());
+
+                    System.out.println("Los cambios han sido guardados.");
+                    break;
+                case 0:
+                    System.out.println("Los cambios no se han guardado.");
+            }
+        }
+
+        return salirEditor;
     }
 }

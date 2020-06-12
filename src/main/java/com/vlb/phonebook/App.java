@@ -15,6 +15,7 @@ package com.vlb.phonebook;
  ---Todos los procedimientos deben realizarlos objetos fuera de la clase principal (main).
 
  */
+
 /**
  * <h2>"Gestor PhoneBook VLB"</h1>
  *
@@ -28,7 +29,7 @@ public class App {
 
     //// Atributos
     /**
-     * Objeto de clase com.vlb.phonebook.Menu que se inicia para mostrar el menú
+     * Objeto de clase MenuPrincipal que se inicia para mostrar el menú
      */
     public static MenuPrincipal menu = new MenuPrincipal();
     /**
@@ -36,16 +37,12 @@ public class App {
      */
     public static boolean seguir = true;
     /**
-     * Objeto de la clase com.vlb.phonebook.Agenda en el cual se almacenan todos los contactos durante la ejecución del programa
+     * Objeto de la clase Agenda en el cual se almacenan todos los contactos durante la ejecución del programa
      */
     public static Agenda agenda = new Agenda();
-    /**
-     * com.vlb.phonebook.Contacto auxiliar, se usa cuando se edita un contacto para permitir elegir si guardar los cambios o no
-     */
-    public static Contacto aux = new Contacto();
 
     public static void main(String[] args) {
-        // Muestra el menú principal de la agenda y lo repite
+        // Muestra el menú principal del gestor y lo repite
         do {
             menu.desplegarMenu();
             menu.switchMenu();
