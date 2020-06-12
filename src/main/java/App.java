@@ -31,13 +31,9 @@ public class App {
 
     //// Atributos
     /**
-     * ArrayList de Strings usado para las opciones del menú
-     */
-    public static ArrayList<String> opciones = new ArrayList<>();
-    /**
      * Objeto de clase Menu que se inicia para mostrar el menú
      */
-    public static MenuPrincipal menu = new MenuPrincipal(opciones);
+    public static MenuPrincipal menu = new MenuPrincipal();
     /**
      * Boolean global que permite repetir el menú hasta que el usuario escoja salir
      */
@@ -52,14 +48,6 @@ public class App {
     public static Contacto aux = new Contacto();
 
     public static void main(String[] args) {
-        // Llenar ArrayList con opciones
-        opciones.add("Crear contacto nuevo");
-        opciones.add("Mostrar lista de contactos");
-        opciones.add("Ver detalles de un contacto");
-        opciones.add("Editar un contacto");
-        opciones.add("Eliminar un contacto");
-        opciones.add("Salir");
-
         // Muestra el menú principal de la agenda y lo repite
         do {
             menu.desplegarMenu();

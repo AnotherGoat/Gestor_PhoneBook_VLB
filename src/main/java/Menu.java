@@ -148,11 +148,29 @@ public class Menu {
 class MenuPrincipal extends Menu {
 
     //// Constructores
-    public MenuPrincipal(ArrayList<String> opciones) {
-        this.opciones = opciones;
+    public MenuPrincipal() {
+        // Llenar ArrayList con opciones
+        this.opciones.add("Crear contacto nuevo");
+        this.opciones.add("Mostrar lista de contactos");
+        this.opciones.add("Ver detalles de un contacto");
+        this.opciones.add("Editar un contacto");
+        this.opciones.add("Eliminar un contacto");
+        this.opciones.add("Salir");
     }
 }
 
-class MenuEdicion extends Menu {
+class MenuEditor extends Menu {
+
+    //// Constructores
+    public MenuEditor() {
+        // Llenar ArrayList con opciones
+        this.opciones.add("Cambiar nombre");
+        this.opciones.add("Editar números de celular");
+        this.opciones.add("Editar números de casa");
+        this.opciones.add("Editar números de trabajo");
+        this.opciones.add("Editar direcciones");
+        this.opciones.add("Editar e-mails");
+        this.opciones.add("Salir y guardar los cambios");
+    }
 
 }
