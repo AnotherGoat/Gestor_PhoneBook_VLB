@@ -11,7 +11,7 @@ public class Menu {
     /**
      * Arreglo de Strings que contiene las opciones del menú
      */
-    private final ArrayList<String> opciones;
+    private ArrayList<String> opciones = new ArrayList<>();
     /**
      * Opción que ingresa el usuario, se usa en los métodos desplegarMenu y switchMenu
      */
@@ -27,6 +27,9 @@ public class Menu {
     */
 
     //// Constructores
+    public Menu() {
+    }
+
     public Menu(ArrayList<String> opciones) {
         this.opciones = opciones;
     }
@@ -140,4 +143,12 @@ public class Menu {
     public int getEleccion() {
         return eleccion;
     }
+}
+
+class MenuPrincipal extends Menu {
+
+}
+
+class MenuEdicion extends Menu {
+
 }
