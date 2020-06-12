@@ -122,7 +122,7 @@ class MenuPrincipal extends Menu {
 
             case 2: //// "Mostrar lista de contactos"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.contactos.size() == 0) {
+                if (agenda.getContactos().size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -132,7 +132,7 @@ class MenuPrincipal extends Menu {
 
             case 3: //// "Ver detalles de un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.contactos.size() == 0) {
+                if (agenda.getContactos().size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -142,7 +142,7 @@ class MenuPrincipal extends Menu {
 
             case 4: //// "Editar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.contactos.size() == 0) {
+                if (agenda.getContactos().size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -152,7 +152,7 @@ class MenuPrincipal extends Menu {
 
             case 5: //// "Eliminar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.contactos.size() == 0) {
+                if (agenda.getContactos().size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -271,6 +271,7 @@ class MenuEditor extends Menu {
 
         s = v.recibirString("Ingrese el nombre del contacto: ");
         aux.setNombre(s);
+        System.out.println("El nombre fue cambiado con éxito.");
     }
 
     /**
@@ -283,6 +284,7 @@ class MenuEditor extends Menu {
                 "Ingrese el número de celular: ",
                 "El número ingresado no es válido.");
         aux.setTelefonoCelular(b);
+        System.out.println("El número de celular fue agregado con éxito.");
     }
 
     /**
@@ -295,6 +297,7 @@ class MenuEditor extends Menu {
                 "Ingrese el número de teléfono de casa: ",
                 "El número ingresado no es válido.");
         aux.setTelefonoCasa(b);;
+        System.out.println("El número de casa fue agregado con éxito.");
     }
 
     /**
@@ -307,6 +310,7 @@ class MenuEditor extends Menu {
                 "Ingrese el número de trabajo: ",
                 "El número ingresado no es válido.");
         aux.setTelefonoTrabajo(b);
+        System.out.println("El número de trabajo fue agregado con éxito.");
     }
 
     /**
@@ -317,6 +321,7 @@ class MenuEditor extends Menu {
 
         s = v.recibirString("Ingrese la dirección: ");
         aux.setDireccion(s);
+        System.out.println("La dirección fue agregada con éxito.");
     }
 
     /**
@@ -327,6 +332,7 @@ class MenuEditor extends Menu {
 
         s = v.recibirString("Ingrese la dirección de e-mail: ");
         aux.setEmail(s);
+        System.out.println("El e-mail fue agregado con éxito.");
     }
 
     /**
@@ -351,7 +357,7 @@ class MenuEditor extends Menu {
                     aux = null;
 
                     // Actualiza la lista de nombres de la agenda
-                    agenda.listaNombres.set(posicionOriginal, original.getNombre());
+                    agenda.getListaNombres().set(posicionOriginal, original.getNombre());
 
                     System.out.println("Los cambios han sido guardados.");
                     break;

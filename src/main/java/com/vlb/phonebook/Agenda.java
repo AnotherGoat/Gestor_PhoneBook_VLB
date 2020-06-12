@@ -12,11 +12,11 @@ public class Agenda {
     /**
      * ArrayList con los contactos registrados
      */
-    ArrayList<Contacto> contactos = new ArrayList<>();
+    private ArrayList<Contacto> contactos = new ArrayList<>();
     /**
      * ArrayList con el nombre de cada contacto
      */
-    ArrayList<String> listaNombres = new ArrayList<>();
+    private ArrayList<String> listaNombres = new ArrayList<>();
     /**
      * Boolean que indica si se va a seguir editando
      */
@@ -143,6 +143,22 @@ public class Agenda {
     }
 
     //// Getters y Setters
+    public ArrayList<Contacto> getContactos() {
+        return contactos;
+    }
+
+    public void setContactos(ArrayList<Contacto> contactos) {
+        this.contactos = contactos;
+    }
+
+    public ArrayList<String> getListaNombres() {
+        return listaNombres;
+    }
+
+    public void setListaNombres(ArrayList<String> listaNombres) {
+        this.listaNombres = listaNombres;
+    }
+
     public boolean isSeguirEditando() {
         return seguirEditando;
     }

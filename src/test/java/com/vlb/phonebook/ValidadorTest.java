@@ -1,6 +1,5 @@
 package com.vlb.phonebook;
 
-import com.vlb.phonebook.Validador;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +22,21 @@ public class ValidadorTest {
     public void simularInput(String entrada){
         if(entrada!=null) {
             ByteArrayInputStream in = new ByteArrayInputStream(entrada.getBytes());
+            System.setIn(in);
+        }
+    }
+
+    public void simularVariosInput(String[] entradas){
+        if(entradas!=null){
+            StringBuilder lineasIngresadas = new StringBuilder();
+
+            for(String s : entradas){
+                lineasIngresadas.append(s).append(System.getProperty("line.separator"));
+            }
+
+            String entradaSimulada = lineasIngresadas.toString();
+
+            ByteArrayInputStream in = new ByteArrayInputStream(entradaSimulada.getBytes());
             System.setIn(in);
         }
     }

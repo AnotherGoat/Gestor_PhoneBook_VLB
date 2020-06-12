@@ -1,6 +1,5 @@
 package com.vlb.phonebook;
 
-import com.vlb.phonebook.Menu;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,9 +39,9 @@ public class MenuTest {
     @Test
     public void salir1() {
         simularInput("1");
-        assertFalse(m.salir(""));
+        assertTrue(m.salir(""));
         System.out.println("");
         simularInput("0");
-        assertTrue(m.salir(""));
+        assertFalse(m.salir(""));
     }
 }
