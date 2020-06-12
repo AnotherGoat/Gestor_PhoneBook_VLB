@@ -1,3 +1,5 @@
+package com.vlb.phonebook;
+
 import com.vlb.phonebook.Menu;
 import org.junit.After;
 import org.junit.Before;
