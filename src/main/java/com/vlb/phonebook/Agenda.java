@@ -1,3 +1,4 @@
+package com.vlb.phonebook;
 
 // Importa la clase ArrayList
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Agenda {
      */
     ArrayList<String> listaNombres = new ArrayList<>();
     /**
-     * Validador usado en la clase Agenda
+     * com.vlb.phonebook.Validador usado en la clase com.vlb.phonebook.Agenda
      */
     private final Validador v = new Validador();
 
@@ -56,7 +57,7 @@ public class Agenda {
         int a = elegirContacto("ver");
 
         // Muestra los detalles del contacto
-        System.out.println("Contacto #"+a);
+        System.out.println("com.vlb.phonebook.Contacto #"+a);
         System.out.println(contactos.get(a - 1).toString());
     }
 
@@ -115,7 +116,7 @@ public class Agenda {
 
     /**
      * Método para copiar datos de un contacto a otro, pero manteniendo ambas instancias distintas (paso por valor)
-     * @param base Contacto que se va a copiar
+     * @param base com.vlb.phonebook.Contacto que se va a copiar
      */
     public void copiarContacto(Contacto base, Contacto objetivo){
         if(base!=null && objetivo!=null) {

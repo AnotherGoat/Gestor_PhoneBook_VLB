@@ -1,3 +1,4 @@
+import com.vlb.phonebook.Validador;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +10,7 @@ import static org.junit.Assert.*;
 public class ValidadorTest {
 
     /**
-     * Validador usado en ValidadorTest
+     * com.vlb.phonebook.Validador usado en ValidadorTest
      */
     Validador v;
 

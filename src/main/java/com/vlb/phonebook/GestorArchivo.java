@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
+package com.vlb.phonebook;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

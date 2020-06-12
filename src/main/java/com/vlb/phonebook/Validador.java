@@ -1,3 +1,4 @@
+package com.vlb.phonebook;
 
 import java.util.Scanner;
 

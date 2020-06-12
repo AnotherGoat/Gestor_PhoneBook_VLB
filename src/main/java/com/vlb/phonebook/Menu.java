@@ -1,3 +1,4 @@
+package com.vlb.phonebook;
 
 // Importa la clase ArrayList
 import java.util.ArrayList;
@@ -17,13 +18,13 @@ public class Menu {
      */
     protected int eleccion;
     /**
-     * Validador usado en la clase Menu
+     * com.vlb.phonebook.Validador usado en la clase com.vlb.phonebook.Menu
      */
     protected final Validador v = new Validador();
 
     //// Abreviaturas de variables globales
     /*
-    Agenda agenda = App.agenda;
+    com.vlb.phonebook.Agenda agenda = com.vlb.phonebook.App.agenda;
     */
 
     //// Constructores
@@ -36,6 +37,53 @@ public class Menu {
 
     //// Métodos
     /**
+     * Método para mostrar una lista numerada de los datos dentro de un ArrayList
+     * @param al ArrayList que se quiere ordenar
+     */
+    public void enumerarArrayList(ArrayList<String> al){
+        if(al != null) {
+            for (int i = 1; i <= al.size(); i++) {
+                System.out.println(i + ".- " + al.get(i - 1));
+            }
+        }
+        else{
+            System.out.println("Error: ArrayList nulo");
+        }
+    }
+
+    /**
+     * Método que se usa para confirmar la salida del programa
+     * @return Boolean que le indica al programa si debe seguir funcionando (true) o no (false)
+     */
+    public boolean salir() {
+        int a = v.validarInt(0, 1,
+                "¿Desea salir del programa? 1=Sí 0=No\nEscoja una opción: ",
+                "La opción ingresada no existe.");
+
+        return a != 1;
+    }
+
+    //// Getters y Setters
+    public int getEleccion() {
+        return eleccion;
+    }
+}
+
+class MenuPrincipal extends Menu {
+
+    //// Constructores
+    public MenuPrincipal() {
+        // Llenar ArrayList con opciones
+        this.opciones.add("Crear contacto nuevo");
+        this.opciones.add("Mostrar lista de contactos");
+        this.opciones.add("Ver detalles de un contacto");
+        this.opciones.add("Editar un contacto");
+        this.opciones.add("Eliminar un contacto");
+        this.opciones.add("Salir");
+    }
+
+    //// Métodos
+    /**
      * Método que muestra un menú con las opciones del gestor
      */
     public void desplegarMenu() {
@@ -43,7 +91,7 @@ public class Menu {
         // Muestra el nombre del gestor con algo de decoración
         mostrarLogo();
 
-        System.out.println("Menu de selección:");
+        System.out.println("com.vlb.phonebook.Menu principal:");
 
         // Muestra las opciones
         enumerarArrayList(opciones);
@@ -63,28 +111,13 @@ public class Menu {
     }
 
     /**
-     * Método para mostrar una lista numerada de los datos dentro de un ArrayList
-     * @param al ArrayList que se quiere ordenar
-     */
-    public void enumerarArrayList(ArrayList<String> al){
-        if(al != null) {
-            for (int i = 1; i <= al.size(); i++) {
-                System.out.println(i + ".- " + al.get(i - 1));
-            }
-        }
-        else{
-            System.out.println("Error: ArrayList nulo");
-        }
-    }
-
-    /**
      * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
      */
     public void switchMenu() {
         //Switch para la selección, tomando variable seleccion del método desplegarMenu
         switch (eleccion) {
             case 1:
-                App.agenda.crearContacto(); // recordar que agenda = App.agenda
+                App.agenda.crearContacto(); // recordar que agenda = com.vlb.phonebook.App.agenda
                 break;
             case 2:
                 // Verificar que hayan contactos guardados antes de usar
@@ -125,37 +158,6 @@ public class Menu {
             case 6:
                 App.seguir = salir();
         }
-    }
-
-    /**
-     * Método que se usa para confirmar la salida del programa
-     * @return Boolean que le indica al programa si debe seguir funcionando (true) o no (false)
-     */
-    public boolean salir() {
-        int a = v.validarInt(0, 1,
-                "¿Desea salir del programa? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
-
-        return a != 1;
-    }
-
-    //// Getters y Setters
-    public int getEleccion() {
-        return eleccion;
-    }
-}
-
-class MenuPrincipal extends Menu {
-
-    //// Constructores
-    public MenuPrincipal() {
-        // Llenar ArrayList con opciones
-        this.opciones.add("Crear contacto nuevo");
-        this.opciones.add("Mostrar lista de contactos");
-        this.opciones.add("Ver detalles de un contacto");
-        this.opciones.add("Editar un contacto");
-        this.opciones.add("Eliminar un contacto");
-        this.opciones.add("Salir");
     }
 }
 
