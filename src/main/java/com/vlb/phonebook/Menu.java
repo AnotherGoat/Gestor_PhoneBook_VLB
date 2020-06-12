@@ -3,8 +3,11 @@ package com.vlb.phonebook;
 // Importa la clase ArrayList
 import java.util.ArrayList;
 
+// Importa la agenda "global"
+import static com.vlb.phonebook.App.agenda;
+
 /**
- * Acá ira el menú principal del proyecto PhoneBook y todo lo relacionado con él
+ * Clase con atributos y métodos para menús en general
  */
 public class Menu {
 
@@ -22,20 +25,20 @@ public class Menu {
      */
     protected final Validador v = new Validador();
 
-    //// Abreviaturas de variables globales
-    /*
-    com.vlb.phonebook.Agenda agenda = com.vlb.phonebook.App.agenda;
-    */
-
     //// Constructores
     public Menu() {
     }
 
-    public Menu(ArrayList<String> opciones) {
-        this.opciones = opciones;
+    //// Métodos
+    /**
+     * Método para mostrar el nombre del gestor con algo de decoración
+     */
+    public void mostrarLogo(){
+        System.out.println("******************************************");
+        System.out.println("=========\\\\Gestor PhoneBook VLB//=========");
+        System.out.println("******************************************");
     }
 
-    //// Métodos
     /**
      * Método para mostrar una lista numerada de los datos dentro de un ArrayList
      * @param al ArrayList que se quiere ordenar
@@ -69,6 +72,9 @@ public class Menu {
     }
 }
 
+/**
+ * Acá irá el menú principal del proyecto PhoneBook
+ */
 class MenuPrincipal extends Menu {
 
     //// Constructores
@@ -102,65 +108,64 @@ class MenuPrincipal extends Menu {
     }
 
     /**
-     * Método para mostrar el nombre del gestor con algo de decoración
-     */
-    public void mostrarLogo(){
-        System.out.println("******************************************");
-        System.out.println("=========\\\\Gestor PhoneBook VLB//=========");
-        System.out.println("******************************************");
-    }
-
-    /**
      * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
      */
     public void switchMenu() {
-        //Switch para la selección, tomando variable seleccion del método desplegarMenu
+        // Switch para la selección, tomando la variable eleccion del método desplegarMenu
         switch (eleccion) {
-            case 1:
-                App.agenda.crearContacto(); // recordar que agenda = com.vlb.phonebook.App.agenda
+            case 1: //// "Crear contacto nuevo"
+                agenda.crearContacto(); // recordar que agenda = com.vlb.phonebook.App.agenda
                 break;
-            case 2:
+
+            case 2: //// "Mostrar lista de contactos"
                 // Verificar que hayan contactos guardados antes de usar
-                if (App.agenda.contactos.size() == 0) {
+                if (agenda.contactos.size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    App.agenda.listarContactos();
+                    agenda.listarContactos();
                 }
                 break;
-            case 3:
+
+            case 3: //// "Ver detalles de un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (App.agenda.contactos.size() == 0) {
+                if (agenda.contactos.size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    App.agenda.mostrarContacto();
+                    agenda.mostrarContacto();
                 }
                 break;
-            case 4:
+
+            case 4: //// "Editar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (App.agenda.contactos.size() == 0) {
+                if (agenda.contactos.size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    App.agenda.editarContacto();
+                    agenda.editarContacto();
                 }
                 break;
-            case 5:
+
+            case 5: //// "Eliminar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (App.agenda.contactos.size() == 0) {
+                if (agenda.contactos.size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    App.agenda.eliminarContacto();
+                    agenda.eliminarContacto();
                 }
                 break;
-            case 6:
+
+            case 6: //// "Salir"
                 App.seguir = salir();
         }
     }
 }
 
+/**
+ * Acá irá el menú para editar contactos
+ */
 class MenuEditor extends Menu {
 
     //// Constructores
@@ -172,7 +177,65 @@ class MenuEditor extends Menu {
         this.opciones.add("Editar números de trabajo");
         this.opciones.add("Editar direcciones");
         this.opciones.add("Editar e-mails");
-        this.opciones.add("Salir y guardar los cambios");
+        this.opciones.add("Salir");
     }
 
+    //// Métodos
+    /**
+     * Método que muestra un menú con las opciones del gestor
+     */
+    public void desplegarMenu() {
+
+        // Muestra el nombre del gestor con algo de decoración
+        mostrarLogo();
+
+        System.out.println("Menu de edición:");
+
+        // Muestra las opciones
+        enumerarArrayList(opciones);
+
+        eleccion = v.validarInt(1, opciones.size(),
+                "Escoja una opción: ",
+                "La opción ingresada no existe.");
+    }
+
+    /**
+     * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
+     */
+    public void switchMenu() {
+        // Switch para la selección, tomando la variable eleccion del método desplegarMenu
+        switch (eleccion) {
+            case 1: //// "Cambiar nombre"
+                break;
+
+            case 2: //// "Editar números de celular"
+
+                break;
+
+            case 3: //// "Editar números de casa"
+
+                break;
+
+            case 4: //// "Editar números de trabajo"
+
+                break;
+
+            case 5: //// "Editar direcciones"
+                break;
+
+            case 6: //// "Editar e-mails"
+                break;
+
+            case 7: //// "Salir"
+                App.seguir = salirConfirmarCambios();
+        }
+    }
+
+    /**
+     * Método que se usa para confirmar la salida del programa
+     * @return Boolean que le indica al programa si debe seguir funcionando (true) o no (false)
+     */
+    public boolean salirConfirmarCambios() {
+        return salir();
+    }
 }

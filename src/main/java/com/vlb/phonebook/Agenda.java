@@ -133,13 +133,13 @@ public class Agenda {
      * Método que maneja las opciones del menú de edición
      */
     public void switchEdicion() {
-        Menu ed;
+        MenuEditor ed;
         String s;
         int b;
 
         do {
             ArrayList<String> opcionesEd = crearOpcionesEditor();
-            ed = new Menu(opcionesEd);
+            ed = new MenuEditor();
             ed.desplegarMenu();
 
             switch (ed.getEleccion()) {
