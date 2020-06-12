@@ -11,15 +11,15 @@ public class Menu {
     /**
      * Arreglo de Strings que contiene las opciones del menú
      */
-    private ArrayList<String> opciones = new ArrayList<>();
+    protected ArrayList<String> opciones = new ArrayList<>();
     /**
      * Opción que ingresa el usuario, se usa en los métodos desplegarMenu y switchMenu
      */
-    private int eleccion;
+    protected int eleccion;
     /**
      * Validador usado en la clase Menu
      */
-    private final Validador v = new Validador();
+    protected final Validador v = new Validador();
 
     //// Abreviaturas de variables globales
     /*
@@ -147,6 +147,10 @@ public class Menu {
 
 class MenuPrincipal extends Menu {
 
+    //// Constructores
+    public MenuPrincipal(ArrayList<String> opciones) {
+        this.opciones = opciones;
+    }
 }
 
 class MenuEdicion extends Menu {

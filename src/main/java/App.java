@@ -37,7 +37,7 @@ public class App {
     /**
      * Objeto de clase Menu que se inicia para mostrar el menú
      */
-    public static Menu menu = new Menu(opciones);
+    public static MenuPrincipal menu = new MenuPrincipal(opciones);
     /**
      * Boolean global que permite repetir el menú hasta que el usuario escoja salir
      */
