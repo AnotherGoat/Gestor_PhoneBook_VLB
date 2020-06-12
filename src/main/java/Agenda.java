@@ -13,6 +13,10 @@ public class Agenda {
      */
     ArrayList<Contacto> contactos = new ArrayList<>();
     /**
+     * ArrayList con el nombre de cada contacto
+     */
+    ArrayList<String> listaNombres = new ArrayList<>();
+    /**
      * Validador usado en la clase Agenda
      */
     private final Validador v = new Validador();
@@ -32,6 +36,7 @@ public class Agenda {
         // Crea el contacto nuevo y lo agrega al ArrayList
         Contacto a = new Contacto(s);
         contactos.add(a);
+        listaNombres.add(s);
         System.out.println("El contacto fue guardado exitosamente.");
     }
 
@@ -39,26 +44,9 @@ public class Agenda {
      * Método para mostrar una lista de todos los contactos guardados
      */
     public void listarContactos() {
-        // Crear ArrayList con los nombres de los contactos
-        ArrayList<String> nombresC = obtenerNombres();
-
         // Mostrar nombres de los contactos registrados
         System.out.println("Contactos registrados:");
-        App.menu.enumerarArrayList(nombresC);
-    }
-
-    /**
-     * Método para obtener los nombres de todos los contactos
-     * @return ArrayList con los nombres
-     */
-    public ArrayList<String> obtenerNombres(){
-        ArrayList<String> al = new ArrayList<>();
-
-        for (Contacto contacto : contactos) {
-            al.add(contacto.getNombre());
-        }
-
-        return al;
+        App.menu.enumerarArrayList(listaNombres);
     }
 
     /**
@@ -117,6 +105,7 @@ public class Agenda {
         switch (b) {
             case 1:
                 copiarContacto(App.aux, c);
+                // listaNombres.add(c.getNombre());
                 System.out.println("Los cambios han sido guardados.");
                 break;
             case 0:
@@ -125,7 +114,7 @@ public class Agenda {
     }
 
     /**
-     * Copia datos de un contacto a otro, pero manteniendo ambas instancias distintas (paso por valor)
+     * Método para copiar datos de un contacto a otro, pero manteniendo ambas instancias distintas (paso por valor)
      * @param base Contacto que se va a copiar
      */
     public void copiarContacto(Contacto base, Contacto objetivo){
