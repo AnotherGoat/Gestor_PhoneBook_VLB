@@ -1,30 +1,21 @@
 package com.vlb.phonebook;
 
-/*
-
- "Gestor PhoneBook VLB"
-
- Estructura del programa:
- Clases: app, menú, agenda, contacto, validador
-
- Consejos que dio el profe o de sitios de internet (NO borrar)
- ---Trabajar en una branch que no sea main
- ---Hacer commits por cada cambio
- ---Cuidado con los términos técnicos.
- ---La clase main debe estar casi vacía, sólo instanciar un objeto (menú).
- ---Todos los procedimientos deben realizarlos objetos fuera de la clase principal (main).
-
+/* Para generar javadoc:
+Ir a Tools > GenerateJavaDoc
+Elegir una carpeta (vacía) para guardarlo
+En la opción "Other command line arguments" poner lo siguiente:
+-encoding utf8 -docencoding utf8 -charset utf8
+Para abrir el javadoc, abrir el archivo "index.html" con un navegador
  */
 
 /**
- * <h2>"Gestor PhoneBook VLB"</h1>
+ * <h2>"Gestor PhoneBook VLB"</h2>
  *
  * @author Bayron Muñoz
  * @author Luis Burgos
  * @author Víctor Mardones
- *
- * <p></p>
  */
+
 public class App {
 
     //// Atributos

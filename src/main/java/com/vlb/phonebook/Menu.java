@@ -60,11 +60,12 @@ public class Menu {
 
     /**
      * Método que se usa para confirmar la salida del programa
+     * @param lugar Lugar del que se desea salir
      * @return Boolean que le indica al programa si se quiere salir (true) o no (false)
      */
-    public boolean salir(String palabra) {
+    public boolean salir(String lugar) {
         int a = v.validarInt(0, 1,
-                "¿Desea salir del "+palabra+"? 1=Sí 0=No\nEscoja una opción: ",
+                "¿Desea salir del "+lugar+"? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         return a == 1;

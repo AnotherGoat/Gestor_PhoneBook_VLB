@@ -22,7 +22,7 @@ public class Validador {
     /**
      * Valida entrada de tipo int
      * @param texto String que mostrará el programa antes de recibir entrada
-     * @return int ingresado
+     * @return Int ingresado
      */
     public int validarInt(String texto) {
         boolean repetir = true; // Boolean para repetir en caso de ingresar un símbolo
@@ -46,10 +46,11 @@ public class Validador {
 
     /**
      * Valida entrada de tipo int y se asegura de que esté dentro de un rango
-     * @param texto String que mostrará el programa antes de recibir entrada
      * @param min Valor mínimo que se acepta como válido
      * @param max Valor máximo que se acepta como válido
+     * @param texto String que mostrará el programa antes de recibir entrada
      * @param mensajeError Mensaje de error en caso de que no se cumpla la condición
+     * @return Int ingresado, que está entre los valores de los parámetros
      */
     public int validarInt(int min, int max, String texto, String mensajeError) {
         boolean repetir = true; // Boolean para repetir en caso de ingresar una letra o símbolo

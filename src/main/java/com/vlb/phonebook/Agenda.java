@@ -100,6 +100,7 @@ public class Agenda {
     /**
      * Método para copiar datos de un contacto a otro, pero manteniendo ambas instancias distintas (paso por valor)
      * @param base Contacto que se va a copiar
+     * @param objetivo Contacto en el que se almacenarán los atributos copiados
      */
     public void copiarContacto(Contacto base, Contacto objetivo){
         if(base!=null && objetivo!=null) {
