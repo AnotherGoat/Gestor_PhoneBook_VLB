@@ -14,6 +14,10 @@ public class Menu {
      */
     protected ArrayList<String> opciones = new ArrayList<>();
     /**
+     * Boolean que se usa para seguir usando el menú
+     */
+    protected boolean seguir;
+    /**
      * Opción que ingresa el usuario, se usa en los métodos desplegarMenu y switchMenu
      */
     protected int eleccion;
@@ -41,10 +45,10 @@ public class Menu {
     }
 
     /**
-     * Método para mostrar una lista numerada de los datos dentro de un ArrayList
+     * Método de uso general para mostrar una lista numerada de los datos dentro de un ArrayList
      * @param al ArrayList que se quiere ordenar
      */
-    public void enumerarArrayList(ArrayList<String> al){
+    public static void enumerarArrayList(ArrayList<String> al){
         if(al != null) {
             for (int i = 1; i <= al.size(); i++) {
                 System.out.println(i + ".- " + al.get(i - 1));
@@ -57,12 +61,12 @@ public class Menu {
 
     /**
      * Método que se usa para confirmar la salida del programa
-     * @param lugar Lugar del que se desea salir
+     * @param nombreMenu Nombre del menú del que se desea salir
      * @return Boolean que le indica al programa si se quiere salir (true) o no (false)
      */
-    public boolean salir(String lugar) {
+    public boolean salir(String nombreMenu) {
         int a = v.validarInt(0, 1,
-                "¿Desea salir del "+lugar+"? 1=Sí 0=No\nEscoja una opción: ",
+                "¿Desea salir del "+nombreMenu+"? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         return a == 1;

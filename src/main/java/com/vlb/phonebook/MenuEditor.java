@@ -1,7 +1,7 @@
 package com.vlb.phonebook;
 
 // Importa la agenda de uso "global"
-import static com.vlb.phonebook.App.agenda;
+import static com.vlb.phonebook.Principal.agenda;
 
 /**
  * Acá irá el menú para editar contactos
@@ -33,13 +33,19 @@ public class MenuEditor extends Menu {
         this.opciones.add("Editar e-mails");
         this.opciones.add("Salir");
 
-        // Tomar contacto que se va a editar (paso por referencia)
+        // Tomar contacto que se va a editar (paso por referencia) y su posición
         this.original = original;
+        this.posicionOriginal = posicionOriginal;
 
         // Copia el contacto original a uno auxiliar (paso por valor)
         agenda.copiarContacto(original, aux);
 
-        this.posicionOriginal = posicionOriginal;
+        // Muestra el menú principal del gestor y lo repite hasta que "seguir" sea false
+        this.seguir = true;
+        do {
+            desplegarMenu();
+            switchMenu();
+        } while (this.seguir);
     }
 
     //// Métodos
@@ -96,7 +102,7 @@ public class MenuEditor extends Menu {
                 break;
 
             case 7: //// "Salir"
-                agenda.setSeguirEditando(!salirConfirmarCambios()); // Si se escoge salir, no seguir editando
+                this.seguir=!salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
     }
 

@@ -18,10 +18,6 @@ public class Agenda {
      */
     private ArrayList<String> listaNombres = new ArrayList<>();
     /**
-     * Boolean que indica si se va a seguir editando
-     */
-    private boolean seguirEditando;
-    /**
      * Validador usado en la clase Agenda
      */
     private final Validador v = new Validador();
@@ -36,12 +32,12 @@ public class Agenda {
      */
     public void crearContacto() {
         // Pide el nombre del contacto
-        String s = v.recibirString("Ingrese el nombre del contacto: ");
+        String nombreContacto = v.recibirString("Ingrese el nombre del contacto: ");
 
         // Crea el contacto nuevo y lo agrega al ArrayList
-        Contacto a = new Contacto(s);
-        contactos.add(a);
-        listaNombres.add(s);
+        Contacto nuevo = new Contacto(nombreContacto);
+        contactos.add(nuevo);
+        listaNombres.add(nombreContacto);
         System.out.println("El contacto fue guardado exitosamente.");
     }
 
@@ -51,18 +47,18 @@ public class Agenda {
     public void listarContactos() {
         // Mostrar nombres de los contactos registrados
         System.out.println("Contactos registrados:");
-        App.menu.enumerarArrayList(listaNombres);
+        Menu.enumerarArrayList(listaNombres);
     }
 
     /**
      * Método para mostrar detalles de un contacto específico
      */
     public void mostrarContacto() {
-        int a = elegirContacto("ver");
+        int idContacto = elegirContacto("ver"); // id Contacto = número con el que se identifica
 
         // Muestra los detalles del contacto
-        System.out.println("****Contacto #"+a+"****");
-        System.out.println(contactos.get(a - 1).toString());
+        System.out.println("****Contacto #"+idContacto+"****");
+        System.out.println(contactos.get(idContacto - 1).toString());
     }
 
     /**
@@ -84,17 +80,9 @@ public class Agenda {
      * Método para mostrar un menú de edición de un contacto
      */
     public void editarContacto() {
-        int a = elegirContacto("editar");
-
-        seguirEditando = true;
-        Contacto c = contactos.get(a-1);
-        MenuEditor ed = new MenuEditor(c, a-1);
-
-        // Repite el menú de edición hasta que el usuario escoja salir
-        do {
-            ed.desplegarMenu();
-            ed.switchMenu();
-        } while (seguirEditando);
+        int idContacto = elegirContacto("editar"); // id Contacto = número con el que se identifica
+        Contacto aEditar = contactos.get(idContacto - 1);
+        MenuEditor editor = new MenuEditor(aEditar, idContacto - 1);
     }
 
     /**
@@ -117,24 +105,25 @@ public class Agenda {
      * Método para eliminar un contacto
      */
     public void eliminarContacto() {
-        int a = elegirContacto("eliminar");
+        int idContacto = elegirContacto("eliminar"); // id Contacto = número con el que se identifica
         // Pide confirmación para borrar el contacto elegido
-        confirmarBorrado(a);
+        confirmarBorrado(idContacto-1);
     }
 
     /**
      * Método para confirmar la eliminación de un contacto
+     * @param posicion Posición del contacto que se desea borrar
      */
-    private void confirmarBorrado(int num) {
+    private void confirmarBorrado(int posicion) {
         int x;
         x = v.validarInt(0, 1,
-                "Se borrará el contacto "+contactos.get(num - 1).getNombre()+" ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "Se borrará el contacto "+contactos.get(posicion).getNombre()+" ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         switch (x) {
             case 1:
-                contactos.remove(num - 1);
-                listaNombres.remove(num-1);
+                contactos.remove(posicion);
+                listaNombres.remove(posicion);
                 System.out.println("El contacto ha sido borrado exitosamente.");
                 break;
             case 0:
@@ -158,13 +147,5 @@ public class Agenda {
 
     public void setListaNombres(ArrayList<String> listaNombres) {
         this.listaNombres = listaNombres;
-    }
-
-    public boolean isSeguirEditando() {
-        return seguirEditando;
-    }
-
-    public void setSeguirEditando(boolean seguirEditando) {
-        this.seguirEditando = seguirEditando;
     }
 }

@@ -1,7 +1,7 @@
 package com.vlb.phonebook;
 
 // Importa la agenda de uso "global"
-import static com.vlb.phonebook.App.agenda;
+import static com.vlb.phonebook.Principal.agenda;
 
 /**
  * Acá irá el menú principal del proyecto PhoneBook
@@ -17,6 +17,13 @@ public class MenuPrincipal extends Menu {
         this.opciones.add("Editar un contacto");
         this.opciones.add("Eliminar un contacto");
         this.opciones.add("Salir");
+
+        // Muestra el menú principal del gestor y lo repite hasta que "seguir" sea false
+        this.seguir = true;
+        do {
+            desplegarMenu();
+            switchMenu();
+        } while (this.seguir);
     }
 
     //// Métodos
@@ -28,7 +35,7 @@ public class MenuPrincipal extends Menu {
         // Muestra el nombre del gestor con algo de decoración
         mostrarLogo();
 
-        System.out.println("************\\\\Menú principal//************");
+        System.out.println("Menú principal:");
 
         // Muestra las opciones
         enumerarArrayList(opciones);
@@ -88,7 +95,7 @@ public class MenuPrincipal extends Menu {
                 break;
 
             case 6: //// "Salir"
-                App.seguir = !salir("programa"); // Si se escoge salir, no seguir con el menú principal
+                this.seguir = !salir("programa"); // Si se escoge salir, no seguir con el menú principal
         }
     }
 }

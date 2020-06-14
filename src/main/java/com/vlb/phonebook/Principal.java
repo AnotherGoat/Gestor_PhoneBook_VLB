@@ -1,7 +1,7 @@
 package com.vlb.phonebook;
 
 /* Para generar javadoc:
-Ir a Tools > GenerateJavaDoc
+Ir a Tools > Generate JavaDoc...
 Elegir una carpeta (vacía) para guardarlo
 En la opción "Other command line arguments" poner lo siguiente:
 -encoding utf8 -docencoding utf8 -charset utf8
@@ -15,8 +15,7 @@ Para abrir el javadoc, abrir el archivo "index.html" con un navegador
  * @author Luis Burgos
  * @author Víctor Mardones
  */
-
-public class App {
+public class Principal {
 
     //// Atributos
     /**
@@ -31,5 +30,4 @@ public class App {
     public static void main(String[] args) {
         menu = new MenuPrincipal();
     }
-
 }
