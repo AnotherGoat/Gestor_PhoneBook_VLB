@@ -46,9 +46,24 @@ public class Menu {
 
     /**
      * Método de uso general para mostrar una lista numerada de los datos dentro de un ArrayList
-     * @param al ArrayList que se quiere ordenar
+     * @param al ArrayList de tipo String que se quiere ordenar
      */
-    public static void enumerarArrayList(ArrayList<String> al){
+    public static void enumerarArrayListString(ArrayList<String> al){
+        if(al != null) {
+            for (int i = 1; i <= al.size(); i++) {
+                System.out.println(i + ".- " + al.get(i - 1));
+            }
+        }
+        else{
+            System.out.println("Error: ArrayList nulo");
+        }
+    }
+
+    /**
+     * Método de uso general para mostrar una lista numerada de los datos dentro de un ArrayList
+     * @param al ArrayList de tipo Integer que se quiere ordenar
+     */
+    public static void enumerarArrayListInteger(ArrayList<Integer> al){
         if(al != null) {
             for (int i = 1; i <= al.size(); i++) {
                 System.out.println(i + ".- " + al.get(i - 1));

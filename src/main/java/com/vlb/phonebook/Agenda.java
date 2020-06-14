@@ -47,7 +47,7 @@ public class Agenda {
     public void listarContactos() {
         // Mostrar nombres de los contactos registrados
         System.out.println("Contactos registrados:");
-        Menu.enumerarArrayList(listaNombres);
+        Menu.enumerarArrayListString(listaNombres);
     }
 
     /**

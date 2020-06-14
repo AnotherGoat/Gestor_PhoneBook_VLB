@@ -38,7 +38,7 @@ public class MenuPrincipal extends Menu {
         System.out.println("Menú principal:");
 
         // Muestra las opciones
-        enumerarArrayList(opciones);
+        enumerarArrayListString(opciones);
 
         eleccion = v.validarInt(1, opciones.size(),
                 "Escoja una opción: ",
