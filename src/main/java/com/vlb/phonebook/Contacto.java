@@ -14,39 +14,39 @@ public class Contacto {
     /**
      * Nombre del contacto
      */
-    String nombre;
+    private String nombre;
     /**
      * Número de celular del contacto
      */
-    int telefonoCelular;
+    private int telefonoCelular;
     /**
      * Número de teléfono fijo del contacto
      */
-    int telefonoFijo;
+    private int telefonoFijo;
     /**
      * Número de teléfono de trabajo del contacto
      */
-    int telefonoTrabajo;
+    private int telefonoTrabajo;
     /**
      * Dirección de residencia del contacto
      */
-    String direccion;
+    private String direccion;
     /**
      * Dirección de correo electrónico del contacto
      */
-    String email;
+    private String email;
     /**
      * Apodo con el que se conoce al contacto
      */
-    String apodo;
+    private String apodo;
     /**
      * Fecha de cumpleaños del contacto
      */
-    Date fechaCumple;
+    private Date fechaCumple;
     /**
      * Notas adicionales que se quieran agregar sobre el contacto
      */
-    String notas;
+    private String notas;
 
     //// Constructores
     public Contacto(){
