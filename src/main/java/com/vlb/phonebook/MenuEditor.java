@@ -12,7 +12,7 @@ public class MenuEditor extends Menu {
     /**
      * Contacto original de la agenda
      */
-    private final Contacto original;
+    private Contacto original;
     /**
      * Posicion del contacto original en la agenda
      */
@@ -38,7 +38,7 @@ public class MenuEditor extends Menu {
         this.posicionOriginal = posicionOriginal;
 
         // Copia el contacto original a uno auxiliar (paso por valor)
-        agenda.copiarContacto(original, aux);
+        this.aux = agenda.copiarContacto(original);
 
         // Muestra el menú principal del gestor y lo repite hasta que "seguir" sea false
         this.seguir = true;
@@ -195,7 +195,7 @@ public class MenuEditor extends Menu {
             switch (b) {
                 case 1:
                     // Copia el contacto de vuelta
-                    agenda.copiarContacto(aux, original);
+                    original = agenda.copiarContacto(aux);
                     // Vacía el contacto auxiliar
                     aux = null;
 

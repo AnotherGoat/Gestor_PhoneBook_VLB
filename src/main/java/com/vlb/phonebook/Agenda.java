@@ -88,17 +88,14 @@ public class Agenda {
     /**
      * Método para copiar datos de un contacto a otro, pero manteniendo ambas instancias distintas (paso por valor)
      * @param base Contacto que se va a copiar
-     * @param objetivo Contacto en el que se almacenarán los atributos copiados
      */
-    public void copiarContacto(Contacto base, Contacto objetivo){
-        if(base!=null && objetivo!=null) {
-            objetivo.setNombre(base.getNombre());
-            objetivo.setTelefonoCelular(base.getTelefonoCelular());
-            objetivo.setTelefonoCasa(base.getTelefonoCasa());
-            objetivo.setTelefonoTrabajo(base.getTelefonoTrabajo());
-            objetivo.setDireccion(base.getDireccion());
-            objetivo.setEmail(base.getEmail());
+    public Contacto copiarContacto(Contacto base){
+        if(base!=null) {
+            // Copiar datos
+            return new Contacto(base);
         }
+
+        return new Contacto();
     }
 
     /**

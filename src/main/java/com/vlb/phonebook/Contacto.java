@@ -65,6 +65,21 @@ public class Contacto {
         this.telefonoTrabajo = -1;
     }
 
+    // Constructor para copiar un contacto
+    public Contacto(Contacto c){
+        if(c!=null){
+            this.nombre = c.getNombre();
+            this.telefonoCelular = c.getTelefonoCelular();
+            this.telefonoCasa = c.getTelefonoCasa();
+            this.telefonoTrabajo = c.getTelefonoTrabajo();
+            this.direccion = c.getDireccion();
+            this.email = c.getEmail();
+            this.apodo = c.getApodo();
+            this.fechaCumple = c.getFechaCumple();
+            this.notas = c.getNotas();
+        }
+    }
+
     //// Getters y Setters
     public String getNombre() {
         return nombre;
@@ -118,8 +133,8 @@ public class Contacto {
         return apodo;
     }
 
-    public void setSobrenombre(String sobrenombre) {
-        this.apodo = sobrenombre;
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
     }
 
     public Date getFechaCumple() {
