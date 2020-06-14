@@ -39,7 +39,7 @@ public class MenuEditorTest {
     }
 
     @Test
-    public void switchCasa() {
+    public void switchFijo() {
     }
 
     @Test

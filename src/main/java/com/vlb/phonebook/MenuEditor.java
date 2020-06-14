@@ -27,7 +27,7 @@ public class MenuEditor extends Menu {
         // Llenar ArrayList con opciones
         this.opciones.add("Cambiar nombre");
         this.opciones.add("Editar números de celular");
-        this.opciones.add("Editar números de casa");
+        this.opciones.add("Editar números de teléfono fijo");
         this.opciones.add("Editar números de trabajo");
         this.opciones.add("Editar direcciones");
         this.opciones.add("Editar e-mails");
@@ -85,8 +85,8 @@ public class MenuEditor extends Menu {
                 switchCelular();
                 break;
 
-            case 3: //// "Editar números de casa"
-                switchCasa();
+            case 3: //// "Editar números de teléfono fijo"
+                switchFijo();
                 break;
 
             case 4: //// "Editar números de trabajo"
@@ -131,16 +131,16 @@ public class MenuEditor extends Menu {
     }
 
     /**
-     * Método con la opción 3 del menú, editar números de casa
+     * Método con la opción 3 del menú, editar números de teléfono fijo
      */
-    public void switchCasa(){
+    public void switchFijo(){
         int b;
 
         b = v.validarInt(1, 999999999,
-                "Ingrese el número de teléfono de casa: ",
+                "Ingrese el número de teléfono fijo: ",
                 "El número ingresado no es válido.");
-        aux.setTelefonoCasa(b);;
-        System.out.println("El número de casa fue agregado con éxito.");
+        aux.setTelefonoFijo(b);;
+        System.out.println("El número de teléfono fijo fue agregado con éxito.");
     }
 
     /**

@@ -20,9 +20,9 @@ public class Contacto {
      */
     int telefonoCelular;
     /**
-     * Número de teléfono de la casa del contacto
+     * Número de teléfono fijo del contacto
      */
-    int telefonoCasa;
+    int telefonoFijo;
     /**
      * Número de teléfono de trabajo del contacto
      */
@@ -36,7 +36,7 @@ public class Contacto {
      */
     String email;
     /**
-     * Sobrenombre con el que se conoce al contacto
+     * Apodo con el que se conoce al contacto
      */
     String apodo;
     /**
@@ -52,7 +52,7 @@ public class Contacto {
     public Contacto(){
         // Inician en -1 para no mostrarlos en el toString()
         this.telefonoCelular = -1;
-        this.telefonoCasa = -1;
+        this.telefonoFijo = -1;
         this.telefonoTrabajo = -1;
     }
 
@@ -61,7 +61,7 @@ public class Contacto {
 
         // Inician en -1 para no mostrarlos en el toString()
         this.telefonoCelular = -1;
-        this.telefonoCasa = -1;
+        this.telefonoFijo = -1;
         this.telefonoTrabajo = -1;
     }
 
@@ -70,7 +70,7 @@ public class Contacto {
         if(c!=null){
             this.nombre = c.getNombre();
             this.telefonoCelular = c.getTelefonoCelular();
-            this.telefonoCasa = c.getTelefonoCasa();
+            this.telefonoFijo = c.getTelefonoFijo();
             this.telefonoTrabajo = c.getTelefonoTrabajo();
             this.direccion = c.getDireccion();
             this.email = c.getEmail();
@@ -97,12 +97,12 @@ public class Contacto {
         this.telefonoCelular = telefonoCelular;
     }
 
-    public int getTelefonoCasa() {
-        return telefonoCasa;
+    public int getTelefonoFijo() {
+        return telefonoFijo;
     }
 
-    public void setTelefonoCasa(int telefonoCasa) {
-        this.telefonoCasa = telefonoCasa;
+    public void setTelefonoFijo(int telefonoFijo) {
+        this.telefonoFijo = telefonoFijo;
     }
 
     public int getTelefonoTrabajo() {
@@ -165,8 +165,8 @@ public class Contacto {
         if (telefonoCelular != -1) {
             s += "\nTeléfono Celular: " + telefonoCelular;
         }
-        if (telefonoCasa != -1) {
-            s += "\nTeléfono Casa: " + telefonoCasa;
+        if (telefonoFijo != -1) {
+            s += "\nTeléfono Fijo: " + telefonoFijo;
         }
         if (telefonoTrabajo != -1) {
             s += "\nTeléfono Trabajo: " + telefonoTrabajo;
@@ -178,7 +178,7 @@ public class Contacto {
             s += "\nE-mail: " + email;
         }
         if (apodo != null) {
-            s += "\nSobrenombre: " + apodo;
+            s += "\nApodo: " + apodo;
         }
         if (fechaCumple != null) {
             s += "\nFecha de cumpleaños: " + fechaCumple;
