@@ -10,7 +10,7 @@ public class MenuPrincipal extends Menu {
 
     //// Constructores
     public MenuPrincipal() {
-        // Llenar ArrayList con opciones
+        // Llenar List con opciones
         this.opciones.add("Crear contacto nuevo");
         this.opciones.add("Mostrar lista de contactos");
         this.opciones.add("Ver detalles de un contacto");
@@ -38,7 +38,7 @@ public class MenuPrincipal extends Menu {
         System.out.println("Menú principal:");
 
         // Muestra las opciones
-        enumerarArrayListString(opciones);
+        enumerarListString(opciones);
 
         eleccion = v.validarInt(1, opciones.size(),
                 "Escoja una opción: ",

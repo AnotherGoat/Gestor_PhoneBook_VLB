@@ -1,6 +1,7 @@
 package com.vlb.phonebook;
 
 // Importa la clase ArrayList
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ public class Menu {
     /**
      * Arreglo de Strings que contiene las opciones del menú
      */
-    protected ArrayList<String> opciones = new ArrayList<>();
+    protected List<String> opciones = new ArrayList<>();
     /**
      * Boolean que se usa para seguir usando el menú
      */
@@ -30,7 +31,7 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(ArrayList<String> opciones) {
+    public Menu(List<String> opciones) {
         this.opciones = opciones;
     }
 
@@ -45,13 +46,13 @@ public class Menu {
     }
 
     /**
-     * Método de uso general para mostrar una lista numerada de los datos dentro de un ArrayList
-     * @param al ArrayList de tipo String que se quiere ordenar
+     * Método de uso general para mostrar una lista numerada de los datos dentro de una List
+     * @param al List de tipo String que se quiere ordenar
      */
-    public static void enumerarArrayListString(ArrayList<String> al){
-        if(al != null) {
-            for (int i = 1; i <= al.size(); i++) {
-                System.out.println(i + ".- " + al.get(i - 1));
+    public static void enumerarListString(List<String> lista){
+        if(lista != null) {
+            for (int i = 1; i <= lista.size(); i++) {
+                System.out.println(i + ".- " + lista.get(i - 1));
             }
         }
         else{
@@ -60,13 +61,13 @@ public class Menu {
     }
 
     /**
-     * Método de uso general para mostrar una lista numerada de los datos dentro de un ArrayList
-     * @param al ArrayList de tipo Integer que se quiere ordenar
+     * Método de uso general para mostrar una lista numerada de los datos dentro de una List
+     * @param al List de tipo Integer que se quiere ordenar
      */
-    public static void enumerarArrayListInteger(ArrayList<Integer> al){
-        if(al != null) {
-            for (int i = 1; i <= al.size(); i++) {
-                System.out.println(i + ".- " + al.get(i - 1));
+    public static void enumerarListInteger(List<Integer> lista){
+        if(lista != null) {
+            for (int i = 1; i <= lista.size(); i++) {
+                System.out.println(i + ".- " + lista.get(i - 1));
             }
         }
         else{
@@ -85,10 +86,5 @@ public class Menu {
                 "La opción ingresada no existe.");
 
         return a == 1;
-    }
-
-    //// Getters y Setters
-    public int getEleccion() {
-        return eleccion;
     }
 }

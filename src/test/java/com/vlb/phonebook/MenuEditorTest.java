@@ -14,7 +14,7 @@ public class MenuEditorTest {
     @Before
     public void setUp() throws Exception {
         c = new Contacto();
-        me = new MenuEditor(c, 0);
+        me = new MenuEditor(0);
     }
 
     @After

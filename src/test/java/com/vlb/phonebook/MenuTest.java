@@ -5,13 +5,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 public class MenuTest {
 
-    ArrayList<String> op = new ArrayList<>();
+    List<String> op = new ArrayList<>();
     Menu m = new Menu(op);
 
     /**

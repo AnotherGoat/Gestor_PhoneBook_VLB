@@ -1,6 +1,7 @@
 package com.vlb.phonebook;
 
 // Importa la clase ArrayList
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -10,13 +11,13 @@ public class Agenda {
 
     //// Atributos
     /**
-     * ArrayList con los contactos registrados
+     * List con los contactos registrados
      */
-    private ArrayList<Contacto> contactos = new ArrayList<>();
+    private List<Contacto> contactos = new ArrayList<>();
     /**
-     * ArrayList con el nombre de cada contacto
+     * List con el nombre de cada contacto
      */
-    private ArrayList<String> listaNombres = new ArrayList<>();
+    private List<String> listaNombres = new ArrayList<>();
     /**
      * Validador usado en la clase Agenda
      */
@@ -34,7 +35,7 @@ public class Agenda {
         // Pide el nombre del contacto
         String nombreContacto = v.recibirString("Ingrese el nombre del contacto: ");
 
-        // Crea el contacto nuevo y lo agrega al ArrayList
+        // Crea el contacto nuevo y lo agrega a la List
         Contacto nuevo = new Contacto(nombreContacto);
         contactos.add(nuevo);
         listaNombres.add(nombreContacto);
@@ -47,7 +48,7 @@ public class Agenda {
     public void listarContactos() {
         // Mostrar nombres de los contactos registrados
         System.out.println("Contactos registrados:");
-        Menu.enumerarArrayListString(listaNombres);
+        Menu.enumerarListString(listaNombres);
     }
 
     /**
@@ -81,21 +82,7 @@ public class Agenda {
      */
     public void editarContacto() {
         int idContacto = elegirContacto("editar"); // id Contacto = número con el que se identifica
-        Contacto aEditar = contactos.get(idContacto - 1);
-        MenuEditor editor = new MenuEditor(aEditar, idContacto - 1);
-    }
-
-    /**
-     * Método para copiar datos de un contacto a otro, pero manteniendo ambas instancias distintas (paso por valor)
-     * @param base Contacto que se va a copiar
-     */
-    public Contacto copiarContacto(Contacto base){
-        if(base!=null) {
-            // Copiar datos
-            return new Contacto(base);
-        }
-
-        return new Contacto();
+        MenuEditor editor = new MenuEditor(idContacto - 1);
     }
 
     /**
@@ -130,19 +117,19 @@ public class Agenda {
     }
 
     //// Getters y Setters
-    public ArrayList<Contacto> getContactos() {
+    public List<Contacto> getContactos() {
         return contactos;
     }
 
-    public void setContactos(ArrayList<Contacto> contactos) {
+    public void setContactos(List<Contacto> contactos) {
         this.contactos = contactos;
     }
 
-    public ArrayList<String> getListaNombres() {
+    public List<String> getListaNombres() {
         return listaNombres;
     }
 
-    public void setListaNombres(ArrayList<String> listaNombres) {
+    public void setListaNombres(List<String> listaNombres) {
         this.listaNombres = listaNombres;
     }
 }
