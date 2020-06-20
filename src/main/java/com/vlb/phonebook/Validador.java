@@ -1,6 +1,8 @@
 package com.vlb.phonebook;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Esta clase incluye todos los métodos para validar y recibir entrada
@@ -91,9 +93,47 @@ public class Validador {
     }
 
     /**
+     * Este método se usa para recibir un e-mail
+     * @return E-mail ingresado
+     */
+    public String recibirEmail(){
+        // Crea nueva instancia del teclado, para evitar errores
+        this.teclado = new Scanner(System.in);
+
+        String entrada = "";
+
+        do{
+            System.out.print("Ingrese el email: ");
+            entrada = this.teclado.nextLine(); // Pide la dirección de e-mail
+
+            if(!esEmailValido(entrada)){ // Si la entrada no es válida, muestra un mensaje de error
+                System.out.println("Error: No ha ingresado un e-mail válido");
+            }
+        }while(esEmailValido(entrada));
+
+        return entrada; // Retorna el email ingresado
+    }
+
+    /**
+     * Este método verifica que el String del parámetro es un e-mail válido
+     * @param email E-mail que se quiere verificar
+     * @return Retorna un boolean que indica si el e-mail ingresado es válido (true) o no (false)
+     */
+    public Boolean esEmailValido (String email) {
+        if(email!=null) {
+            Pattern pattern = Pattern.compile("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$");
+            Matcher matcher = pattern.matcher(email);
+            return matcher.matches();
+        }
+        return false;
+    }
+
+
+    //// Métodos que sólo se usan en las pruebas unitarias
+    /**
      * Versión simple del try-catch usado en validarInt, se usa para las pruebas unitarias
      * @param texto String que mostrará el programa antes de recibir entrada
-     * @return int ingresado, en caso de ingresar un símbolo retorna -1
+     * @return Int ingresado, en caso de ingresar un símbolo retorna -1
      */
     public int tryCatchInt(String texto){
         int x = -1; // Variable con la que se trabaja
