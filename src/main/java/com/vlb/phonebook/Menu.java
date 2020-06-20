@@ -47,7 +47,7 @@ public class Menu {
 
     /**
      * Método de uso general para mostrar una lista numerada de los datos dentro de una List
-     * @param al List de tipo String que se quiere ordenar
+     * @param lista List de tipo String que se quiere ordenar
      */
     public static void enumerarListString(List<String> lista){
         if(lista != null) {
@@ -62,7 +62,7 @@ public class Menu {
 
     /**
      * Método de uso general para mostrar una lista numerada de los datos dentro de una List
-     * @param al List de tipo Integer que se quiere ordenar
+     * @param lista List de tipo Integer que se quiere ordenar
      */
     public static void enumerarListInteger(List<Integer> lista){
         if(lista != null) {
