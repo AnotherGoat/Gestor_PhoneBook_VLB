@@ -4,8 +4,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+
 import static org.junit.Assert.*;
 
+/**
+ * Clase que contiene las pruebas unitarias de la clase MenuPrincipal
+ */
 public class MenuPrincipalTest {
 
     @Before
@@ -14,10 +19,6 @@ public class MenuPrincipalTest {
 
     @After
     public void tearDown() throws Exception {
-    }
-
-    @Test
-    public void desplegarMenu() {
     }
 
     @Test

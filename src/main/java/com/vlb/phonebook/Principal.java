@@ -11,8 +11,8 @@ Para abrir el javadoc, abrir el archivo "index.html" con un navegador
 /* Estado de validaciones:
 AgendaTest: listo
 ContactoTest: listo
-MenuEditorTest:
 MenuPrincipalTest:
+MenuEditorTest:
 SubmenuEditorTest:
 ValidadorTest: listo
 
