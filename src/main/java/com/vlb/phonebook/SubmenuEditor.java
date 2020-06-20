@@ -8,26 +8,29 @@ public class SubmenuEditor extends Menu{
      */
     Contacto contacto;
     /**
-     * Constante que define el funcionamiento del submenú
+     * Int que define el tipo de dato que edita el submenú
      */
-    int constante; // entre 0 y 8
+    int tipo; // entre 0 y 8
     /**
      * Nombres de los atributos del contacto, en singular
      */
-    String[] tipoSingular = {"nombre", "teléfono celular", "teléfono fijo", "teléfono de trabajo", "dirección", "e-mail", "apodo", "fecha de cumpleaños", "nota"};
+    String[] nombreSingular = {"nombre", "número de  celular", "número de teléfono fijo", "número de trabajo", "dirección", "e-mail", "apodo", "fecha de cumpleaños", "nota"};
     /**
      * Nombres de los atributos del contacto, en plural (los que no pueden ser más de uno están vacíos)
      */
-    String[] tipoPlural = {"", "teléfonos celulares", "teléfonos fijos", "teléfonos de trabajo", "direcciones", "e-mails", "apodos", "", "notas"};
+    String[] nombrePlural = {"", "números de celulares", "números de teléfono fijos", "números de trabajo", "direcciones", "e-mails", "apodos", "", "notas"};
 
 
     //// Constructores
-    public SubmenuEditor(Contacto contacto, int constante) {
+    public SubmenuEditor(Contacto contacto, int tipo) {
         // Iniciar atributos
         this.contacto = contacto;
-        this.constante = constante;
+        this.tipo = tipo;
 
-        if(constante==0){
+        if(tipo<0 || tipo>8){
+            System.out.println("Error: Tipo de dato fuera de rango");
+        }
+        else if(tipo==0){
             menuNombre(); // Si quiere cambiar el nombre, no hay opciones
         }
 
@@ -50,16 +53,19 @@ public class SubmenuEditor extends Menu{
      * Método con la opción 1 del menú editor, cambiar nombre
      */
     public void menuNombre(){
-        String s = v.recibirString("Ingrese el "+tipoSingular[constante]+" del contacto: ");
+        String s = v.recibirString("Ingrese el "+nombreSingular[tipo]+" del contacto: ");
         contacto.setNombre(s);
         System.out.println("El nombre fue cambiado con éxito.");
     }
 
+    /**
+     * Método que llena las opciones del submenú
+     */
     public void llenarOpciones(){
-        switch(this.constante){
-            case 0:
-
-        }
+        opciones.add("Agregar "+nombreSingular[tipo]);
+        opciones.add("Cambiar "+nombreSingular[tipo]);
+        opciones.add("Borrar "+nombreSingular[tipo]);
+        opciones.add("Volver atrás");
     }
 
     public void desplegarMenu(){
