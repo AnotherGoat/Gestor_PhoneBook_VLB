@@ -22,7 +22,7 @@ public class MenuEditor extends Menu {
     /**
      * Contacto auxiliar, se usa para permitir elegir si guardar los cambios o no
      */
-    private Contacto aux = new Contacto();
+    protected Contacto aux = new Contacto();
 
     //// Constantes
     static final int NOMBRE = 0;
@@ -84,14 +84,10 @@ public class MenuEditor extends Menu {
      * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
      */
     public void switchMenu() {
-
-        // Se usan temporalmente para recibir entrada
-        String s;
-        int b;
-
+        SubmenuEditor sub;
         switch (eleccion) {
             case 1: //// "Cambiar nombre"
-                switchNombre();
+                sub = new SubmenuEditor(aux, NOMBRE);
                 System.out.println(aux.toString());
                 break;
 
@@ -123,17 +119,6 @@ public class MenuEditor extends Menu {
             case 7: //// "Salir"
                 this.seguir=!salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
-    }
-
-    /**
-     * Método con la opción 1 del menú, cambiar nombre
-     */
-    public void switchNombre(){
-        String s;
-
-        s = v.recibirString("Ingrese el nombre del contacto: ");
-        aux.setNombre(s);
-        System.out.println("El nombre fue cambiado con éxito.");
     }
 
     /**
@@ -215,9 +200,6 @@ public class MenuEditor extends Menu {
                 case 1:
                     // Copia el contacto de vuelta
                     agenda.getContactos().set(posicionOriginal, new Contacto(aux));
-
-                    // Actualiza la lista de nombres de la agenda
-                    agenda.getListaNombres().set(posicionOriginal, original.getNombre());
 
                     System.out.println("Los cambios han sido guardados.");
                     break;

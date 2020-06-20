@@ -83,6 +83,9 @@ public class Agenda {
     public void editarContacto() {
         int idContacto = elegirContacto("editar"); // id Contacto = número con el que se identifica
         MenuEditor editor = new MenuEditor(idContacto - 1);
+
+        // Actualiza la lista de nombres de la agenda
+        listaNombres.set(idContacto-1, contactos.get(idContacto-1).getNombre());
     }
 
     /**
