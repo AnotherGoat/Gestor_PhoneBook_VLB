@@ -30,13 +30,13 @@ public class ContactoTest {
      */
     @Test
     public void testCopiaConstructor1(){
-        c.setNombre("diego");
+        c.setNombre("Diego");
         d = new Contacto(c); // Usa el constructor para copiar los datos de c a d
         assertEquals(c.toString(), d.toString()); // Revisa si ambos toString coinciden
 
         // Revisa que d mantiene sus datos aunque c se haga nulo (paso por valor)
         c = null;
-        assertEquals("Nombre: diego", d.toString());
+        assertEquals("Nombre: Diego", d.toString());
     }
 
     /**

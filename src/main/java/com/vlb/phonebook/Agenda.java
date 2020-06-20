@@ -101,7 +101,7 @@ public class Agenda {
      * Método para confirmar la eliminación de un contacto
      * @param posicion Posición del contacto que se desea borrar
      */
-    private void confirmarBorrado(int posicion) {
+    public void confirmarBorrado(int posicion) {
         int x;
         x = v.validarInt(0, 1,
                 "Se borrará el contacto "+contactos.get(posicion).getNombre()+" ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",

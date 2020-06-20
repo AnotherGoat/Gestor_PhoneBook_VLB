@@ -9,12 +9,14 @@ Para abrir el javadoc, abrir el archivo "index.html" con un navegador
  */
 
 /* Estado de validaciones:
-AgendaTest:
+AgendaTest: listo
 ContactoTest: listo
 MenuEditorTest:
 MenuPrincipalTest:
 SubmenuEditorTest:
 ValidadorTest: listo
+
+Nota: Si a alguno se le ocurre otro test unitario relevante, puede añadirlo
  */
 
 /**

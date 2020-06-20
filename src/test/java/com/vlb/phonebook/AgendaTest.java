@@ -49,32 +49,28 @@ public class AgendaTest {
         assertEquals("Pablo", nombreContacto);
     }
 
+    /**
+     * Esta prueba revisa que se borran contactos correctamente
+     */
     @Test
-    public void listarContactos() {
+    public void eliminarContacto1() {
+        // Crea 2 contactos
+        simularInput("Camila");
+        a.crearContacto();
+        simularInput("Francisca");
+        a.crearContacto();
 
-    }
+        assertEquals(2, a.getContactos().size()); // Tamaño original
 
-    @Test
-    public void mostrarContacto() {
-    }
+        // Simula el borrado del contacto 1 (Camila)
+        simularInput("1");
+        int idContacto = a.elegirContacto("eliminar"); // id Contacto = número con el que se identifica
+        // Simula la confirmación
+        simularInput(("1"));
+        a.confirmarBorrado(idContacto-1);
 
-    @Test
-    public void editarContacto() {
-    }
-
-    @Test
-    public void eliminarContacto() {
-    }
-
-    @Test
-    public void menuEdicion() {
-    }
-
-    @Test
-    public void crearOpciones() {
-    }
-
-    @Test
-    public void switchEdicion() {
+        // Verifica el tamaño y el borrado del contacto correcto
+        assertEquals(1, a.getContactos().size()); // Tamaño cambia
+        assertEquals("Francisca", a.getContactos().get(0).getNombre());
     }
 }
