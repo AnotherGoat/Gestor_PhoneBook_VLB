@@ -8,6 +8,9 @@ import java.io.ByteArrayInputStream;
 
 import static org.junit.Assert.*;
 
+/**
+ * Clase que incluye los tests unitarios de la clase Validador
+ */
 public class ValidadorTest {
 
     /**
@@ -22,21 +25,6 @@ public class ValidadorTest {
     public void simularInput(String entrada){
         if(entrada!=null) {
             ByteArrayInputStream in = new ByteArrayInputStream(entrada.getBytes());
-            System.setIn(in);
-        }
-    }
-
-    public void simularVariosInput(String[] entradas){
-        if(entradas!=null){
-            StringBuilder lineasIngresadas = new StringBuilder();
-
-            for(String s : entradas){
-                lineasIngresadas.append(s).append(System.getProperty("line.separator"));
-            }
-
-            String entradaSimulada = lineasIngresadas.toString();
-
-            ByteArrayInputStream in = new ByteArrayInputStream(entradaSimulada.getBytes());
             System.setIn(in);
         }
     }
