@@ -6,18 +6,37 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Clase que contiene las pruebas unitarias de la clase Contacto
+ */
 public class ContactoTest {
 
-    Contacto c;
+    Contacto c, d;
 
     @Before
     public void setUp() throws Exception {
         c = new Contacto(); // Crea una nueva instancia
+        d = new Contacto();
     }
 
     @After
     public void tearDown() throws Exception {
         c = null; // Liberar memoria
+        d = null;
+    }
+
+    /**
+     * Test para probar el constructor que copia un contacto
+     */
+    @Test
+    public void testCopiaConstructor1(){
+        c.setNombre("diego");
+        d = new Contacto(c); // Usa el constructor para copiar los datos de c a d
+        assertEquals(c.toString(), d.toString()); // Revisa si ambos toString coinciden
+
+        // Revisa que d mantiene sus datos aunque c se haga nulo (paso por valor)
+        c = null;
+        assertEquals("Nombre: diego", d.toString());
     }
 
     /**

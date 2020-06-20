@@ -14,11 +14,11 @@ public class SubmenuEditor extends Menu{
     /**
      * Nombres de los atributos del contacto, en singular
      */
-    String[] nombreSingular = {"nombre", "número de  celular", "número de teléfono fijo", "número de trabajo", "dirección", "e-mail", "apodo", "fecha de cumpleaños", "nota"};
+    String[] nombreSingular = {"nombre", "número de celular", "número fijo", "número de trabajo", "dirección", "e-mail", "apodo", "fecha de cumpleaños", "nota"};
     /**
      * Nombres de los atributos del contacto, en plural (los que no pueden ser más de uno están vacíos)
      */
-    String[] nombrePlural = {"", "números de celulares", "números de teléfono fijos", "números de trabajo", "direcciones", "e-mails", "apodos", "", "notas"};
+    String[] nombrePlural = {"", "números de celulares", "números fijos", "números de trabajo", "direcciones", "e-mails", "apodos", "", "notas"};
 
 
     //// Constructores
