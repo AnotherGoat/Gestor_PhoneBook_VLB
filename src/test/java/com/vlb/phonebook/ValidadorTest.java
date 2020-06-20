@@ -84,4 +84,25 @@ public class ValidadorTest {
         simularInput("Hola mundo");
         assertEquals("Hola mundo", v.recibirString(""));
     }
+
+    /**
+     * Test para revisar que el e-mail se valida correctamente
+     */
+    @Test
+    public void esEmailValido1() {
+        assertFalse(v.esEmailValido("0.#$s.213"));
+        assertFalse(v.esEmailValido("..."));
+        assertFalse(v.esEmailValido("holamundo"));
+        assertTrue(v.esEmailValido("v.mardones04@ufromail.cl"));
+        assertTrue(v.esEmailValido("l.burgos02@ufromail.cl"));
+        assertTrue(v.esEmailValido("b.munoz15@ufromail.cl"));
+    }
+
+    /**
+     * Test para revisar qué ocurre si el String email es null
+     */
+    @Test
+    public void esEmailValido2(){
+        assertFalse(v.esEmailValido(null));
+    }
 }

@@ -94,7 +94,7 @@ public class Validador {
 
     /**
      * Este método se usa para recibir un e-mail
-     * @return E-mail ingresado
+     * @return E-mail ingresado, después de haber sido validado
      */
     public String recibirEmail(){
         // Crea nueva instancia del teclado, para evitar errores
