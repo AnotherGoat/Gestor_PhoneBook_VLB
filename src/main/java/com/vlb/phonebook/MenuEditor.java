@@ -81,10 +81,11 @@ public class MenuEditor extends Menu {
     }
 
     /**
-     * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
+     * Método para crear menús dependiendo de lo que haya ingresado el usuario
      */
     public void switchMenu() {
         SubmenuEditor sub;
+
         switch (eleccion) {
             case 1: //// "Cambiar nombre"
                 sub = new SubmenuEditor(aux, NOMBRE);
@@ -117,7 +118,7 @@ public class MenuEditor extends Menu {
                 break;
 
             case 7: //// "Salir"
-                this.seguir=!salirConfirmarCambios(); // Si se escoge salir, no seguir editando
+                this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
     }
 
