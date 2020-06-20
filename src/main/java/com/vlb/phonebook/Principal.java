@@ -8,6 +8,15 @@ En la opción "Other command line arguments" poner lo siguiente:
 Para abrir el javadoc, abrir el archivo "index.html" con un navegador
  */
 
+/* Estado de validaciones:
+AgendaTest:
+ContactoTest:
+MenuEditorTest:
+MenuPrincipalTest:
+SubmenuEditorTest:
+ValidadorTest: listo
+ */
+
 /**
  * <h2>"Gestor PhoneBook VLB"</h2>
  *
