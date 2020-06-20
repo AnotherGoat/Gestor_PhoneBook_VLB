@@ -41,7 +41,9 @@ public class MenuTest {
     public void salir1() {
         simularInput("1");
         assertTrue(m.salir(""));
+
         System.out.println("");
+
         simularInput("0");
         assertFalse(m.salir(""));
     }
