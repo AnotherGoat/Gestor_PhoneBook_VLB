@@ -30,7 +30,7 @@ public class MenuPrincipal extends Menu {
     /**
      * Método que muestra un menú con las opciones del gestor
      */
-    public void desplegarMenu() {
+    private void desplegarMenu() {
 
         // Muestra el nombre del gestor con algo de decoración
         mostrarLogo();
@@ -48,7 +48,7 @@ public class MenuPrincipal extends Menu {
     /**
      * Método para llamar otros métodos dependiendo de lo que haya ingresado el usuario
      */
-    public void switchMenu() {
+    private void switchMenu() {
         switch (eleccion) {
             case 1: //// "Crear contacto nuevo"
                 agenda.crearContacto(); // recordar que agenda = App.agenda

@@ -27,6 +27,17 @@ public class Menu {
      */
     protected final Validador v = new Validador();
 
+    //// Constantes
+    static final int NOMBRE = 0;
+    static final int CELULAR = 1;
+    static final int FIJO = 2;
+    static final int TRABAJO = 3;
+    static final int DIRECCION = 4;
+    static final int EMAIL = 5;
+    static final int APODO = 6;
+    static final int FECHACUMPLE = 7;
+    static final int NOTAS = 8;
+
     //// Constructores
     public Menu() {
     }

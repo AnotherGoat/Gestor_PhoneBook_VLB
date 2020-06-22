@@ -24,17 +24,6 @@ public class MenuEditor extends Menu {
      */
     protected Contacto aux = new Contacto();
 
-    //// Constantes
-    static final int NOMBRE = 0;
-    static final int CELULAR = 1;
-    static final int FIJO = 2;
-    static final int TRABAJO = 3;
-    static final int DIRECCION = 4;
-    static final int EMAIL = 5;
-    static final int APODO = 6;
-    static final int FECHACUMPLE = 7;
-    static final int NOTAS = 8;
-
     //// Constructores
     public MenuEditor(int posicionOriginal) {
         // Llenar List con opciones
@@ -65,7 +54,7 @@ public class MenuEditor extends Menu {
     /**
      * Método que muestra un menú con las opciones del gestor
      */
-    public void desplegarMenu() {
+    private void desplegarMenu() {
 
         // Muestra el nombre del gestor con algo de decoración
         mostrarLogo();
@@ -83,8 +72,8 @@ public class MenuEditor extends Menu {
     /**
      * Método para crear menús dependiendo de lo que haya ingresado el usuario
      */
-    public void switchMenu() {
-        SubmenuEditor sub;
+    private void switchMenu() {
+        Menu sub;
 
         switch (eleccion) {
             case 1: //// "Cambiar nombre"

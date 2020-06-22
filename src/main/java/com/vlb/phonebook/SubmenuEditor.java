@@ -8,7 +8,8 @@ public class SubmenuEditor extends Menu{
      */
     Contacto contacto;
     /**
-     * Int que define el tipo de dato que edita el submenú
+     * <p>Int que define el tipo de dato que edita el submenú, se usan las constantes de la clase Menu</p>
+     * <p>Estas constantes son: NOMBRE, CELULAR, FIJO, TRABAJO, DIRECCION, EMAIL, APODO, FECHACUMPLE, NOTAS</p>
      */
     int tipo; // entre 0 y 8
     /**
@@ -27,10 +28,10 @@ public class SubmenuEditor extends Menu{
         this.contacto = contacto;
         this.tipo = tipo;
 
-        if(tipo<0 || tipo>8){
+        if(tipo<NOMBRE || tipo>NOTAS){
             System.out.println("Error: Tipo de dato fuera de rango");
         }
-        else if(tipo==0){
+        else if(tipo==NOMBRE){
             menuNombre(); // Si quiere cambiar el nombre, no hay opciones
         }
 
@@ -48,14 +49,14 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos
-
     /**
      * Método con la opción 1 del menú editor, cambiar nombre
      */
     public void menuNombre(){
-        String s = v.recibirString("Ingrese el "+nombreSingular[tipo]+" del contacto: ");
+        String s = v.recibirString("Nombre actual: " +contacto.getNombre()+
+                "\nIngrese el nuevo "+nombreSingular[tipo]+" del contacto: ");
         contacto.setNombre(s);
-        System.out.println("El nombre fue cambiado con éxito.");
+        System.out.println(mensajeExito());
     }
 
     /**
@@ -68,11 +69,16 @@ public class SubmenuEditor extends Menu{
         opciones.add("Volver atrás");
     }
 
-    public void desplegarMenu(){
+    private void desplegarMenu(){
+        enumerarListString(opciones);
+    }
+
+    private void switchMenu(){
 
     }
 
-    public void switchMenu(){
-
+    //// Métodos de mensajes que muestra el programa
+    private String mensajeExito(){
+        return "El "+nombreSingular[tipo]+" fue cambiado con éxito.";
     }
 }
