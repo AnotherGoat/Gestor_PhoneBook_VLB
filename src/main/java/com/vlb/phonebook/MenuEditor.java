@@ -59,7 +59,7 @@ public class MenuEditor extends Menu {
         // Muestra el nombre del gestor con algo de decoración
         mostrarLogo();
 
-        System.out.println("Menu de edición:");
+        System.out.println("Menú de edición:");
 
         // Muestra las opciones
         enumerarListString(opciones);
@@ -78,11 +78,10 @@ public class MenuEditor extends Menu {
         switch (eleccion) {
             case 1: //// "Cambiar nombre"
                 sub = new SubmenuEditor(aux, NOMBRE);
-                System.out.println(aux.toString());
                 break;
 
             case 2: //// "Editar números de celular"
-                switchCelular();
+                sub = new SubmenuEditor(aux, CELULAR);
                 System.out.println(aux.toString());
                 break;
 
@@ -109,19 +108,6 @@ public class MenuEditor extends Menu {
             case 7: //// "Salir"
                 this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
-    }
-
-    /**
-     * Método con la opción 2 del menú, editar números de celular
-     */
-    public void switchCelular(){
-        int b;
-
-        b = v.validarInt(1, 999999999,
-                "Ingrese el número de celular: ",
-                "El número ingresado no es válido.");
-        aux.setTelefonoCelular(b);
-        System.out.println("El número de celular fue agregado con éxito.");
     }
 
     /**
