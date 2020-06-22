@@ -194,3 +194,12 @@ public class Contacto {
         return s.toString();
     }
 }
+
+
+class Telefono {
+
+}
+
+class Direccion {
+
+}
