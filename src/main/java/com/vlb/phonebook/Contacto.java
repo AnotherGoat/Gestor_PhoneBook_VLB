@@ -17,9 +17,9 @@ public class Contacto {
      */
     private String nombre;
     /**
-     * Número de celular del contacto
+     * ArrayList con los números de celular del contacto
      */
-    private int telefonoCelular;
+    private ArrayList<Integer> telefonosCelular;
     /**
      * Número de teléfono fijo del contacto
      */
@@ -52,7 +52,6 @@ public class Contacto {
     //// Constructores
     public Contacto(){
         // Inician en -1 para no mostrarlos en el toString()
-        this.telefonoCelular = -1;
         this.telefonoFijo = -1;
         this.telefonoTrabajo = -1;
     }
@@ -61,7 +60,6 @@ public class Contacto {
         this.nombre = nombre;
 
         // Inician en -1 para no mostrarlos en el toString()
-        this.telefonoCelular = -1;
         this.telefonoFijo = -1;
         this.telefonoTrabajo = -1;
     }
@@ -69,15 +67,20 @@ public class Contacto {
     // Constructor para copiar un contacto
     public Contacto(Contacto c){
         if(c!=null){
-            this.nombre = c.getNombre();
-            this.telefonoCelular = c.getTelefonoCelular();
-            this.telefonoFijo = c.getTelefonoFijo();
-            this.telefonoTrabajo = c.getTelefonoTrabajo();
-            this.direccion = c.getDireccion();
-            this.email = c.getEmail();
-            this.apodo = c.getApodo();
-            this.fechaCumple = c.getFechaCumple();
-            this.notas = c.getNotas();
+            this.nombre = c.nombre;
+
+            // Limpia los teléfonos registrados y luego los copia desde c
+            this.telefonosCelular.clear();
+            this.telefonosCelular.addAll(c.telefonosCelular);
+
+            // Hace lo mismo con los otros ArrayList
+            this.telefonoFijo = c.telefonoFijo;
+            this.telefonoTrabajo = c.telefonoTrabajo;
+            this.direccion = c.direccion;
+            this.email = c.email;
+            this.apodo = c.apodo;
+            this.fechaCumple = c.fechaCumple;
+            this.notas = c.notas;
         }
     }
 
@@ -90,12 +93,8 @@ public class Contacto {
         this.nombre = nombre;
     }
 
-    public int getTelefonoCelular() {
-        return telefonoCelular;
-    }
-
-    public void setTelefonoCelular(int telefonoCelular) {
-        this.telefonoCelular = telefonoCelular;
+    public ArrayList<Integer> getTelefonosCelular() {
+        return telefonosCelular;
     }
 
     public int getTelefonoFijo() {
@@ -160,34 +159,38 @@ public class Contacto {
      */
     @Override
     public String toString() {
-        String s;
-        s = "Nombre: " + nombre;
+        StringBuilder s;
+        s = new StringBuilder("Nombre: " + nombre);
 
-        if (telefonoCelular != -1) {
-            s += "\nTeléfono Celular: " + telefonoCelular;
+        if (telefonosCelular != null) {
+            s.append("\nTeléfonos de Celular: ");
+            for(int telefono : telefonosCelular){
+                s.append("\n").append(telefono);
+            }
         }
+
         if (telefonoFijo != -1) {
-            s += "\nTeléfono Fijo: " + telefonoFijo;
+            s.append("\nTeléfono Fijo: ").append(telefonoFijo);
         }
         if (telefonoTrabajo != -1) {
-            s += "\nTeléfono Trabajo: " + telefonoTrabajo;
+            s.append("\nTeléfono Trabajo: ").append(telefonoTrabajo);
         }
         if (direccion != null) {
-            s += "\nDirección: " + direccion;
+            s.append("\nDirección: ").append(direccion);
         }
         if (email != null) {
-            s += "\nE-mail: " + email;
+            s.append("\nE-mail: ").append(email);
         }
         if (apodo != null) {
-            s += "\nApodo: " + apodo;
+            s.append("\nApodo: ").append(apodo);
         }
         if (fechaCumple != null) {
-            s += "\nFecha de cumpleaños: " + fechaCumple;
+            s.append("\nFecha de cumpleaños: ").append(fechaCumple);
         }
         if (notas != null) {
-            s += "\nNotas adicionales: " + notas;
+            s.append("\nNotas adicionales: ").append(notas);
         }
 
-        return s;
+        return s.toString();
     }
 }

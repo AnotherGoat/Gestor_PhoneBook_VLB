@@ -56,7 +56,7 @@ public class SubmenuEditor extends Menu{
         String s = v.recibirString("Nombre actual: " +contacto.getNombre()+
                 "\nIngrese el nuevo "+nombreSingular[tipo]+" del contacto: ");
         contacto.setNombre(s);
-        System.out.println(mensajeExito());
+        System.out.println(mensajeExito("cambiado"));
     }
 
     /**
@@ -78,7 +78,12 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de mensajes que muestra el programa
-    private String mensajeExito(){
-        return "El "+nombreSingular[tipo]+" fue cambiado con éxito.";
+    /**
+     * Retorna un String con un mensaje de éxito, dependiendo de la acción ingresada
+     * @param accion Verbo que va entre "fue ... con éxito"
+     * @return Retorna un String con un mensaje de éxito
+     */
+    private String mensajeExito(String accion){
+        return "El "+nombreSingular[tipo]+" fue "+accion+" con éxito.";
     }
 }
