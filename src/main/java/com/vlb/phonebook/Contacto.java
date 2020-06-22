@@ -195,11 +195,51 @@ public class Contacto {
     }
 }
 
-
+/**
+ * Clase que contiene los datos de un teléfono (número y tipo)
+ */
 class Telefono {
 
+    //// Atributos
+    /**
+     * Número de teléfono
+     */
+    int numero;
+    /**
+     * Tipo de teléfono
+     */
+    String tipo;
+
+    //// Constructores
+    public Telefono(int numero, String tipo) {
+        this.numero = numero;
+        this.tipo = tipo;
+    }
 }
 
+/**
+ * Clase que contiene los datos de una dirección
+ */
 class Direccion {
 
+    //// Atributos
+    /**
+     * Ciudad donde vive
+     */
+    String ciudad;
+    /**
+     * Calle donde se encuentra la casa
+     */
+    String calle;
+    /**
+     * Número de la casa
+     */
+    int numero;
+
+    //// Constructores
+    public Direccion(String ciudad, String calle, int numero) {
+        this.ciudad = ciudad;
+        this.calle = calle;
+        this.numero = numero;
+    }
 }
