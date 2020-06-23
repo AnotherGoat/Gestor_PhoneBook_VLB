@@ -65,7 +65,7 @@ public class Menu {
      * @param lista List de tipo String que se quiere ordenar
      * @return String con la lista numerada
      */
-    public static String enumerarListString(List<String> lista){
+    public static String enumerarListaString(List<String> lista){
         String s;
 
         if(lista != null) {
@@ -89,7 +89,7 @@ public class Menu {
      * @param lista List de tipo Integer que se quiere ordenar
      * @return String con la lista numerada
      */
-    public static String enumerarListInteger(List<Integer> lista){
+    public static String enumerarListaInteger(List<Integer> lista){
         StringBuilder s = new StringBuilder();
 
         if(lista != null) {

@@ -124,7 +124,7 @@ public class SubmenuEditor extends Menu{
         System.out.println("Menú de edición de "+tipoPlural+":");
 
         // Muestra las opciones
-        enumerarListString(opciones);
+        System.out.println(enumerarListaString(opciones));
 
         eleccion = v.validarInt(1, opciones.size(),
                 "Escoja una opción: ",
@@ -199,7 +199,7 @@ public class SubmenuEditor extends Menu{
                 }
                 else {
                     // Muestra los ... ya registrados
-                    enumerarListInteger(contacto.getTelefonosCelular());
+                    System.out.println(enumerarListaInteger(contacto.getTelefonosCelular()));
 
                     // Pide al usuario que elija uno
                     a = v.validarInt(1, contacto.getTelefonosCelular().size(),

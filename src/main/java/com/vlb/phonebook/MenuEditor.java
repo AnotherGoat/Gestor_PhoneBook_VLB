@@ -65,7 +65,7 @@ public class MenuEditor extends Menu {
         System.out.println("Menú de edición:");
 
         // Muestra las opciones
-        enumerarListString(opciones);
+        System.out.println(enumerarListaString(opciones));
 
         eleccion = v.validarInt(1, opciones.size(),
                 "Escoja una opción: ",
