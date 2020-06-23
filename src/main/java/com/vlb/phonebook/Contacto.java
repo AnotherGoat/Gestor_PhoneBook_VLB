@@ -17,27 +17,19 @@ public class Contacto {
      */
     private String nombre;
     /**
-     * ArrayList con los números de celular del contacto
+     * ArrayList con los números de teléfono del contacto
      */
-    private ArrayList<Integer> telefonosCelular;
-    /**
-     * Número de teléfono fijo del contacto
-     */
-    private int telefonoFijo;
-    /**
-     * Número de teléfono de trabajo del contacto
-     */
-    private int telefonoTrabajo;
+    private ArrayList<Telefono> telefonos;
     /**
      * Dirección de residencia del contacto
      */
-    private String direccion;
+    private Direccion direccion;
     /**
      * Dirección de correo electrónico del contacto
      */
     private String email;
     /**
-     * Apodo con el que se conoce al contacto
+     * Apodos con los que se conoce al contacto
      */
     private String apodo;
     /**
@@ -292,6 +284,6 @@ class Direccion {
 
     @Override
     public String toString() {
-        return ciudad + ", " + calle + ", #" + numero;
+        return "Dirección: "+ciudad + ", " + calle + ", #" + numero;
     }
 }
