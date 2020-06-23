@@ -52,7 +52,7 @@ public class Menu {
     /**
      * Método para mostrar el nombre del gestor con algo de decoración
      */
-    public void logo(){
+    public void mostrarLogo(){
         System.out.println("******************************************");
         System.out.println("=========\\\\Gestor PhoneBook VLB//=========");
         System.out.println("******************************************");

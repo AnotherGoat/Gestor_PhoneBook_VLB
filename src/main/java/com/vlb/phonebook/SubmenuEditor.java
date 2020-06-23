@@ -1,5 +1,7 @@
 package com.vlb.phonebook;
 
+import java.beans.FeatureDescriptor;
+
 public class SubmenuEditor extends Menu{
 
     //// Atributos
@@ -34,10 +36,6 @@ public class SubmenuEditor extends Menu{
         }
         else if(tipo==NOMBRE){
             menuNombre(); // Si quiere cambiar el nombre, no hay opciones
-        }
-
-        else if(tipo==DIRECCION){
-            menuDireccion(); // Si quiere cambiar la dirección, no hay opciones
         }
 
         else{
@@ -94,8 +92,7 @@ public class SubmenuEditor extends Menu{
      * Método con la opción 1 del menú editor, cambiar nombre
      */
     public void menuNombre(){
-        String s = v.recibirString("Nombre actual: " +contacto.getNombre()+
-                "\nIngrese el nuevo "+tipoSingular+" del contacto: ");
+        String s = v.recibirString("Actual: " +contacto.getNombre()+"\nNuevo: ");
         contacto.setNombre(s);
         System.out.println(mensajeExito("cambiado"));
     }
@@ -108,10 +105,74 @@ public class SubmenuEditor extends Menu{
      * Método que llena las opciones del submenú
      */
     public void llenarOpciones(){
-        opciones.add("Agregar "+tipoSingular);
-        opciones.add("Cambiar "+tipoSingular);
+
+        // En caso de elegir cualquier opción excepto dirección y fecha de cumpleaños
+        if((tipo!=DIRECCION && tipo!=FECHACUMPLE)){
+            opciones.add("Agregar " + tipoSingular);
+        }
+        // Si no hay una dirección guardada
+        else if((tipo==DIRECCION && contacto.getDireccion()==null)){
+            opciones.add("Agregar " + tipoSingular);
+        }
+        // Si no hay una fecha de cumpleaños guardada
+        else if((tipo==FECHACUMPLE && contacto.getFechaCumple()==null)){
+            opciones.add("Agregar " + tipoSingular);
+        }
+
+        // En caso de elegir cualquier opción excepto dirección y fecha de cumpleaños
+        if((tipo!=DIRECCION && tipo!=FECHACUMPLE)){
+            opciones.add("Cambiar " + tipoSingular);
+        }
+        // Si ya hay una dirección guardada
+        else if((tipo==DIRECCION && contacto.getDireccion()!=null)){
+            opciones.add("Cambiar " + tipoSingular);
+        }
+        // Si ya hay una fecha de cumpleaños guardada
+        else if((tipo==FECHACUMPLE && contacto.getFechaCumple()!=null)){
+            opciones.add("Cambiar " + tipoSingular);
+        }
+
         opciones.add("Borrar "+tipoSingular);
         opciones.add("Volver atrás");
+    }
+
+    public int elegirTelefono(String verbo){
+        // Muestra los números ya registrados
+        System.out.println("Números de teléfono guardados: ");
+        System.out.println(enumerarListaTelefono(contacto.getTelefonos()));
+
+        // Pide al usuario que elija uno
+        return v.validarInt(1, contacto.getTelefonos().size(),
+                "Escoja el "+tipoSingular+" que quiere "+verbo+": ",
+                "El número ingresado no es válido.");
+    }
+
+    public int elegirTipoTelefono(){
+        return v.validarInt(1, 3,
+                "¿Qué tipo de teléfono agregó?\n1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción:",
+                "La opción ingresada no es válida");
+    }
+
+    /**
+     * Método para confirmar la eliminación de un número de teléfono
+     * @param posicion Posición del número que se desea borrar
+     */
+    public void confirmarBorradoTelefono(int posicion) {
+        int x;
+        x = v.validarInt(0, 1,
+                "Se borrará el número "+contacto.getTelefonos().get(posicion).getNumero()+
+                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "La opción ingresada no existe.");
+
+        switch (x) {
+            case 1:
+                contacto.getTelefonos().remove(posicion);
+                System.out.println("El contacto ha sido borrado exitosamente.");
+                break;
+            case 0:
+                System.out.println("El número no se borró.");
+                break;
+        }
     }
 
     /**
@@ -162,30 +223,21 @@ public class SubmenuEditor extends Menu{
         int a, b; // Se usan para tomar entrada en las opciones
 
         switch(tipo){
-            case TELEFONO: // En caso de querer agregar un teléfono
+            case TELEFONO:
+                // En caso de querer agregar un teléfono
                 a = v.validarInt(1, 999999999,
                         "Ingrese el "+tipoSingular,
                         "El "+tipoSingular+" ingresado no es válido.");
 
-                System.out.println("¿Qué tipo de teléfono agregó?\n1=Celular, 2=Fijo, 3=Trabajo");
+                b = elegirTipoTelefono();
 
-                b = v.validarInt(1, 3,
-                        "Escoja una opción:",
-                        "La opción ingresada no es válida");
-                // Pero esta sección cambia según el caso
-
-                System.out.println(mensajeExito("agregado"));
-
-                switch(b){
-                    case 1:
-                        contacto.getTelefonos().add(new Telefono (a, "Celular"));
-                        break;
-                    case 2:
-                        contacto.getTelefonos().add(new Telefono (a, "Fijo"));
-                        break;
-                    case 3:
-                        contacto.getTelefonos().add(new Telefono (a, "Trabajo"));
+                // Esta sección cambia según el caso
+                switch (b) {
+                    case 1 -> contacto.getTelefonos().add(new Telefono(a, "Celular"));
+                    case 2 -> contacto.getTelefonos().add(new Telefono(a, "Fijo"));
+                    case 3 -> contacto.getTelefonos().add(new Telefono(a, "Trabajo"));
                 }
+                System.out.println(mensajeExito("agregado"));
                 break;
 
             case DIRECCION:
@@ -200,35 +252,36 @@ public class SubmenuEditor extends Menu{
      * Método para la opción "Cambiar ..."
      */
     private void switchCaso2(){
-        int a; // Se usa para recibir entrada en este switch
+        int a, b, c; // Se usan para recibir entrada en este switch
 
         switch(tipo){
-            case CELULAR:
-                if(contacto.getTelefonosCelular().size() == 0){
+            case TELEFONO:
+                if(contacto.getTelefonos().size() == 0){
                     System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
                 }
+
                 else {
-                    // Muestra los ... ya registrados
-                    System.out.println(enumerarListaInteger(contacto.getTelefonosCelular()));
+                    a = elegirTelefono("agregar");
 
-                    // Pide al usuario que elija uno
-                    a = v.validarInt(1, contacto.getTelefonosCelular().size(),
-                            "Escoja el número de celular que quiere cambiar: ",
+                    // Muestra el número actual y pide uno nuevo
+                    System.out.println("Número actual: "+contacto.getTelefonos().get(a-1).getNumero());
+                    b = v.validarInt(1, 999999999,
+                            "Número nuevo: ",
                             "El número ingresado no es válido.");
 
-                    // Muestra el ... actual y pide uno nuevo
-                    System.out.println("Actual: "+contacto.getTelefonosCelular().get(a-1));
-                    a = v.validarInt(1, 999999999,
-                            "Nuevo: ",
-                            "El número ingresado no es válido.");
+                    c = elegirTipoTelefono();
 
-                    // Almacena el ... y muestra un mensaje de que funcionó
-                    contacto.getTelefonosCelular().add(a);
-                    System.out.println("El "+tipoSingular+" fue agregado con éxito.");
+                    // Esta sección cambia según el caso
+                    switch (c) {
+                        case 1 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Celular"));
+                        case 2 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Fijo"));
+                        case 3 -> contacto.getTelefonos().add(a-1, new Telefono(b, "Trabajo"));
+                    }
+                    // Muestra el mensaje de éxito
+                    System.out.println(mensajeExito("cambiado"));
                 }
+                break;
 
-            case FIJO:
-            case TRABAJO:
             case DIRECCION:
             case EMAIL:
             case APODO:
@@ -241,7 +294,25 @@ public class SubmenuEditor extends Menu{
      * Método para la opción "Borrar ..."
      */
     private void switchCaso3(){
+        int a, b;
 
+        switch(tipo){
+            case TELEFONO:
+                if(contacto.getTelefonos().size() == 0){
+                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                }
+                else{
+                    a = elegirTelefono("borrar");
+                    confirmarBorradoTelefono(a-1);
+                }
+                break;
+
+            case DIRECCION:
+            case EMAIL:
+            case APODO:
+            case FECHACUMPLE:
+            case NOTAS:
+        }
     }
 
     //// Métodos de texto

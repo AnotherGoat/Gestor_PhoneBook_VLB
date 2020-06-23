@@ -140,21 +140,11 @@ public class Contacto {
         StringBuilder s;
         s = new StringBuilder("Nombre: " + nombre);
 
-        if (telefonosCelular != null) {
-            s.append("\nTeléfonos de Celular: ");
-            for(int telefono : telefonosCelular){
-                s.append("\n").append(telefono);
-            }
-        }
-
-        if (telefonoFijo != -1) {
-            s.append("\nTeléfono Fijo: ").append(telefonoFijo);
-        }
-        if (telefonoTrabajo != -1) {
-            s.append("\nTeléfono Trabajo: ").append(telefonoTrabajo);
+        if (telefonos != null) {
+            s.append("\nTeléfonos registrados: \n" + telefonos.toString());
         }
         if (direccion != null) {
-            s.append("\nDirección: ").append(direccion);
+            s.append("\n" + direccion.toString());
         }
         if (email != null) {
             s.append("\nE-mail: ").append(email);
