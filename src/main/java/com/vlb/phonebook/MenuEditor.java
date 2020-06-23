@@ -26,6 +26,9 @@ public class MenuEditor extends Menu {
 
     //// Constructores
     public MenuEditor(int posicionOriginal) {
+        // Nombre
+        this.nombreMenu = "menú de edición";
+
         // Llenar List con opciones
         this.opciones.add("Cambiar nombre");
         this.opciones.add("Editar números de celular");
@@ -163,7 +166,7 @@ public class MenuEditor extends Menu {
      * @return Boolean que le indica al programa si el usuario quiere salir (true) o no (false)
      */
     public boolean salirConfirmarCambios() {
-        boolean salirEditor = salir("menú de edición");
+        boolean salirEditor = salir();
 
         // En caso de querer salir, hacer lo siguiente
         if(salirEditor) {

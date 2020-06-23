@@ -10,6 +10,9 @@ public class MenuPrincipal extends Menu {
 
     //// Constructores
     public MenuPrincipal() {
+        // Nombre
+        this.nombreMenu = "programa";
+
         // Llenar List con opciones
         this.opciones.add("Crear contacto nuevo");
         this.opciones.add("Mostrar lista de contactos");
@@ -95,7 +98,7 @@ public class MenuPrincipal extends Menu {
                 break;
 
             case 6: //// "Salir"
-                this.seguir = !salir("programa"); // Si se escoge salir, no seguir con el menú principal
+                this.seguir = !salir(); // Si se escoge salir, no seguir con el menú principal
         }
     }
 }

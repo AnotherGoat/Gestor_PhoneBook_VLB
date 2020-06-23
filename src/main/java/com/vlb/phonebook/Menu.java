@@ -11,6 +11,10 @@ public class Menu {
 
     //// Atributos
     /**
+     * Nombre del menú
+     */
+    protected String nombreMenu;
+    /**
      * Arreglo de Strings que contiene las opciones del menú
      */
     protected List<String> opciones = new ArrayList<>();
@@ -66,7 +70,7 @@ public class Menu {
 
         if(lista != null) {
             for (int i = 1; i <= lista.size(); i++) {
-                s += i + ".- " + lista.get(i - 1));
+                s += i + ".- " + lista.get(i - 1);
 
                 if(i != lista.size()){ // Añade un salto de linea en todos excepto el último
                     s += "\n";
@@ -86,22 +90,22 @@ public class Menu {
      * @return String con la lista numerada
      */
     public static String enumerarListInteger(List<Integer> lista){
-        String s;
+        StringBuilder s = new StringBuilder();
 
         if(lista != null) {
             for (int i = 1; i <= lista.size(); i++) {
-                s += i + ".- " + lista.get(i - 1));
+                s.append(i).append(".- ").append(lista.get(i - 1));
 
                 if(i != lista.size()){ // Añade un salto de linea en todos excepto el último
-                    s += "\n";
+                    s.append("\n");
                 }
             }
         }
         else{
-            s = "Error: ArrayList nulo";
+            s = new StringBuilder("Error: ArrayList nulo");
         }
 
-        return s;
+        return s.toString();
     }
 
     /**
@@ -109,9 +113,9 @@ public class Menu {
      * @param lista List de tipo Teléfono que se quiere ordenar
      * @return String con la lista numerada
      */
-    public static String enumerarListaTelefonos(List<Telefono> lista){
+    public static String enumerarListaTelefono(List<Telefono> lista){
         String s = "";
-        
+
         if(lista!=null) {
             for(int i = 1; i <= lista.size(); i++) {
                 s += i + ".- " + lista.get(i - 1).toString();
@@ -130,10 +134,9 @@ public class Menu {
 
     /**
      * Método que se usa para confirmar la salida del programa
-     * @param nombreMenu Nombre del menú del que se desea salir
      * @return Boolean que le indica al programa si se quiere salir (true) o no (false)
      */
-    public boolean salir(String nombreMenu) {
+    public boolean salir() {
         int a = v.validarInt(0, 1,
                 "¿Desea salir del "+nombreMenu+"? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");

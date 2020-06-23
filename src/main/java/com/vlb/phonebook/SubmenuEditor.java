@@ -27,6 +27,7 @@ public class SubmenuEditor extends Menu{
         this.contacto = contacto;
         this.tipo = tipo;
         inicializarNombres(); // tipoSingular y tipoPlural
+        this.nombreMenu = "menú de edición de "+tipoPlural;
 
         if(tipo<NOMBRE || tipo>NOTAS){
             System.out.println("Error: Tipo de dato fuera de rango");
@@ -148,6 +149,7 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case 4: //// "Volver atrás"
+                System.out.println("Ha salido del "+nombreMenu);
                 seguir = false; // No pide confirmación
         }
     }
@@ -232,7 +234,7 @@ public class SubmenuEditor extends Menu{
 
     }
 
-    //// Métodos de mensajes que muestra el programa
+    //// Métodos de texto
     /**
      * Retorna un String con un mensaje de éxito, dependiendo de la acción ingresada
      * @param accion Verbo que va entre "fue ... con éxito"
