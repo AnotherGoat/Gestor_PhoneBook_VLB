@@ -215,6 +215,28 @@ class Telefono {
         this.numero = numero;
         this.tipo = tipo;
     }
+
+    //// Getters y Setters
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return tipo+": "+ numero;
+    }
 }
 
 /**
@@ -241,5 +263,35 @@ class Direccion {
         this.ciudad = ciudad;
         this.calle = calle;
         this.numero = numero;
+    }
+
+    //// Getters y Setters
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    @Override
+    public String toString() {
+        return ciudad + ", " + calle + ", #" + numero;
     }
 }
