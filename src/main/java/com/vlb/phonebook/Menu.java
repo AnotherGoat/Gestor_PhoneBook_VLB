@@ -57,33 +57,75 @@ public class Menu {
     }
 
     /**
-     * Método de uso general para mostrar una lista numerada de los datos dentro de una List
+     * Método de uso general para generar una lista numerada de los datos dentro de una List
      * @param lista List de tipo String que se quiere ordenar
+     * @return String con la lista numerada
      */
-    public static void enumerarListString(List<String> lista){
+    public static String enumerarListString(List<String> lista){
+        String s;
+
         if(lista != null) {
             for (int i = 1; i <= lista.size(); i++) {
-                System.out.println(i + ".- " + lista.get(i - 1));
+                s += i + ".- " + lista.get(i - 1));
+
+                if(i != lista.size()){ // Añade un salto de linea en todos excepto el último
+                    s += "\n";
+                }
             }
         }
         else{
-            System.out.println("Error: ArrayList nulo");
+            s = "Error: ArrayList nulo";
         }
+
+        return s;
     }
 
     /**
-     * Método de uso general para mostrar una lista numerada de los datos dentro de una List
+     * Método de uso general para generar una lista numerada de los datos dentro de una List
      * @param lista List de tipo Integer que se quiere ordenar
+     * @return String con la lista numerada
      */
-    public static void enumerarListInteger(List<Integer> lista){
+    public static String enumerarListInteger(List<Integer> lista){
+        String s;
+
         if(lista != null) {
             for (int i = 1; i <= lista.size(); i++) {
-                System.out.println(i + ".- " + lista.get(i - 1));
+                s += i + ".- " + lista.get(i - 1));
+
+                if(i != lista.size()){ // Añade un salto de linea en todos excepto el último
+                    s += "\n";
+                }
             }
         }
         else{
-            System.out.println("Error: ArrayList nulo");
+            s = "Error: ArrayList nulo";
         }
+
+        return s;
+    }
+
+    /**
+     * Método de uso general para generar una lista numerada de los datos dentro de una List
+     * @param lista List de tipo Teléfono que se quiere ordenar
+     * @return String con la lista numerada
+     */
+    public static String enumerarListaTelefonos(List<Telefono> lista){
+        String s = "";
+        
+        if(lista!=null) {
+            for(int i = 1; i <= lista.size(); i++) {
+                s += i + ".- " + lista.get(i - 1).toString();
+
+                if(i != lista.size()){ // Añade un salto de linea en todos excepto el último
+                    s += "\n";
+                }
+            }
+        }
+        else{
+            s = "Error: ArrayList nulo";
+        }
+
+        return s;
     }
 
     /**

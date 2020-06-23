@@ -19,7 +19,7 @@ public class Contacto {
     /**
      * ArrayList con los números de teléfono del contacto
      */
-    private ArrayList<Telefono> telefonos;
+    private List<Telefono> telefonos;
     /**
      * Dirección de residencia del contacto
      */
@@ -198,7 +198,7 @@ class Telefono {
      */
     int numero;
     /**
-     * Tipo de teléfono
+     * Tipo de teléfono ("Celular, "Fijo", "Trabajo")
      */
     String tipo;
 
