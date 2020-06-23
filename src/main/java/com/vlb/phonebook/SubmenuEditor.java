@@ -9,7 +9,7 @@ public class SubmenuEditor extends Menu{
     Contacto contacto;
     /**
      * <p>Int que define el tipo de dato que edita el submenú, se usan las constantes de la clase Menu</p>
-     * <p>Estas constantes son: NOMBRE, CELULAR, FIJO, TRABAJO, DIRECCION, EMAIL, APODO, FECHACUMPLE, NOTAS</p>
+     * <p>Estas constantes son: NOMBRE, TELEFONO, DIRECCION, EMAIL, APODO, FECHACUMPLE, NOTAS</p>
      */
     int tipo; // entre 0 y 8
     /**
@@ -36,6 +36,10 @@ public class SubmenuEditor extends Menu{
             menuNombre(); // Si quiere cambiar el nombre, no hay opciones
         }
 
+        else if(tipo==DIRECCION){
+            menuDireccion(); // Si quiere cambiar la dirección, no hay opciones
+        }
+
         else{
             // Llenar ArrayList de opciones
             llenarOpciones();
@@ -60,17 +64,9 @@ public class SubmenuEditor extends Menu{
                 tipoSingular = "nombre";
                 tipoPlural = "nombres";
                 break;
-            case CELULAR:
-                tipoSingular = "número de celular";
-                tipoPlural = "números de celular";
-                break;
-            case FIJO:
-                tipoSingular = "número de teléfono fijo";
-                tipoPlural = "números de teléfonos fijos";
-                break;
-            case TRABAJO:
-                tipoSingular = "número de trabajo";
-                tipoPlural = "números de trabajo";
+            case TELEFONO:
+                tipoSingular = "número de teléfono";
+                tipoPlural = "números de teléfono";
                 break;
             case DIRECCION:
                 tipoSingular = "dirección";
@@ -102,6 +98,10 @@ public class SubmenuEditor extends Menu{
                 "\nIngrese el nuevo "+tipoSingular+" del contacto: ");
         contacto.setNombre(s);
         System.out.println(mensajeExito("cambiado"));
+    }
+
+    public void menuDireccion(){
+        // Aquí va un menú parecido al menuNombre
     }
 
     /**
@@ -159,22 +159,32 @@ public class SubmenuEditor extends Menu{
      * Método para la opción "Añadir ..."
      */
     private void switchCaso1(){
+        int a, b; // Se usan para tomar entrada en las opciones
+
         switch(tipo){
-            case CELULAR: // En los primeros 3 casos pide lo mismo al principio
-            case FIJO:
-            case TRABAJO:
-                int a = v.validarInt(1, 999999999,
+            case TELEFONO: // En caso de querer agregar un teléfono
+                a = v.validarInt(1, 999999999,
                         "Ingrese el "+tipoSingular,
                         "El "+tipoSingular+" ingresado no es válido.");
+
+                System.out.println("¿Qué tipo de teléfono agregó?\n1=Celular, 2=Fijo, 3=Trabajo");
+
+                b = v.validarInt(1, 3,
+                        "Escoja una opción:",
+                        "La opción ingresada no es válida");
+                // Pero esta sección cambia según el caso
+
                 System.out.println(mensajeExito("agregado"));
 
-                // Pero esta sección cambia según el caso
-                if(tipo == CELULAR) {
-                    contacto.getTelefonosCelular().add(a);
-                }
-                else if(tipo == FIJO){
-                }
-                else if(tipo == TRABAJO) {
+                switch(b){
+                    case 1:
+                        contacto.getTelefonos().add(new Telefono (a, "Celular"));
+                        break;
+                    case 2:
+                        contacto.getTelefonos().add(new Telefono (a, "Fijo"));
+                        break;
+                    case 3:
+                        contacto.getTelefonos().add(new Telefono (a, "Trabajo"));
                 }
                 break;
 

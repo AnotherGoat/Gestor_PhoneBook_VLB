@@ -62,12 +62,10 @@ public class Contacto {
             this.nombre = c.nombre;
 
             // Limpia los teléfonos registrados y luego los copia desde c
-            this.telefonosCelular.clear();
-            this.telefonosCelular.addAll(c.telefonosCelular);
+            this.telefonos.clear();
+            this.telefonos.addAll(c.telefonos);
 
             // Hace lo mismo con los otros ArrayList
-            this.telefonoFijo = c.telefonoFijo;
-            this.telefonoTrabajo = c.telefonoTrabajo;
             this.direccion = c.direccion;
             this.email = c.email;
             this.apodo = c.apodo;
@@ -85,31 +83,19 @@ public class Contacto {
         this.nombre = nombre;
     }
 
-    public ArrayList<Integer> getTelefonosCelular() {
-        return telefonosCelular;
+    public List<Telefono> getTelefonos() {
+        return telefonos;
     }
 
-    public int getTelefonoFijo() {
-        return telefonoFijo;
+    public void setTelefonos(List<Telefono> telefonos) {
+        this.telefonos = telefonos;
     }
 
-    public void setTelefonoFijo(int telefonoFijo) {
-        this.telefonoFijo = telefonoFijo;
-    }
-
-    public int getTelefonoTrabajo() {
-        return telefonoTrabajo;
-    }
-
-    public void setTelefonoTrabajo(int telefonoTrabajo) {
-        this.telefonoTrabajo = telefonoTrabajo;
-    }
-
-    public String getDireccion() {
+    public Direccion getDireccion() {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
 

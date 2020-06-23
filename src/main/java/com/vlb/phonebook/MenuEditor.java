@@ -31,11 +31,12 @@ public class MenuEditor extends Menu {
 
         // Llenar List con opciones
         this.opciones.add("Cambiar nombre");
-        this.opciones.add("Editar números de celular");
-        this.opciones.add("Editar números de teléfono fijo");
-        this.opciones.add("Editar números de trabajo");
-        this.opciones.add("Editar direcciones");
+        this.opciones.add("Editar números de teléfono");
+        this.opciones.add("Editar dirección");
         this.opciones.add("Editar e-mails");
+        this.opciones.add("Editar apodos");
+        this.opciones.add("Editar fecha de cumpleaños");
+        this.opciones.add("Editar notas");
         this.opciones.add("Salir");
 
         // Tomar contacto que se va a editar (paso por referencia) y su posición

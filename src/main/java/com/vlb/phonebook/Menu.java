@@ -33,14 +33,12 @@ public class Menu {
 
     //// Constantes
     static final int NOMBRE = 0;
-    static final int CELULAR = 1;
-    static final int FIJO = 2;
-    static final int TRABAJO = 3;
-    static final int DIRECCION = 4;
-    static final int EMAIL = 5;
-    static final int APODO = 6;
-    static final int FECHACUMPLE = 7;
-    static final int NOTAS = 8;
+    static final int TELEFONO = 1;
+    static final int DIRECCION = 2;
+    static final int EMAIL = 3;
+    static final int APODO = 4;
+    static final int FECHACUMPLE = 5;
+    static final int NOTAS = 6;
 
     //// Constructores
     public Menu() {
@@ -54,7 +52,7 @@ public class Menu {
     /**
      * Método para mostrar el nombre del gestor con algo de decoración
      */
-    public void mostrarLogo(){
+    public void logo(){
         System.out.println("******************************************");
         System.out.println("=========\\\\Gestor PhoneBook VLB//=========");
         System.out.println("******************************************");
@@ -66,22 +64,22 @@ public class Menu {
      * @return String con la lista numerada
      */
     public static String enumerarListaString(List<String> lista){
-        String s;
+        StringBuilder s = new StringBuilder();
 
         if(lista != null) {
             for (int i = 1; i <= lista.size(); i++) {
-                s += i + ".- " + lista.get(i - 1);
+                s.append(i).append(".- ").append(lista.get(i - 1));
 
                 if(i != lista.size()){ // Añade un salto de linea en todos excepto el último
-                    s += "\n";
+                    s.append("\n");
                 }
             }
         }
         else{
-            s = "Error: ArrayList nulo";
+            s = new StringBuilder("Error: ArrayList nulo");
         }
 
-        return s;
+        return s.toString();
     }
 
     /**
@@ -114,22 +112,23 @@ public class Menu {
      * @return String con la lista numerada
      */
     public static String enumerarListaTelefono(List<Telefono> lista){
-        String s = "";
+        StringBuilder s = new StringBuilder();
 
         if(lista!=null) {
+            // Realiza el proceso de enumeración
             for(int i = 1; i <= lista.size(); i++) {
-                s += i + ".- " + lista.get(i - 1).toString();
+                s.append(i).append(".- ").append(lista.get(i - 1).toString());
 
                 if(i != lista.size()){ // Añade un salto de linea en todos excepto el último
-                    s += "\n";
+                    s.append("\n");
                 }
             }
         }
         else{
-            s = "Error: ArrayList nulo";
+            s = new StringBuilder("Error: ArrayList nulo");
         }
 
-        return s;
+        return s.toString();
     }
 
     /**
