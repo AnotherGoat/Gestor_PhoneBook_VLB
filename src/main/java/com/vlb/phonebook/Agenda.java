@@ -11,7 +11,7 @@ public class Agenda {
 
     //// Atributos
     /**
-     * List con los contactos registrados
+     * List con los contactos guardados
      */
     private List<Contacto> contactos = new ArrayList<>();
     /**
@@ -46,8 +46,8 @@ public class Agenda {
      * Método para mostrar una lista de todos los contactos guardados
      */
     public void listarContactos() {
-        // Mostrar nombres de los contactos registrados
-        System.out.println("Contactos registrados:");
+        // Mostrar nombres de los contactos guardados
+        System.out.println("Contactos guardados:");
         System.out.println(Menu.enumerarListaString(listaNombres));
     }
 
@@ -63,7 +63,7 @@ public class Agenda {
     }
 
     /**
-     * Método que muestra una lista de los contactos registrados y pide al usuario que escoja uno
+     * Método que muestra una lista de los contactos guardados y pide al usuario que escoja uno
      * @param verbo Verbo usado en el String "Escoja el contacto que quiere... :"
      * @return int con el contacto elegido
      */

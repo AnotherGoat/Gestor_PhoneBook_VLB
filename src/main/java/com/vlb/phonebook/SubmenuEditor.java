@@ -382,7 +382,7 @@ public class SubmenuEditor extends Menu{
     }
 
     public int elegirTelefono(String verbo){
-        // Muestra los números ya registrados
+        // Muestra los números guardados
         System.out.println("Números de teléfono guardados: ");
         System.out.println(enumerarListaTelefono(contacto.getTelefonos()));
 
@@ -393,7 +393,7 @@ public class SubmenuEditor extends Menu{
     }
 
     public int elegirEmail(String verbo){
-        // Muestra los números ya registrados
+        // Muestra los números guardados
         System.out.println("E-mails guardados: ");
         System.out.println(enumerarListaString(contacto.getEmails()));
 
