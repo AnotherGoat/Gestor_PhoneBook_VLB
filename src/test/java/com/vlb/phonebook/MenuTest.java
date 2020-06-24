@@ -39,12 +39,14 @@ public class MenuTest {
      */
     @Test
     public void salir1() {
+        m.nombreMenu="";
+
         simularInput("1");
-        assertTrue(m.salir(""));
+        assertTrue(m.salir());
 
         System.out.println("");
 
         simularInput("0");
-        assertFalse(m.salir(""));
+        assertFalse(m.salir());
     }
 }
