@@ -58,7 +58,7 @@ public class Agenda {
         int idContacto = elegirContacto("ver"); // id Contacto = número con el que se identifica
 
         // Muestra los detalles del contacto
-        System.out.println("****Contacto #"+idContacto+"****");
+        System.out.println("*****Contacto #"+idContacto+"*****");
         System.out.println(contactos.get(idContacto - 1).toString());
     }
 

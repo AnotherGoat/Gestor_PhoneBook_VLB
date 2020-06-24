@@ -19,7 +19,7 @@ public class Contacto {
     /**
      * ArrayList con los números de teléfono del contacto
      */
-    private List<Telefono> telefonos;
+    private List<Telefono> telefonos = new ArrayList<>();
     /**
      * Dirección de residencia del contacto
      */
@@ -54,8 +54,7 @@ public class Contacto {
         if(c!=null){
             this.nombre = c.nombre;
 
-            // Limpia los teléfonos registrados y luego los copia desde c
-            this.telefonos.clear();
+            // Copia los telefonos desde c
             this.telefonos.addAll(c.telefonos);
 
             // Hace lo mismo con los otros ArrayList
@@ -134,7 +133,10 @@ public class Contacto {
         s = new StringBuilder("Nombre: " + nombre);
 
         if (telefonos != null) {
-            s.append("\nTeléfonos registrados: \n" + telefonos.toString());
+            s.append("\nTeléfonos registrados:");
+            for(Telefono t: telefonos) {
+                s.append("\n"+t.toString());
+            }
         }
         if (direccion != null) {
             s.append("\n" + direccion.toString());

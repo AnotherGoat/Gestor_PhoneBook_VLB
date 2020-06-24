@@ -92,7 +92,7 @@ public class SubmenuEditor extends Menu{
      * Método con la opción 1 del menú editor, cambiar nombre
      */
     public void menuNombre(){
-        String s = v.recibirString("Actual: " +contacto.getNombre()+"\nNuevo: ");
+        String s = v.recibirString("Nombre actual: " +contacto.getNombre()+"\nNombre nuevo: ");
         contacto.setNombre(s);
         System.out.println(mensajeExito("cambiado"));
     }
@@ -149,7 +149,7 @@ public class SubmenuEditor extends Menu{
 
     public int elegirTipoTelefono(){
         return v.validarInt(1, 3,
-                "¿Qué tipo de teléfono agregó?\n1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción:",
+                "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
                 "La opción ingresada no es válida");
     }
 
@@ -226,7 +226,7 @@ public class SubmenuEditor extends Menu{
             case TELEFONO:
                 // En caso de querer agregar un teléfono
                 a = v.validarInt(1, 999999999,
-                        "Ingrese el "+tipoSingular,
+                        "Ingrese el "+tipoSingular +": ",
                         "El "+tipoSingular+" ingresado no es válido.");
 
                 b = elegirTipoTelefono();
@@ -256,15 +256,16 @@ public class SubmenuEditor extends Menu{
 
         switch(tipo){
             case TELEFONO:
-                if(contacto.getTelefonos().size() == 0){
+                if(contacto.getTelefonos() == null){
                     System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
                 }
 
                 else {
-                    a = elegirTelefono("agregar");
+                    a = elegirTelefono("cambiar");
+                    String actual = contacto.getTelefonos().get(a-1).getNumero()+" ("+contacto.getTelefonos().get(a-1).getTipo()+")";
 
                     // Muestra el número actual y pide uno nuevo
-                    System.out.println("Número actual: "+contacto.getTelefonos().get(a-1).getNumero());
+                    System.out.println("Número actual: "+actual);
                     b = v.validarInt(1, 999999999,
                             "Número nuevo: ",
                             "El número ingresado no es válido.");
@@ -275,7 +276,7 @@ public class SubmenuEditor extends Menu{
                     switch (c) {
                         case 1 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Celular"));
                         case 2 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Fijo"));
-                        case 3 -> contacto.getTelefonos().add(a-1, new Telefono(b, "Trabajo"));
+                        case 3 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Trabajo"));
                     }
                     // Muestra el mensaje de éxito
                     System.out.println(mensajeExito("cambiado"));
@@ -298,7 +299,7 @@ public class SubmenuEditor extends Menu{
 
         switch(tipo){
             case TELEFONO:
-                if(contacto.getTelefonos().size() == 0){
+                if(contacto.getTelefonos() == null){
                     System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
                 }
                 else{
