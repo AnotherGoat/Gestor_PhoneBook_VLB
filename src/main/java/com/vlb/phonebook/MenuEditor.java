@@ -95,33 +95,25 @@ public class MenuEditor extends Menu {
                 break;
 
             case EMAIL+1: //// "Editar e-mails"
-                switchEmail();
+                sub = new SubmenuEditor(aux, EMAIL);
                 System.out.println(aux.toString());
                 break;
 
             case APODO+1: //// "Editar apodo"
+                sub = new SubmenuEditor(aux, APODO);
                 break;
 
             case FECHACUMPLE+1: //// "Editar fecha de cumpleaños"
+                sub = new SubmenuEditor(aux, FECHACUMPLE);
                 break;
 
             case NOTAS+1: //// "Editar notas"
+                sub = new SubmenuEditor(aux, NOTAS);
                 break;
 
             case NOTAS+2: //// "Salir"
                 this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
-    }
-
-    /**
-     * Método con la opción 6 del menú, editar direcciones
-     */
-    public void switchEmail(){
-        String s;
-
-        s = v.recibirString("Ingrese la dirección de e-mail: ");
-        aux.setEmail(s);
-        System.out.println("El e-mail fue agregado con éxito.");
     }
 
     /**

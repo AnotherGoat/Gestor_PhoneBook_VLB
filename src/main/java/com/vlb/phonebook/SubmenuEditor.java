@@ -397,8 +397,34 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case EMAIL:
+                if(contacto.getEmails() == null){
+                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                }
+                else{
+                    a = elegirEmail("borrar");
+                    confirmarBorradoEmail(a-1);
+                }
+                break;
+
             case APODO:
+                if(contacto.getApodos() == null){
+                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                }
+                else{
+                    a = elegirApodo("borrar");
+                    confirmarBorradoApodo(a-1);
+                }
+                break;
+
             case NOTAS:
+                if(contacto.getNotas() == null){
+                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardadas");
+                }
+                else{
+                    a = elegirNota("borrar");
+                    confirmarBorradoNota(a-1);
+                }
+                break;
         }
     }
 
@@ -496,6 +522,46 @@ public class SubmenuEditor extends Menu{
         }
     }
 
+    /**
+     * Método para confirmar la eliminación de un e-mail
+     * @param posicion Posición del e-mail que se desea borrar
+     */
+    private void confirmarBorradoEmail(int posicion) {
+        int x = v.validarInt(0, 1,
+                "Se borrará el e-mail "+contacto.getEmails().get(posicion)+
+                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "La opción ingresada no existe.");
+
+        switch (x) {
+            case 1:
+                contacto.getEmails().remove(posicion);
+                System.out.println("El e-mail ha sido borrado exitosamente.");
+                break;
+            case 0:
+                System.out.println("El e-mail no se borró.");
+        }
+    }
+
+    /**
+     * Método para confirmar la eliminación de un apodo
+     * @param posicion Posición del apodo que se desea borrar
+     */
+    private void confirmarBorradoApodo(int posicion) {
+        int x = v.validarInt(0, 1,
+                "Se borrará el apodo "+contacto.getApodos().get(posicion)+
+                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "La opción ingresada no existe.");
+
+        switch (x) {
+            case 1:
+                contacto.getApodos().remove(posicion);
+                System.out.println("El apodo ha sido borrado exitosamente.");
+                break;
+            case 0:
+                System.out.println("El apodo no se borró.");
+        }
+    }
+
     private void confirmarBorradoFechaCumple(){
         int x = v.validarInt(0, 1,
                 "Se borrará la fecha de cumpleaños del contacto "+contacto.getNombre()+
@@ -512,6 +578,26 @@ public class SubmenuEditor extends Menu{
         }
     }
 
+    /**
+     * Método para confirmar la eliminación de una nota
+     * @param posicion Posición de la nota que se desea borrar
+     */
+    private void confirmarBorradoNota(int posicion) {
+        int x = v.validarInt(0, 1,
+                "Se borrará la nota \""+contacto.getNotas().get(posicion)+
+                        "\"\n¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "La opción ingresada no existe.");
+
+        switch (x) {
+            case 1:
+                contacto.getNotas().remove(posicion);
+                System.out.println("La nota ha sido borrado exitosamente.");
+                break;
+            case 0:
+                System.out.println("La nota no se borró.");
+        }
+    }
+
     //// Métodos de texto
     /**
      * Retorna un String con un mensaje de éxito (artículo "el")
@@ -521,6 +607,5 @@ public class SubmenuEditor extends Menu{
      */
     private String mensajeExito(String articulo, String accion) {
         return articulo + " " + tipoSingular + " fue " + accion + " con éxito.";
-    }
     }
 }
