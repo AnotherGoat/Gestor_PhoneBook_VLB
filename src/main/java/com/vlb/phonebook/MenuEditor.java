@@ -80,64 +80,37 @@ public class MenuEditor extends Menu {
         Menu sub;
 
         switch (eleccion) {
-            case 1: //// "Cambiar nombre"
+            case NOMBRE+1: //// "Cambiar nombre"
                 sub = new SubmenuEditor(aux, NOMBRE);
                 break;
 
-            case 2: //// "Editar números de celular"
-                sub = new SubmenuEditor(aux, CELULAR);
+            case TELEFONO+1: //// "Editar números de celular"
+                sub = new SubmenuEditor(aux, TELEFONO);
                 System.out.println(aux.toString());
                 break;
 
-            case 3: //// "Editar números de teléfono fijo"
-                switchFijo();
-                System.out.println(aux.toString());
-                break;
-
-            case 4: //// "Editar números de trabajo"
-                switchTrabajo();
-                System.out.println(aux.toString());
-                break;
-
-            case 5: //// "Editar direcciones"
+            case DIRECCION+1: //// "Editar dirección"
                 switchDireccion();
                 System.out.println(aux.toString());
                 break;
 
-            case 6: //// "Editar e-mails"
+            case EMAIL+1: //// "Editar e-mails"
                 switchEmail();
                 System.out.println(aux.toString());
                 break;
 
-            case 7: //// "Salir"
+            case APODO+1: //// "Editar apodo"
+                break;
+
+            case FECHACUMPLE+1: //// "Editar fecha de cumpleaños"
+                break;
+
+            case NOTAS+1: //// "Editar notas"
+                break;
+
+            case NOTAS+2: //// "Salir"
                 this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
-    }
-
-    /**
-     * Método con la opción 3 del menú, editar números de teléfono fijo
-     */
-    public void switchFijo(){
-        int b;
-
-        b = v.validarInt(1, 999999999,
-                "Ingrese el número de teléfono fijo: ",
-                "El número ingresado no es válido.");
-        aux.setTelefonoFijo(b);;
-        System.out.println("El número de teléfono fijo fue agregado con éxito.");
-    }
-
-    /**
-     * Método con la opción 4 del menú, editar números de trabajo
-     */
-    public void switchTrabajo(){
-        int b;
-
-        b = v.validarInt(1, 999999999,
-                "Ingrese el número de trabajo: ",
-                "El número ingresado no es válido.");
-        aux.setTelefonoTrabajo(b);
-        System.out.println("El número de trabajo fue agregado con éxito.");
     }
 
     /**
