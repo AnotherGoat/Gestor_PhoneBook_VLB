@@ -35,7 +35,7 @@ public class Contacto {
     /**
      * Fecha de cumpleaños del contacto
      */
-    private Date fechaCumple;
+    private Date fechaCumple = new Date();
     /**
      * Notas adicionales que se quieran agregar sobre el contacto
      */
@@ -222,6 +222,9 @@ class Direccion {
     int numero;
 
     //// Constructores
+    public Direccion() {
+    }
+
     public Direccion(String ciudad, String calle, int numero) {
         this.ciudad = ciudad;
         this.calle = calle;

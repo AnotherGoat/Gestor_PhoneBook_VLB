@@ -133,7 +133,7 @@ public class MenuEditor extends Menu {
 
         // En caso de querer salir, hacer lo siguiente
         if(salirEditor) {
-            System.out.println("¿Desea guardar los cambios realizados? 1=Sí 0=No");
+            System.out.println("¿Desea guardar los cambios realizados? 1=Sí, 0=No");
             int b = v.validarInt(0, 1,
                     "Escoja una opción: ",
                     "La opción ingresada no existe.");
