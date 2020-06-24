@@ -93,17 +93,17 @@ public class Validador {
     }
 
     /**
-     * Este método se usa para recibir un e-mail
+     * Este método se usa para validar un e-mail
      * @return E-mail ingresado, después de haber sido validado
      */
-    public String recibirEmail(){
+    public String validarEmail(){
         // Crea nueva instancia del teclado, para evitar errores
         this.teclado = new Scanner(System.in);
 
         String entrada = "";
 
         do{
-            System.out.print("Ingrese el email: ");
+            System.out.print("Ingrese el e-mail: ");
             entrada = this.teclado.nextLine(); // Pide la dirección de e-mail
 
             if(!esEmailValido(entrada)){ // Si la entrada no es válida, muestra un mensaje de error

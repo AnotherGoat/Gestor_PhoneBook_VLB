@@ -95,7 +95,7 @@ public class SubmenuEditor extends Menu{
     public void menuNombre(){
         String s = v.recibirString("Nombre actual: " +contacto.getNombre()+"\nNombre nuevo: ");
         contacto.setNombre(s);
-        System.out.println(mensajeExito("cambiado"));
+        System.out.println(mensajeExito("El", "cambiado"));
     }
 
     public void menuDireccion(){
@@ -200,7 +200,7 @@ public class SubmenuEditor extends Menu{
                     case 2 -> contacto.getTelefonos().add(new Telefono(a, "Fijo"));
                     case 3 -> contacto.getTelefonos().add(new Telefono(a, "Trabajo"));
                 }
-                System.out.println(mensajeExito("agregado"));
+                System.out.println(mensajeExito("El","agregado"));
                 break;
 
             case DIRECCION:
@@ -225,16 +225,35 @@ public class SubmenuEditor extends Menu{
                     a = v.validarInt("Número actual: "+contacto.getDireccion().getNumero()+"\nNúmero nuevo: ");
 
                     // Muestra el mensaje de éxito
-                    System.out.println("La " + tipoSingular + " fue cambiada con éxito.");
+                    System.out.println(mensajeExito("La", "cambiada"));
                 }
                 // Guarda la dirección
                 contacto.setDireccion(new Direccion(s, t, a));
                 break;
 
             case EMAIL:
+                s = v.validarEmail();
+
+                // Guarda el e-mail y muestra un mensaje de éxito
+                contacto.getEmails().add(s);
+
+                System.out.println(mensajeExito("El", "agregado"));
+                break;
+
             case APODO:
+                s = v.recibirString("Ingrese el apodo: ");
+                contacto.getApodos().add(s);
+
+                System.out.println(mensajeExito("El", "agregado"));
+                break;
+
             case FECHACUMPLE:
             case NOTAS:
+                s = v.recibirString("Ingrese la nota: ");
+                contacto.getNotas().add(s);
+
+                System.out.println(mensajeExito("La", "agregada"));
+                break;
         }
     }
 
@@ -270,7 +289,7 @@ public class SubmenuEditor extends Menu{
                         case 3 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Trabajo"));
                     }
                     // Muestra el mensaje de éxito
-                    System.out.println(mensajeExito("cambiado"));
+                    System.out.println(mensajeExito("El", "cambiado"));
                 }
                 break;
 
@@ -284,6 +303,34 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case EMAIL:
+                if(contacto.getTelefonos() == null){
+                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                }
+
+                else {
+                    a = elegirEmail("cambiar");
+                    String actual = contacto.getTelefonos().get(a-1).getNumero()+" ("+contacto.getTelefonos().get(a-1).getTipo()+")";
+
+                    // Muestra el número actual y pide uno nuevo
+                    System.out.println("Número actual: "+actual);
+                    b = v.validarInt(1, 999999999,
+                            "Número nuevo: ",
+                            "El número ingresado no es válido.");
+
+                    c = elegirTipoTelefono();
+
+                    // Esta sección cambia según el caso
+                    switch (c) {
+                        case 1 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Celular"));
+                        case 2 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Fijo"));
+                        case 3 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Trabajo"));
+                    }
+                    // Muestra el mensaje de éxito
+                    System.out.println(mensajeExito("El", "cambiado"));
+                }
+                break;
+
+
             case APODO:
             case FECHACUMPLE:
                 if(contacto.getFechaCumple()==null){ // Si no tiene una fecha de cumpleaños guardada
@@ -341,6 +388,17 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija uno
         return v.validarInt(1, contacto.getTelefonos().size(),
+                "Escoja el "+tipoSingular+" que quiere "+verbo+": ",
+                "El número ingresado no es válido.");
+    }
+
+    public int elegirEmail(String verbo){
+        // Muestra los números ya registrados
+        System.out.println("E-mails guardados: ");
+        System.out.println(enumerarListaString(contacto.getEmails()));
+
+        // Pide al usuario que elija uno
+        return v.validarInt(1, contacto.getEmails().size(),
                 "Escoja el "+tipoSingular+" que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
@@ -405,11 +463,13 @@ public class SubmenuEditor extends Menu{
 
     //// Métodos de texto
     /**
-     * Retorna un String con un mensaje de éxito, dependiendo de la acción ingresada
+     * Retorna un String con un mensaje de éxito (artículo "el")
+     * @param articulo Artículo con el que empieza el mensaje (debe empezar con mayúscula)
      * @param accion Verbo que va entre "fue ... con éxito"
      * @return Retorna un String con un mensaje de éxito
      */
-    private String mensajeExito(String accion) {
-        return "El " + tipoSingular + " fue " + accion + " con éxito.";
+    private String mensajeExito(String articulo, String accion) {
+        return articulo + " " + tipoSingular + " fue " + accion + " con éxito.";
+    }
     }
 }

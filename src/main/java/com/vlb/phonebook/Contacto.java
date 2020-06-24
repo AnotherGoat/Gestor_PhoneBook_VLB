@@ -25,21 +25,21 @@ public class Contacto {
      */
     private Direccion direccion;
     /**
-     * Dirección de correo electrónico del contacto
+     * ArrayList con los e-mails del contacto
      */
-    private String email;
+    private List<String> emails = new ArrayList<>();
     /**
-     * Apodos con los que se conoce al contacto
+     * ArrayList con los apodos con los que se conoce al contacto
      */
-    private String apodo;
+    private List<String> apodos = new ArrayList<>();
     /**
      * Fecha de cumpleaños del contacto
      */
     private Date fechaCumple = new Date();
     /**
-     * Notas adicionales que se quieran agregar sobre el contacto
+     * ArrayList con las notas adicionales que se quieran agregar sobre el contacto
      */
-    private String notas;
+    private List<String> notas = new ArrayList<>();
 
     //// Constructores
     public Contacto(){
@@ -52,17 +52,26 @@ public class Contacto {
     // Constructor para copiar un contacto
     public Contacto(Contacto c){
         if(c!=null){
+            // Copia el nombre desde c
             this.nombre = c.nombre;
 
             // Copia los telefonos desde c
             this.telefonos.addAll(c.telefonos);
 
-            // Hace lo mismo con los otros ArrayList
-            this.direccion = c.direccion;
-            this.email = c.email;
-            this.apodo = c.apodo;
+            // Copia la dirección desde c
+            this.direccion = new Direccion(c.direccion);
+
+            // Copia los e-mails desde c
+            this.emails.addAll(c.emails);
+
+            // Copia los apodos desde c
+            this.apodos.addAll(c.apodos);
+
+            // Copia la fecha de cumpleaños desde c
             this.fechaCumple = c.fechaCumple;
-            this.notas = c.notas;
+
+            // Copia las notas desde c
+            this.notas.addAll(c.notas);
         }
     }
 
@@ -91,20 +100,20 @@ public class Contacto {
         this.direccion = direccion;
     }
 
-    public String getEmail() {
-        return email;
+    public List<String> getEmails() {
+        return emails;
     }
 
-    public void setEmail(String correoElectronico) {
-        this.email = correoElectronico;
+    public void setEmails(List<String> emails) {
+        this.emails = emails;
     }
 
-    public String getApodo() {
-        return apodo;
+    public List<String> getApodos() {
+        return apodos;
     }
 
-    public void setApodo(String apodo) {
-        this.apodo = apodo;
+    public void setApodos(List<String> apodos) {
+        this.apodos = apodos;
     }
 
     public Date getFechaCumple() {
@@ -115,11 +124,11 @@ public class Contacto {
         this.fechaCumple = fechaCumple;
     }
 
-    public String getNotas() {
+    public List<String> getNotas() {
         return notas;
     }
 
-    public void setNotas(String notas) {
+    public void setNotas(List<String> notas) {
         this.notas = notas;
     }
 
@@ -133,25 +142,39 @@ public class Contacto {
         s = new StringBuilder("Nombre: " + nombre);
 
         if (telefonos != null) {
-            s.append("\nTeléfonos registrados:");
+            s.append("\nTeléfonos guardados:");
             for(Telefono t: telefonos) {
                 s.append("\n"+t.toString());
             }
         }
+
         if (direccion != null) {
             s.append("\n" + direccion.toString());
         }
-        if (email != null) {
-            s.append("\nE-mail: ").append(email);
+
+        if (emails != null) {
+            s.append("\nE-mails guardados:");
+            for(String e: emails) {
+                s.append("\n"+e);
+            }
         }
+
         if (apodo != null) {
-            s.append("\nApodo: ").append(apodo);
+            s.append("\nApodos guardados:");
+            for(String a: apodos) {
+                s.append("\n"+a);
+            }
         }
+
         if (fechaCumple != null) {
             s.append("\nFecha de cumpleaños: ").append(fechaCumple);
         }
+
         if (notas != null) {
-            s.append("\nNotas adicionales: ").append(notas);
+            s.append("\nNotas adicionales:");
+            for(String n: notas) {
+                s.append("\n"+n);
+            }
         }
 
         return s.toString();
@@ -229,6 +252,14 @@ class Direccion {
         this.ciudad = ciudad;
         this.calle = calle;
         this.numero = numero;
+    }
+
+    public Direccion(Direccion d) {
+        if(d!=null) {
+            this.ciudad = d.ciudad;
+            this.calle = d.calle;
+            this.numero = d.numero;
+        }
     }
 
     //// Getters y Setters
