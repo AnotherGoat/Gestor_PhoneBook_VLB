@@ -243,17 +243,17 @@ public class SubmenuEditor extends Menu{
             case APODO:
                 s = v.recibirString("Ingrese el apodo: ");
                 contacto.getApodos().add(s);
-
                 System.out.println(mensajeExito("El", "agregado"));
                 break;
 
             case FECHACUMPLE:
+                break;
+
             case NOTAS:
                 s = v.recibirString("Ingrese la nota: ");
-                contacto.getNotas().add(s);
 
+                contacto.getNotas().add(s);
                 System.out.println(mensajeExito("La", "agregada"));
-                break;
         }
     }
 
@@ -263,6 +263,7 @@ public class SubmenuEditor extends Menu{
     private void switchCaso2(){
         // Se usan para recibir entrada en este switch
         int a, b, c;
+        String s;
 
         switch(tipo){
             case TELEFONO:
@@ -303,35 +304,45 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case EMAIL:
-                if(contacto.getTelefonos() == null){
+                if(contacto.getEmails() == null){
                     System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
                 }
 
                 else {
                     a = elegirEmail("cambiar");
-                    String actual = contacto.getTelefonos().get(a-1).getNumero()+" ("+contacto.getTelefonos().get(a-1).getTipo()+")";
+                    String actual = contacto.getEmails().get(a-1);
 
-                    // Muestra el número actual y pide uno nuevo
-                    System.out.println("Número actual: "+actual);
-                    b = v.validarInt(1, 999999999,
-                            "Número nuevo: ",
-                            "El número ingresado no es válido.");
+                    // Muestra el e-mail actual y pide uno nuevo
+                    System.out.println("E-mail actual: "+actual);
+                    s = v.validarEmail();
 
-                    c = elegirTipoTelefono();
-
-                    // Esta sección cambia según el caso
-                    switch (c) {
-                        case 1 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Celular"));
-                        case 2 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Fijo"));
-                        case 3 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Trabajo"));
-                    }
+                    // Actualizar email
+                    contacto.getEmails().set(a-1, s);
                     // Muestra el mensaje de éxito
                     System.out.println(mensajeExito("El", "cambiado"));
                 }
                 break;
 
-
             case APODO:
+                if(contacto.getApodos() == null){
+                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                }
+
+                else {
+                    a = elegirApodo("cambiar");
+                    String actual = contacto.getApodos().get(a-1);
+
+                    // Muestra el apodo actual y pide uno nuevo
+                    System.out.println("Apodo actual: "+actual);
+                    s = v.recibirString("Apodo nuevo: ");
+
+                    // Actualizar apodo
+                    contacto.getApodos().set(a-1, s);
+                    // Muestra el mensaje de éxito
+                    System.out.println(mensajeExito("El", "cambiado"));
+                }
+                break;
+
             case FECHACUMPLE:
                 if(contacto.getFechaCumple()==null){ // Si no tiene una fecha de cumpleaños guardada
                     System.out.println("El contacto no tiene una fecha de cumpleaños guardada");
@@ -342,6 +353,24 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case NOTAS:
+                if(contacto.getNotas() == null){
+                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardadas");
+                }
+
+                else {
+                    a = elegirNota("cambiar");
+                    String actual = contacto.getNotas().get(a-1);
+
+                    // Muestra la nota actual y pide uno nuevo
+                    System.out.println("Nota actual: "+actual);
+                    s = v.recibirString("Nota nueva: ");
+
+                    // Actualizar nota
+                    contacto.getNotas().set(a-1, s);
+                    // Muestra el mensaje de éxito
+                    System.out.println(mensajeExito("La", "cambiada"));
+                }
+                break;
         }
     }
 
@@ -392,6 +421,12 @@ public class SubmenuEditor extends Menu{
                 "El número ingresado no es válido.");
     }
 
+    public int elegirTipoTelefono(){
+        return v.validarInt(1, 3,
+                "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
+                "La opción ingresada no es válida");
+    }
+
     public int elegirEmail(String verbo){
         // Muestra los números guardados
         System.out.println("E-mails guardados: ");
@@ -403,10 +438,26 @@ public class SubmenuEditor extends Menu{
                 "El número ingresado no es válido.");
     }
 
-    public int elegirTipoTelefono(){
-        return v.validarInt(1, 3,
-                "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
-                "La opción ingresada no es válida");
+    public int elegirApodo(String verbo){
+        // Muestra los apodos guardados
+        System.out.println("Apodos guardados: ");
+        System.out.println(enumerarListaString(contacto.getApodos()));
+
+        // Pide al usuario que elija uno
+        return v.validarInt(1, contacto.getApodos().size(),
+                "Escoja el "+tipoSingular+" que quiere "+verbo+": ",
+                "El número ingresado no es válido.");
+    }
+
+    public int elegirNota(String verbo){
+        // Muestra las notas guardadas
+        System.out.println("Notas guardadas: ");
+        System.out.println(enumerarListaString(contacto.getNotas()));
+
+        // Pide al usuario que elija una
+        return v.validarInt(1, contacto.getNotas().size(),
+                "Escoja la "+tipoSingular+" que quiere "+verbo+": ",
+                "El número ingresado no es válido.");
     }
 
     /**

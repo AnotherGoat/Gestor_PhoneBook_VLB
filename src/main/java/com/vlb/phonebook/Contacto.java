@@ -159,7 +159,7 @@ public class Contacto {
             }
         }
 
-        if (apodo != null) {
+        if (apodos != null) {
             s.append("\nApodos guardados:");
             for(String a: apodos) {
                 s.append("\n"+a);
