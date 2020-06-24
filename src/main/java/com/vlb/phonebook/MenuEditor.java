@@ -90,7 +90,7 @@ public class MenuEditor extends Menu {
                 break;
 
             case DIRECCION+1: //// "Editar dirección"
-                switchDireccion();
+                sub = new SubmenuEditor(aux, DIRECCION);
                 System.out.println(aux.toString());
                 break;
 
@@ -111,17 +111,6 @@ public class MenuEditor extends Menu {
             case NOTAS+2: //// "Salir"
                 this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
-    }
-
-    /**
-     * Método con la opción 5 del menú, editar direcciones
-     */
-    public void switchDireccion(){
-        String s;
-
-        s = v.recibirString("Ingrese la dirección: ");
-        aux.setDireccion(s);
-        System.out.println("La dirección fue agregada con éxito.");
     }
 
     /**

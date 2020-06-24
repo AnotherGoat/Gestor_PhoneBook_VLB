@@ -43,17 +43,10 @@ public class Contacto {
 
     //// Constructores
     public Contacto(){
-        // Inician en -1 para no mostrarlos en el toString()
-        this.telefonoFijo = -1;
-        this.telefonoTrabajo = -1;
     }
 
     public Contacto(String nombre) {
         this.nombre = nombre;
-
-        // Inician en -1 para no mostrarlos en el toString()
-        this.telefonoFijo = -1;
-        this.telefonoTrabajo = -1;
     }
 
     // Constructor para copiar un contacto
