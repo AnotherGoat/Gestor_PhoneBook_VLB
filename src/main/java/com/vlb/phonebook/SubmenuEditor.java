@@ -98,15 +98,12 @@ public class SubmenuEditor extends Menu{
         System.out.println(mensajeExito("El", "cambiado"));
     }
 
-    public void menuDireccion(){
-        // Aquí va un menú parecido al menuNombre
-    }
-
     /**
      * Método que llena las opciones del submenú
      */
     public void llenarOpciones(){
 
+        //// "Agregar ..."
         // En caso de elegir cualquier opción excepto dirección y fecha de cumpleaños
         if((tipo!=DIRECCION && tipo!=FECHACUMPLE)){
             opciones.add("Agregar " + singular);
@@ -120,6 +117,7 @@ public class SubmenuEditor extends Menu{
             opciones.add("Agregar " + singular);
         }
 
+        //// "Cambiar ..."
         // En caso de elegir cualquier opción excepto dirección y fecha de cumpleaños
         if((tipo!=DIRECCION && tipo!=FECHACUMPLE)){
             opciones.add("Cambiar " + singular);
@@ -160,15 +158,15 @@ public class SubmenuEditor extends Menu{
     private void switchMenu(){
         switch(eleccion){
             case 1: //// "Añadir ..."
-                switchCaso1();
+                switchOpcion1();
                 break;
 
             case 2: //// "Cambiar ..."
-                switchCaso2();
+                switchOpcion2();
                 break;
 
             case 3: //// "Borrar ..."
-                switchCaso3();
+                switchOpcion3();
                 break;
 
             case 4: //// "Volver atrás", no existe en los casos "dirección" y "fechacumple"
@@ -180,7 +178,7 @@ public class SubmenuEditor extends Menu{
     /**
      * Método con los métodos que realiza la primera opción de switchMenu()
      */
-    private void switchCaso1(){
+    private void switchOpcion1(){
         // Se usan para recibir entrada en este switch
         int a, b;
         String s, t;
@@ -260,7 +258,7 @@ public class SubmenuEditor extends Menu{
     /**
      * Método con los métodos que realiza la segunda opción de switchMenu)
      */
-    private void switchCaso2(){
+    private void switchOpcion2(){
         // Se usan para recibir entrada en este switch
         int a, b, c;
         String s;
@@ -377,7 +375,7 @@ public class SubmenuEditor extends Menu{
     /**
      * Método con los métodos que realiza la tercera opción de switchMenu)
      */
-    private void switchCaso3(){
+    private void switchOpcion3(){
         int a;
 
         switch(tipo){
