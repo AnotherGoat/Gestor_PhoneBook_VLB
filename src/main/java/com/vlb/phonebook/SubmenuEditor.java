@@ -180,31 +180,32 @@ public class SubmenuEditor extends Menu{
      */
     private void switchOpcion1(){
         // Se usan para recibir entrada en este switch
-        int a, b;
-        String s, t;
 
         switch(tipo){
             case TELEFONO:
                 // En caso de querer agregar un teléfono
-                a = v.validarInt(1, 999999999,
+                int numeroNuevo = v.validarInt(1, 999999999,
                         "Ingrese el número de teléfono: ",
                         "El número de teléfono ingresado no es válido.");
 
-                b = elegirTipoTelefono();
+                int tipoNumero = elegirTipoTelefono();
 
-                // Esta sección cambia según el caso
-                switch (b) {
-                    case 1 -> contacto.getTelefonos().add(new Telefono(a, "Celular"));
-                    case 2 -> contacto.getTelefonos().add(new Telefono(a, "Fijo"));
-                    case 3 -> contacto.getTelefonos().add(new Telefono(a, "Trabajo"));
+                // Esta sección cambia según el tipo de número que escogió
+                switch (tipoNumero) {
+                    case 1 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Celular"));
+                    case 2 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Fijo"));
+                    case 3 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Trabajo"));
                 }
+
                 System.out.println(mensajeExito("El","agregado"));
                 break;
 
             case DIRECCION:
+                // Variables que se usan en este caso
                 String ciudadNueva, calleNueva;
                 int numeroNuevo;
 
+                // En caso de no tener una dirección guardada
                 if(contacto.getDireccion()==null){
                     System.out.println("Este contacto no tiene una dirección guardada");
                     System.out.println("Ingrese los datos de la dirección del contacto");
@@ -216,6 +217,8 @@ public class SubmenuEditor extends Menu{
                     // Muestra el mensaje de éxito
                     System.out.println("La dirección fue guardada con éxito.");
                 }
+
+                // En caso de querer cambiar la dirección por una nueva
                 else{
                     System.out.println("Este contacto ya tiene una dirección guardada");
                     System.out.println("Dirección actual: "+contacto.getDireccion().toString());
@@ -274,101 +277,122 @@ public class SubmenuEditor extends Menu{
                 }
 
                 else {
-                    a = elegirTelefono("cambiar");
-                    String actual = contacto.getTelefonos().get(a-1).getNumero()+" ("+contacto.getTelefonos().get(a-1).getTipo()+")";
+                    int posicionTelefono = elegirTelefono("cambiar");
+                    posicionTelefono--; // Le resta 1 porque los ArrayList empiezan con indice 0
+
+                    // Número actual (número + tipo entre paréntesis)
+                    String numeroActual = contacto.getTelefonos().get(posicionTelefono).getNumero()+" ("+contacto.getTelefonos().get(a-1).getTipo()+")";
 
                     // Muestra el número actual y pide uno nuevo
-                    System.out.println("Número actual: "+actual);
-                    b = v.validarInt(1, 999999999,
+                    System.out.println("Número actual: "+numeroActual);
+                    int numeroNuevo = v.validarInt(1, 999999999,
                             "Número nuevo: ",
                             "El número ingresado no es válido.");
 
-                    c = elegirTipoTelefono();
+                    int tipoTelefono = elegirTipoTelefono();
 
-                    // Esta sección cambia según el caso
-                    switch (c) {
-                        case 1 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Celular"));
-                        case 2 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Fijo"));
-                        case 3 -> contacto.getTelefonos().set(a-1, new Telefono(b, "Trabajo"));
+                    // Esta sección cambia según el tipo de teléfono
+                    String tipoString = "";
+                    switch (tipoTelefono) {
+                        case 1 -> tipoString = "Celular";
+                        case 2 -> tipoString = "Fijo";
+                        case 3 -> tipoString = "Trabajo";
                     }
+
+                    // Guarda los cambios
+                    contacto.getTelefonos().set(posicionTelefono, new Telefono(numeroNuevo, tipoString));
                     // Muestra el mensaje de éxito
                     System.out.println(mensajeExito("El", "cambiado"));
                 }
                 break;
 
-            case DIRECCION:
-                if(contacto.getDireccion()==null){ // Si no tiene una dirección guardada
+            case DIRECCION: // Recordar que en este caso, se escoge "Borrar dirección"
+                // Si no tiene una dirección guardada
+                if(contacto.getDireccion()==null){
                     System.out.println("El contacto no tiene una dirección guardada");
                 }
-                else { // Si la tiene, borrarla
+                else { // Si la tiene, borrarla, pero pedir confirmación antes
                     confirmarBorradoDireccion();
                 }
                 break;
 
             case EMAIL:
+                // En caso de no tener e-mails guardados
                 if(contacto.getEmails() == null){
-                    System.out.println("Este contacto no tiene "+ plural +" guardados");
+                    System.out.println("Este contacto no tiene e-mails guardados");
                 }
 
+                // Si hay e-mails guardados
                 else {
-                    a = elegirEmail("cambiar");
-                    String actual = contacto.getEmails().get(a-1);
+                    int posicionEmail = elegirEmail("cambiar");
+                    posicionEmail--; // Le resta 1 porque los ArrayList empiezan desde 0
+                    String emailActual = contacto.getEmails().get(posicionEmail);
 
                     // Muestra el e-mail actual y pide uno nuevo
-                    System.out.println("E-mail actual: "+actual);
-                    s = v.validarEmail();
+                    System.out.println("E-mail actual: "+emailActual);
+                    String emailNuevo = v.validarEmail();
 
                     // Actualizar email
-                    contacto.getEmails().set(a-1, s);
+                    contacto.getEmails().set(posicionEmail, emailNuevo);
                     // Muestra el mensaje de éxito
                     System.out.println(mensajeExito("El", "cambiado"));
                 }
                 break;
 
             case APODO:
+                // En caso de no tener apodos guardados
                 if(contacto.getApodos() == null){
-                    System.out.println("Este contacto no tiene "+ plural +" guardados");
+                    System.out.println("Este contacto no tiene apodos guardados");
                 }
 
+                // En caso de sí tener apodos guardados
                 else {
-                    a = elegirApodo("cambiar");
-                    String actual = contacto.getApodos().get(a-1);
+                    int posicionApodo = elegirApodo("cambiar");
+                    posicionApodo--; // Le resta 1 porque los ArrayList funcionan así
+
+                    // Apodo actual
+                    String apodoActual = contacto.getApodos().get(posicionApodo);
 
                     // Muestra el apodo actual y pide uno nuevo
-                    System.out.println("Apodo actual: "+actual);
-                    s = v.recibirString("Apodo nuevo: ");
+                    System.out.println("Apodo actual: "+apodoActual);
+                    String apodoNuevo = v.recibirString("Apodo nuevo: ");
 
                     // Actualizar apodo
-                    contacto.getApodos().set(a-1, s);
+                    contacto.getApodos().set(posicionApodo, apodoNuevo);
                     // Muestra el mensaje de éxito
                     System.out.println(mensajeExito("El", "cambiado"));
                 }
                 break;
 
             case FECHACUMPLE:
-                if(contacto.getFechaCumple()==null){ // Si no tiene una fecha de cumpleaños guardada
+                // Si no tiene una fecha de cumpleaños guardada
+                if(contacto.getFechaCumple()==null){
                     System.out.println("El contacto no tiene una fecha de cumpleaños guardada");
                 }
-                else { // Si la tiene, borrarla
+                else { // Si la tiene, borrarla, pero pedir confirmación antes
                     confirmarBorradoFechaCumple();
                 }
                 break;
 
             case NOTAS:
+                // Si no hay notas guardadas
                 if(contacto.getNotas() == null){
-                    System.out.println("Este contacto no tiene "+ plural +" guardadas");
+                    System.out.println("Este contacto no tiene notas guardadas");
                 }
 
+                // En caso de que las haya
                 else {
-                    a = elegirNota("cambiar");
-                    String actual = contacto.getNotas().get(a-1);
+                    int posicionNota = elegirNota("cambiar");
+                    posicionNota--; // Le resta 1 por el índice
+
+                    String notaActual = contacto.getNotas().get(posicionNota);
 
                     // Muestra la nota actual y pide uno nuevo
-                    System.out.println("Nota actual: "+actual);
-                    s = v.recibirString("Nota nueva: ");
+                    System.out.println("Nota actual: "+notaActual);
+                    String notaNueva = v.recibirString("Nota nueva: ");
 
                     // Actualizar nota
-                    contacto.getNotas().set(a-1, s);
+                    contacto.getNotas().set(posicionNota, notaNueva);
                     // Muestra el mensaje de éxito
                     System.out.println(mensajeExito("La", "cambiada"));
                 }
