@@ -203,7 +203,7 @@ public class SubmenuEditor extends Menu{
             case DIRECCION:
                 // Variables que se usan en este caso
                 String ciudadNueva, calleNueva;
-                int numeroNuevo;
+                int numeroDireccionNuevo;
 
                 // En caso de no tener una dirección guardada
                 if(contacto.getDireccion()==null){
@@ -212,7 +212,7 @@ public class SubmenuEditor extends Menu{
 
                     ciudadNueva = v.recibirString("Ciudad: ");
                     calleNueva = v.recibirString("Calle: ");
-                    numeroNuevo = v.validarInt("Número: ");
+                    numeroDireccionNuevo = v.validarInt("Número: ");
 
                     // Muestra el mensaje de éxito
                     System.out.println("La dirección fue guardada con éxito.");
@@ -226,14 +226,14 @@ public class SubmenuEditor extends Menu{
 
                     ciudadNueva = v.recibirString("Ciudad actual: "+contacto.getDireccion().getCiudad()+"\nCiudad nueva: ");
                     calleNueva = v.recibirString("Calle actual: "+contacto.getDireccion().getCalle()+"\nCalle nueva: ");
-                    numeroNuevo = v.validarInt("Número actual: "+contacto.getDireccion().getNumero()+"\nNúmero nuevo: ");
+                    numeroDireccionNuevo = v.validarInt("Número actual: "+contacto.getDireccion().getNumero()+"\nNúmero nuevo: ");
 
                     // Muestra el mensaje de éxito
                     System.out.println(mensajeExito("La", "cambiada"));
                 }
 
                 // Guarda la dirección nueva usando los datos ingresados
-                contacto.setDireccion(new Direccion(ciudadNueva, calleNueva, numeroNuevo));
+                contacto.setDireccion(new Direccion(ciudadNueva, calleNueva, numeroDireccionNuevo));
                 break;
 
             case EMAIL:
@@ -266,10 +266,6 @@ public class SubmenuEditor extends Menu{
      * Método con los métodos que realiza la segunda opción de switchMenu)
      */
     private void switchOpcion2(){
-        // Se usan para recibir entrada en este switch
-        int a, b, c;
-        String s;
-
         switch(tipo){
             case TELEFONO:
                 if(contacto.getTelefonos() == null){
@@ -281,7 +277,7 @@ public class SubmenuEditor extends Menu{
                     posicionTelefono--; // Le resta 1 porque los ArrayList empiezan con indice 0
 
                     // Número actual (número + tipo entre paréntesis)
-                    String numeroActual = contacto.getTelefonos().get(posicionTelefono).getNumero()+" ("+contacto.getTelefonos().get(a-1).getTipo()+")";
+                    String numeroActual = contacto.getTelefonos().get(posicionTelefono).getNumero()+" ("+contacto.getTelefonos().get(posicionTelefono).getTipo()+")";
 
                     // Muestra el número actual y pide uno nuevo
                     System.out.println("Número actual: "+numeroActual);
@@ -364,7 +360,7 @@ public class SubmenuEditor extends Menu{
                 }
                 break;
 
-            case FECHACUMPLE:
+            case FECHACUMPLE: // Recordar que en este caso, se escoge "Borrar fecha de cumpleaños"
                 // Si no tiene una fecha de cumpleaños guardada
                 if(contacto.getFechaCumple()==null){
                     System.out.println("El contacto no tiene una fecha de cumpleaños guardada");
@@ -404,41 +400,45 @@ public class SubmenuEditor extends Menu{
      * Método con los métodos que realiza la tercera opción de switchMenu)
      */
     private void switchOpcion3(){
-        int a;
-
         switch(tipo){
             case TELEFONO:
+                // Si no hay teléfonos guardados
                 if(contacto.getTelefonos() == null){
                     System.out.println("Este contacto no tiene "+ plural +" guardados");
                 }
                 else{
-                    a = elegirTelefono("borrar");
-                    confirmarBorradoTelefono(a-1);
+                    int posicionTelefono = elegirTelefono("borrar");
+                    posicionTelefono--; // Le resta 1 por el índice que debe tener
+                    confirmarBorradoTelefono(posicionTelefono);
                 }
                 break;
 
+            // Esto ocurre porque en los casos "dirección" y "fechacumple" solo hay 3 opciones (la opción 4 es "volver atrás")
             case DIRECCION:
             case FECHACUMPLE:
-                volverAtras(); // Esto ocurre porque en los casos "dirección" y "fechacumple" solo hay 3 opciones
+                volverAtras();
                 break;
 
             case EMAIL:
+                // Si no hay e-mails guardados
                 if(contacto.getEmails() == null){
-                    System.out.println("Este contacto no tiene "+ plural +" guardados");
+                    System.out.println("Este contacto no tiene e-mails guardados");
                 }
                 else{
-                    a = elegirEmail("borrar");
-                    confirmarBorradoEmail(a-1);
+                    int posicionEmail = elegirEmail("borrar");
+                    posicionEmail--; // Le resta 1 porque los índices empiezan desde 0
+                    confirmarBorradoEmail(posicionEmail);
                 }
                 break;
 
             case APODO:
                 if(contacto.getApodos() == null){
-                    System.out.println("Este contacto no tiene "+ plural +" guardados");
+                    System.out.println("Este contacto no tiene apodos guardados");
                 }
                 else{
-                    a = elegirApodo("borrar");
-                    confirmarBorradoApodo(a-1);
+                    int posicionApodo = elegirApodo("borrar");
+                    posicionApodo--;
+                    confirmarBorradoApodo(posicionApodo);
                 }
                 break;
 
@@ -447,8 +447,9 @@ public class SubmenuEditor extends Menu{
                     System.out.println("Este contacto no tiene "+ plural +" guardadas");
                 }
                 else{
-                    a = elegirNota("borrar");
-                    confirmarBorradoNota(a-1);
+                    int posicionNota = elegirNota("borrar");
+                    posicionNota--;
+                    confirmarBorradoNota(posicionNota);
                 }
                 break;
         }
