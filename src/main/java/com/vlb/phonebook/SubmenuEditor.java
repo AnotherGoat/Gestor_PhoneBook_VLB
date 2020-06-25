@@ -1,6 +1,5 @@
 package com.vlb.phonebook;
 
-import java.beans.FeatureDescriptor;
 import java.util.Date;
 
 public class SubmenuEditor extends Menu{
@@ -16,13 +15,13 @@ public class SubmenuEditor extends Menu{
      */
     int tipo; // entre 0 y 8
     /**
-     * Tipo de atributo que se usará en las opciones, en singular
+     * Nombre de atributo que se usará en las opciones, en singular
      */
-    String tipoSingular;
+    String singular;
     /**
-     * Tipo de atributo que se usará en las opciones, en plural
+     * Nombre de atributo que se usará en las opciones, en plural
      */
-    String tipoPlural;
+    String plural;
 
     //// Constructores
     public SubmenuEditor(Contacto contacto, int tipo) {
@@ -33,8 +32,9 @@ public class SubmenuEditor extends Menu{
         this.nombreMenu = "menú de edición de "+tipoPlural;
 
         if(tipo<NOMBRE || tipo>NOTAS){
-            System.out.println("Error: Tipo de dato fuera de rango");
+            System.out.println("Error: Tipo de submenú fuera de rango");
         }
+
         else if(tipo==NOMBRE){
             menuNombre(); // Si quiere cambiar el nombre, no hay opciones
         }
@@ -59,15 +59,15 @@ public class SubmenuEditor extends Menu{
      */
     public void inicializarNombres(){
         switch(tipo){
-            case NOMBRE:
+            case NOMBRE: // No puede ser plural
                 tipoSingular = "nombre";
-                tipoPlural = "nombres";
+                tipoPlural = "nombre";
                 break;
             case TELEFONO:
                 tipoSingular = "número de teléfono";
                 tipoPlural = "números de teléfono";
                 break;
-            case DIRECCION:
+            case DIRECCION: // No puede ser plural
                 tipoSingular = "dirección";
                 tipoPlural = "";
                 break;
@@ -79,9 +79,9 @@ public class SubmenuEditor extends Menu{
                 tipoSingular = "apodo";
                 tipoPlural = "apodos";
                 break;
-            case FECHACUMPLE:
+            case FECHACUMPLE: // No puede ser plural
                 tipoSingular = "fecha de cumpleaños";
-                tipoPlural = "";
+                tipoPlural = "fecha de cumpleaños";
                 break;
             case NOTAS:
                 tipoSingular = "nota";

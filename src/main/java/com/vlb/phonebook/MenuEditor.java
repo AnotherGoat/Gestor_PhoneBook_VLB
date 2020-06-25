@@ -74,7 +74,7 @@ public class MenuEditor extends Menu {
     }
 
     /**
-     * Método para crear menús dependiendo de lo que haya ingresado el usuario
+     * Método para crear submenús dependiendo de lo que haya ingresado el usuario
      */
     private void switchMenu() {
         Menu sub;
