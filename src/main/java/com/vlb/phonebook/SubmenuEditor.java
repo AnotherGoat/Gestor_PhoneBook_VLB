@@ -28,8 +28,8 @@ public class SubmenuEditor extends Menu{
         // Iniciar atributos
         this.contacto = contacto;
         this.tipo = tipo;
-        inicializarNombres(); // tipoSingular y tipoPlural
-        this.nombreMenu = "menú de edición de "+tipoPlural;
+        inicializarNombres(); // en singular y en plural
+        this.nombreMenu = "menú de edición de "+plural;
 
         if(tipo<NOMBRE || tipo>NOTAS){
             System.out.println("Error: Tipo de submenú fuera de rango");
@@ -60,32 +60,32 @@ public class SubmenuEditor extends Menu{
     public void inicializarNombres(){
         switch(tipo){
             case NOMBRE: // No puede ser plural
-                tipoSingular = "nombre";
-                tipoPlural = "nombre";
+                singular = "nombre";
+                plural = "nombre";
                 break;
             case TELEFONO:
-                tipoSingular = "número de teléfono";
-                tipoPlural = "números de teléfono";
+                singular = "número de teléfono";
+                plural = "números de teléfono";
                 break;
             case DIRECCION: // No puede ser plural
-                tipoSingular = "dirección";
-                tipoPlural = "";
+                singular = "dirección";
+                plural = "dirección";
                 break;
             case EMAIL:
-                tipoSingular = "e-mail";
-                tipoPlural = "e-mails";
+                singular = "e-mail";
+                plural = "e-mails";
                 break;
             case APODO:
-                tipoSingular = "apodo";
-                tipoPlural = "apodos";
+                singular = "apodo";
+                plural = "apodos";
                 break;
             case FECHACUMPLE: // No puede ser plural
-                tipoSingular = "fecha de cumpleaños";
-                tipoPlural = "fecha de cumpleaños";
+                singular = "fecha de cumpleaños";
+                plural = "fecha de cumpleaños";
                 break;
             case NOTAS:
-                tipoSingular = "nota";
-                tipoPlural = "notas";
+                singular = "nota";
+                plural = "notas";
         }
     }
 
@@ -109,31 +109,31 @@ public class SubmenuEditor extends Menu{
 
         // En caso de elegir cualquier opción excepto dirección y fecha de cumpleaños
         if((tipo!=DIRECCION && tipo!=FECHACUMPLE)){
-            opciones.add("Agregar " + tipoSingular);
+            opciones.add("Agregar " + singular);
         }
         // Si no hay una dirección guardada
         else if((tipo==DIRECCION && contacto.getDireccion()==null)){
-            opciones.add("Agregar " + tipoSingular);
+            opciones.add("Agregar " + singular);
         }
         // Si no hay una fecha de cumpleaños guardada
         else if((tipo==FECHACUMPLE && contacto.getFechaCumple()==null)){
-            opciones.add("Agregar " + tipoSingular);
+            opciones.add("Agregar " + singular);
         }
 
         // En caso de elegir cualquier opción excepto dirección y fecha de cumpleaños
         if((tipo!=DIRECCION && tipo!=FECHACUMPLE)){
-            opciones.add("Cambiar " + tipoSingular);
+            opciones.add("Cambiar " + singular);
         }
         // Si ya hay una dirección guardada
         else if((tipo==DIRECCION && contacto.getDireccion()!=null)){
-            opciones.add("Cambiar " + tipoSingular);
+            opciones.add("Cambiar " + singular);
         }
         // Si ya hay una fecha de cumpleaños guardada
         else if((tipo==FECHACUMPLE && contacto.getFechaCumple()!=null)){
-            opciones.add("Cambiar " + tipoSingular);
+            opciones.add("Cambiar " + singular);
         }
 
-        opciones.add("Borrar "+tipoSingular);
+        opciones.add("Borrar "+singular);
         opciones.add("Volver atrás");
     }
 
@@ -144,7 +144,7 @@ public class SubmenuEditor extends Menu{
         // Muestra el nombre del gestor con algo de decoración
         mostrarLogo();
 
-        System.out.println("Menú de edición de "+tipoPlural+":");
+        System.out.println("Menú de edición de "+plural+":");
 
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
@@ -189,8 +189,8 @@ public class SubmenuEditor extends Menu{
             case TELEFONO:
                 // En caso de querer agregar un teléfono
                 a = v.validarInt(1, 999999999,
-                        "Ingrese el "+tipoSingular +": ",
-                        "El "+tipoSingular+" ingresado no es válido.");
+                        "Ingrese el "+singular +": ",
+                        "El "+singular+" ingresado no es válido.");
 
                 b = elegirTipoTelefono();
 
@@ -213,7 +213,7 @@ public class SubmenuEditor extends Menu{
                     a = v.validarInt("Número: ");
 
                     // Muestra el mensaje de éxito
-                    System.out.println("La " + tipoSingular + " fue guardada con éxito.");
+                    System.out.println("La " + singular + " fue guardada con éxito.");
                 }
                 else{
                     System.out.println("Este contacto ya tiene una dirección guardada");
@@ -268,7 +268,7 @@ public class SubmenuEditor extends Menu{
         switch(tipo){
             case TELEFONO:
                 if(contacto.getTelefonos() == null){
-                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                    System.out.println("Este contacto no tiene "+ plural +" guardados");
                 }
 
                 else {
@@ -305,7 +305,7 @@ public class SubmenuEditor extends Menu{
 
             case EMAIL:
                 if(contacto.getEmails() == null){
-                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                    System.out.println("Este contacto no tiene "+ plural +" guardados");
                 }
 
                 else {
@@ -325,7 +325,7 @@ public class SubmenuEditor extends Menu{
 
             case APODO:
                 if(contacto.getApodos() == null){
-                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                    System.out.println("Este contacto no tiene "+ plural +" guardados");
                 }
 
                 else {
@@ -354,7 +354,7 @@ public class SubmenuEditor extends Menu{
 
             case NOTAS:
                 if(contacto.getNotas() == null){
-                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardadas");
+                    System.out.println("Este contacto no tiene "+ plural +" guardadas");
                 }
 
                 else {
@@ -383,7 +383,7 @@ public class SubmenuEditor extends Menu{
         switch(tipo){
             case TELEFONO:
                 if(contacto.getTelefonos() == null){
-                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                    System.out.println("Este contacto no tiene "+ plural +" guardados");
                 }
                 else{
                     a = elegirTelefono("borrar");
@@ -398,7 +398,7 @@ public class SubmenuEditor extends Menu{
 
             case EMAIL:
                 if(contacto.getEmails() == null){
-                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                    System.out.println("Este contacto no tiene "+ plural +" guardados");
                 }
                 else{
                     a = elegirEmail("borrar");
@@ -408,7 +408,7 @@ public class SubmenuEditor extends Menu{
 
             case APODO:
                 if(contacto.getApodos() == null){
-                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardados");
+                    System.out.println("Este contacto no tiene "+ plural +" guardados");
                 }
                 else{
                     a = elegirApodo("borrar");
@@ -418,7 +418,7 @@ public class SubmenuEditor extends Menu{
 
             case NOTAS:
                 if(contacto.getNotas() == null){
-                    System.out.println("Este contacto no tiene "+ tipoPlural +" guardadas");
+                    System.out.println("Este contacto no tiene "+ plural +" guardadas");
                 }
                 else{
                     a = elegirNota("borrar");
@@ -443,7 +443,7 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija uno
         return v.validarInt(1, contacto.getTelefonos().size(),
-                "Escoja el "+tipoSingular+" que quiere "+verbo+": ",
+                "Escoja el "+singular+" que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
@@ -460,7 +460,7 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija uno
         return v.validarInt(1, contacto.getEmails().size(),
-                "Escoja el "+tipoSingular+" que quiere "+verbo+": ",
+                "Escoja el "+singular+" que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
@@ -471,7 +471,7 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija uno
         return v.validarInt(1, contacto.getApodos().size(),
-                "Escoja el "+tipoSingular+" que quiere "+verbo+": ",
+                "Escoja el "+singular+" que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
@@ -482,7 +482,7 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija una
         return v.validarInt(1, contacto.getNotas().size(),
-                "Escoja la "+tipoSingular+" que quiere "+verbo+": ",
+                "Escoja la "+singular+" que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
@@ -606,6 +606,6 @@ public class SubmenuEditor extends Menu{
      * @return Retorna un String con un mensaje de éxito
      */
     private String mensajeExito(String articulo, String accion) {
-        return articulo + " " + tipoSingular + " fue " + accion + " con éxito.";
+        return articulo + " " + singular + " fue " + accion + " con éxito.";
     }
 }
