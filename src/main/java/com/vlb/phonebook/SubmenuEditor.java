@@ -187,8 +187,8 @@ public class SubmenuEditor extends Menu{
             case TELEFONO:
                 // En caso de querer agregar un teléfono
                 a = v.validarInt(1, 999999999,
-                        "Ingrese el "+singular +": ",
-                        "El "+singular+" ingresado no es válido.");
+                        "Ingrese el número de teléfono: ",
+                        "El número de teléfono ingresado no es válido.");
 
                 b = elegirTipoTelefono();
 
@@ -202,45 +202,49 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case DIRECCION:
+                String ciudadNueva, calleNueva;
+                int numeroNuevo;
+
                 if(contacto.getDireccion()==null){
                     System.out.println("Este contacto no tiene una dirección guardada");
                     System.out.println("Ingrese los datos de la dirección del contacto");
 
-                    s = v.recibirString("Ciudad: ");
-                    t = v.recibirString("Calle: ");
-                    a = v.validarInt("Número: ");
+                    ciudadNueva = v.recibirString("Ciudad: ");
+                    calleNueva = v.recibirString("Calle: ");
+                    numeroNuevo = v.validarInt("Número: ");
 
                     // Muestra el mensaje de éxito
-                    System.out.println("La " + singular + " fue guardada con éxito.");
+                    System.out.println("La dirección fue guardada con éxito.");
                 }
                 else{
                     System.out.println("Este contacto ya tiene una dirección guardada");
                     System.out.println("Dirección actual: "+contacto.getDireccion().toString());
                     System.out.println("Ingrese los datos de la nueva dirección del contacto");
 
-                    s = v.recibirString("Ciudad actual: "+contacto.getDireccion().getCiudad()+"\nCiudad nueva: ");
-                    t = v.recibirString("Calle actual: "+contacto.getDireccion().getCalle()+"\nCalle nueva: ");
-                    a = v.validarInt("Número actual: "+contacto.getDireccion().getNumero()+"\nNúmero nuevo: ");
+                    ciudadNueva = v.recibirString("Ciudad actual: "+contacto.getDireccion().getCiudad()+"\nCiudad nueva: ");
+                    calleNueva = v.recibirString("Calle actual: "+contacto.getDireccion().getCalle()+"\nCalle nueva: ");
+                    numeroNuevo = v.validarInt("Número actual: "+contacto.getDireccion().getNumero()+"\nNúmero nuevo: ");
 
                     // Muestra el mensaje de éxito
                     System.out.println(mensajeExito("La", "cambiada"));
                 }
-                // Guarda la dirección
-                contacto.setDireccion(new Direccion(s, t, a));
+
+                // Guarda la dirección nueva usando los datos ingresados
+                contacto.setDireccion(new Direccion(ciudadNueva, calleNueva, numeroNuevo));
                 break;
 
             case EMAIL:
-                s = v.validarEmail();
+                String emailNuevo = v.validarEmail();
 
                 // Guarda el e-mail y muestra un mensaje de éxito
-                contacto.getEmails().add(s);
+                contacto.getEmails().add(emailNuevo);
 
                 System.out.println(mensajeExito("El", "agregado"));
                 break;
 
             case APODO:
-                s = v.recibirString("Ingrese el apodo: ");
-                contacto.getApodos().add(s);
+                String apodoNuevo = v.recibirString("Ingrese el apodo: ");
+                contacto.getApodos().add(apodoNuevo);
                 System.out.println(mensajeExito("El", "agregado"));
                 break;
 
@@ -248,9 +252,9 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case NOTAS:
-                s = v.recibirString("Ingrese la nota: ");
+                String notaNueva = v.recibirString("Ingrese la nota: ");
 
-                contacto.getNotas().add(s);
+                contacto.getNotas().add(notaNueva);
                 System.out.println(mensajeExito("La", "agregada"));
         }
     }
