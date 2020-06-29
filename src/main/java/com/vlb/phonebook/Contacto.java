@@ -3,8 +3,6 @@ package com.vlb.phonebook;
 // Importa la clase ArrayList (todavía no se usa en esta clase)
 import java.util.List;
 import java.util.ArrayList;
-// Importa la clase Date
-import java.util.Date;
 
 /**
  * Esta clase contiene los datos que se guardarán para cada contacto
@@ -35,7 +33,7 @@ public class Contacto {
     /**
      * Fecha de cumpleaños del contacto
      */
-    private Date fechaCumple = new Date();
+    private FechaCumple fechaCumple = new FechaCumple();
     /**
      * ArrayList con las notas adicionales que se quieran agregar sobre el contacto
      */
@@ -68,7 +66,7 @@ public class Contacto {
             this.apodos.addAll(c.apodos);
 
             // Copia la fecha de cumpleaños desde c
-            this.fechaCumple = c.fechaCumple;
+            this.fechaCumple = new FechaCumple(c.fechaCumple);
 
             // Copia las notas desde c
             this.notas.addAll(c.notas);
@@ -116,11 +114,11 @@ public class Contacto {
         this.apodos = apodos;
     }
 
-    public Date getFechaCumple() {
+    public FechaCumple getFechaCumple() {
         return fechaCumple;
     }
 
-    public void setFechaCumple(Date fechaCumple) {
+    public void setFechaCumple(FechaCumple fechaCumple) {
         this.fechaCumple = fechaCumple;
     }
 
@@ -167,11 +165,11 @@ public class Contacto {
         }
 
         if (fechaCumple != null) {
-            s.append("\nFecha de cumpleaños: ").append(fechaCumple);
+            s.append("\n" + fechaCumple.toString());
         }
 
         if (notas != null) {
-            s.append("\nNotas adicionales:");
+            s.append("\nNotas guardadas:");
             for(String n: notas) {
                 s.append("\n"+n);
             }
@@ -290,5 +288,77 @@ class Direccion {
     @Override
     public String toString() {
         return "Dirección: "+ciudad + ", " + calle + ", #" + numero;
+    }
+}
+
+/**
+ * Esta clase almacena la fecha de cumpleaños de un contacto (día y mes)
+ */
+class FechaCumple {
+    /**
+     * Int con el número del día de cumpleaños
+     */
+    private int dia;
+    /**
+     * Int que representa el mes del cumpleaños
+     */
+    private int numeroMes;
+    /**
+     * String con el nombre del mes de cumpleaños
+     */
+    private String mes;
+    /**
+     * Arreglo con los meses del año
+     */
+    private final String[] listaMeses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
+
+    //// Constructores
+    public FechaCumple() {
+
+    }
+
+    public FechaCumple(int dia, int numeroMes) {
+        this.dia = dia;
+        this.numeroMes = numeroMes;
+        this.mes = listaMeses[numeroMes - 1];
+    }
+
+    public FechaCumple(FechaCumple fc) {
+        if(fc!=null) {
+            this.dia = fc.dia;
+            this.numeroMes = fc.numeroMes;
+            this.mes = fc.mes;
+        }
+    }
+
+    //// Getters y Setters
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getNumeroMes() {
+        return numeroMes;
+    }
+
+    public void setNumeroMes(int numeroMes) {
+        this.numeroMes = numeroMes;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    //// toString
+    @Override
+    public String toString() {
+        return "Fecha de cumpleaños: " + dia + " de " + mes;
     }
 }

@@ -252,6 +252,85 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case FECHACUMPLE:
+                // Variables que se usan en este caso
+                int mesNuevo, diaNuevo;
+                int diasDelMes = 0;
+
+                // En caso de no tener una fecha de cumpleaños guardada
+                if(contacto.getFechaCumple()==null){
+                    System.out.println("Este contacto no tiene una fecha de cumpleaños guardada");
+                    System.out.println("Ingrese los datos de la fecha de cumpleaños del contacto");
+
+                    mesNuevo = v.validarInt(1, 12, "Mes: ", "Error: Por favor ingrese un número entre 1 y 12");
+
+                    // Define la cantidad de días, según el mes ingresado
+                    switch(mesNuevo){
+                        case 2: // Febrero
+                            diasDelMes = 29;
+                            break;
+                        case 4: // Abril
+                        case 6: // Junio
+                        case 9: // Septiembre
+                        case 11: // Noviembre
+                            diasDelMes = 30;
+                            break;
+                        case 1: // Enero
+                        case 3: // Marzo
+                        case 5: // Mayo
+                        case 7: // Julio
+                        case 8: // Agosto
+                        case 10: // Octubre
+                        case 12: // Diciembre
+                            diasDelMes = 31;
+                    }
+
+                    diaNuevo = v.validarInt(1, diasDelMes, "Día: ", "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
+
+                    // Muestra el mensaje de éxito
+                    System.out.println("La fecha de cumpleaños fue guardada con éxito.");
+                }
+
+                // En caso de querer cambiar la dirección por una nueva
+                else{
+                    System.out.println("Este contacto ya tiene una fecha de cumpleaños guardada");
+                    System.out.println("Fecha de cumpleaños actual: "+contacto.getFechaCumple().toString());
+                    System.out.println("Ingrese los datos de la nueva fecha de cumpleaños");
+
+                    // Pide al usuario que ingrese el mes nuevo
+                    mesNuevo = v.validarInt(1, 12,
+                            "Mes actual: "+contacto.getFechaCumple().getMes()+" ("+contacto.getFechaCumple().getNumeroMes()+")\nCiudad nueva: ",
+                            "Error: Por favor ingrese un número entre 1 y 12");
+
+                    // Define la cantidad de días, según el mes ingresado
+                    switch(mesNuevo){
+                        case 2: // Febrero
+                            diasDelMes = 29;
+                            break;
+                        case 4: // Abril
+                        case 6: // Junio
+                        case 9: // Septiembre
+                        case 11: // Noviembre
+                            diasDelMes = 30;
+                            break;
+                        case 1: // Enero
+                        case 3: // Marzo
+                        case 5: // Mayo
+                        case 7: // Julio
+                        case 8: // Agosto
+                        case 10: // Octubre
+                        case 12: // Diciembre
+                            diasDelMes = 31;
+                    }
+
+                    diaNuevo = v.validarInt(1, diasDelMes, "Día actual: "+contacto.getFechaCumple().getDia()+"\nDía nuevo: ",
+                            "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
+
+                    // Muestra el mensaje de éxito
+                    System.out.println("La fecha de cumpleaños fue guardada con éxito.");
+                }
+
+                // Guarda la fecha de cumpleaños nueva
+                contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
                 break;
 
             case NOTAS:
@@ -597,7 +676,7 @@ public class SubmenuEditor extends Menu{
 
         switch(x){
             case 1:
-                contacto.setFechaCumple(new Date());
+                contacto.setFechaCumple(new FechaCumple());
                 System.out.println("La dirección ha sido borrada exitosamente.");
                 break;
             case 0:
