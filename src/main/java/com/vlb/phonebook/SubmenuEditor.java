@@ -174,21 +174,7 @@ public class SubmenuEditor extends Menu{
 
         switch(tipo){
             case TELEFONO:
-                // En caso de querer agregar un teléfono
-                int numeroNuevo = v.validarInt(1, 999999999,
-                        "Ingrese el número de teléfono: ",
-                        "El número de teléfono ingresado no es válido.");
-
-                int tipoNumero = elegirTipoTelefono();
-
-                // Esta sección cambia según el tipo de número que escogió
-                switch (tipoNumero) {
-                    case 1 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Celular"));
-                    case 2 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Fijo"));
-                    case 3 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Trabajo"));
-                }
-
-                System.out.println(mensajeExito("El","agregado"));
+                agregarTelefono();
                 break;
 
             case DIRECCION:
@@ -198,33 +184,13 @@ public class SubmenuEditor extends Menu{
 
                 // En caso de no tener una dirección guardada
                 if(contacto.getDireccion()==null){
-                    System.out.println("Este contacto no tiene una dirección guardada");
-                    System.out.println("Ingrese los datos de la dirección del contacto");
-
-                    ciudadNueva = v.recibirString("Ciudad: ");
-                    calleNueva = v.recibirString("Calle: ");
-                    numeroDireccionNuevo = v.validarInt("Número: ");
-
-                    // Muestra el mensaje de éxito
-                    System.out.println("La dirección fue guardada con éxito.");
+                    agregarDireccion();
                 }
 
                 // En caso de querer cambiar la dirección por una nueva
                 else{
-                    System.out.println("Este contacto ya tiene una dirección guardada");
-                    System.out.println("Dirección actual: "+contacto.getDireccion().toString());
-                    System.out.println("Ingrese los datos de la nueva dirección del contacto");
-
-                    ciudadNueva = v.recibirString("Ciudad actual: "+contacto.getDireccion().getCiudad()+"\nCiudad nueva: ");
-                    calleNueva = v.recibirString("Calle actual: "+contacto.getDireccion().getCalle()+"\nCalle nueva: ");
-                    numeroDireccionNuevo = v.validarInt("Número actual: "+contacto.getDireccion().getNumero()+"\nNúmero nuevo: ");
-
-                    // Muestra el mensaje de éxito
-                    System.out.println(mensajeExito("La", "cambiada"));
+                    cambiarDireccion();
                 }
-
-                // Guarda la dirección nueva usando los datos ingresados
-                contacto.setDireccion(new Direccion(ciudadNueva, calleNueva, numeroDireccionNuevo));
                 break;
 
             case EMAIL:
@@ -553,6 +519,23 @@ public class SubmenuEditor extends Menu{
                 "La opción ingresada no es válida");
     }
 
+    public void agregarTelefono(){
+        int numeroNuevo = v.validarInt(1, 999999999,
+                "Ingrese el número de teléfono: ",
+                "El número de teléfono ingresado no es válido.");
+
+        int tipoNumero = elegirTipoTelefono();
+
+        // Esta sección cambia según el tipo de número que escogió
+        switch (tipoNumero) {
+            case 1 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Celular"));
+            case 2 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Fijo"));
+            case 3 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Trabajo"));
+        }
+
+        System.out.println(mensajeExito("El","agregado"));
+    }
+
     /**
      * Método para confirmar la eliminación de un número de teléfono
      * @param posicion Posición del número que se desea borrar
@@ -574,6 +557,46 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo DIRECCION
+    private void agregarDireccion(){
+        System.out.println("Este contacto no tiene una dirección guardada");
+        System.out.println("Ingrese los datos de la dirección del contacto");
+
+        String ciudadNueva = v.recibirString("Ciudad: ");
+        String calleNueva = v.recibirString("Calle: ");
+        int numeroDireccionNuevo = v.validarInt("Número: ");
+
+        // Guarda la dirección nueva usando los datos ingresados
+        Direccion direccionNueva = new Direccion(ciudadNueva, calleNueva, numeroDireccionNuevo);
+        contacto.setDireccion(direccionNueva);
+
+        // Muestra el mensaje de éxito
+        System.out.println("La dirección fue guardada con éxito.");
+    }
+
+    private void cambiarDireccion(){
+        // Datos actuales de la dirección
+        String direccionActual = contacto.getDireccion().toString();
+        String ciudadActual = contacto.getDireccion().getCiudad();
+        String calleActual = contacto.getDireccion().getCalle();
+        int numeroDireccionActual = contacto.getDireccion().getNumero();
+
+        System.out.println("Este contacto ya tiene una dirección guardada");
+        System.out.println("Dirección actual: "+direccionActual);
+        System.out.println("Ingrese los datos de la nueva dirección del contacto");
+
+        // Datos nuevos de la dirección
+        String ciudadNueva = v.recibirString("Ciudad actual: "+ciudadActual+"\nCiudad nueva: ");
+        String calleNueva = v.recibirString("Calle actual: "+calleActual+"\nCalle nueva: ");
+        int numeroDireccionNuevo = v.validarInt("Número actual: "+numeroDireccionActual+"\nNúmero nuevo: ");
+
+        // Guarda la dirección nueva usando los datos ingresados
+        Direccion direccionNueva = new Direccion(ciudadNueva, calleNueva, numeroDireccionNuevo);
+        contacto.setDireccion(direccionNueva);
+
+        // Muestra el mensaje de éxito
+        System.out.println("La dirección fue guardada con éxito.");
+    }
+
     private void confirmarBorradoDireccion(){
         int x = v.validarInt(0, 1,
                 "Se borrará la dirección del contacto "+contacto.getNombre()+
@@ -711,7 +734,7 @@ public class SubmenuEditor extends Menu{
         System.out.println("Ha salido del "+nombreMenu);
         seguir = false; // No pide confirmación
     }
-    
+
     /**
      * Retorna un String con un mensaje de éxito (artículo "el")
      * @param articulo Artículo con el que empieza el mensaje (debe empezar con mayúscula)
