@@ -1,7 +1,5 @@
 package com.vlb.phonebook;
 
-import java.util.Date;
-
 public class SubmenuEditor extends Menu{
 
     //// Atributos
@@ -165,13 +163,11 @@ public class SubmenuEditor extends Menu{
         }
     }
 
-    //// Métodos del switch
+    //// Métodos de switchMenu
     /**
-     * Método con los métodos que realiza la primera opción de switchMenu()
+     * Switch con los métodos que realiza la primera opción de switchMenu()
      */
     private void switchOpcion1(){
-        // Se usan para recibir entrada en este switch
-
         switch(tipo){
             case TELEFONO:
                 agregarTelefono();
@@ -215,7 +211,7 @@ public class SubmenuEditor extends Menu{
     }
 
     /**
-     * Método con los métodos que realiza la segunda opción de switchMenu)
+     * Switch con los métodos que realiza la segunda opción de switchMenu()
      */
     private void switchOpcion2(){
         switch(tipo){
@@ -287,7 +283,7 @@ public class SubmenuEditor extends Menu{
     }
 
     /**
-     * Método con los métodos que realiza la tercera opción de switchMenu)
+     * Switch con los métodos que realiza la tercera opción de switchMenu()
      */
     private void switchOpcion3(){
         switch(tipo){
@@ -529,6 +525,9 @@ public class SubmenuEditor extends Menu{
         System.out.println(mensajeExito("El", "cambiado"));
     }
 
+    /**
+     * Método que pide la posición de un e-mail para luego borrarlo (después de pedir confirmación)
+     */
     private void borrarEmail(){
         int posicionEmail = elegirEmail("borrar");
         posicionEmail--; // Le resta 1 porque los índices empiezan desde 0
@@ -590,6 +589,9 @@ public class SubmenuEditor extends Menu{
         System.out.println(mensajeExito("El", "cambiado"));
     }
 
+    /**
+     * Método que pide la posición de un apodo para luego borrarlo (después de pedir confirmación)
+     */
     private void borrarApodo(){
         int posicionApodo = elegirApodo("borrar");
         posicionApodo--;
@@ -731,6 +733,9 @@ public class SubmenuEditor extends Menu{
         System.out.println(mensajeExito("La", "cambiada"));
     }
 
+    /**
+     * Método que pide la posición de una nota para luego borrarla (después de pedir confirmación)
+     */
     private void borrarNota(){
         int posicionNota = elegirNota("borrar");
         posicionNota--;
@@ -759,7 +764,7 @@ public class SubmenuEditor extends Menu{
 
     //// Métodos de uso general
     /**
-     * Método para volver atrás (cuarta o tercera opción de switchMenu)
+     * Método para volver al menú editor (cuarta o tercera opción de switchMenu)
      */
     private void volverAtras(){
         System.out.println("Ha salido del "+nombreMenu);
