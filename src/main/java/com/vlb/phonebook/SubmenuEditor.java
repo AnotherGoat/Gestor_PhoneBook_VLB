@@ -36,7 +36,7 @@ public class SubmenuEditor extends Menu{
         }
 
         else if(tipo==NOMBRE){
-            menuNombre(); // Si quiere cambiar el nombre, no hay opciones
+            cambiarNombre(); // Si quiere cambiar el nombre, no hay ninguna opción adicional
         }
 
         else{
@@ -87,15 +87,6 @@ public class SubmenuEditor extends Menu{
                 singular = "nota";
                 plural = "notas";
         }
-    }
-
-    /**
-     * Método con la opción 1 del menú editor, cambiar nombre
-     */
-    public void menuNombre(){
-        String s = v.recibirString("Nombre actual: " +contacto.getNombre()+"\nNombre nuevo: ");
-        contacto.setNombre(s);
-        System.out.println(mensajeExito("El", "cambiado"));
     }
 
     /**
@@ -534,14 +525,17 @@ public class SubmenuEditor extends Menu{
         }
     }
 
+    //// Métodos de atributo NOMBRE
     /**
-     * Método para volver atrás (cuarta o tercera opción de switchMenu)
+     * Método que pide al usuario que ingrese un nombre y lo cambia
      */
-    private void volverAtras(){
-        System.out.println("Ha salido del "+nombreMenu);
-        seguir = false; // No pide confirmación
+    public void cambiarNombre(){
+        String s = v.recibirString("Nombre actual: " +contacto.getNombre()+"\nNombre nuevo: ");
+        contacto.setNombre(s);
+        System.out.println(mensajeExito("El", "cambiado"));
     }
 
+    //// Métodos de atributo TELEFONO
     public int elegirTelefono(String verbo){
         // Muestra los números guardados
         System.out.println("Números de teléfono guardados: ");
@@ -557,39 +551,6 @@ public class SubmenuEditor extends Menu{
         return v.validarInt(1, 3,
                 "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
                 "La opción ingresada no es válida");
-    }
-
-    public int elegirEmail(String verbo){
-        // Muestra los números guardados
-        System.out.println("E-mails guardados: ");
-        System.out.println(enumerarListaString(contacto.getEmails()));
-
-        // Pide al usuario que elija uno
-        return v.validarInt(1, contacto.getEmails().size(),
-                "Escoja el "+singular+" que quiere "+verbo+": ",
-                "El número ingresado no es válido.");
-    }
-
-    public int elegirApodo(String verbo){
-        // Muestra los apodos guardados
-        System.out.println("Apodos guardados: ");
-        System.out.println(enumerarListaString(contacto.getApodos()));
-
-        // Pide al usuario que elija uno
-        return v.validarInt(1, contacto.getApodos().size(),
-                "Escoja el "+singular+" que quiere "+verbo+": ",
-                "El número ingresado no es válido.");
-    }
-
-    public int elegirNota(String verbo){
-        // Muestra las notas guardadas
-        System.out.println("Notas guardadas: ");
-        System.out.println(enumerarListaString(contacto.getNotas()));
-
-        // Pide al usuario que elija una
-        return v.validarInt(1, contacto.getNotas().size(),
-                "Escoja la "+singular+" que quiere "+verbo+": ",
-                "El número ingresado no es válido.");
     }
 
     /**
@@ -612,6 +573,7 @@ public class SubmenuEditor extends Menu{
         }
     }
 
+    //// Métodos de atributo DIRECCION
     private void confirmarBorradoDireccion(){
         int x = v.validarInt(0, 1,
                 "Se borrará la dirección del contacto "+contacto.getNombre()+
@@ -626,6 +588,18 @@ public class SubmenuEditor extends Menu{
             case 0:
                 System.out.println("La dirección no se borró.");
         }
+    }
+
+    //// Métodos de atributo EMAIL
+    public int elegirEmail(String verbo){
+        // Muestra los números guardados
+        System.out.println("E-mails guardados: ");
+        System.out.println(enumerarListaString(contacto.getEmails()));
+
+        // Pide al usuario que elija uno
+        return v.validarInt(1, contacto.getEmails().size(),
+                "Escoja el "+singular+" que quiere "+verbo+": ",
+                "El número ingresado no es válido.");
     }
 
     /**
@@ -648,6 +622,18 @@ public class SubmenuEditor extends Menu{
         }
     }
 
+    //// Métodos de atributo APODO
+    public int elegirApodo(String verbo){
+        // Muestra los apodos guardados
+        System.out.println("Apodos guardados: ");
+        System.out.println(enumerarListaString(contacto.getApodos()));
+
+        // Pide al usuario que elija uno
+        return v.validarInt(1, contacto.getApodos().size(),
+                "Escoja el "+singular+" que quiere "+verbo+": ",
+                "El número ingresado no es válido.");
+    }
+
     /**
      * Método para confirmar la eliminación de un apodo
      * @param posicion Posición del apodo que se desea borrar
@@ -668,6 +654,7 @@ public class SubmenuEditor extends Menu{
         }
     }
 
+    //// Métodos de atributo FECHACUMPLE
     private void confirmarBorradoFechaCumple(){
         int x = v.validarInt(0, 1,
                 "Se borrará la fecha de cumpleaños del contacto "+contacto.getNombre()+
@@ -682,6 +669,18 @@ public class SubmenuEditor extends Menu{
             case 0:
                 System.out.println("La dirección no se borró.");
         }
+    }
+
+    //// Métodos de atributo NOTA
+    public int elegirNota(String verbo){
+        // Muestra las notas guardadas
+        System.out.println("Notas guardadas: ");
+        System.out.println(enumerarListaString(contacto.getNotas()));
+
+        // Pide al usuario que elija una
+        return v.validarInt(1, contacto.getNotas().size(),
+                "Escoja la "+singular+" que quiere "+verbo+": ",
+                "El número ingresado no es válido.");
     }
 
     /**
@@ -704,7 +703,15 @@ public class SubmenuEditor extends Menu{
         }
     }
 
-    //// Métodos de texto
+    //// Métodos de uso general
+    /**
+     * Método para volver atrás (cuarta o tercera opción de switchMenu)
+     */
+    private void volverAtras(){
+        System.out.println("Ha salido del "+nombreMenu);
+        seguir = false; // No pide confirmación
+    }
+    
     /**
      * Retorna un String con un mensaje de éxito (artículo "el")
      * @param articulo Artículo con el que empieza el mensaje (debe empezar con mayúscula)

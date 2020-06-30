@@ -29,7 +29,7 @@ public class MenuEditor extends Menu {
         // Nombre
         this.nombreMenu = "menú de edición";
 
-        // Llenar List con opciones
+        // Llenar ArrayList con opciones
         this.opciones.add("Cambiar nombre");
         this.opciones.add("Editar números de teléfono");
         this.opciones.add("Editar dirección");

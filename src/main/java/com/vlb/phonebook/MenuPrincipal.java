@@ -13,7 +13,7 @@ public class MenuPrincipal extends Menu {
         // Nombre
         this.nombreMenu = "programa";
 
-        // Llenar List con opciones
+        // Llenar ArrayList con opciones
         this.opciones.add("Crear contacto nuevo");
         this.opciones.add("Mostrar lista de contactos");
         this.opciones.add("Ver detalles de un contacto");
