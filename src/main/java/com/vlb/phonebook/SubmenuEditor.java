@@ -178,10 +178,6 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case DIRECCION:
-                // Variables que se usan en este caso
-                String ciudadNueva, calleNueva;
-                int numeroDireccionNuevo;
-
                 // En caso de no tener una dirección guardada
                 if(contacto.getDireccion()==null){
                     agregarDireccion();
@@ -194,107 +190,27 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case EMAIL:
-                String emailNuevo = v.validarEmail();
-
-                // Guarda el e-mail y muestra un mensaje de éxito
-                contacto.getEmails().add(emailNuevo);
-
-                System.out.println(mensajeExito("El", "agregado"));
+                agregarEmail();
                 break;
 
             case APODO:
-                String apodoNuevo = v.recibirString("Ingrese el apodo: ");
-                contacto.getApodos().add(apodoNuevo);
-                System.out.println(mensajeExito("El", "agregado"));
+                agregarApodo();
                 break;
 
             case FECHACUMPLE:
-                // Variables que se usan en este caso
-                int mesNuevo, diaNuevo;
-                int diasDelMes = 0;
-
                 // En caso de no tener una fecha de cumpleaños guardada
                 if(contacto.getFechaCumple()==null){
-                    System.out.println("Este contacto no tiene una fecha de cumpleaños guardada");
-                    System.out.println("Ingrese los datos de la fecha de cumpleaños del contacto");
-
-                    mesNuevo = v.validarInt(1, 12, "Mes: ", "Error: Por favor ingrese un número entre 1 y 12");
-
-                    // Define la cantidad de días, según el mes ingresado
-                    switch(mesNuevo){
-                        case 2: // Febrero
-                            diasDelMes = 29;
-                            break;
-                        case 4: // Abril
-                        case 6: // Junio
-                        case 9: // Septiembre
-                        case 11: // Noviembre
-                            diasDelMes = 30;
-                            break;
-                        case 1: // Enero
-                        case 3: // Marzo
-                        case 5: // Mayo
-                        case 7: // Julio
-                        case 8: // Agosto
-                        case 10: // Octubre
-                        case 12: // Diciembre
-                            diasDelMes = 31;
-                    }
-
-                    diaNuevo = v.validarInt(1, diasDelMes, "Día: ", "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
-
-                    // Muestra el mensaje de éxito
-                    System.out.println("La fecha de cumpleaños fue guardada con éxito.");
+                    agregarFechaCumple();
                 }
 
                 // En caso de querer cambiar la dirección por una nueva
                 else{
-                    System.out.println("Este contacto ya tiene una fecha de cumpleaños guardada");
-                    System.out.println("Fecha de cumpleaños actual: "+contacto.getFechaCumple().toString());
-                    System.out.println("Ingrese los datos de la nueva fecha de cumpleaños");
-
-                    // Pide al usuario que ingrese el mes nuevo
-                    mesNuevo = v.validarInt(1, 12,
-                            "Mes actual: "+contacto.getFechaCumple().getMes()+" ("+contacto.getFechaCumple().getNumeroMes()+")\nCiudad nueva: ",
-                            "Error: Por favor ingrese un número entre 1 y 12");
-
-                    // Define la cantidad de días, según el mes ingresado
-                    switch(mesNuevo){
-                        case 2: // Febrero
-                            diasDelMes = 29;
-                            break;
-                        case 4: // Abril
-                        case 6: // Junio
-                        case 9: // Septiembre
-                        case 11: // Noviembre
-                            diasDelMes = 30;
-                            break;
-                        case 1: // Enero
-                        case 3: // Marzo
-                        case 5: // Mayo
-                        case 7: // Julio
-                        case 8: // Agosto
-                        case 10: // Octubre
-                        case 12: // Diciembre
-                            diasDelMes = 31;
-                    }
-
-                    diaNuevo = v.validarInt(1, diasDelMes, "Día actual: "+contacto.getFechaCumple().getDia()+"\nDía nuevo: ",
-                            "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
-
-                    // Muestra el mensaje de éxito
-                    System.out.println("La fecha de cumpleaños fue guardada con éxito.");
+                    cambiarFechaCumple();
                 }
-
-                // Guarda la fecha de cumpleaños nueva
-                contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
                 break;
 
             case NOTAS:
-                String notaNueva = v.recibirString("Ingrese la nota: ");
-
-                contacto.getNotas().add(notaNueva);
-                System.out.println(mensajeExito("La", "agregada"));
+                agregarNota();
         }
     }
 
@@ -305,36 +221,10 @@ public class SubmenuEditor extends Menu{
         switch(tipo){
             case TELEFONO:
                 if(contacto.getTelefonos() == null){
-                    System.out.println("Este contacto no tiene "+ plural +" guardados");
+                    System.out.println("Este contacto no tiene números de teléfono guardados");
                 }
-
                 else {
-                    int posicionTelefono = elegirTelefono("cambiar");
-                    posicionTelefono--; // Le resta 1 porque los ArrayList empiezan con indice 0
-
-                    // Número actual (número + tipo entre paréntesis)
-                    String numeroActual = contacto.getTelefonos().get(posicionTelefono).getNumero()+" ("+contacto.getTelefonos().get(posicionTelefono).getTipo()+")";
-
-                    // Muestra el número actual y pide uno nuevo
-                    System.out.println("Número actual: "+numeroActual);
-                    int numeroNuevo = v.validarInt(1, 999999999,
-                            "Número nuevo: ",
-                            "El número ingresado no es válido.");
-
-                    int tipoTelefono = elegirTipoTelefono();
-
-                    // Esta sección cambia según el tipo de teléfono
-                    String tipoString = "";
-                    switch (tipoTelefono) {
-                        case 1 -> tipoString = "Celular";
-                        case 2 -> tipoString = "Fijo";
-                        case 3 -> tipoString = "Trabajo";
-                    }
-
-                    // Guarda los cambios
-                    contacto.getTelefonos().set(posicionTelefono, new Telefono(numeroNuevo, tipoString));
-                    // Muestra el mensaje de éxito
-                    System.out.println(mensajeExito("El", "cambiado"));
+                    cambiarTelefono();
                 }
                 break;
 
@@ -356,18 +246,7 @@ public class SubmenuEditor extends Menu{
 
                 // Si hay e-mails guardados
                 else {
-                    int posicionEmail = elegirEmail("cambiar");
-                    posicionEmail--; // Le resta 1 porque los ArrayList empiezan desde 0
-                    String emailActual = contacto.getEmails().get(posicionEmail);
-
-                    // Muestra el e-mail actual y pide uno nuevo
-                    System.out.println("E-mail actual: "+emailActual);
-                    String emailNuevo = v.validarEmail();
-
-                    // Actualizar email
-                    contacto.getEmails().set(posicionEmail, emailNuevo);
-                    // Muestra el mensaje de éxito
-                    System.out.println(mensajeExito("El", "cambiado"));
+                    cambiarEmail();
                 }
                 break;
 
@@ -379,20 +258,7 @@ public class SubmenuEditor extends Menu{
 
                 // En caso de sí tener apodos guardados
                 else {
-                    int posicionApodo = elegirApodo("cambiar");
-                    posicionApodo--; // Le resta 1 porque los ArrayList funcionan así
-
-                    // Apodo actual
-                    String apodoActual = contacto.getApodos().get(posicionApodo);
-
-                    // Muestra el apodo actual y pide uno nuevo
-                    System.out.println("Apodo actual: "+apodoActual);
-                    String apodoNuevo = v.recibirString("Apodo nuevo: ");
-
-                    // Actualizar apodo
-                    contacto.getApodos().set(posicionApodo, apodoNuevo);
-                    // Muestra el mensaje de éxito
-                    System.out.println(mensajeExito("El", "cambiado"));
+                    cambiarApodo();
                 }
                 break;
 
@@ -414,19 +280,7 @@ public class SubmenuEditor extends Menu{
 
                 // En caso de que las haya
                 else {
-                    int posicionNota = elegirNota("cambiar");
-                    posicionNota--; // Le resta 1 por el índice
-
-                    String notaActual = contacto.getNotas().get(posicionNota);
-
-                    // Muestra la nota actual y pide uno nuevo
-                    System.out.println("Nota actual: "+notaActual);
-                    String notaNueva = v.recibirString("Nota nueva: ");
-
-                    // Actualizar nota
-                    contacto.getNotas().set(posicionNota, notaNueva);
-                    // Muestra el mensaje de éxito
-                    System.out.println(mensajeExito("La", "cambiada"));
+                    cambiarNota();
                 }
                 break;
         }
@@ -440,16 +294,14 @@ public class SubmenuEditor extends Menu{
             case TELEFONO:
                 // Si no hay teléfonos guardados
                 if(contacto.getTelefonos() == null){
-                    System.out.println("Este contacto no tiene "+ plural +" guardados");
+                    System.out.println("Este contacto no tiene números de teléfono guardados");
                 }
                 else{
-                    int posicionTelefono = elegirTelefono("borrar");
-                    posicionTelefono--; // Le resta 1 por el índice que debe tener
-                    confirmarBorradoTelefono(posicionTelefono);
+                    borrarTelefono();
                 }
                 break;
 
-            // Esto ocurre porque en los casos "dirección" y "fechacumple" solo hay 3 opciones (la opción 4 es "volver atrás")
+            // Esto ocurre porque en los casos "dirección" y "fechacumple" solo hay 3 opciones (la opción 4 es "volver atrás" en el resto)
             case DIRECCION:
             case FECHACUMPLE:
                 volverAtras();
@@ -461,9 +313,7 @@ public class SubmenuEditor extends Menu{
                     System.out.println("Este contacto no tiene e-mails guardados");
                 }
                 else{
-                    int posicionEmail = elegirEmail("borrar");
-                    posicionEmail--; // Le resta 1 porque los índices empiezan desde 0
-                    confirmarBorradoEmail(posicionEmail);
+                    borrarEmail();
                 }
                 break;
 
@@ -472,20 +322,16 @@ public class SubmenuEditor extends Menu{
                     System.out.println("Este contacto no tiene apodos guardados");
                 }
                 else{
-                    int posicionApodo = elegirApodo("borrar");
-                    posicionApodo--;
-                    confirmarBorradoApodo(posicionApodo);
+                    borrarApodo();
                 }
                 break;
 
             case NOTAS:
                 if(contacto.getNotas() == null){
-                    System.out.println("Este contacto no tiene "+ plural +" guardadas");
+                    System.out.println("Este contacto no tiene notas guardadas");
                 }
                 else{
-                    int posicionNota = elegirNota("borrar");
-                    posicionNota--;
-                    confirmarBorradoNota(posicionNota);
+                    borrarNota();
                 }
                 break;
         }
@@ -495,14 +341,14 @@ public class SubmenuEditor extends Menu{
     /**
      * Método que pide al usuario que ingrese un nombre y lo cambia
      */
-    public void cambiarNombre(){
+    private void cambiarNombre(){
         String s = v.recibirString("Nombre actual: " +contacto.getNombre()+"\nNombre nuevo: ");
         contacto.setNombre(s);
         System.out.println(mensajeExito("El", "cambiado"));
     }
 
     //// Métodos de atributo TELEFONO
-    public int elegirTelefono(String verbo){
+    private int elegirTelefono(String verbo){
         // Muestra los números guardados
         System.out.println("Números de teléfono guardados: ");
         System.out.println(enumerarListaTelefono(contacto.getTelefonos()));
@@ -513,13 +359,13 @@ public class SubmenuEditor extends Menu{
                 "El número ingresado no es válido.");
     }
 
-    public int elegirTipoTelefono(){
+    private int elegirTipoTelefono(){
         return v.validarInt(1, 3,
                 "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
                 "La opción ingresada no es válida");
     }
 
-    public void agregarTelefono(){
+    private void agregarTelefono(){
         int numeroNuevo = v.validarInt(1, 999999999,
                 "Ingrese el número de teléfono: ",
                 "El número de teléfono ingresado no es válido.");
@@ -534,6 +380,41 @@ public class SubmenuEditor extends Menu{
         }
 
         System.out.println(mensajeExito("El","agregado"));
+    }
+
+    private void cambiarTelefono(){
+        int posicionTelefono = elegirTelefono("cambiar");
+        posicionTelefono--; // Le resta 1 porque los ArrayList empiezan con indice 0
+
+        // Número actual (número + tipo entre paréntesis)
+        String numeroActual = contacto.getTelefonos().get(posicionTelefono).getNumero()+" ("+contacto.getTelefonos().get(posicionTelefono).getTipo()+")";
+
+        // Muestra el número actual y pide uno nuevo
+        System.out.println("Número actual: "+numeroActual);
+        int numeroNuevo = v.validarInt(1, 999999999,
+                "Número nuevo: ",
+                "El número ingresado no es válido.");
+
+        int tipoTelefono = elegirTipoTelefono();
+
+        // Esta sección cambia según el tipo de teléfono
+        String tipoString = "";
+        switch (tipoTelefono) {
+            case 1 -> tipoString = "Celular";
+            case 2 -> tipoString = "Fijo";
+            case 3 -> tipoString = "Trabajo";
+        }
+
+        // Guarda los cambios
+        contacto.getTelefonos().set(posicionTelefono, new Telefono(numeroNuevo, tipoString));
+        // Muestra el mensaje de éxito
+        System.out.println(mensajeExito("El", "cambiado"));
+    }
+
+    private void borrarTelefono(){
+        int posicionTelefono = elegirTelefono("borrar");
+        posicionTelefono--; // Le resta 1 por el índice que debe tener
+        confirmarBorradoTelefono(posicionTelefono);
     }
 
     /**
@@ -614,7 +495,7 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo EMAIL
-    public int elegirEmail(String verbo){
+    private int elegirEmail(String verbo){
         // Muestra los números guardados
         System.out.println("E-mails guardados: ");
         System.out.println(enumerarListaString(contacto.getEmails()));
@@ -623,6 +504,35 @@ public class SubmenuEditor extends Menu{
         return v.validarInt(1, contacto.getEmails().size(),
                 "Escoja el "+singular+" que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
+    }
+
+    private void agregarEmail(){
+        String emailNuevo = v.validarEmail();
+
+        // Guarda el e-mail y muestra un mensaje de éxito
+        contacto.getEmails().add(emailNuevo);
+        System.out.println(mensajeExito("El", "agregado"));
+    }
+
+    private void cambiarEmail(){
+        int posicionEmail = elegirEmail("cambiar");
+        posicionEmail--; // Le resta 1 porque los ArrayList empiezan con indice 0
+        String emailActual = contacto.getEmails().get(posicionEmail);
+
+        // Muestra el e-mail actual y pide uno nuevo
+        System.out.println("E-mail actual: "+emailActual);
+        String emailNuevo = v.validarEmail();
+
+        // Actualizar email
+        contacto.getEmails().set(posicionEmail, emailNuevo);
+        // Muestra el mensaje de éxito
+        System.out.println(mensajeExito("El", "cambiado"));
+    }
+
+    private void borrarEmail(){
+        int posicionEmail = elegirEmail("borrar");
+        posicionEmail--; // Le resta 1 porque los índices empiezan desde 0
+        confirmarBorradoEmail(posicionEmail);
     }
 
     /**
@@ -646,7 +556,7 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo APODO
-    public int elegirApodo(String verbo){
+    private int elegirApodo(String verbo){
         // Muestra los apodos guardados
         System.out.println("Apodos guardados: ");
         System.out.println(enumerarListaString(contacto.getApodos()));
@@ -655,6 +565,35 @@ public class SubmenuEditor extends Menu{
         return v.validarInt(1, contacto.getApodos().size(),
                 "Escoja el "+singular+" que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
+    }
+
+    private void agregarApodo(){
+        String apodoNuevo = v.recibirString("Ingrese el apodo: ");
+        contacto.getApodos().add(apodoNuevo);
+        System.out.println(mensajeExito("El", "agregado"));
+    }
+
+    private void cambiarApodo(){
+        int posicionApodo = elegirApodo("cambiar");
+        posicionApodo--; // Le resta 1 porque los ArrayList empiezan con indice 0
+
+        // Apodo actual, según la posición ingresada
+        String apodoActual = contacto.getApodos().get(posicionApodo);
+
+        // Muestra el apodo actual y pide uno nuevo
+        System.out.println("Apodo actual: "+apodoActual);
+        String apodoNuevo = v.recibirString("Apodo nuevo: ");
+
+        // Actualizar apodo
+        contacto.getApodos().set(posicionApodo, apodoNuevo);
+        // Muestra el mensaje de éxito
+        System.out.println(mensajeExito("El", "cambiado"));
+    }
+
+    private void borrarApodo(){
+        int posicionApodo = elegirApodo("borrar");
+        posicionApodo--;
+        confirmarBorradoApodo(posicionApodo);
     }
 
     /**
@@ -678,6 +617,69 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo FECHACUMPLE
+    private void agregarFechaCumple(){
+        System.out.println("Este contacto no tiene una fecha de cumpleaños guardada");
+        System.out.println("Ingrese los datos de la fecha de cumpleaños del contacto");
+
+        int mesNuevo = v.validarInt(1, 12, "Mes: ", "Error: Por favor ingrese un número entre 1 y 12");
+        int diasDelMes = obtenerDiasDelMes(mesNuevo);
+        int diaNuevo = v.validarInt(1, diasDelMes, "Día: ", "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
+
+        // Guarda la fecha de cumpleaños nueva
+        contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
+        // Muestra el mensaje de éxito
+        System.out.println("La fecha de cumpleaños fue guardada con éxito.");
+    }
+
+    private void cambiarFechaCumple(){
+        System.out.println("Este contacto ya tiene una fecha de cumpleaños guardada");
+        System.out.println("Fecha de cumpleaños actual: "+contacto.getFechaCumple().toString());
+        System.out.println("Ingrese los datos de la nueva fecha de cumpleaños");
+
+        // Pide al usuario que ingrese el mes nuevo
+        int mesNuevo = v.validarInt(1, 12,
+                "Mes actual: "+contacto.getFechaCumple().getMes()+" ("+contacto.getFechaCumple().getNumeroMes()+")\nCiudad nueva: ",
+                "Error: Por favor ingrese un número entre 1 y 12");
+
+        int diasDelMes = obtenerDiasDelMes(mesNuevo);
+
+        int diaNuevo = v.validarInt(1, diasDelMes, "Día actual: "+contacto.getFechaCumple().getDia()+"\nDía nuevo: ",
+                "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
+
+        // Guarda la fecha de cumpleaños nueva
+        contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
+        // Muestra el mensaje de éxito
+        System.out.println("La fecha de cumpleaños fue guardada con éxito.");
+    }
+
+    /**
+     * Método que retorna la cantidad de días en un mes, según el mes ingresado
+     * @param mesIngresado Número del mes, entre 1 y 12
+     * @return Cantidad de días que tiene el mes ingresado
+     */
+    private int obtenerDiasDelMes(int mesIngresado){
+        switch(mesIngresado){
+            case 2: // Febrero
+                return 29;
+            case 4: // Abril
+            case 6: // Junio
+            case 9: // Septiembre
+            case 11: // Noviembre
+                return 30;
+            case 1: // Enero
+            case 3: // Marzo
+            case 5: // Mayo
+            case 7: // Julio
+            case 8: // Agosto
+            case 10: // Octubre
+            case 12: // Diciembre
+                return 31;
+        }
+
+        // En caso de error
+        return -1;
+    }
+
     private void confirmarBorradoFechaCumple(){
         int x = v.validarInt(0, 1,
                 "Se borrará la fecha de cumpleaños del contacto "+contacto.getNombre()+
@@ -695,7 +697,7 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo NOTA
-    public int elegirNota(String verbo){
+    private int elegirNota(String verbo){
         // Muestra las notas guardadas
         System.out.println("Notas guardadas: ");
         System.out.println(enumerarListaString(contacto.getNotas()));
@@ -704,6 +706,35 @@ public class SubmenuEditor extends Menu{
         return v.validarInt(1, contacto.getNotas().size(),
                 "Escoja la "+singular+" que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
+    }
+
+    private void agregarNota(){
+        String notaNueva = v.recibirString("Ingrese la nota: ");
+        contacto.getNotas().add(notaNueva);
+        System.out.println(mensajeExito("La", "agregada"));
+    }
+
+    private void cambiarNota(){
+        int posicionNota = elegirNota("cambiar");
+        posicionNota--; // Le resta 1 porque los ArrayList empiezan con indice 0
+
+        // Nota actual, según la posición escogida
+        String notaActual = contacto.getNotas().get(posicionNota);
+
+        // Muestra la nota actual y pide una nueva
+        System.out.println("Nota actual: "+notaActual);
+        String notaNueva = v.recibirString("Nota nueva: ");
+
+        // Actualizar nota
+        contacto.getNotas().set(posicionNota, notaNueva);
+        // Muestra el mensaje de éxito
+        System.out.println(mensajeExito("La", "cambiada"));
+    }
+
+    private void borrarNota(){
+        int posicionNota = elegirNota("borrar");
+        posicionNota--;
+        confirmarBorradoNota(posicionNota);
     }
 
     /**
