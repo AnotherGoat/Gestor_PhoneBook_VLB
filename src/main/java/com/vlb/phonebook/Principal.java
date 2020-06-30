@@ -31,15 +31,11 @@ public class Principal {
 
     //// Atributos
     /**
-     * Objeto de clase MenuPrincipal que se inicia para mostrar el menú
-     */
-    public static MenuPrincipal menu;
-    /**
      * Objeto de la clase Agenda en el cual se almacenan todos los contactos durante la ejecución del programa
      */
     public static Agenda agenda = new Agenda();
 
     public static void main(String[] args) {
-        menu = new MenuPrincipal();
+        MenuPrincipal menu = new MenuPrincipal();
     }
 }
