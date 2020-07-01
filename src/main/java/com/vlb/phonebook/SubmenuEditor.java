@@ -338,12 +338,22 @@ public class SubmenuEditor extends Menu{
      * Método que pide al usuario que ingrese un nombre y lo cambia
      */
     private void cambiarNombre(){
-        String s = v.recibirString("Nombre actual: " +contacto.getNombre()+"\nNombre nuevo: ");
-        contacto.setNombre(s);
+        String nombreActual = contacto.getNombre();
+
+        // Muestra el nombre actual y pide uno nuevo
+        String nombreNuevo = v.recibirString("Nombre actual: " +nombreActual+"\nNombre nuevo: ");
+
+        // Cambia el nombre al nombre nuevo
+        contacto.setNombre(nombreNuevo);
         System.out.println(mensajeExito("El", "cambiado"));
     }
 
     //// Métodos de atributo TELEFONO
+    /**
+     * Permite elegir un teléfono
+     * @param verbo Verbo que va en "Escoja el número de teléfono que quiere ..."
+     * @return posición del teléfono elegido
+     */
     private int elegirTelefono(String verbo){
         // Muestra los números guardados
         System.out.println("Números de teléfono guardados: ");
@@ -351,31 +361,43 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija uno
         return v.validarInt(1, contacto.getTelefonos().size(),
-                "Escoja el "+singular+" que quiere "+verbo+": ",
+                "Escoja el número de teléfono que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
+    /**
+     * Permite elegir el tipo de teléfono (Celular, Fijo o Trabajo)
+     * @return Número de que representa el tipo de teléfono elegido
+     */
     private int elegirTipoTelefono(){
         return v.validarInt(1, 3,
                 "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
                 "La opción ingresada no es válida");
     }
 
+    /**
+     * Permite agregar un número de teléfono nuevo
+     */
     private void agregarTelefono(){
         int numeroNuevo = v.validarNumeroTelefono();
 
-        int tipoNumero = elegirTipoTelefono();
+        int tipoTelefono = elegirTipoTelefono();
 
         // Esta sección cambia según el tipo de número que escogió
-        switch (tipoNumero) {
-            case 1 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Celular"));
-            case 2 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Fijo"));
-            case 3 -> contacto.getTelefonos().add(new Telefono(numeroNuevo, "Trabajo"));
+        String tipoString = "";
+        switch (tipoTelefono) {
+            case 1 -> tipoString = "Celular";
+            case 2 -> tipoString = "Fijo";
+            case 3 -> tipoString = "Trabajo";
         }
 
+        contacto.getTelefonos().add(new Telefono (numeroNuevo, tipoString));
         System.out.println(mensajeExito("El","agregado"));
     }
 
+    /**
+     * Permite cambiar un número de teléfono por uno nuevo
+     */
     private void cambiarTelefono(){
         // Pedir la posición del número
         int posicionTelefono = elegirTelefono("cambiar");
@@ -404,6 +426,9 @@ public class SubmenuEditor extends Menu{
         System.out.println(mensajeExito("El", "cambiado"));
     }
 
+    /**
+     * Permite borrar un número de teléfono (y pide confirmación)
+     */
     private void borrarTelefono(){
         int posicionTelefono = elegirTelefono("borrar");
         posicionTelefono--; // Le resta 1 por el índice que debe tener
@@ -431,6 +456,9 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo DIRECCION
+    /**
+     * Permite agregar una dirección nueva si no hay ninguna antes guardada
+     */
     private void agregarDireccion(){
         System.out.println("Este contacto no tiene una dirección guardada");
         System.out.println("Ingrese los datos de la dirección del contacto");
@@ -447,6 +475,9 @@ public class SubmenuEditor extends Menu{
         System.out.println("La dirección fue guardada con éxito.");
     }
 
+    /**
+     * Permite cambiar la dirección guardada por una nueva
+     */
     private void cambiarDireccion(){
         // Datos actuales de la dirección
         String direccionActual = contacto.getDireccion().toString();
@@ -471,6 +502,9 @@ public class SubmenuEditor extends Menu{
         System.out.println("La dirección fue guardada con éxito.");
     }
 
+    /**
+     * Método para confirmar el borrado de la dirección guardada
+     */
     private void confirmarBorradoDireccion(){
         int x = v.validarInt(0, 1,
                 "Se borrará la dirección del contacto "+contacto.getNombre()+
@@ -488,6 +522,11 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo EMAIL
+    /**
+     * Permite elegir un e-mail
+     * @param verbo Verbo que va en "Escoja el e-mail que quiere ..."
+     * @return Posición del e-mail elegido
+     */
     private int elegirEmail(String verbo){
         // Muestra los números guardados
         System.out.println("E-mails guardados: ");
@@ -495,10 +534,13 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija uno
         return v.validarInt(1, contacto.getEmails().size(),
-                "Escoja el "+singular+" que quiere "+verbo+": ",
+                "Escoja el e-mail que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
+    /**
+     * Permite agregar un nuevo e-mail después de validarlo
+     */
     private void agregarEmail(){
         String emailNuevo = v.validarEmail();
 
@@ -507,6 +549,9 @@ public class SubmenuEditor extends Menu{
         System.out.println(mensajeExito("El", "agregado"));
     }
 
+    /**
+     * Permite cambiar un e-mail guardado por uno nuevo
+     */
     private void cambiarEmail(){
         int posicionEmail = elegirEmail("cambiar");
         posicionEmail--; // Le resta 1 porque los ArrayList empiezan con indice 0
@@ -552,6 +597,11 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo APODO
+    /**
+     * Permite elegir un apdo
+     * @param verbo Verbo que va en "Escoja el apodo que quiere ..."
+     * @return Posición del apodo elegido
+     */
     private int elegirApodo(String verbo){
         // Muestra los apodos guardados
         System.out.println("Apodos guardados: ");
@@ -559,16 +609,22 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija uno
         return v.validarInt(1, contacto.getApodos().size(),
-                "Escoja el "+singular+" que quiere "+verbo+": ",
+                "Escoja el apodo que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
+    /**
+     * Permite agregar un apodo nuevo
+     */
     private void agregarApodo(){
         String apodoNuevo = v.recibirString("Ingrese el apodo: ");
         contacto.getApodos().add(apodoNuevo);
         System.out.println(mensajeExito("El", "agregado"));
     }
 
+    /**
+     * Permite cambiar un apodo por uno nuevo
+     */
     private void cambiarApodo(){
         int posicionApodo = elegirApodo("cambiar");
         posicionApodo--; // Le resta 1 porque los ArrayList empiezan con indice 0
@@ -616,6 +672,10 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo FECHACUMPLE
+
+    /**
+     * Permite agregar una fecha de cumpleaños nueva
+     */
     private void agregarFechaCumple(){
         System.out.println("Este contacto no tiene una fecha de cumpleaños guardada");
         System.out.println("Ingrese los datos de la fecha de cumpleaños del contacto");
@@ -630,6 +690,9 @@ public class SubmenuEditor extends Menu{
         System.out.println("La fecha de cumpleaños fue guardada con éxito.");
     }
 
+    /**
+     * Permite cambiar la fecha de cumpleaños
+     */
     private void cambiarFechaCumple(){
         System.out.println("Este contacto ya tiene una fecha de cumpleaños guardada");
         System.out.println("Fecha de cumpleaños actual: "+contacto.getFechaCumple().toString());
@@ -679,6 +742,9 @@ public class SubmenuEditor extends Menu{
         return -1;
     }
 
+    /**
+     * Método para confirmar el borrado de la fecha de cumpleaños guardada
+     */
     private void confirmarBorradoFechaCumple(){
         int x = v.validarInt(0, 1,
                 "Se borrará la fecha de cumpleaños del contacto "+contacto.getNombre()+
@@ -696,6 +762,11 @@ public class SubmenuEditor extends Menu{
     }
 
     //// Métodos de atributo NOTA
+    /**
+     * Permite elegir una nota entre las guardadas
+     * @param verbo Verbo que va en "Escoja la nota que quiere ..."
+     * @return Posición de la nota elegida
+     */
     private int elegirNota(String verbo){
         // Muestra las notas guardadas
         System.out.println("Notas guardadas: ");
@@ -703,16 +774,22 @@ public class SubmenuEditor extends Menu{
 
         // Pide al usuario que elija una
         return v.validarInt(1, contacto.getNotas().size(),
-                "Escoja la "+singular+" que quiere "+verbo+": ",
+                "Escoja la nota que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
+    /**
+     * Permite agregar una nota nueva
+     */
     private void agregarNota(){
         String notaNueva = v.recibirString("Ingrese la nota: ");
         contacto.getNotas().add(notaNueva);
         System.out.println(mensajeExito("La", "agregada"));
     }
 
+    /**
+     * Permite cambiar una nota guardada por una nueva
+     */
     private void cambiarNota(){
         int posicionNota = elegirNota("cambiar");
         posicionNota--; // Le resta 1 porque los ArrayList empiezan con indice 0
