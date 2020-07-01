@@ -55,11 +55,12 @@ public class Agenda {
      * Método para mostrar detalles de un contacto específico
      */
     public void mostrarContacto() {
-        int idContacto = elegirContacto("ver"); // id Contacto = número con el que se identifica
+        int posicionContacto = elegirContacto("ver");
+        posicionContacto--; // Le resta 1 porque los índices empiezan desde 0
 
         // Muestra los detalles del contacto
-        System.out.println("*****Contacto #"+idContacto+"*****");
-        System.out.println(contactos.get(idContacto - 1).toString());
+        System.out.println("*****Contacto #"+posicionContacto+1+"*****");
+        System.out.println(contactos.get(posicionContacto).toString());
     }
 
     /**
@@ -81,20 +82,24 @@ public class Agenda {
      * Método para mostrar un menú de edición de un contacto
      */
     public void editarContacto() {
-        int idContacto = elegirContacto("editar"); // id Contacto = número con el que se identifica
-        MenuEditor editor = new MenuEditor(idContacto - 1);
+        int posicionContacto = elegirContacto("editar");
+        posicionContacto--; // Le resta 1 porque los índices empiezan desde 0
+
+        MenuEditor editor = new MenuEditor(posicionContacto);
 
         // Actualiza la lista de nombres de la agenda
-        listaNombres.set(idContacto-1, contactos.get(idContacto-1).getNombre());
+        listaNombres.set(posicionContacto, contactos.get(posicionContacto).getNombre());
     }
 
     /**
      * Método para eliminar un contacto
      */
     public void eliminarContacto() {
-        int idContacto = elegirContacto("eliminar"); // id Contacto = número con el que se identifica
+        int posicionContacto = elegirContacto("eliminar");
+        posicionContacto--; // Le resta 1 porque los índices empiezan desde 0
+
         // Pide confirmación para borrar el contacto elegido
-        confirmarBorrado(idContacto-1);
+        confirmarBorrado(posicionContacto);
     }
 
     /**
