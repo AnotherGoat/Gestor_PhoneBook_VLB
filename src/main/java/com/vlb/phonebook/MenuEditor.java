@@ -80,36 +80,29 @@ public class MenuEditor extends Menu {
         Menu sub; // Submenú
 
         switch (eleccion) {
-            case NOMBRE+1: //// "Cambiar nombre"
-                sub = new SubmenuEditor(aux, NOMBRE);
-                break;
+            //// "Cambiar nombre"
+            case NOMBRE + 1 -> sub = new SubmenuEditor(aux, NOMBRE);
 
-            case TELEFONO+1: //// "Editar números de celular"
-                sub = new SubmenuEditor(aux, TELEFONO);
-                break;
+            //// "Editar números de celular"
+            case TELEFONO + 1 -> sub = new SubmenuEditor(aux, TELEFONO);
 
-            case DIRECCION+1: //// "Editar dirección"
-                sub = new SubmenuEditor(aux, DIRECCION);
-                break;
+            //// "Editar dirección"
+            case DIRECCION + 1 -> sub = new SubmenuEditor(aux, DIRECCION);
 
-            case EMAIL+1: //// "Editar e-mails"
-                sub = new SubmenuEditor(aux, EMAIL);
-                break;
+            //// "Editar e-mails"
+            case EMAIL + 1 -> sub = new SubmenuEditor(aux, EMAIL);
 
-            case APODO+1: //// "Editar apodo"
-                sub = new SubmenuEditor(aux, APODO);
-                break;
+            //// "Editar apodo"
+            case APODO + 1 -> sub = new SubmenuEditor(aux, APODO);
 
-            case FECHACUMPLE+1: //// "Editar fecha de cumpleaños"
-                sub = new SubmenuEditor(aux, FECHACUMPLE);
-                break;
+            //// "Editar fecha de cumpleaños"
+            case FECHACUMPLE + 1 -> sub = new SubmenuEditor(aux, FECHACUMPLE);
 
-            case NOTAS+1: //// "Editar notas"
-                sub = new SubmenuEditor(aux, NOTAS);
-                break;
+            //// "Editar notas"
+            case NOTAS + 1 -> sub = new SubmenuEditor(aux, NOTAS);
 
-            case NOTAS+2: //// "Salir"
-                this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
+            //// "Salir"
+            case NOTAS + 2 -> this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
     }
 
