@@ -86,10 +86,6 @@ public class Contacto {
         return telefonos;
     }
 
-    public void setTelefonos(List<Telefono> telefonos) {
-        this.telefonos = telefonos;
-    }
-
     public Direccion getDireccion() {
         return direccion;
     }
@@ -102,16 +98,8 @@ public class Contacto {
         return emails;
     }
 
-    public void setEmails(List<String> emails) {
-        this.emails = emails;
-    }
-
     public List<String> getApodos() {
         return apodos;
-    }
-
-    public void setApodos(List<String> apodos) {
-        this.apodos = apodos;
     }
 
     public FechaCumple getFechaCumple() {
@@ -124,10 +112,6 @@ public class Contacto {
 
     public List<String> getNotas() {
         return notas;
-    }
-
-    public void setNotas(List<String> notas) {
-        this.notas = notas;
     }
 
     /**

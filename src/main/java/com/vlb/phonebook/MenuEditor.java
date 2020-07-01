@@ -18,7 +18,7 @@ public class MenuEditor extends Menu {
     /**
      * Posicion del contacto original en la agenda
      */
-    private int posicionOriginal;
+    private final int posicionOriginal;
     /**
      * Contacto auxiliar, se usa para permitir elegir si guardar los cambios o no
      */
@@ -77,7 +77,7 @@ public class MenuEditor extends Menu {
      * Método para crear submenús dependiendo de lo que haya ingresado el usuario
      */
     private void switchMenu() {
-        Menu sub;
+        Menu sub; // Submenú
 
         switch (eleccion) {
             case NOMBRE+1: //// "Cambiar nombre"
@@ -86,17 +86,14 @@ public class MenuEditor extends Menu {
 
             case TELEFONO+1: //// "Editar números de celular"
                 sub = new SubmenuEditor(aux, TELEFONO);
-                System.out.println(aux.toString());
                 break;
 
             case DIRECCION+1: //// "Editar dirección"
                 sub = new SubmenuEditor(aux, DIRECCION);
-                System.out.println(aux.toString());
                 break;
 
             case EMAIL+1: //// "Editar e-mails"
                 sub = new SubmenuEditor(aux, EMAIL);
-                System.out.println(aux.toString());
                 break;
 
             case APODO+1: //// "Editar apodo"
