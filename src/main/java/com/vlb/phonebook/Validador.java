@@ -80,6 +80,10 @@ public class Validador {
         return x;
     }
 
+    /**
+     * Caso específico de validarInt, se usa para validar un número de teléfono
+     * @return Número de teléfono válido, de no más de 9 dígitos
+     */
     public int validarNumeroTelefono(){
         return validarInt(1, 999999999,
                 "Ingrese el número de teléfono: ",
