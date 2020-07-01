@@ -1,5 +1,6 @@
 package com.vlb.phonebook;
 
+import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -79,6 +80,10 @@ public class Validador {
         return x;
     }
 
+    public int validarNumeroTelefono(){
+        return 0;
+    }
+
     /**
      * Toma entrada de tipo String (no necesita validación)
      * @param texto String que mostrará el programa antes de recibir entrada
@@ -128,8 +133,18 @@ public class Validador {
         return false;
     }
 
-
     //// Métodos que sólo se usan en las pruebas unitarias
+    /**
+     * Método para simular entrada de usuario en los tests
+     * @param entrada String que representa la entrada del usuario
+     */
+    public void simularInput(String entrada){
+        if(entrada!=null) {
+            ByteArrayInputStream in = new ByteArrayInputStream(entrada.getBytes());
+            System.setIn(in);
+        }
+    }
+
     /**
      * Versión simple del try-catch usado en validarInt, se usa para las pruebas unitarias
      * @param texto String que mostrará el programa antes de recibir entrada

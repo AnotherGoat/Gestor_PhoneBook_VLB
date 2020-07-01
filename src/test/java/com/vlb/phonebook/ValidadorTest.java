@@ -18,17 +18,6 @@ public class ValidadorTest {
      */
     Validador v;
 
-    /**
-     * Método para simular entrada de usuario en los tests
-     * @param entrada String que representa la entrada del usuario
-     */
-    public void simularInput(String entrada){
-        if(entrada!=null) {
-            ByteArrayInputStream in = new ByteArrayInputStream(entrada.getBytes());
-            System.setIn(in);
-        }
-    }
-
     @Before
     public void setUp() throws Exception {
         v = new Validador(); // Crea una nueva instancia
@@ -44,11 +33,11 @@ public class ValidadorTest {
      */
     @Test
     public void tryCatchInt1() {
-        simularInput("1");
+        v.simularInput("1");
         assertEquals(1, v.tryCatchInt(""));
-        simularInput("100");
+        v.simularInput("100");
         assertEquals(100, v.tryCatchInt(""));
-        simularInput("-256");
+        v.simularInput("-256");
         assertEquals(-256, v.tryCatchInt(""));
     }
 
@@ -57,11 +46,11 @@ public class ValidadorTest {
      */
     @Test
     public void tryCatchInt2() {
-        simularInput("a");
+        v.simularInput("a");
         assertEquals(-1, v.tryCatchInt(""));
-        simularInput(" ");
+        v.simularInput(" ");
         assertEquals(-1, v.tryCatchInt(""));
-        simularInput("asdasda");
+        v.simularInput("asdasda");
         assertEquals(-1, v.tryCatchInt(""));
     }
 
@@ -70,9 +59,9 @@ public class ValidadorTest {
      */
     @Test
     public void tryCatchInt3() {
-        simularInput("23172617381238");
+        v.simularInput("23172617381238");
         assertEquals(-1, v.tryCatchInt(""));
-        simularInput("-92347821332912");
+        v.simularInput("-92347821332912");
         assertEquals(-1, v.tryCatchInt(""));
     }
 
@@ -81,7 +70,7 @@ public class ValidadorTest {
      */
     @Test
     public void recibirString1() {
-        simularInput("Hola mundo");
+        v.simularInput("Hola mundo");
         assertEquals("Hola mundo", v.recibirString(""));
     }
 

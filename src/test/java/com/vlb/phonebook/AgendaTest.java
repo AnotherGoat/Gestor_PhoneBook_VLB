@@ -10,26 +10,18 @@ import static org.junit.Assert.*;
 
 public class AgendaTest {
 
+    Validador v;
     Agenda a;
-
-    /**
-     * Método para simular entrada de usuario en los tests
-     * @param entrada String que representa la entrada del usuario
-     */
-    public void simularInput(String entrada){
-        if(entrada!=null) {
-            ByteArrayInputStream in = new ByteArrayInputStream(entrada.getBytes());
-            System.setIn(in);
-        }
-    }
 
     @Before
     public void setUp() throws Exception {
+        v = new Validador();
         a = new Agenda(); // Crea una nueva instancia
     }
 
     @After
     public void tearDown() throws Exception {
+        v = null;
         a = null; // Liberar memoria
     }
 
@@ -38,12 +30,12 @@ public class AgendaTest {
      */
     @Test
     public void crearContacto1() {
-        simularInput("Juan Pérez");
+        v.simularInput("Juan Pérez");
         a.crearContacto();
         String nombreContacto = a.getContactos().get(0).getNombre();
         assertEquals("Juan Pérez", nombreContacto);
 
-        simularInput("Pablo");
+        v.simularInput("Pablo");
         a.crearContacto();
         nombreContacto = a.getContactos().get(1).getNombre();
         assertEquals("Pablo", nombreContacto);
@@ -55,18 +47,18 @@ public class AgendaTest {
     @Test
     public void eliminarContacto1() {
         // Crea 2 contactos
-        simularInput("Camila");
+        v.simularInput("Camila");
         a.crearContacto();
-        simularInput("Francisca");
+        v.simularInput("Francisca");
         a.crearContacto();
 
         assertEquals(2, a.getContactos().size()); // Tamaño original
 
         // Simula el borrado del contacto 1 (Camila)
-        simularInput("1");
+        v.simularInput("1");
         int idContacto = a.elegirContacto("eliminar"); // id Contacto = número con el que se identifica
         // Simula la confirmación
-        simularInput(("1"));
+        v.simularInput("1");
         a.confirmarBorrado(idContacto-1);
 
         // Verifica el tamaño y el borrado del contacto correcto

@@ -12,26 +12,22 @@ import static org.junit.Assert.*;
 
 public class MenuTest {
 
-    List<String> op = new ArrayList<>();
+    Validador v;
+    List<String> op;
     Menu m = new Menu(op);
-
-    /**
-     * Método para simular entrada de usuario en los tests
-     * @param entrada String que representa la entrada del usuario
-     */
-    public void simularInput(String entrada){
-        if(entrada!=null) {
-            ByteArrayInputStream in = new ByteArrayInputStream(entrada.getBytes());
-            System.setIn(in);
-        }
-    }
 
     @Before
     public void setUp() throws Exception {
+        v = new Validador();
+        op = new ArrayList<>();
+        m = new Menu(op);
     }
 
     @After
     public void tearDown() throws Exception {
+        v = null;
+        op = null;
+        m = null;
     }
 
     /**
@@ -41,12 +37,12 @@ public class MenuTest {
     public void salir1() {
         m.nombreMenu="";
 
-        simularInput("1");
+        v.simularInput("1");
         assertTrue(m.salir());
 
         System.out.println("");
 
-        simularInput("0");
+        v.simularInput("0");
         assertFalse(m.salir());
     }
 }

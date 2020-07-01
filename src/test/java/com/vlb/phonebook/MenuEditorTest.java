@@ -8,17 +8,21 @@ import static org.junit.Assert.*;
 
 public class MenuEditorTest {
 
+    Validador v;
     Contacto c;
     MenuEditor me;
 
     @Before
     public void setUp() throws Exception {
+        v = new Validador();
         c = new Contacto();
         me = new MenuEditor(0);
     }
 
     @After
     public void tearDown() throws Exception {
+        v = null;
+        c = null;
         me = null;
     }
 
