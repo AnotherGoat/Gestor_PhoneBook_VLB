@@ -13,11 +13,11 @@ public class SubmenuEditor extends Menu{
      */
     int tipo; // entre 0 y 8
     /**
-     * Nombre de atributo que se usará en las opciones, en singular
+     * Nombre de atributo del contacto que se usará en las opciones, en singular
      */
     String singular;
     /**
-     * Nombre de atributo que se usará en las opciones, en plural
+     * Nombre de atributo del contacto que se usará en las opciones, en plural
      */
     String plural;
 
@@ -99,11 +99,11 @@ public class SubmenuEditor extends Menu{
         }
         // Si no hay una dirección guardada
         else if((tipo==DIRECCION && contacto.getDireccion()==null)){
-            opciones.add("Agregar " + singular);
+            opciones.add("Agregar dirección");
         }
         // Si no hay una fecha de cumpleaños guardada
         else if((tipo==FECHACUMPLE && contacto.getFechaCumple()==null)){
-            opciones.add("Agregar " + singular);
+            opciones.add("Agregar fecha de cumpleaños");
         }
 
         //// "Cambiar ..."
@@ -113,11 +113,11 @@ public class SubmenuEditor extends Menu{
         }
         // Si ya hay una dirección guardada
         else if((tipo==DIRECCION && contacto.getDireccion()!=null)){
-            opciones.add("Cambiar " + singular);
+            opciones.add("Cambiar dirección");
         }
         // Si ya hay una fecha de cumpleaños guardada
         else if((tipo==FECHACUMPLE && contacto.getFechaCumple()!=null)){
-            opciones.add("Cambiar " + singular);
+            opciones.add("Cambiar fecha de cumpleaños");
         }
 
         opciones.add("Borrar "+singular);

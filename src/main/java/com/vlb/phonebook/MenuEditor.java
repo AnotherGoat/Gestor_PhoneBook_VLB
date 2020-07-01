@@ -22,7 +22,7 @@ public class MenuEditor extends Menu {
     /**
      * Contacto auxiliar, se usa para permitir elegir si guardar los cambios o no
      */
-    protected Contacto aux = new Contacto();
+    protected Contacto aux;
 
     //// Constructores
     public MenuEditor(int posicionOriginal) {
