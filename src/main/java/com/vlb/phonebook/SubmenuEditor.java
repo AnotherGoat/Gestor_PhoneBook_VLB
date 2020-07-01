@@ -216,7 +216,7 @@ public class SubmenuEditor extends Menu{
     private void switchOpcion2(){
         switch(tipo){
             case TELEFONO:
-                if(contacto.getTelefonos() == null){
+                if(contacto.getTelefonos().size() == 0){
                     System.out.println("Este contacto no tiene números de teléfono guardados");
                 }
                 else {
@@ -236,7 +236,7 @@ public class SubmenuEditor extends Menu{
 
             case EMAIL:
                 // En caso de no tener e-mails guardados
-                if(contacto.getEmails() == null){
+                if(contacto.getEmails().size() == 0){
                     System.out.println("Este contacto no tiene e-mails guardados");
                 }
 
@@ -248,7 +248,7 @@ public class SubmenuEditor extends Menu{
 
             case APODO:
                 // En caso de no tener apodos guardados
-                if(contacto.getApodos() == null){
+                if(contacto.getApodos().size() == 0){
                     System.out.println("Este contacto no tiene apodos guardados");
                 }
 
@@ -270,7 +270,7 @@ public class SubmenuEditor extends Menu{
 
             case NOTAS:
                 // Si no hay notas guardadas
-                if(contacto.getNotas() == null){
+                if(contacto.getNotas().size() == 0){
                     System.out.println("Este contacto no tiene notas guardadas");
                 }
 
@@ -289,7 +289,7 @@ public class SubmenuEditor extends Menu{
         switch(tipo){
             case TELEFONO:
                 // Si no hay teléfonos guardados
-                if(contacto.getTelefonos() == null){
+                if(contacto.getTelefonos().size() == 0){
                     System.out.println("Este contacto no tiene números de teléfono guardados");
                 }
                 else{
@@ -305,7 +305,7 @@ public class SubmenuEditor extends Menu{
 
             case EMAIL:
                 // Si no hay e-mails guardados
-                if(contacto.getEmails() == null){
+                if(contacto.getEmails().size() == 0){
                     System.out.println("Este contacto no tiene e-mails guardados");
                 }
                 else{
@@ -314,7 +314,7 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case APODO:
-                if(contacto.getApodos() == null){
+                if(contacto.getApodos().size() == 0){
                     System.out.println("Este contacto no tiene apodos guardados");
                 }
                 else{
@@ -323,7 +323,7 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case NOTAS:
-                if(contacto.getNotas() == null){
+                if(contacto.getNotas().size() == 0){
                     System.out.println("Este contacto no tiene notas guardadas");
                 }
                 else{
