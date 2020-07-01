@@ -56,7 +56,7 @@ public class Contacto {
             // Copia los telefonos desde c
             this.telefonos.addAll(c.telefonos);
 
-            // Copia la dirección desde c
+            // Copia la dirección desde c, en una nueva instancia
             this.direccion = new Direccion(c.direccion);
 
             // Copia los e-mails desde c
@@ -65,7 +65,7 @@ public class Contacto {
             // Copia los apodos desde c
             this.apodos.addAll(c.apodos);
 
-            // Copia la fecha de cumpleaños desde c
+            // Copia la fecha de cumpleaños desde c, en una nueva instancia
             this.fechaCumple = new FechaCumple(c.fechaCumple);
 
             // Copia las notas desde c

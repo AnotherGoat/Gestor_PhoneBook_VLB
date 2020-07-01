@@ -362,9 +362,7 @@ public class SubmenuEditor extends Menu{
     }
 
     private void agregarTelefono(){
-        int numeroNuevo = v.validarInt(1, 999999999,
-                "Ingrese el número de teléfono: ",
-                "El número de teléfono ingresado no es válido.");
+        int numeroNuevo = v.validarNumeroTelefono();
 
         int tipoNumero = elegirTipoTelefono();
 
@@ -379,6 +377,7 @@ public class SubmenuEditor extends Menu{
     }
 
     private void cambiarTelefono(){
+        // Pedir la posición del número
         int posicionTelefono = elegirTelefono("cambiar");
         posicionTelefono--; // Le resta 1 porque los ArrayList empiezan con indice 0
 
@@ -387,9 +386,7 @@ public class SubmenuEditor extends Menu{
 
         // Muestra el número actual y pide uno nuevo
         System.out.println("Número actual: "+numeroActual);
-        int numeroNuevo = v.validarInt(1, 999999999,
-                "Número nuevo: ",
-                "El número ingresado no es válido.");
+        int numeroNuevo = v.validarNumeroTelefono();
 
         int tipoTelefono = elegirTipoTelefono();
 

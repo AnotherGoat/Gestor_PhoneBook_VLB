@@ -81,7 +81,9 @@ public class Validador {
     }
 
     public int validarNumeroTelefono(){
-        return 0;
+        return validarInt(1, 999999999,
+                "Ingrese el número de teléfono: ",
+                "El número de teléfono ingresado no es válido.");
     }
 
     /**
