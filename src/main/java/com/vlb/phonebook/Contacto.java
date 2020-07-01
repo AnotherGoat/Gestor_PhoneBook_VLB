@@ -33,7 +33,7 @@ public class Contacto {
     /**
      * Fecha de cumpleaños del contacto
      */
-    private FechaCumple fechaCumple = new FechaCumple();
+    private FechaCumple fechaCumple;
     /**
      * ArrayList con las notas adicionales que se quieran agregar sobre el contacto
      */
@@ -139,7 +139,7 @@ public class Contacto {
         StringBuilder s;
         s = new StringBuilder("Nombre: " + nombre);
 
-        if (telefonos != null) {
+        if (telefonos.size() != 0) {
             s.append("\nTeléfonos guardados:");
             for(Telefono t: telefonos) {
                 s.append("\n"+t.toString());
@@ -150,14 +150,14 @@ public class Contacto {
             s.append("\n" + direccion.toString());
         }
 
-        if (emails != null) {
+        if (emails.size() != 0) {
             s.append("\nE-mails guardados:");
             for(String e: emails) {
                 s.append("\n"+e);
             }
         }
 
-        if (apodos != null) {
+        if (apodos.size() != 0) {
             s.append("\nApodos guardados:");
             for(String a: apodos) {
                 s.append("\n"+a);
@@ -168,7 +168,7 @@ public class Contacto {
             s.append("\n" + fechaCumple.toString());
         }
 
-        if (notas != null) {
+        if (notas.size() != 0) {
             s.append("\nNotas guardadas:");
             for(String n: notas) {
                 s.append("\n"+n);
