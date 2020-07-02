@@ -846,7 +846,7 @@ public class SubmenuEditor extends Menu{
     }
 
     /**
-     * Retorna un String con un mensaje de éxito (artículo "el")
+     * Retorna un String con un mensaje de éxito
      * @param articulo Artículo con el que empieza el mensaje (debe empezar con mayúscula)
      * @param accion Verbo que va entre "fue ... con éxito"
      * @return Retorna un String con un mensaje de éxito
