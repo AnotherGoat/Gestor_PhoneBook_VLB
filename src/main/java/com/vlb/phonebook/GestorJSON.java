@@ -23,14 +23,24 @@ public class GestorJSON {
         ctest.setFechaCumple(new FechaCumple(12, 2));
         ctest.getNotas().add("Me cae bien");
         test.getContactos().add(ctest);
+
+        Contacto dtest = new Contacto();
+        test.getContactos().add(dtest);
         ////
 
         JSONArray agenda = new JSONArray();
+        int contador = 0;
 
         for(Contacto c: test.getContactos()){
+            contador++;
+            agenda.put("Contacto #"+contador+":");
+
             JSONArray contacto = new JSONArray();
 
-            if(c.getNombre() != null){
+            if(c.getNombre() == null){
+                contacto.put("null");
+            }
+            else{
                 // Crea un objeto con el nombre
                 JSONObject nombre = new JSONObject();
                 nombre.put("nombre", c.getNombre());
@@ -39,7 +49,11 @@ public class GestorJSON {
                 contacto.put(nombre);
             }
 
-            if(c.getTelefonos().size() != 0){
+            contacto.put("listaTelefonos");
+            if(c.getTelefonos().size() == 0){
+                contacto.put("null");
+            }
+            else{
                 JSONArray listaTelefonos = new JSONArray();
                 for(Telefono t: c.getTelefonos()) {
                     JSONObject telefono = new JSONObject();
@@ -56,7 +70,11 @@ public class GestorJSON {
                 contacto.put(listaTelefonos);
             }
 
-            if(c.getDireccion() != null){
+            contacto.put("direccion");
+            if(c.getDireccion() == null){
+                contacto.put("null");
+            }
+            else{
                 JSONObject direccion = new JSONObject();
                 direccion.put("ciudad", c.getDireccion().getCiudad());
                 direccion.put("calle", c.getDireccion().getCalle());
@@ -66,35 +84,35 @@ public class GestorJSON {
                 contacto.put(direccion);
             }
 
-            if(c.getEmails().size() != 0){
-                JSONArray listaEmails = new JSONArray();
-                for(String e: c.getEmails()){
-                    JSONObject email = new JSONObject();
-                    email.put("email", e);
-
-                    // Añade el e-mail a la lista
-                    listaEmails.put(email);
-                }
+            contacto.put("listaEmails:");
+            if(c.getEmails().size() == 0){
+                contacto.put("null");
+            }
+            else{
+                // Crea la lista de e-mails usando el ArrayList
+                JSONArray listaEmails = new JSONArray(c.getEmails());
 
                 // Añade la  lista de e-mails al contacto
                 contacto.put(listaEmails);
             }
 
-            if(c.getApodos().size() != 0){
-                JSONArray listaApodos = new JSONArray();
-                for(String a: c.getApodos()){
-                    JSONObject apodo = new JSONObject();
-                    apodo.put("apodo", a);
-
-                    // Añade el apodo a la lista
-                    listaApodos.put(apodo);
-                }
+            contacto.put("listaApodos:");
+            if(c.getApodos().size() == 0){
+                contacto.put("null");
+            }
+            else{
+                // Crea la lista de apodos usando el ArrayList
+                JSONArray listaApodos = new JSONArray(c.getApodos());
 
                 // Añade la  lista de apodos al contacto
                 contacto.put(listaApodos);
             }
 
-            if(c.getFechaCumple() != null){
+            contacto.put("fechaCumple:");
+            if(c.getFechaCumple() == null){
+                contacto.put("null");
+            }
+            else{
                 JSONObject fechacumple = new JSONObject();
                 fechacumple.put("dia", c.getFechaCumple().getDia());
                 fechacumple.put("numeroMes", c.getFechaCumple().getNumeroMes());
@@ -104,15 +122,13 @@ public class GestorJSON {
                 contacto.put(fechacumple);
             }
 
-            if(c.getNotas().size() != 0){
-                JSONArray listaNotas = new JSONArray();
-                for(String n: c.getNotas()){
-                    JSONObject nota = new JSONObject();
-                    nota.put("nota", n);
-
-                    // Añade la nota a la lista
-                    listaNotas.put(nota);
-                }
+            contacto.put("listaNotas:");
+            if(c.getNotas().size() == 0){
+                contacto.put("null");
+            }
+            else{
+                // Crea la lista de notas usando el ArrayList
+                JSONArray listaNotas = new JSONArray(c.getNotas());
 
                 // Añade la  lista de notas al contacto
                 contacto.put(listaNotas);
@@ -122,7 +138,7 @@ public class GestorJSON {
             agenda.put(contacto);
         }
 
+        // Muestra el JSON
         System.out.println(agenda);
-
     }
 }
