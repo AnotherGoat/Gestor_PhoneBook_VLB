@@ -98,11 +98,11 @@ public class SubmenuEditor extends Menu{
             opciones.add("Agregar " + singular);
         }
         // Si no hay una dirección guardada
-        else if((tipo==DIRECCION && contacto.getDireccion()==null)){
+        else if((tipo==DIRECCION && contacto.getDireccion() == null)){
             opciones.add("Agregar dirección");
         }
         // Si no hay una fecha de cumpleaños guardada
-        else if((tipo==FECHACUMPLE && contacto.getFechaCumple()==null)){
+        else if((tipo==FECHACUMPLE && contacto.getFechaCumple() == null)){
             opciones.add("Agregar fecha de cumpleaños");
         }
 
@@ -112,11 +112,11 @@ public class SubmenuEditor extends Menu{
             opciones.add("Cambiar " + singular);
         }
         // Si ya hay una dirección guardada
-        else if((tipo==DIRECCION && contacto.getDireccion()!=null)){
+        else if((tipo==DIRECCION && contacto.getDireccion() != null)){
             opciones.add("Cambiar dirección");
         }
         // Si ya hay una fecha de cumpleaños guardada
-        else if((tipo==FECHACUMPLE && contacto.getFechaCumple()!=null)){
+        else if((tipo==FECHACUMPLE && contacto.getFechaCumple() != null)){
             opciones.add("Cambiar fecha de cumpleaños");
         }
 
@@ -175,7 +175,7 @@ public class SubmenuEditor extends Menu{
 
             case DIRECCION:
                 // En caso de no tener una dirección guardada
-                if(contacto.getDireccion()==null){
+                if(contacto.getDireccion() == null){
                     agregarDireccion();
                 }
 
@@ -195,7 +195,7 @@ public class SubmenuEditor extends Menu{
 
             case FECHACUMPLE:
                 // En caso de no tener una fecha de cumpleaños guardada
-                if(contacto.getFechaCumple()==null){
+                if(contacto.getFechaCumple() == null){
                     agregarFechaCumple();
                 }
 
@@ -226,7 +226,7 @@ public class SubmenuEditor extends Menu{
 
             case DIRECCION: // Recordar que en este caso, se escoge "Borrar dirección"
                 // Si no tiene una dirección guardada
-                if(contacto.getDireccion()==null){
+                if(contacto.getDireccion() == null){
                     System.out.println("El contacto no tiene una dirección guardada");
                 }
                 else { // Si la tiene, borrarla, pero pedir confirmación antes
@@ -260,7 +260,7 @@ public class SubmenuEditor extends Menu{
 
             case FECHACUMPLE: // Recordar que en este caso, se escoge "Borrar fecha de cumpleaños"
                 // Si no tiene una fecha de cumpleaños guardada
-                if(contacto.getFechaCumple()==null){
+                if(contacto.getFechaCumple() == null){
                     System.out.println("El contacto no tiene una fecha de cumpleaños guardada");
                 }
                 else { // Si la tiene, borrarla, pero pedir confirmación antes

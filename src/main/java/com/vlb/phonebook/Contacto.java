@@ -237,7 +237,7 @@ class Direccion {
     }
 
     public Direccion(Direccion d) {
-        if(d!=null) {
+        if(d != null) {
             this.ciudad = d.ciudad;
             this.calle = d.calle;
             this.numero = d.numero;
@@ -308,7 +308,7 @@ class FechaCumple {
     }
 
     public FechaCumple(FechaCumple fc) {
-        if(fc!=null) {
+        if(fc != null) {
             this.dia = fc.dia;
             this.numeroMes = fc.numeroMes;
             this.mes = fc.mes;

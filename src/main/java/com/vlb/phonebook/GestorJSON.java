@@ -5,28 +5,10 @@ import org.json.JSONObject;
 
 public class GestorJSON {
 
-    static Agenda test = new Agenda();
+    static Agenda test = Principal.agenda;
 
     //// Métodos
-    public static void main(String[] args){
-
-        ////
-        Contacto ctest = new Contacto("Juan");
-        ctest.getTelefonos().add(new Telefono(33333333, "Celular"));
-        ctest.getTelefonos().add(new Telefono(123123, "Fijo"));
-        ctest.setDireccion(new Direccion("Temuco", "Francisco Salazar", 111));
-        ctest.getEmails().add("A@gmail.com");
-        ctest.getEmails().add("B@hotmail.com");
-        ctest.getEmails().add("C@ufromail.cl");
-        ctest.getApodos().add("Juancho");
-        ctest.getApodos().add("Flaco");
-        ctest.setFechaCumple(new FechaCumple(12, 2));
-        ctest.getNotas().add("Me cae bien");
-        test.getContactos().add(ctest);
-
-        Contacto dtest = new Contacto();
-        test.getContactos().add(dtest);
-        ////
+    public static void crearJSON(){
 
         JSONArray agenda = new JSONArray();
         int contador = 0;

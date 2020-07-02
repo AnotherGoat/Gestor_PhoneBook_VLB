@@ -40,6 +40,8 @@ public class Agenda {
         contactos.add(nuevo);
         listaNombres.add(nombreContacto);
         System.out.println("El contacto fue guardado exitosamente.");
+
+        GestorJSON.crearJSON();
     }
 
     /**
@@ -89,6 +91,8 @@ public class Agenda {
 
         // Actualiza la lista de nombres de la agenda
         listaNombres.set(posicionContacto, contactos.get(posicionContacto).getNombre());
+
+        GestorJSON.crearJSON();
     }
 
     /**
@@ -100,6 +104,8 @@ public class Agenda {
 
         // Pide confirmación para borrar el contacto elegido
         confirmarBorrado(posicionContacto);
+
+        GestorJSON.crearJSON();
     }
 
     /**
