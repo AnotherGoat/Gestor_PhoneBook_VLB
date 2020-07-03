@@ -73,10 +73,10 @@ public class GestorJSON {
                 contacto.put("null");
             }
             else{
-                // Crea la lista de e-mails usando el ArrayList
+                // Crea la lista de emails usando el ArrayList
                 JSONArray listaEmails = new JSONArray(c.getEmails());
 
-                // Añade la  lista de e-mails al contacto
+                // Añade la  lista de emails al contacto
                 contacto.put(listaEmails);
             }
 

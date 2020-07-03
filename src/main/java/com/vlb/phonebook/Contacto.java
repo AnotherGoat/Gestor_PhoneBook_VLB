@@ -23,7 +23,7 @@ public class Contacto {
      */
     private Direccion direccion;
     /**
-     * ArrayList con los e-mails del contacto
+     * ArrayList con los emails del contacto
      */
     private List<String> emails = new ArrayList<>();
     /**
@@ -61,7 +61,7 @@ public class Contacto {
                 this.direccion = new Direccion(c.direccion);
             }
 
-            // Copia los e-mails desde c
+            // Copia los emails desde c
             this.emails.addAll(c.emails);
 
             // Copia los apodos desde c
@@ -139,7 +139,7 @@ public class Contacto {
         }
 
         if (emails.size() != 0) {
-            s.append("\nE-mails guardados:");
+            s.append("\nEmails guardados:");
             for(String e: emails) {
                 s.append("\n"+e);
             }

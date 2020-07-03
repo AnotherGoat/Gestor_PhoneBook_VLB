@@ -49,6 +49,6 @@ public class ContactoTest {
         c.getTelefonos().add(new Telefono (123456789, "Celular"));
         assertEquals("Nombre: Juan Perez\nTeléfono Celular: 123456789", c.toString());
         c.getEmails().add("ejemplo@correo.com");
-        assertEquals("Nombre: Juan Perez\nTeléfono Celular: 123456789\nE-mail: ejemplo@correo.com", c.toString());
+        assertEquals("Nombre: Juan Perez\nTeléfono Celular: 123456789\nEmail: ejemplo@correo.com", c.toString());
     }
 }

@@ -75,7 +75,7 @@ public class ValidadorTest {
     }
 
     /**
-     * Test para revisar que el e-mail se valida correctamente
+     * Test para revisar que el email se valida correctamente
      */
     @Test
     public void esEmailValido1() {

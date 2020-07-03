@@ -104,8 +104,8 @@ public class Validador {
     }
 
     /**
-     * Este método se usa para validar un e-mail
-     * @return E-mail ingresado, después de haber sido validado
+     * Este método se usa para validar un email
+     * @return Email ingresado, después de haber sido validado
      */
     public String validarEmail(){
         // Crea nueva instancia del teclado, para evitar errores
@@ -114,11 +114,11 @@ public class Validador {
         String entrada = "";
 
         do{
-            System.out.print("Ingrese el e-mail: ");
-            entrada = this.teclado.nextLine(); // Pide la dirección de e-mail
+            System.out.print("Ingrese el email: ");
+            entrada = this.teclado.nextLine(); // Pide la dirección de email
 
             if(!esEmailValido(entrada)){ // Si la entrada no es válida, muestra un mensaje de error
-                System.out.println("Error: No ha ingresado un e-mail válido");
+                System.out.println("Error: No ha ingresado un email válido");
             }
         }while(esEmailValido(entrada));
 
@@ -126,9 +126,9 @@ public class Validador {
     }
 
     /**
-     * Este método verifica que el String del parámetro es un e-mail válido
-     * @param email E-mail que se quiere verificar
-     * @return Retorna un boolean que indica si el e-mail ingresado es válido (true) o no (false)
+     * Este método verifica que el String del parámetro es un email válido
+     * @param email Email que se quiere verificar
+     * @return Retorna un boolean que indica si el email ingresado es válido (true) o no (false)
      */
     public Boolean esEmailValido (String email) {
         if(email!=null) {

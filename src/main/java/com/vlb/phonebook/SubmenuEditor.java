@@ -73,8 +73,8 @@ public class SubmenuEditor extends Menu{
                 plural = "dirección";
                 break;
             case EMAIL:
-                singular = "e-mail";
-                plural = "e-mails";
+                singular = "email";
+                plural = "emails";
                 break;
             case APODO:
                 singular = "apodo";
@@ -234,12 +234,12 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case EMAIL:
-                // En caso de no tener e-mails guardados
+                // En caso de no tener emails guardados
                 if(contacto.getEmails().size() == 0){
-                    System.out.println("Este contacto no tiene e-mails guardados");
+                    System.out.println("Este contacto no tiene emails guardados");
                 }
 
-                // Si hay e-mails guardados
+                // Si hay emails guardados
                 else {
                     cambiarEmail();
                 }
@@ -303,9 +303,9 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case EMAIL:
-                // Si no hay e-mails guardados
+                // Si no hay emails guardados
                 if(contacto.getEmails().size() == 0){
-                    System.out.println("Este contacto no tiene e-mails guardados");
+                    System.out.println("Este contacto no tiene emails guardados");
                 }
                 else{
                     borrarEmail();
@@ -520,42 +520,42 @@ public class SubmenuEditor extends Menu{
 
     //// Métodos de atributo EMAIL
     /**
-     * Permite elegir un e-mail
-     * @param verbo Verbo que va en "Escoja el e-mail que quiere ..."
-     * @return Posición del e-mail elegido
+     * Permite elegir un email
+     * @param verbo Verbo que va en "Escoja el email que quiere ..."
+     * @return Posición del email elegido
      */
     private int elegirEmail(String verbo){
         // Muestra los números guardados
-        System.out.println("E-mails guardados: ");
+        System.out.println("Emails guardados: ");
         System.out.println(enumerarListaString(contacto.getEmails()));
 
         // Pide al usuario que elija uno
         return v.validarInt(1, contacto.getEmails().size(),
-                "Escoja el e-mail que quiere "+verbo+": ",
+                "Escoja el email que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
 
     /**
-     * Permite agregar un nuevo e-mail después de validarlo
+     * Permite agregar un nuevo email después de validarlo
      */
     private void agregarEmail(){
         String emailNuevo = v.validarEmail();
 
-        // Guarda el e-mail y muestra un mensaje de éxito
+        // Guarda el email y muestra un mensaje de éxito
         contacto.getEmails().add(emailNuevo);
         System.out.println(mensajeExito("El", "agregado"));
     }
 
     /**
-     * Permite cambiar un e-mail guardado por uno nuevo
+     * Permite cambiar un email guardado por uno nuevo
      */
     private void cambiarEmail(){
         int posicionEmail = elegirEmail("cambiar");
         posicionEmail--; // Le resta 1 porque los ArrayList empiezan con indice 0
         String emailActual = contacto.getEmails().get(posicionEmail);
 
-        // Muestra el e-mail actual y pide uno nuevo
-        System.out.println("E-mail actual: "+emailActual);
+        // Muestra el email actual y pide uno nuevo
+        System.out.println("Email actual: "+emailActual);
         String emailNuevo = v.validarEmail();
 
         // Actualizar email
@@ -565,7 +565,7 @@ public class SubmenuEditor extends Menu{
     }
 
     /**
-     * Método que pide la posición de un e-mail para luego borrarlo (después de pedir confirmación)
+     * Método que pide la posición de un email para luego borrarlo (después de pedir confirmación)
      */
     private void borrarEmail(){
         int posicionEmail = elegirEmail("borrar");
@@ -574,22 +574,22 @@ public class SubmenuEditor extends Menu{
     }
 
     /**
-     * Método para confirmar la eliminación de un e-mail
-     * @param posicion Posición del e-mail que se desea borrar
+     * Método para confirmar la eliminación de un email
+     * @param posicion Posición del email que se desea borrar
      */
     private void confirmarBorradoEmail(int posicion) {
         int x = v.validarInt(0, 1,
-                "Se borrará el e-mail "+contacto.getEmails().get(posicion)+
+                "Se borrará el email "+contacto.getEmails().get(posicion)+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         switch (x) {
             case 1:
                 contacto.getEmails().remove(posicion);
-                System.out.println("El e-mail ha sido borrado exitosamente.");
+                System.out.println("El email ha sido borrado exitosamente.");
                 break;
             case 0:
-                System.out.println("El e-mail no se borró.");
+                System.out.println("El email no se borró.");
         }
     }
 
