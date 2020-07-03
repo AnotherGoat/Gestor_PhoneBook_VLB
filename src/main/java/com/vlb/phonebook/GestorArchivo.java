@@ -40,6 +40,18 @@ public class GestorArchivo {
             System.out.println("El archivo no puede ser guardado");
         }
     }
+
+    public void crearArchivo(String texto, String ruta){
+        Path archivo = Paths.get(ruta);
+        try{
+            Files.write(archivo,texto.getBytes());
+            System.out.println("El archivo JSON se ha guardado en "+ruta);
+        }catch(IOException e){
+            System.out.println("El archivo no puede ser guardado.");
+        }
+
+    }
+
     public void leerArchivo(){
         Scanner teclado = new Scanner(System.in);
         System.out.println("Ingrese la ruta completa del archivo");

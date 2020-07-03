@@ -5,7 +5,9 @@ import org.json.JSONObject;
 
 public class GestorJSON {
 
+    //// Atributos
     static Agenda test = Principal.agenda;
+    static GestorArchivo ga = new GestorArchivo();
 
     //// Métodos
     public static void crearJSON(){
@@ -122,5 +124,6 @@ public class GestorJSON {
 
         // Muestra el JSON
         System.out.println(agenda.toString(4));
+        ga.crearArchivo(agenda.toString(4), "agenda.json");
     }
 }
