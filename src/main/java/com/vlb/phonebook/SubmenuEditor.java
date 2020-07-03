@@ -459,7 +459,6 @@ public class SubmenuEditor extends Menu{
      * Permite agregar una dirección nueva si no hay ninguna antes guardada
      */
     private void agregarDireccion(){
-        System.out.println("Este contacto no tiene una dirección guardada");
         System.out.println("Ingrese los datos de la dirección del contacto");
 
         String ciudadNueva = v.recibirString("Ciudad: ");
@@ -484,7 +483,6 @@ public class SubmenuEditor extends Menu{
         String calleActual = contacto.getDireccion().getCalle();
         int numeroDireccionActual = contacto.getDireccion().getNumero();
 
-        System.out.println("Este contacto ya tiene una dirección guardada");
         System.out.println("Dirección actual: "+direccionActual);
         System.out.println("Ingrese los datos de la nueva dirección del contacto");
 
@@ -676,7 +674,6 @@ public class SubmenuEditor extends Menu{
      * Permite agregar una fecha de cumpleaños nueva
      */
     private void agregarFechaCumple(){
-        System.out.println("Este contacto no tiene una fecha de cumpleaños guardada");
         System.out.println("Ingrese los datos de la fecha de cumpleaños del contacto");
 
         int mesNuevo = v.validarInt(1, 12, "Mes: ", "Error: Por favor ingrese un número entre 1 y 12");
@@ -693,7 +690,6 @@ public class SubmenuEditor extends Menu{
      * Permite cambiar la fecha de cumpleaños
      */
     private void cambiarFechaCumple(){
-        System.out.println("Este contacto ya tiene una fecha de cumpleaños guardada");
         System.out.println("Fecha de cumpleaños actual: "+contacto.getFechaCumple().toString());
         System.out.println("Ingrese los datos de la nueva fecha de cumpleaños");
 
