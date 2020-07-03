@@ -49,7 +49,7 @@ public class Contacto {
 
     // Constructor para copiar un contacto
     public Contacto(Contacto c){
-        if(c!=null){
+        if(c!=null) {
             // Copia el nombre desde c
             this.nombre = c.nombre;
 
@@ -57,7 +57,9 @@ public class Contacto {
             this.telefonos.addAll(c.telefonos);
 
             // Copia la dirección desde c, en una nueva instancia
-            this.direccion = new Direccion(c.direccion);
+            if (c.direccion != null) {
+                this.direccion = new Direccion(c.direccion);
+            }
 
             // Copia los e-mails desde c
             this.emails.addAll(c.emails);
@@ -66,7 +68,9 @@ public class Contacto {
             this.apodos.addAll(c.apodos);
 
             // Copia la fecha de cumpleaños desde c, en una nueva instancia
-            this.fechaCumple = new FechaCumple(c.fechaCumple);
+            if (c.fechaCumple != null) {
+                this.fechaCumple = new FechaCumple(c.fechaCumple);
+            }
 
             // Copia las notas desde c
             this.notas.addAll(c.notas);

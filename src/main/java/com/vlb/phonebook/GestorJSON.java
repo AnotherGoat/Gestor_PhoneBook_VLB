@@ -121,6 +121,6 @@ public class GestorJSON {
         }
 
         // Muestra el JSON
-        System.out.println(agenda);
+        System.out.println(agenda.toString(4));
     }
 }

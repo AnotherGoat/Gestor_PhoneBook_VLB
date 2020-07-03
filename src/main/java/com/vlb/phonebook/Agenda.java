@@ -61,7 +61,7 @@ public class Agenda {
         posicionContacto--; // Le resta 1 porque los índices empiezan desde 0
 
         // Muestra los detalles del contacto
-        System.out.println("*****Contacto #"+posicionContacto+1+"*****");
+        System.out.println("*****Contacto #"+(posicionContacto+1)+"*****");
         System.out.println(contactos.get(posicionContacto).toString());
     }
 

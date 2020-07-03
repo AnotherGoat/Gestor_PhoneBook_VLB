@@ -38,14 +38,17 @@ public class SubmenuEditor extends Menu{
         }
 
         else{
-            // Llenar ArrayList de opciones
-            llenarOpciones();
-
             // Muestra el submenú de edición y lo repite hasta que "seguir" sea false
             this.seguir = true;
             do {
+                // Llenar ArrayList de opciones (en este caso las opciones puedes cambiar en medio de la ejecución)
+                llenarOpciones();
+                // Mostrar menú
                 desplegarMenu();
+                // Pedir opción al usuario
                 switchMenu();
+                // Limpiar las opciones
+                opciones.clear();
             } while (this.seguir);
         }
     }
@@ -92,32 +95,28 @@ public class SubmenuEditor extends Menu{
      */
     public void llenarOpciones(){
 
-        //// "Agregar ..."
-        // En caso de elegir cualquier opción excepto dirección y fecha de cumpleaños
-        if((tipo!=DIRECCION && tipo!=FECHACUMPLE)){
-            opciones.add("Agregar " + singular);
-        }
-        // Si no hay una dirección guardada
-        else if((tipo==DIRECCION && contacto.getDireccion() == null)){
-            opciones.add("Agregar dirección");
-        }
-        // Si no hay una fecha de cumpleaños guardada
-        else if((tipo==FECHACUMPLE && contacto.getFechaCumple() == null)){
-            opciones.add("Agregar fecha de cumpleaños");
+        if(tipo==DIRECCION){
+            if(contacto.getDireccion() == null){
+                opciones.add("Agregar dirección");
+            }
+            else{
+                opciones.add("Cambiar dirección");
+            }
         }
 
-        //// "Cambiar ..."
-        // En caso de elegir cualquier opción excepto dirección y fecha de cumpleaños
-        if((tipo!=DIRECCION && tipo!=FECHACUMPLE)){
-            opciones.add("Cambiar " + singular);
+        else if(tipo==FECHACUMPLE){
+            if(contacto.getDireccion() == null){
+                opciones.add("Agregar fecha de cumpleaños");
+            }
+            else{
+                opciones.add("Cambiar fecha de cumpleaños");
+            }
         }
-        // Si ya hay una dirección guardada
-        else if((tipo==DIRECCION && contacto.getDireccion() != null)){
-            opciones.add("Cambiar dirección");
-        }
-        // Si ya hay una fecha de cumpleaños guardada
-        else if((tipo==FECHACUMPLE && contacto.getFechaCumple() != null)){
-            opciones.add("Cambiar fecha de cumpleaños");
+
+        // En caso de que no sea dirección o fecha de cumpleaños
+        else{
+        opciones.add("Agregar " + singular);
+        opciones.add("Cambiar " + singular);
         }
 
         opciones.add("Borrar "+singular);
@@ -513,7 +512,7 @@ public class SubmenuEditor extends Menu{
 
         switch(x){
             case 1:
-                contacto.setDireccion(new Direccion());
+                contacto.setDireccion(null);
                 System.out.println("La dirección ha sido borrada exitosamente.");
                 break;
             case 0:
@@ -753,7 +752,7 @@ public class SubmenuEditor extends Menu{
 
         switch(x){
             case 1:
-                contacto.setFechaCumple(new FechaCumple());
+                contacto.setFechaCumple(null);
                 System.out.println("La dirección ha sido borrada exitosamente.");
                 break;
             case 0:
