@@ -18,106 +18,78 @@ public class GestorJSON {
         JSONArray agenda = new JSONArray();
 
         for(Contacto c: test.getContactos()){
-            JSONArray datosContacto = new JSONArray();
+            JSONObject contacto = new JSONObject(); // Par ordenado "contacto":datosContacto
+            JSONObject datosContacto = new JSONObject();
 
-            if(c.getNombre() == null){
-                datosContacto.put("null");
-            }
-            else{
-                // Crea un objeto con el nombre
-                JSONObject nombre = new JSONObject();
-                nombre.put("nombre", c.getNombre());
+            //// NOMBRE
+            // Añade el nombre al JSONArray del contacto
+            datosContacto.put("nombre", c.getNombre());
 
-                // Añade el nombre al JSONArray del contacto
-                datosContacto.put(nombre);
-            }
+            //// TELEFONO
+            if(c.getTelefonos().size() != 0) {
+                JSONObject listaTelefonos = new JSONObject();
 
-            datosContacto.put("listaTelefonos");
-            if(c.getTelefonos().size() == 0){
-                datosContacto.put("null");
-            }
-            else{
-                JSONArray listaTelefonos = new JSONArray();
-                for(Telefono t: c.getTelefonos()) {
-                    JSONObject telefono = new JSONObject();
+                // Procesa todos los teléfonos y
+                for (Telefono t : c.getTelefonos()) {
+                    JSONObject datosTelefono = new JSONObject(); // Pares ordenados que representan un telefono ("numero", "") ("tipo", "")
 
                     // Guarda el número y tipo en un JSONObject
-                    telefono.put("numero", t.getNumero());
-                    telefono.put("tipo", t.getTipo());
+                    datosTelefono.put("numero", t.getNumero());
+                    datosTelefono.put("tipo", t.getTipo());
 
-                    // Añade el teléfono a la lista de teléfonos
-                    listaTelefonos.put(telefono);
+                    // Añade los pares ordenados a la lista de teléfonos
+                    listaTelefonos.put("telefono", datosTelefono);
                 }
 
-                // Añade el arreglo con los teléfonos al contacto
-                datosContacto.put(listaTelefonos);
+                // Añade el par ordenado a
+                datosContacto.put("telefonos", listaTelefonos);
             }
 
-            datosContacto.put("direccion");
-            if(c.getDireccion() == null){
-                datosContacto.put("null");
-            }
-            else{
-                JSONObject direccion = new JSONObject();
-                direccion.put("ciudad", c.getDireccion().getCiudad());
-                direccion.put("calle", c.getDireccion().getCalle());
-                direccion.put("numero", c.getDireccion().getNumero());
+            if(c.getDireccion() != null){
+                JSONObject datosDireccion = new JSONObject(); // Objeto con los datos de la dirección
+
+                datosDireccion.put("ciudad", c.getDireccion().getCiudad());
+                datosDireccion.put("calle", c.getDireccion().getCalle());
+                datosDireccion.put("numero", c.getDireccion().getNumero());
 
                 // Añade la dirección
-                datosContacto.put(direccion);
+                datosContacto.put("direccion", datosDireccion);
             }
 
-            datosContacto.put("listaEmails:");
-            if(c.getEmails().size() == 0){
-                datosContacto.put("null");
-            }
-            else{
+            if(c.getEmails().size() != 0){
                 // Crea la lista de emails usando el ArrayList
                 JSONArray listaEmails = new JSONArray(c.getEmails());
 
                 // Añade la  lista de emails al contacto
-                datosContacto.put(listaEmails);
+                datosContacto.put("emails", listaEmails);
             }
 
-            datosContacto.put("listaApodos:");
-            if(c.getApodos().size() == 0){
-                datosContacto.put("null");
-            }
-            else{
+            if(c.getApodos().size() != 0){
                 // Crea la lista de apodos usando el ArrayList
                 JSONArray listaApodos = new JSONArray(c.getApodos());
 
                 // Añade la  lista de apodos al contacto
-                datosContacto.put(listaApodos);
+                datosContacto.put("apodos", listaApodos);
             }
 
-            datosContacto.put("fechaCumple:");
-            if(c.getFechaCumple() == null){
-                datosContacto.put("null");
-            }
-            else{
-                JSONObject fechacumple = new JSONObject();
-                fechacumple.put("dia", c.getFechaCumple().getDia());
-                fechacumple.put("numeroMes", c.getFechaCumple().getNumeroMes());
-                fechacumple.put("mes", c.getFechaCumple().getMes());
+            if(c.getFechaCumple() != null){
+                JSONObject datosFechaCumple = new JSONObject();
+                datosFechaCumple.put("dia", c.getFechaCumple().getDia());
+                datosFechaCumple.put("numeroMes", c.getFechaCumple().getNumeroMes());
+                datosFechaCumple.put("mes", c.getFechaCumple().getMes());
 
                 // Añade el mes
-                datosContacto.put(fechacumple);
+                datosContacto.put("fechacumple", datosFechaCumple);
             }
 
-            datosContacto.put("listaNotas:");
-            if(c.getNotas().size() == 0){
-                datosContacto.put("null");
-            }
-            else{
+            if(c.getNotas().size() != 0){
                 // Crea la lista de notas usando el ArrayList
                 JSONArray listaNotas = new JSONArray(c.getNotas());
 
                 // Añade la  lista de notas al contacto
-                datosContacto.put(listaNotas);
+                datosContacto.put("notas", listaNotas);
             }
 
-            JSONObject contacto = new JSONObject;
             contacto.put("contacto", datosContacto);
 
             // Añade el contacto a la agenda
@@ -125,10 +97,10 @@ public class GestorJSON {
         }
 
         // Muestra el JSON
-        System.out.println(agenda.toString(4));
+        System.out.println(agenda.toString(8));
 
         // Guarda el JSON en un archivo "agenda.json"
-        ga.crearArchivo(agenda.toString(4), "agenda.json");
+        ga.crearArchivo(agenda.toString(8), "agenda.json");
     }
 
     /**
