@@ -16,16 +16,12 @@ public class GestorJSON {
     public static void guardarJSON(){
 
         JSONArray agenda = new JSONArray();
-        int contador = 0;
 
         for(Contacto c: test.getContactos()){
-            contador++;
-            agenda.put("Contacto #"+contador+":");
-
-            JSONArray contacto = new JSONArray();
+            JSONArray datosContacto = new JSONArray();
 
             if(c.getNombre() == null){
-                contacto.put("null");
+                datosContacto.put("null");
             }
             else{
                 // Crea un objeto con el nombre
@@ -33,12 +29,12 @@ public class GestorJSON {
                 nombre.put("nombre", c.getNombre());
 
                 // Añade el nombre al JSONArray del contacto
-                contacto.put(nombre);
+                datosContacto.put(nombre);
             }
 
-            contacto.put("listaTelefonos");
+            datosContacto.put("listaTelefonos");
             if(c.getTelefonos().size() == 0){
-                contacto.put("null");
+                datosContacto.put("null");
             }
             else{
                 JSONArray listaTelefonos = new JSONArray();
@@ -54,12 +50,12 @@ public class GestorJSON {
                 }
 
                 // Añade el arreglo con los teléfonos al contacto
-                contacto.put(listaTelefonos);
+                datosContacto.put(listaTelefonos);
             }
 
-            contacto.put("direccion");
+            datosContacto.put("direccion");
             if(c.getDireccion() == null){
-                contacto.put("null");
+                datosContacto.put("null");
             }
             else{
                 JSONObject direccion = new JSONObject();
@@ -68,36 +64,36 @@ public class GestorJSON {
                 direccion.put("numero", c.getDireccion().getNumero());
 
                 // Añade la dirección
-                contacto.put(direccion);
+                datosContacto.put(direccion);
             }
 
-            contacto.put("listaEmails:");
+            datosContacto.put("listaEmails:");
             if(c.getEmails().size() == 0){
-                contacto.put("null");
+                datosContacto.put("null");
             }
             else{
                 // Crea la lista de emails usando el ArrayList
                 JSONArray listaEmails = new JSONArray(c.getEmails());
 
                 // Añade la  lista de emails al contacto
-                contacto.put(listaEmails);
+                datosContacto.put(listaEmails);
             }
 
-            contacto.put("listaApodos:");
+            datosContacto.put("listaApodos:");
             if(c.getApodos().size() == 0){
-                contacto.put("null");
+                datosContacto.put("null");
             }
             else{
                 // Crea la lista de apodos usando el ArrayList
                 JSONArray listaApodos = new JSONArray(c.getApodos());
 
                 // Añade la  lista de apodos al contacto
-                contacto.put(listaApodos);
+                datosContacto.put(listaApodos);
             }
 
-            contacto.put("fechaCumple:");
+            datosContacto.put("fechaCumple:");
             if(c.getFechaCumple() == null){
-                contacto.put("null");
+                datosContacto.put("null");
             }
             else{
                 JSONObject fechacumple = new JSONObject();
@@ -106,20 +102,23 @@ public class GestorJSON {
                 fechacumple.put("mes", c.getFechaCumple().getMes());
 
                 // Añade el mes
-                contacto.put(fechacumple);
+                datosContacto.put(fechacumple);
             }
 
-            contacto.put("listaNotas:");
+            datosContacto.put("listaNotas:");
             if(c.getNotas().size() == 0){
-                contacto.put("null");
+                datosContacto.put("null");
             }
             else{
                 // Crea la lista de notas usando el ArrayList
                 JSONArray listaNotas = new JSONArray(c.getNotas());
 
                 // Añade la  lista de notas al contacto
-                contacto.put(listaNotas);
+                datosContacto.put(listaNotas);
             }
+
+            JSONObject contacto = new JSONObject;
+            contacto.put("contacto", datosContacto);
 
             // Añade el contacto a la agenda
             agenda.put(contacto);
