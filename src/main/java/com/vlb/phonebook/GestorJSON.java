@@ -129,22 +129,22 @@ public class GestorJSON {
         System.out.println(agenda.toString(4));
 
         // Guarda el JSON en un archivo "agenda.json"
-        ga.crearArchivo(agenda.toString(), "agenda.json");
-        // Guarda el JSON con tabulación en un archivo "agenda_formato.json"
-        ga.crearArchivo(agenda.toString(4), "agenda_formato.json");
+        ga.crearArchivo(agenda.toString(4), "agenda.json");
     }
 
+    /**
+     * Método que carga un el archivo agenda.json (si este existe), y carga sus datos en en JSONArray Principal.agendaJSON
+     */
     public static void cargarJSON(){
         // Si el archivo "agenda.json" existe, cargarlo
         if (Files.exists(Paths.get("agenda.json"))) {
+            // Carga los datos de "agenda.json" al JSONArray agendaJSON
             Principal.agendaJSON = ga.convertirArchivoAJSONArray("agenda.json");
-            System.out.println("Datos de \"agenda.json\" cargados");
-        }
-        else {
-            System.out.println("No hay datos guardados");
-        }
 
-        // Muestra el JSON en pantalla
-        System.out.println(Principal.agendaJSON.toString());
+            System.out.println("Datos de \"agenda.json\" cargados");
+
+            // Muestra el JSON en pantalla, para verificar que funcionó bien
+            System.out.println(Principal.agendaJSON.toString());
+        }
     }
 }
