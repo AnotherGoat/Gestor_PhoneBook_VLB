@@ -120,7 +120,7 @@ public class Validador {
             if(!esEmailValido(entrada)){ // Si la entrada no es válida, muestra un mensaje de error
                 System.out.println("Error: No ha ingresado un email válido");
             }
-        }while(esEmailValido(entrada));
+        }while(!esEmailValido(entrada));
 
         return entrada; // Retorna el email ingresado
     }
