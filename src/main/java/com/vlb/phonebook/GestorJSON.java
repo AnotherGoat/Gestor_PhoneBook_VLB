@@ -27,7 +27,7 @@ public class GestorJSON {
 
             //// TELEFONO
             if(c.getTelefonos().size() != 0) {
-                JSONObject listaTelefonos = new JSONObject();
+                JSONArray listaTelefonos = new JSONArray();
 
                 // Procesa todos los teléfonos y
                 for (Telefono t : c.getTelefonos()) {
@@ -38,7 +38,7 @@ public class GestorJSON {
                     datosTelefono.put("tipo", t.getTipo());
 
                     // Añade los pares ordenados a la lista de teléfonos
-                    listaTelefonos.put("telefono", datosTelefono);
+                    listaTelefonos.put(datosTelefono);
                 }
 
                 // Añade el par ordenado a
@@ -97,10 +97,10 @@ public class GestorJSON {
         }
 
         // Muestra el JSON
-        System.out.println(agenda.toString(8));
+        System.out.println(agenda.toString(6));
 
         // Guarda el JSON en un archivo "agenda.json"
-        ga.crearArchivo(agenda.toString(8), "agenda.json");
+        ga.crearArchivo(agenda.toString(6), "agenda.json");
     }
 
     /**
