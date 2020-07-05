@@ -3,6 +3,9 @@ package com.vlb.phonebook;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class GestorJSON {
 
     //// Atributos
@@ -10,7 +13,7 @@ public class GestorJSON {
     static GestorArchivo ga = new GestorArchivo();
 
     //// Métodos
-    public static void crearJSON(){
+    public static void guardarJSON(){
 
         JSONArray agenda = new JSONArray();
         int contador = 0;
@@ -124,6 +127,24 @@ public class GestorJSON {
 
         // Muestra el JSON
         System.out.println(agenda.toString(4));
-        ga.crearArchivo(agenda.toString(4), "agenda.json");
+
+        // Guarda el JSON en un archivo "agenda.json"
+        ga.crearArchivo(agenda.toString(), "agenda.json");
+        // Guarda el JSON con tabulación en un archivo "agenda_formato.json"
+        ga.crearArchivo(agenda.toString(4), "agenda_formato.json");
+    }
+
+    public static void cargarJSON(){
+        // Si el archivo "agenda.json" existe, cargarlo
+        if (Files.exists(Paths.get("agenda.json"))) {
+            Principal.agendaJSON = ga.convertirArchivoAJSONArray("agenda.json");
+            System.out.println("Datos de \"agenda.json\" cargados");
+        }
+        else {
+            System.out.println("No hay datos guardados");
+        }
+
+        // Muestra el JSON en pantalla
+        System.out.println(Principal.agendaJSON.toString());
     }
 }

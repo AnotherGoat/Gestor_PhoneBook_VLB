@@ -1,5 +1,8 @@
 package com.vlb.phonebook;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,8 +11,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
 public class GestorArchivo {
-  
-  public void crearDirectorio(){
+
+    public void crearDirectorio(){
         Scanner teclado = new Scanner(System.in);
         System.out.println("");
         String ruta = teclado.nextLine();
@@ -26,6 +29,7 @@ public class GestorArchivo {
         }
 
     }
+
     public void crearArchivo(){
         Scanner teclado = new Scanner(System.in);
         System.out.println("Ingrese la ruta completa del archivo");
@@ -52,18 +56,42 @@ public class GestorArchivo {
 
     }
 
-    public void leerArchivo(){
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("Ingrese la ruta completa del archivo");
-        String ruta = teclado.nextLine();
+    /**
+     * Método que retorna un String con el contenido de un archivo de texto, o retorna un String vacío si no existe
+     * @param ruta Ruta del archivo a leer
+     * @return String con el texto del archivo
+     */
+    public String convertirArchivoAString(String ruta){
         Path archivo = Paths.get(ruta);
+
         String texto="";
         try{
             texto = new String(Files.readAllBytes(archivo));
         }catch(IOException e){
-            System.out.println("El archivo noo pudo ser leido");
+            System.out.println("El archivo no pudo ser leído");
         }
+
+        return texto;
     }
+
+    /**
+     * Método que retorna un JSONArray construido con un archivo JSON, o retorna un JSONArray nuevo si no existe
+     * @param ruta Ruta del archivo JSON
+     * @return JSONArray creado con el texto del archivo JSON
+     */
+    public JSONArray convertirArchivoAJSONArray(String ruta){
+        Path archivo = Paths.get(ruta);
+        String texto="";
+
+        try{
+            texto = new String(Files.readAllBytes(archivo));
+        }catch(IOException e){
+            System.out.println("El archivo no pudo ser leído");
+        }
+
+        return new JSONArray(texto);
+    }
+
     public void copiarArchivo(){
         Scanner teclado = new Scanner(System.in);
         System.out.println("Ingrese la ruta del archivo original");
@@ -79,6 +107,7 @@ public class GestorArchivo {
             System.out.println("El archivo no pudo ser copiado");
         }
     }
+
     public void eliminarArchivo(){
         Scanner teclado= new Scanner(System.in);
         System.out.println("Ingrese la ruta del archivo");
@@ -89,38 +118,6 @@ public class GestorArchivo {
             System.out.println("El archivo fue eliminado exitosamente ");
         }catch (IOException e){
             System.out.println("El archivo no pudo ser eliminado");
-        }
-    }
-    public void menu(){
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("Selecciona la operacion a realizar");
-        System.out.println("1 - Crear Directorio");
-        System.out.println("2 - Crear Archivo de texto");
-        System.out.println("3 - Leer Archivo de texto");
-        System.out.println("4 - Copiar Archivo");
-        System.out.println("5 - Eliminar Archivo");
-
-        int opcion = teclado.nextInt();
-        seleccion(opcion);
-    }
-    public void seleccion(int opcn){
-        switch(opcn){
-            case 1:
-                crearDirectorio();
-                break;
-            case 2:
-                crearArchivo();
-                break;
-            case 3:
-                leerArchivo();
-                break;
-            case 4:
-                copiarArchivo();
-                break;
-            case 5:
-                eliminarArchivo();
-                break;
-
         }
     }
 }

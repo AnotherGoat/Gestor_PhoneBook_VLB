@@ -105,7 +105,7 @@ public class SubmenuEditor extends Menu{
         }
 
         else if(tipo==FECHACUMPLE){
-            if(contacto.getDireccion() == null){
+            if(contacto.getFechaCumple() == null){
                 opciones.add("Agregar fecha de cumpleaños");
             }
             else{

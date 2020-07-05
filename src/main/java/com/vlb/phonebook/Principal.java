@@ -20,6 +20,8 @@ ValidadorTest: listo
 Nota: Si a alguno se le ocurre otro test unitario relevante, puede añadirlo
  */
 
+import org.json.JSONArray;
+
 /**
  * <h2>"Gestor PhoneBook VLB"</h2>
  *
@@ -35,7 +37,10 @@ public class Principal {
      */
     public static Agenda agenda = new Agenda();
 
+    public static JSONArray agendaJSON = new JSONArray();
+
     public static void main(String[] args) {
+        GestorJSON.cargarJSON();
         MenuPrincipal menu = new MenuPrincipal();
     }
 }
