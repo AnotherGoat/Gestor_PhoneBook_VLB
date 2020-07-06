@@ -16,6 +16,8 @@ public class menuVentana extends JFrame {
         setTitle("Gestor Phonebook VLB");//tirulo
         add(panel1);//se le añade el panel creado en menuVentana.form
         setSize(300,600);//se le define un tamaño predeterminado
+        setDefaultCloseOperation(EXIT_ON_CLOSE);//cuando se cierre la ventana se finaliza el programa
+        setLocation(1000,500); //posicion inicial de la ventana
 
     }
 }
