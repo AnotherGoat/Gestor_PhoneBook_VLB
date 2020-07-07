@@ -7,7 +7,7 @@
 ## Integrantes
 
 * Luis Burgos (@luisburgoro)
-* Víctor Mardones (@VictorMardones)
+* Víctor Mardones (@VictorMardones, @Acrozz)
 * Bayron Muñoz (@bayron997-deb)
 
 ## Descripción
