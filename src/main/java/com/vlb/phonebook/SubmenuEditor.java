@@ -9,7 +9,7 @@ public class SubmenuEditor extends Menu{
     Contacto contacto;
     /**
      * <p>Int que define el tipo de dato que edita el submenú, se usan las constantes de la clase Menu</p>
-     * <p>Estas constantes son: NOMBRE, TELEFONO, DIRECCION, EMAIL, APODO, FECHACUMPLE, NOTAS</p>
+     * <p>Estas constantes son: NOMBRE, TELEFONO, DIRECCION, FECHACUMPLE, EMAIL, APODO, NOTAS</p>
      */
     int tipo; // entre 0 y 8
     /**
@@ -40,6 +40,7 @@ public class SubmenuEditor extends Menu{
         else{
             // Muestra el submenú de edición y lo repite hasta que "seguir" sea false
             this.seguir = true;
+
             do {
                 // Llenar ArrayList de opciones (en este caso las opciones puedes cambiar en medio de la ejecución)
                 llenarOpciones();
@@ -72,6 +73,10 @@ public class SubmenuEditor extends Menu{
                 singular = "dirección";
                 plural = "dirección";
                 break;
+            case FECHACUMPLE: // No puede ser plural
+                singular = "fecha de cumpleaños";
+                plural = "fecha de cumpleaños";
+                break;
             case EMAIL:
                 singular = "email";
                 plural = "emails";
@@ -79,10 +84,6 @@ public class SubmenuEditor extends Menu{
             case APODO:
                 singular = "apodo";
                 plural = "apodos";
-                break;
-            case FECHACUMPLE: // No puede ser plural
-                singular = "fecha de cumpleaños";
-                plural = "fecha de cumpleaños";
                 break;
             case NOTAS:
                 singular = "nota";
@@ -184,14 +185,6 @@ public class SubmenuEditor extends Menu{
                 }
                 break;
 
-            case EMAIL:
-                agregarEmail();
-                break;
-
-            case APODO:
-                agregarApodo();
-                break;
-
             case FECHACUMPLE:
                 // En caso de no tener una fecha de cumpleaños guardada
                 if(contacto.getFechaCumple() == null){
@@ -202,6 +195,14 @@ public class SubmenuEditor extends Menu{
                 else{
                     cambiarFechaCumple();
                 }
+                break;
+
+            case EMAIL:
+                agregarEmail();
+                break;
+
+            case APODO:
+                agregarApodo();
                 break;
 
             case NOTAS:
@@ -233,6 +234,16 @@ public class SubmenuEditor extends Menu{
                 }
                 break;
 
+            case FECHACUMPLE: // Recordar que en este caso, se escoge "Borrar fecha de cumpleaños"
+                // Si no tiene una fecha de cumpleaños guardada
+                if(contacto.getFechaCumple() == null){
+                    System.out.println("El contacto no tiene una fecha de cumpleaños guardada");
+                }
+                else { // Si la tiene, borrarla, pero pedir confirmación antes
+                    confirmarBorradoFechaCumple();
+                }
+                break;
+
             case EMAIL:
                 // En caso de no tener emails guardados
                 if(contacto.getEmails().size() == 0){
@@ -254,16 +265,6 @@ public class SubmenuEditor extends Menu{
                 // En caso de sí tener apodos guardados
                 else {
                     cambiarApodo();
-                }
-                break;
-
-            case FECHACUMPLE: // Recordar que en este caso, se escoge "Borrar fecha de cumpleaños"
-                // Si no tiene una fecha de cumpleaños guardada
-                if(contacto.getFechaCumple() == null){
-                    System.out.println("El contacto no tiene una fecha de cumpleaños guardada");
-                }
-                else { // Si la tiene, borrarla, pero pedir confirmación antes
-                    confirmarBorradoFechaCumple();
                 }
                 break;
 
@@ -518,6 +519,93 @@ public class SubmenuEditor extends Menu{
         }
     }
 
+    //// Métodos de atributo FECHACUMPLE
+    /**
+     * Permite agregar una fecha de cumpleaños nueva
+     */
+    private void agregarFechaCumple(){
+        System.out.println("Ingrese los datos de la fecha de cumpleaños del contacto");
+
+        int mesNuevo = v.validarInt(1, 12, "Mes: ", "Error: Por favor ingrese un número entre 1 y 12");
+        int diasDelMes = obtenerDiasDelMes(mesNuevo);
+        int diaNuevo = v.validarInt(1, diasDelMes, "Día: ", "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
+
+        // Guarda la fecha de cumpleaños nueva
+        contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
+        // Muestra el mensaje de éxito
+        System.out.println("La fecha de cumpleaños fue guardada con éxito.");
+    }
+
+    /**
+     * Permite cambiar la fecha de cumpleaños
+     */
+    private void cambiarFechaCumple(){
+        System.out.println("Fecha de cumpleaños actual: "+contacto.getFechaCumple().toString());
+        System.out.println("Ingrese los datos de la nueva fecha de cumpleaños");
+
+        // Pide al usuario que ingrese el mes nuevo
+        int mesNuevo = v.validarInt(1, 12,
+                "Mes actual: "+contacto.getFechaCumple().getMes()+" ("+contacto.getFechaCumple().getNumeroMes()+")\nCiudad nueva: ",
+                "Error: Por favor ingrese un número entre 1 y 12");
+
+        int diasDelMes = obtenerDiasDelMes(mesNuevo);
+
+        int diaNuevo = v.validarInt(1, diasDelMes, "Día actual: "+contacto.getFechaCumple().getDia()+"\nDía nuevo: ",
+                "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
+
+        // Guarda la fecha de cumpleaños nueva
+        contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
+        // Muestra el mensaje de éxito
+        System.out.println("La fecha de cumpleaños fue guardada con éxito.");
+    }
+
+    /**
+     * Método que retorna la cantidad de días en un mes, según el mes ingresado
+     * @param mesIngresado Número del mes, entre 1 y 12
+     * @return Cantidad de días que tiene el mes ingresado
+     */
+    private int obtenerDiasDelMes(int mesIngresado){
+        switch(mesIngresado){
+            case 2: // Febrero
+                return 29;
+            case 4: // Abril
+            case 6: // Junio
+            case 9: // Septiembre
+            case 11: // Noviembre
+                return 30;
+            case 1: // Enero
+            case 3: // Marzo
+            case 5: // Mayo
+            case 7: // Julio
+            case 8: // Agosto
+            case 10: // Octubre
+            case 12: // Diciembre
+                return 31;
+        }
+
+        // En caso de error
+        return -1;
+    }
+
+    /**
+     * Método para confirmar el borrado de la fecha de cumpleaños guardada
+     */
+    private void confirmarBorradoFechaCumple(){
+        int x = v.validarInt(0, 1,
+                "Se borrará la fecha de cumpleaños del contacto "+contacto.getNombre()+
+                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "La opción ingresada no existe.");
+
+        switch(x){
+            case 1:
+                contacto.setFechaCumple(null);
+                System.out.println("La dirección ha sido borrada exitosamente.");
+                break;
+            case 0:
+                System.out.println("La dirección no se borró.");
+        }
+    }
+
     //// Métodos de atributo EMAIL
     /**
      * Permite elegir un email
@@ -665,94 +753,6 @@ public class SubmenuEditor extends Menu{
                 break;
             case 0:
                 System.out.println("El apodo no se borró.");
-        }
-    }
-
-    //// Métodos de atributo FECHACUMPLE
-
-    /**
-     * Permite agregar una fecha de cumpleaños nueva
-     */
-    private void agregarFechaCumple(){
-        System.out.println("Ingrese los datos de la fecha de cumpleaños del contacto");
-
-        int mesNuevo = v.validarInt(1, 12, "Mes: ", "Error: Por favor ingrese un número entre 1 y 12");
-        int diasDelMes = obtenerDiasDelMes(mesNuevo);
-        int diaNuevo = v.validarInt(1, diasDelMes, "Día: ", "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
-
-        // Guarda la fecha de cumpleaños nueva
-        contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
-        // Muestra el mensaje de éxito
-        System.out.println("La fecha de cumpleaños fue guardada con éxito.");
-    }
-
-    /**
-     * Permite cambiar la fecha de cumpleaños
-     */
-    private void cambiarFechaCumple(){
-        System.out.println("Fecha de cumpleaños actual: "+contacto.getFechaCumple().toString());
-        System.out.println("Ingrese los datos de la nueva fecha de cumpleaños");
-
-        // Pide al usuario que ingrese el mes nuevo
-        int mesNuevo = v.validarInt(1, 12,
-                "Mes actual: "+contacto.getFechaCumple().getMes()+" ("+contacto.getFechaCumple().getNumeroMes()+")\nCiudad nueva: ",
-                "Error: Por favor ingrese un número entre 1 y 12");
-
-        int diasDelMes = obtenerDiasDelMes(mesNuevo);
-
-        int diaNuevo = v.validarInt(1, diasDelMes, "Día actual: "+contacto.getFechaCumple().getDia()+"\nDía nuevo: ",
-                "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
-
-        // Guarda la fecha de cumpleaños nueva
-        contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
-        // Muestra el mensaje de éxito
-        System.out.println("La fecha de cumpleaños fue guardada con éxito.");
-    }
-
-    /**
-     * Método que retorna la cantidad de días en un mes, según el mes ingresado
-     * @param mesIngresado Número del mes, entre 1 y 12
-     * @return Cantidad de días que tiene el mes ingresado
-     */
-    private int obtenerDiasDelMes(int mesIngresado){
-        switch(mesIngresado){
-            case 2: // Febrero
-                return 29;
-            case 4: // Abril
-            case 6: // Junio
-            case 9: // Septiembre
-            case 11: // Noviembre
-                return 30;
-            case 1: // Enero
-            case 3: // Marzo
-            case 5: // Mayo
-            case 7: // Julio
-            case 8: // Agosto
-            case 10: // Octubre
-            case 12: // Diciembre
-                return 31;
-        }
-
-        // En caso de error
-        return -1;
-    }
-
-    /**
-     * Método para confirmar el borrado de la fecha de cumpleaños guardada
-     */
-    private void confirmarBorradoFechaCumple(){
-        int x = v.validarInt(0, 1,
-                "Se borrará la fecha de cumpleaños del contacto "+contacto.getNombre()+
-                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
-
-        switch(x){
-            case 1:
-                contacto.setFechaCumple(null);
-                System.out.println("La dirección ha sido borrada exitosamente.");
-                break;
-            case 0:
-                System.out.println("La dirección no se borró.");
         }
     }
 

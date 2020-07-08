@@ -35,9 +35,9 @@ public class Menu {
     static final int NOMBRE = 0;
     static final int TELEFONO = 1;
     static final int DIRECCION = 2;
-    static final int EMAIL = 3;
-    static final int APODO = 4;
-    static final int FECHACUMPLE = 5;
+    static final int FECHACUMPLE = 3;
+    static final int EMAIL = 4;
+    static final int APODO = 5;
     static final int NOTAS = 6;
 
     //// Constructores

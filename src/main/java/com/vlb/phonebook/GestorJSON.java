@@ -56,6 +56,16 @@ public class GestorJSON {
                 datosContacto.put("direccion", datosDireccion);
             }
 
+            if(c.getFechaCumple() != null){
+                JSONObject datosFechaCumple = new JSONObject();
+                datosFechaCumple.put("dia", c.getFechaCumple().getDia());
+                datosFechaCumple.put("numeroMes", c.getFechaCumple().getNumeroMes());
+                datosFechaCumple.put("mes", c.getFechaCumple().getMes());
+
+                // Añade el mes
+                datosContacto.put("fechacumple", datosFechaCumple);
+            }
+
             if(c.getEmails().size() != 0){
                 // Crea la lista de emails usando el ArrayList
                 JSONArray listaEmails = new JSONArray(c.getEmails());
@@ -70,16 +80,6 @@ public class GestorJSON {
 
                 // Añade la  lista de apodos al contacto
                 datosContacto.put("apodos", listaApodos);
-            }
-
-            if(c.getFechaCumple() != null){
-                JSONObject datosFechaCumple = new JSONObject();
-                datosFechaCumple.put("dia", c.getFechaCumple().getDia());
-                datosFechaCumple.put("numeroMes", c.getFechaCumple().getNumeroMes());
-                datosFechaCumple.put("mes", c.getFechaCumple().getMes());
-
-                // Añade el mes
-                datosContacto.put("fechacumple", datosFechaCumple);
             }
 
             if(c.getNotas().size() != 0){
@@ -155,6 +155,17 @@ public class GestorJSON {
                         contactoNuevo.setDireccion(direccionNueva);
                     }
 
+                    if(contacto.has("fechacumple")){
+                        // Nombramos la fecha de cumpleaños
+                        JSONObject fechaCumple = contacto.getJSONObject("fechacumple");
+
+                        // Crea una fecha de cumpleaños nueva con los datos del JSON
+                        FechaCumple fechaCumpleNueva = new FechaCumple(fechaCumple.getInt("dia"), fechaCumple.getInt("numeroMes"));
+
+                        // Añade la fecha de cumpleaños
+                        contactoNuevo.setFechaCumple(fechaCumpleNueva);
+                    }
+
                     if(contacto.has("emails")){
                         // Nombramos al JSONArray que contiene los correos
                         JSONArray listaEmails = contacto.getJSONArray("emails");
@@ -173,17 +184,6 @@ public class GestorJSON {
                         for(int j=0; j<listaApodos.length(); j++){
                             contactoNuevo.getApodos().add(listaApodos.getString(j));
                         }
-                    }
-
-                    if(contacto.has("fechacumple")){
-                        // Nombramos la fecha de cumpleaños
-                        JSONObject fechaCumple = contacto.getJSONObject("fechacumple");
-
-                        // Crea una fecha de cumpleaños nueva con los datos del JSON
-                        FechaCumple fechaCumpleNueva = new FechaCumple(fechaCumple.getInt("dia"), fechaCumple.getInt("numeroMes"));
-
-                        // Añade la fecha de cumpleaños
-                        contactoNuevo.setFechaCumple(fechaCumpleNueva);
                     }
 
                     if(contacto.has("notas")){

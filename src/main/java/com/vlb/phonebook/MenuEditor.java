@@ -33,9 +33,9 @@ public class MenuEditor extends Menu {
         this.opciones.add("Cambiar nombre");
         this.opciones.add("Editar números de teléfono");
         this.opciones.add("Editar dirección");
+        this.opciones.add("Editar fecha de cumpleaños");
         this.opciones.add("Editar emails");
         this.opciones.add("Editar apodos");
-        this.opciones.add("Editar fecha de cumpleaños");
         this.opciones.add("Editar notas");
         this.opciones.add("Salir");
 
@@ -89,14 +89,14 @@ public class MenuEditor extends Menu {
             //// "Editar dirección"
             case DIRECCION + 1 -> sub = new SubmenuEditor(aux, DIRECCION);
 
+            //// "Editar fecha de cumpleaños"
+            case FECHACUMPLE + 1 -> sub = new SubmenuEditor(aux, FECHACUMPLE);
+
             //// "Editar emails"
             case EMAIL + 1 -> sub = new SubmenuEditor(aux, EMAIL);
 
             //// "Editar apodo"
             case APODO + 1 -> sub = new SubmenuEditor(aux, APODO);
-
-            //// "Editar fecha de cumpleaños"
-            case FECHACUMPLE + 1 -> sub = new SubmenuEditor(aux, FECHACUMPLE);
 
             //// "Editar notas"
             case NOTAS + 1 -> sub = new SubmenuEditor(aux, NOTAS);
