@@ -121,12 +121,37 @@ public class GestorJSON {
             for(int i=0; i<Principal.agendaJSON.length(); i++){
                 JSONObject contacto = Principal.agendaJSON.getJSONObject(i).getJSONObject("contacto");
 
-                // Crea un contacto nuevo con el nombre del key
-                System.out.println(contacto.getString("nombre")+"\n");
-                Contacto nuevo = new Contacto(contacto.getString("nombre"));
-                
-                // Añade el contacto a la agenda
-                Principal.agenda.getContactos().add(nuevo);
+                // El contacto solo se puede crear si se tiene un nombre guardado
+                if(contacto.has("nombre")) {
+                    // Crea un contacto nuevo con el nombre del key
+                    Contacto contactoNuevo = new Contacto(contacto.getString("nombre"));
+
+                    // Si tiene telefonos guardados
+                    if(contacto.has("telefonos")) {
+                        // Obtiene la lista de telefonos
+                        JSONArray listaTelefonos = contacto.getJSONArray("telefonos");
+
+                        // Para cada telefono dentro de la lista
+                        for (int j = 0; j < listaTelefonos.length(); j++) {
+                            // Obtiene el JSONObject que representa un telefono
+                            JSONObject telefono = listaTelefonos.getJSONObject(j);
+
+                            // Crea un objeto de tipo Telefono con el numero y el tipo del JSON
+                            Telefono telefonoNuevo = new Telefono(telefono.getInt("numero"), telefono.getString("tipo"));
+
+                            // Añade el Telefono nuevo al contacto nuevo
+                            contactoNuevo.getTelefonos().add(telefonoNuevo);
+                        }
+                    }
+
+
+                    // Añade el contacto a la agenda
+                    Principal.agenda.getContactos().add(contactoNuevo);
+                }
+
+                else{
+                    System.out.println("Error: Contacto en el JSON no tiene nombre registrado");
+                }
             }
 
             // Actualiza la lista de nombres
