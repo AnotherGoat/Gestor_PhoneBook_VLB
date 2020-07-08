@@ -144,6 +144,31 @@ public class GestorJSON {
                         }
                     }
 
+                    if(contacto.has("direccion")){
+                        // Nombramos al JSONObject que contiene la dirección
+                        JSONObject direccion = contacto.getJSONObject("direccion");
+
+                        // Crea una dirección nueva con los datos del JSON
+                        Direccion direccionNueva = new Direccion(direccion.getString("ciudad"), direccion.getString("calle"), direccion.getInt("numero"));
+
+                        contactoNuevo.setDireccion(direccionNueva);
+                    }
+
+                    if(contacto.has("emails")){
+
+
+                    }
+                    if(contacto.has("apodos")){
+
+                    }
+
+                    if(contacto.has("fechacumple")){
+
+                    }
+
+                    if(contacto.has("notas")){
+
+                    }
 
                     // Añade el contacto a la agenda
                     Principal.agenda.getContactos().add(contactoNuevo);

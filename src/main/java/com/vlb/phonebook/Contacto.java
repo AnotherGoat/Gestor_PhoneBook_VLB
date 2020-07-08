@@ -275,7 +275,7 @@ class Direccion {
 
     @Override
     public String toString() {
-        return "Dirección: "+ciudad + ", " + calle + ", #" + numero;
+        return "Dirección: "+ciudad + ", " + calle + " #" + numero;
     }
 }
 
