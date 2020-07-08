@@ -130,6 +130,14 @@ public class Agenda {
         }
     }
 
+    public void actualizarListaNombres(){
+        this.listaNombres.clear();
+
+        for(int i=0; i<contactos.size(); i++){
+            listaNombres.add(contactos.get(i).getNombre());
+        }
+    }
+
     //// Getters y Setters
     public List<Contacto> getContactos() {
         return contactos;

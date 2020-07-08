@@ -115,7 +115,22 @@ public class GestorJSON {
             System.out.println("Datos de \"agenda.json\" cargados");
 
             // Muestra el JSON en pantalla, para verificar que funcionó bien
-            System.out.println(Principal.agendaJSON.toString());
+            // System.out.println(Principal.agendaJSON.toString());
+
+            // Para cada contacto
+            for(int i=0; i<Principal.agendaJSON.length(); i++){
+                JSONObject contacto = Principal.agendaJSON.getJSONObject(i).getJSONObject("contacto");
+
+                // Crea un contacto nuevo con el nombre del key
+                System.out.println(contacto.getString("nombre")+"\n");
+                Contacto nuevo = new Contacto(contacto.getString("nombre"));
+                
+                // Añade el contacto a la agenda
+                Principal.agenda.getContactos().add(nuevo);
+            }
+
+            // Actualiza la lista de nombres
+            Principal.agenda.actualizarListaNombres();
         }
     }
 }
