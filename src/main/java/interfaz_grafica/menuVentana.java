@@ -13,10 +13,10 @@ public class menuVentana extends JFrame {
     private JButton salirButton;
 
     public menuVentana(){
-        setTitle("Gestor Phonebook VLB");//tirulo
-        add(panel1);//se le añade el panel creado en menuVentana.form
-        setDefaultCloseOperation(EXIT_ON_CLOSE);//cuando se cierre la ventana se finaliza el programa
-        setBounds(600,400,300,600);//se define posicion y tamaño de ventana
-
+        setTitle("Gestor Phonebook VLB"); // Título
+        add(panel1); // Se le añade el panel creado en menuVentana.form
+        setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando se cierre la ventana se finaliza el programa
+        setSize(300,600); // Se define el tamaño de ventana
+        setLocationRelativeTo(null); // Centrar la ventana
     }
 }
