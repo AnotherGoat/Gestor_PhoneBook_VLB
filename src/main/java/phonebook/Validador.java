@@ -1,4 +1,4 @@
-package com.vlb.phonebook;
+package phonebook;
 
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package com.vlb.phonebook;
+package phonebook;
 
 // Importa la clase ArrayList
 import java.util.List;

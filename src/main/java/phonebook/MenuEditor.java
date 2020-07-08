@@ -1,9 +1,9 @@
-package com.vlb.phonebook;
+package phonebook;
 
 // Importa la agenda de uso "global"
 import java.sql.SQLOutput;
 
-import static com.vlb.phonebook.Principal.agenda;
+import static phonebook.Principal.agenda;
 
 /**
  * Acá irá el menú para editar contactos

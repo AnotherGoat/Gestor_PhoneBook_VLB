@@ -1,4 +1,4 @@
-package com.vlb.phonebook;
+package phonebook;
 
 public class SubmenuEditor extends Menu{
 

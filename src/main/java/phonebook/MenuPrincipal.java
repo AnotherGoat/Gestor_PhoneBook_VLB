@@ -1,7 +1,7 @@
-package com.vlb.phonebook;
+package phonebook;
 
 // Importa la agenda de uso "global"
-import static com.vlb.phonebook.Principal.agenda;
+import static phonebook.Principal.agenda;
 
 /**
  * Acá irá el menú principal del proyecto PhoneBook

@@ -1,4 +1,4 @@
-package com.vlb.phonebook;
+package phonebook;
 
 import org.junit.After;
 import org.junit.Before;

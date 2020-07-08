@@ -1,4 +1,4 @@
-package com.vlb.phonebook;
+package phonebook;
 
 /* Para generar javadoc:
 Ir a Tools > Generate JavaDoc...
