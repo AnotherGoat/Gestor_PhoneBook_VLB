@@ -1,4 +1,4 @@
-package phonebook;
+package lanzador;
 
 /* Para generar javadoc:
 Ir a Tools > Generate JavaDoc...
@@ -20,7 +20,10 @@ ValidadorTest: listo
 Nota: Si a alguno se le ocurre otro test unitario relevante, puede añadirlo
  */
 
+import json.GestorJSON;
 import org.json.JSONArray;
+import phonebook.Agenda;
+import phonebook.MenuPrincipal;
 
 /**
  * <h2>"Gestor PhoneBook VLB"</h2>

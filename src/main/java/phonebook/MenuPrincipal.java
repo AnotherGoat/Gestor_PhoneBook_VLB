@@ -1,7 +1,7 @@
 package phonebook;
 
 // Importa la agenda de uso "global"
-import static phonebook.Principal.agenda;
+import static lanzador.Principal.agenda;
 
 /**
  * Acá irá el menú principal del proyecto PhoneBook

@@ -3,7 +3,7 @@ package phonebook;
 // Importa la agenda de uso "global"
 import java.sql.SQLOutput;
 
-import static phonebook.Principal.agenda;
+import static lanzador.Principal.agenda;
 
 /**
  * Acá irá el menú para editar contactos

@@ -1,7 +1,6 @@
-package phonebook;
+package json;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
