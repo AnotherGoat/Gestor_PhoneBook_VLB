@@ -13,7 +13,7 @@ public class GestorArchivo {
 
     public void crearDirectorio(){
         Scanner teclado = new Scanner(System.in);
-        System.out.println("");
+        System.out.println();
         String ruta = teclado.nextLine();
         Path directorio = Paths.get(ruta);
         if(Files.exists(directorio)){

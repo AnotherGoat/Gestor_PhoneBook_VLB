@@ -19,7 +19,7 @@ public class FechaCumple {
     /**
      * Arreglo con los meses del año
      */
-    private final String[] listaMeses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
+    final String[] listaMeses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
 
     //// Constructores
     public FechaCumple() {

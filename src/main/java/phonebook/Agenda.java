@@ -19,7 +19,7 @@ public class Agenda {
     /**
      * List con el nombre de cada contacto
      */
-    private List<String> listaNombres = new ArrayList<>();
+    List<String> listaNombres = new ArrayList<>();
     /**
      * Validador usado en la clase Agenda
      */
@@ -89,7 +89,8 @@ public class Agenda {
         int posicionContacto = elegirContacto("editar");
         posicionContacto--; // Le resta 1 porque los índices empiezan desde 0
 
-        MenuEditor editor = new MenuEditor(posicionContacto);
+        // Instancia el menú editor
+        new MenuEditor(posicionContacto);
 
         // Actualiza la lista de nombres de la agenda
         listaNombres.set(posicionContacto, lista_contactos.get(posicionContacto).getNombre());
@@ -133,10 +134,12 @@ public class Agenda {
     }
 
     public void actualizarListaNombres(){
+        // Limpia la lista
         this.listaNombres.clear();
 
-        for(int i=0; i<lista_contactos.size(); i++){
-            listaNombres.add(lista_contactos.get(i).getNombre());
+        // Añade cada nombre a la lista
+        for (Contacto c : lista_contactos) {
+            listaNombres.add(c.getNombre());
         }
     }
 
@@ -147,13 +150,5 @@ public class Agenda {
 
     public void setLista_Contactos(List<Contacto> contactos) {
         this.lista_contactos = contactos;
-    }
-
-    public List<String> getListaNombres() {
-        return listaNombres;
-    }
-
-    public void setListaNombres(List<String> listaNombres) {
-        this.listaNombres = listaNombres;
     }
 }

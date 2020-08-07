@@ -111,7 +111,7 @@ public class Validador {
         // Crea nueva instancia del teclado, para evitar errores
         this.teclado = new Scanner(System.in);
 
-        String entrada = "";
+        String entrada;
 
         do{
             System.out.print("Ingrese el email: ");

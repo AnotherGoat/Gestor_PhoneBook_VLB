@@ -44,6 +44,6 @@ public class Principal {
 
     public static void main(String[] args) {
         GestorJSON.cargarJSON();
-        MenuPrincipal menu = new MenuPrincipal();
+        new MenuPrincipal();
     }
 }

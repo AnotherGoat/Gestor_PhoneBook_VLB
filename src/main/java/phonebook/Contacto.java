@@ -130,36 +130,36 @@ public class Contacto {
         if (telefonos.size() != 0) {
             s.append("\nTeléfonos guardados:");
             for(Telefono t: telefonos) {
-                s.append("\n  "+t.toString());
+                s.append("\n  ").append(t.toString());
             }
         }
 
         if (direccion != null) {
-            s.append("\n" + direccion.toString());
+            s.append("\n").append(direccion.toString());
         }
 
         if (fechaCumple != null) {
-            s.append("\n" + fechaCumple.toString());
+            s.append("\n").append(fechaCumple.toString());
         }
 
         if (emails.size() != 0) {
             s.append("\nEmails guardados:");
             for(String e: emails) {
-                s.append("\n  "+e);
+                s.append("\n  ").append(e);
             }
         }
 
         if (apodos.size() != 0) {
             s.append("\nApodos guardados:");
             for(String a: apodos) {
-                s.append("\n  "+a);
+                s.append("\n  ").append(a);
             }
         }
 
         if (notas.size() != 0) {
             s.append("\nNotas guardadas:");
             for(String n: notas) {
-                s.append("\n  "+n);
+                s.append("\n  ").append(n);
             }
         }
 

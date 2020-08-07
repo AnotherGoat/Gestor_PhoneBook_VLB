@@ -1,8 +1,6 @@
 package phonebook;
 
 // Importa la agenda de uso "global"
-import java.sql.SQLOutput;
-
 import static lanzador.Principal.agenda;
 
 /**
@@ -74,32 +72,31 @@ public class MenuEditor extends Menu {
     }
 
     /**
-     * Método para crear submenús dependiendo de lo que haya ingresado el usuario
+     * Método para instanciar un submenú dependiendo de lo que haya ingresado el usuario
      */
     private void switchMenu() {
-        Menu sub; // Submenú
 
         switch (eleccion) {
             //// "Cambiar nombre"
-            case NOMBRE + 1 -> sub = new SubmenuEditor(aux, NOMBRE);
+            case NOMBRE + 1 -> new SubmenuEditor(aux, NOMBRE);
 
             //// "Editar números de celular"
-            case TELEFONO + 1 -> sub = new SubmenuEditor(aux, TELEFONO);
+            case TELEFONO + 1 -> new SubmenuEditor(aux, TELEFONO);
 
             //// "Editar dirección"
-            case DIRECCION + 1 -> sub = new SubmenuEditor(aux, DIRECCION);
+            case DIRECCION + 1 -> new SubmenuEditor(aux, DIRECCION);
 
             //// "Editar fecha de cumpleaños"
-            case FECHACUMPLE + 1 -> sub = new SubmenuEditor(aux, FECHACUMPLE);
+            case FECHACUMPLE + 1 -> new SubmenuEditor(aux, FECHACUMPLE);
 
             //// "Editar emails"
-            case EMAIL + 1 -> sub = new SubmenuEditor(aux, EMAIL);
+            case EMAIL + 1 -> new SubmenuEditor(aux, EMAIL);
 
             //// "Editar apodo"
-            case APODO + 1 -> sub = new SubmenuEditor(aux, APODO);
+            case APODO + 1 -> new SubmenuEditor(aux, APODO);
 
             //// "Editar notas"
-            case NOTAS + 1 -> sub = new SubmenuEditor(aux, NOTAS);
+            case NOTAS + 1 -> new SubmenuEditor(aux, NOTAS);
 
             //// "Salir"
             case NOTAS + 2 -> this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
