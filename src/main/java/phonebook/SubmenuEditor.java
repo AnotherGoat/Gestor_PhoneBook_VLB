@@ -29,7 +29,7 @@ public class SubmenuEditor extends Menu{
         inicializarNombres(); // en singular y en plural
         this.nombreMenu = "menú de edición de "+plural;
 
-        if(tipo<NOMBRE || tipo>NOTAS){
+        if(tipo<NOMBRE || tipo>NOTA){
             System.out.println("Error: Tipo de submenú fuera de rango");
         }
 
@@ -85,7 +85,7 @@ public class SubmenuEditor extends Menu{
                 singular = "apodo";
                 plural = "apodos";
                 break;
-            case NOTAS:
+            case NOTA:
                 singular = "nota";
                 plural = "notas";
         }
@@ -205,7 +205,7 @@ public class SubmenuEditor extends Menu{
                 agregarApodo();
                 break;
 
-            case NOTAS:
+            case NOTA:
                 agregarNota();
         }
     }
@@ -216,7 +216,7 @@ public class SubmenuEditor extends Menu{
     private void switchOpcion2(){
         switch(tipo){
             case TELEFONO:
-                if(contacto.getTelefonos().size() == 0){
+                if(contacto.getLista_Telefonos().size() == 0){
                     System.out.println("Este contacto no tiene números de teléfono guardados");
                 }
                 else {
@@ -246,7 +246,7 @@ public class SubmenuEditor extends Menu{
 
             case EMAIL:
                 // En caso de no tener emails guardados
-                if(contacto.getEmails().size() == 0){
+                if(contacto.getLista_Emails().size() == 0){
                     System.out.println("Este contacto no tiene emails guardados");
                 }
 
@@ -258,7 +258,7 @@ public class SubmenuEditor extends Menu{
 
             case APODO:
                 // En caso de no tener apodos guardados
-                if(contacto.getApodos().size() == 0){
+                if(contacto.getLista_Apodos().size() == 0){
                     System.out.println("Este contacto no tiene apodos guardados");
                 }
 
@@ -268,9 +268,9 @@ public class SubmenuEditor extends Menu{
                 }
                 break;
 
-            case NOTAS:
+            case NOTA:
                 // Si no hay notas guardadas
-                if(contacto.getNotas().size() == 0){
+                if(contacto.getLista_Notas().size() == 0){
                     System.out.println("Este contacto no tiene notas guardadas");
                 }
 
@@ -289,7 +289,7 @@ public class SubmenuEditor extends Menu{
         switch(tipo){
             case TELEFONO:
                 // Si no hay teléfonos guardados
-                if(contacto.getTelefonos().size() == 0){
+                if(contacto.getLista_Telefonos().size() == 0){
                     System.out.println("Este contacto no tiene números de teléfono guardados");
                 }
                 else{
@@ -305,7 +305,7 @@ public class SubmenuEditor extends Menu{
 
             case EMAIL:
                 // Si no hay emails guardados
-                if(contacto.getEmails().size() == 0){
+                if(contacto.getLista_Emails().size() == 0){
                     System.out.println("Este contacto no tiene emails guardados");
                 }
                 else{
@@ -314,7 +314,7 @@ public class SubmenuEditor extends Menu{
                 break;
 
             case APODO:
-                if(contacto.getApodos().size() == 0){
+                if(contacto.getLista_Apodos().size() == 0){
                     System.out.println("Este contacto no tiene apodos guardados");
                 }
                 else{
@@ -322,8 +322,8 @@ public class SubmenuEditor extends Menu{
                 }
                 break;
 
-            case NOTAS:
-                if(contacto.getNotas().size() == 0){
+            case NOTA:
+                if(contacto.getLista_Notas().size() == 0){
                     System.out.println("Este contacto no tiene notas guardadas");
                 }
                 else{
@@ -357,10 +357,10 @@ public class SubmenuEditor extends Menu{
     private int elegirTelefono(String verbo){
         // Muestra los números guardados
         System.out.println("Números de teléfono guardados: ");
-        System.out.println(enumerarListaTelefono(contacto.getTelefonos()));
+        System.out.println(enumerarListaTelefono(contacto.getLista_Telefonos()));
 
         // Pide al usuario que elija uno
-        return v.validarInt(1, contacto.getTelefonos().size(),
+        return v.validarInt(1, contacto.getLista_Telefonos().size(),
                 "Escoja el número de teléfono que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
@@ -391,7 +391,7 @@ public class SubmenuEditor extends Menu{
             case 3 -> tipoString = "Trabajo";
         }
 
-        contacto.getTelefonos().add(new Telefono (numeroNuevo, tipoString));
+        contacto.getLista_Telefonos().add(new Telefono (numeroNuevo, tipoString));
         System.out.println(mensajeExito("El","agregado"));
     }
 
@@ -404,7 +404,7 @@ public class SubmenuEditor extends Menu{
         posicionTelefono--; // Le resta 1 porque los ArrayList empiezan con indice 0
 
         // Número actual (número + tipo entre paréntesis)
-        String numeroActual = contacto.getTelefonos().get(posicionTelefono).getNumero()+" ("+contacto.getTelefonos().get(posicionTelefono).getTipo()+")";
+        String numeroActual = contacto.getLista_Telefonos().get(posicionTelefono).getNumero()+" ("+contacto.getLista_Telefonos().get(posicionTelefono).getTipo()+")";
 
         // Muestra el número actual y pide uno nuevo
         System.out.println("Número actual: "+numeroActual);
@@ -421,7 +421,7 @@ public class SubmenuEditor extends Menu{
         }
 
         // Guarda los cambios
-        contacto.getTelefonos().set(posicionTelefono, new Telefono(numeroNuevo, tipoString));
+        contacto.getLista_Telefonos().set(posicionTelefono, new Telefono(numeroNuevo, tipoString));
         // Muestra el mensaje de éxito
         System.out.println(mensajeExito("El", "cambiado"));
     }
@@ -441,13 +441,13 @@ public class SubmenuEditor extends Menu{
      */
     private void confirmarBorradoTelefono(int posicion) {
         int x = v.validarInt(0, 1,
-                "Se borrará el número "+contacto.getTelefonos().get(posicion).getNumero()+
+                "Se borrará el número "+contacto.getLista_Telefonos().get(posicion).getNumero()+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         switch (x) {
             case 1:
-                contacto.getTelefonos().remove(posicion);
+                contacto.getLista_Telefonos().remove(posicion);
                 System.out.println("El contacto ha sido borrado exitosamente.");
                 break;
             case 0:
@@ -615,10 +615,10 @@ public class SubmenuEditor extends Menu{
     private int elegirEmail(String verbo){
         // Muestra los números guardados
         System.out.println("Emails guardados: ");
-        System.out.println(enumerarListaString(contacto.getEmails()));
+        System.out.println(enumerarListaString(contacto.getLista_Emails()));
 
         // Pide al usuario que elija uno
-        return v.validarInt(1, contacto.getEmails().size(),
+        return v.validarInt(1, contacto.getLista_Emails().size(),
                 "Escoja el email que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
@@ -630,7 +630,7 @@ public class SubmenuEditor extends Menu{
         String emailNuevo = v.validarEmail();
 
         // Guarda el email y muestra un mensaje de éxito
-        contacto.getEmails().add(emailNuevo);
+        contacto.getLista_Emails().add(emailNuevo);
         System.out.println(mensajeExito("El", "agregado"));
     }
 
@@ -640,14 +640,14 @@ public class SubmenuEditor extends Menu{
     private void cambiarEmail(){
         int posicionEmail = elegirEmail("cambiar");
         posicionEmail--; // Le resta 1 porque los ArrayList empiezan con indice 0
-        String emailActual = contacto.getEmails().get(posicionEmail);
+        String emailActual = contacto.getLista_Emails().get(posicionEmail);
 
         // Muestra el email actual y pide uno nuevo
         System.out.println("Email actual: "+emailActual);
         String emailNuevo = v.validarEmail();
 
         // Actualizar email
-        contacto.getEmails().set(posicionEmail, emailNuevo);
+        contacto.getLista_Emails().set(posicionEmail, emailNuevo);
         // Muestra el mensaje de éxito
         System.out.println(mensajeExito("El", "cambiado"));
     }
@@ -667,13 +667,13 @@ public class SubmenuEditor extends Menu{
      */
     private void confirmarBorradoEmail(int posicion) {
         int x = v.validarInt(0, 1,
-                "Se borrará el email "+contacto.getEmails().get(posicion)+
+                "Se borrará el email "+contacto.getLista_Emails().get(posicion)+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         switch (x) {
             case 1:
-                contacto.getEmails().remove(posicion);
+                contacto.getLista_Emails().remove(posicion);
                 System.out.println("El email ha sido borrado exitosamente.");
                 break;
             case 0:
@@ -690,10 +690,10 @@ public class SubmenuEditor extends Menu{
     private int elegirApodo(String verbo){
         // Muestra los apodos guardados
         System.out.println("Apodos guardados: ");
-        System.out.println(enumerarListaString(contacto.getApodos()));
+        System.out.println(enumerarListaString(contacto.getLista_Apodos()));
 
         // Pide al usuario que elija uno
-        return v.validarInt(1, contacto.getApodos().size(),
+        return v.validarInt(1, contacto.getLista_Apodos().size(),
                 "Escoja el apodo que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
@@ -703,7 +703,7 @@ public class SubmenuEditor extends Menu{
      */
     private void agregarApodo(){
         String apodoNuevo = v.recibirString("Ingrese el apodo: ");
-        contacto.getApodos().add(apodoNuevo);
+        contacto.getLista_Apodos().add(apodoNuevo);
         System.out.println(mensajeExito("El", "agregado"));
     }
 
@@ -715,14 +715,14 @@ public class SubmenuEditor extends Menu{
         posicionApodo--; // Le resta 1 porque los ArrayList empiezan con indice 0
 
         // Apodo actual, según la posición ingresada
-        String apodoActual = contacto.getApodos().get(posicionApodo);
+        String apodoActual = contacto.getLista_Apodos().get(posicionApodo);
 
         // Muestra el apodo actual y pide uno nuevo
         System.out.println("Apodo actual: "+apodoActual);
         String apodoNuevo = v.recibirString("Apodo nuevo: ");
 
         // Actualizar apodo
-        contacto.getApodos().set(posicionApodo, apodoNuevo);
+        contacto.getLista_Apodos().set(posicionApodo, apodoNuevo);
         // Muestra el mensaje de éxito
         System.out.println(mensajeExito("El", "cambiado"));
     }
@@ -742,13 +742,13 @@ public class SubmenuEditor extends Menu{
      */
     private void confirmarBorradoApodo(int posicion) {
         int x = v.validarInt(0, 1,
-                "Se borrará el apodo "+contacto.getApodos().get(posicion)+
+                "Se borrará el apodo "+contacto.getLista_Apodos().get(posicion)+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         switch (x) {
             case 1:
-                contacto.getApodos().remove(posicion);
+                contacto.getLista_Apodos().remove(posicion);
                 System.out.println("El apodo ha sido borrado exitosamente.");
                 break;
             case 0:
@@ -765,10 +765,10 @@ public class SubmenuEditor extends Menu{
     private int elegirNota(String verbo){
         // Muestra las notas guardadas
         System.out.println("Notas guardadas: ");
-        System.out.println(enumerarListaString(contacto.getNotas()));
+        System.out.println(enumerarListaString(contacto.getLista_Notas()));
 
         // Pide al usuario que elija una
-        return v.validarInt(1, contacto.getNotas().size(),
+        return v.validarInt(1, contacto.getLista_Notas().size(),
                 "Escoja la nota que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
@@ -778,7 +778,7 @@ public class SubmenuEditor extends Menu{
      */
     private void agregarNota(){
         String notaNueva = v.recibirString("Ingrese la nota: ");
-        contacto.getNotas().add(notaNueva);
+        contacto.getLista_Notas().add(notaNueva);
         System.out.println(mensajeExito("La", "agregada"));
     }
 
@@ -790,14 +790,14 @@ public class SubmenuEditor extends Menu{
         posicionNota--; // Le resta 1 porque los ArrayList empiezan con indice 0
 
         // Nota actual, según la posición escogida
-        String notaActual = contacto.getNotas().get(posicionNota);
+        String notaActual = contacto.getLista_Notas().get(posicionNota);
 
         // Muestra la nota actual y pide una nueva
         System.out.println("Nota actual: "+notaActual);
         String notaNueva = v.recibirString("Nota nueva: ");
 
         // Actualizar nota
-        contacto.getNotas().set(posicionNota, notaNueva);
+        contacto.getLista_Notas().set(posicionNota, notaNueva);
         // Muestra el mensaje de éxito
         System.out.println(mensajeExito("La", "cambiada"));
     }
@@ -817,13 +817,13 @@ public class SubmenuEditor extends Menu{
      */
     private void confirmarBorradoNota(int posicion) {
         int x = v.validarInt(0, 1,
-                "Se borrará la nota \""+contacto.getNotas().get(posicion)+
+                "Se borrará la nota \""+contacto.getLista_Notas().get(posicion)+
                         "\"\n¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         switch (x) {
             case 1:
-                contacto.getNotas().remove(posicion);
+                contacto.getLista_Notas().remove(posicion);
                 System.out.println("La nota ha sido borrado exitosamente.");
                 break;
             case 0:

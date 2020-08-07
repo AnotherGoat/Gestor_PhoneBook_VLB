@@ -1,6 +1,5 @@
 package phonebook;
 
-// Importa la clase ArrayList (todavía no se usa en esta clase)
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ public class Contacto {
     /**
      * ArrayList con los números de teléfono del contacto
      */
-    private List<Telefono> telefonos = new ArrayList<>();
+    private List<Telefono> lista_telefonos = new ArrayList<>();
     /**
      * Dirección de residencia del contacto
      */
@@ -29,15 +28,15 @@ public class Contacto {
     /**
      * ArrayList con los emails del contacto
      */
-    private List<String> emails = new ArrayList<>();
+    private List<String> lista_emails = new ArrayList<>();
     /**
      * ArrayList con los apodos con los que se conoce al contacto
      */
-    private List<String> apodos = new ArrayList<>();
+    private List<String> lista_apodos = new ArrayList<>();
     /**
      * ArrayList con las notas adicionales que se quieran agregar sobre el contacto
      */
-    private List<String> notas = new ArrayList<>();
+    private List<String> lista_notas = new ArrayList<>();
 
     //// Constructores
     public Contacto(){
@@ -54,7 +53,7 @@ public class Contacto {
             this.nombre = c.nombre;
 
             // Copia los telefonos desde c
-            this.telefonos.addAll(c.telefonos);
+            this.lista_telefonos.addAll(c.lista_telefonos);
 
             // Copia la dirección desde c, en una nueva instancia
             if (c.direccion != null) {
@@ -67,13 +66,13 @@ public class Contacto {
             }
 
             // Copia los emails desde c
-            this.emails.addAll(c.emails);
+            this.lista_emails.addAll(c.lista_emails);
 
             // Copia los apodos desde c
-            this.apodos.addAll(c.apodos);
+            this.lista_apodos.addAll(c.lista_apodos);
 
             // Copia las notas desde c
-            this.notas.addAll(c.notas);
+            this.lista_notas.addAll(c.lista_notas);
         }
     }
 
@@ -86,8 +85,8 @@ public class Contacto {
         this.nombre = nombre;
     }
 
-    public List<Telefono> getTelefonos() {
-        return telefonos;
+    public List<Telefono> getLista_Telefonos() {
+        return lista_telefonos;
     }
 
     public Direccion getDireccion() {
@@ -106,16 +105,16 @@ public class Contacto {
         this.fechaCumple = fechaCumple;
     }
 
-    public List<String> getEmails() {
-        return emails;
+    public List<String> getLista_Emails() {
+        return lista_emails;
     }
 
-    public List<String> getApodos() {
-        return apodos;
+    public List<String> getLista_Apodos() {
+        return lista_apodos;
     }
 
-    public List<String> getNotas() {
-        return notas;
+    public List<String> getLista_Notas() {
+        return lista_notas;
     }
 
     /**
@@ -127,9 +126,9 @@ public class Contacto {
         StringBuilder s;
         s = new StringBuilder("Nombre: " + nombre);
 
-        if (telefonos.size() != 0) {
+        if (lista_telefonos.size() != 0) {
             s.append("\nTeléfonos guardados:");
-            for(Telefono t: telefonos) {
+            for(Telefono t: lista_telefonos) {
                 s.append("\n  ").append(t.toString());
             }
         }
@@ -142,23 +141,23 @@ public class Contacto {
             s.append("\n").append(fechaCumple.toString());
         }
 
-        if (emails.size() != 0) {
+        if (lista_emails.size() != 0) {
             s.append("\nEmails guardados:");
-            for(String e: emails) {
+            for(String e: lista_emails) {
                 s.append("\n  ").append(e);
             }
         }
 
-        if (apodos.size() != 0) {
+        if (lista_apodos.size() != 0) {
             s.append("\nApodos guardados:");
-            for(String a: apodos) {
+            for(String a: lista_apodos) {
                 s.append("\n  ").append(a);
             }
         }
 
-        if (notas.size() != 0) {
+        if (lista_notas.size() != 0) {
             s.append("\nNotas guardadas:");
-            for(String n: notas) {
+            for(String n: lista_notas) {
                 s.append("\n  ").append(n);
             }
         }

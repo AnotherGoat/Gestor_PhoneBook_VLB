@@ -28,11 +28,11 @@ public class GestorJSON {
             datosContacto.put("nombre", c.getNombre());
 
             //// TELEFONO
-            if(c.getTelefonos().size() != 0) {
-                JSONArray listaTelefonos = new JSONArray();
+            if(c.getLista_Telefonos().size() != 0) {
+                JSONArray lista_telefonos = new JSONArray();
 
                 // Procesa todos los teléfonos y
-                for (Telefono t : c.getTelefonos()) {
+                for (Telefono t : c.getLista_Telefonos()) {
                     JSONObject datosTelefono = new JSONObject(); // Pares ordenados que representan un telefono ("numero", "") ("tipo", "")
 
                     // Guarda el número y tipo en un JSONObject
@@ -40,11 +40,11 @@ public class GestorJSON {
                     datosTelefono.put("tipo", t.getTipo());
 
                     // Añade los pares ordenados a la lista de teléfonos
-                    listaTelefonos.put(datosTelefono);
+                    lista_telefonos.put(datosTelefono);
                 }
 
                 // Añade el par ordenado a
-                datosContacto.put("telefonos", listaTelefonos);
+                datosContacto.put("telefonos", lista_telefonos);
             }
 
             if(c.getDireccion() != null){
@@ -68,28 +68,28 @@ public class GestorJSON {
                 datosContacto.put("fechacumple", datosFechaCumple);
             }
 
-            if(c.getEmails().size() != 0){
+            if(c.getLista_Emails().size() != 0){
                 // Crea la lista de emails usando el ArrayList
-                JSONArray listaEmails = new JSONArray(c.getEmails());
+                JSONArray lista_emails = new JSONArray(c.getLista_Emails());
 
                 // Añade la  lista de emails al contacto
-                datosContacto.put("emails", listaEmails);
+                datosContacto.put("emails", lista_emails);
             }
 
-            if(c.getApodos().size() != 0){
+            if(c.getLista_Apodos().size() != 0){
                 // Crea la lista de apodos usando el ArrayList
-                JSONArray listaApodos = new JSONArray(c.getApodos());
+                JSONArray lista_apodos = new JSONArray(c.getLista_Apodos());
 
                 // Añade la  lista de apodos al contacto
-                datosContacto.put("apodos", listaApodos);
+                datosContacto.put("apodos", lista_apodos);
             }
 
-            if(c.getNotas().size() != 0){
+            if(c.getLista_Notas().size() != 0){
                 // Crea la lista de notas usando el ArrayList
-                JSONArray listaNotas = new JSONArray(c.getNotas());
+                JSONArray lista_notas = new JSONArray(c.getLista_Notas());
 
                 // Añade la  lista de notas al contacto
-                datosContacto.put("notas", listaNotas);
+                datosContacto.put("notas", lista_notas);
             }
 
             contacto.put("contacto", datosContacto);
@@ -142,7 +142,7 @@ public class GestorJSON {
                             Telefono telefonoNuevo = new Telefono(telefono.getInt("numero"), telefono.getString("tipo"));
 
                             // Añade el Telefono nuevo al contacto nuevo
-                            contactoNuevo.getTelefonos().add(telefonoNuevo);
+                            contactoNuevo.getLista_Telefonos().add(telefonoNuevo);
                         }
                     }
 
@@ -174,7 +174,7 @@ public class GestorJSON {
 
                         // Para cada email dentro de la lista
                         for(int j=0; j<listaEmails.length(); j++){
-                            contactoNuevo.getEmails().add(listaEmails.getString(j));
+                            contactoNuevo.getLista_Emails().add(listaEmails.getString(j));
                         }
                     }
 
@@ -184,7 +184,7 @@ public class GestorJSON {
 
                         // Para cada apodo dentro de la lista
                         for(int j=0; j<listaApodos.length(); j++){
-                            contactoNuevo.getApodos().add(listaApodos.getString(j));
+                            contactoNuevo.getLista_Apodos().add(listaApodos.getString(j));
                         }
                     }
 
@@ -194,7 +194,7 @@ public class GestorJSON {
 
                         // Para cada nota dentro de la lista
                         for(int j=0; j<listaNotas.length(); j++){
-                            contactoNuevo.getNotas().add(listaNotas.getString(j));
+                            contactoNuevo.getLista_Notas().add(listaNotas.getString(j));
                         }
                     }
 

@@ -19,7 +19,7 @@ public class FechaCumple {
     /**
      * Arreglo con los meses del año
      */
-    final String[] listaMeses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
+    final String[] lista_meses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
 
     //// Constructores
     public FechaCumple() {
@@ -29,7 +29,7 @@ public class FechaCumple {
     public FechaCumple(int dia, int numeroMes) {
         this.dia = dia;
         this.numeroMes = numeroMes;
-        this.mes = listaMeses[numeroMes - 1];
+        this.mes = lista_meses[numeroMes - 1];
     }
 
     public FechaCumple(FechaCumple fc) {

@@ -96,10 +96,10 @@ public class MenuEditor extends Menu {
             case APODO + 1 -> new SubmenuEditor(aux, APODO);
 
             //// "Editar notas"
-            case NOTAS + 1 -> new SubmenuEditor(aux, NOTAS);
+            case NOTA + 1 -> new SubmenuEditor(aux, NOTA);
 
             //// "Salir"
-            case NOTAS + 2 -> this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
+            case NOTA + 2 -> this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
     }
 

@@ -43,3 +43,9 @@ public class Telefono {
         return tipo + ": " + numero;
     }
 }
+
+enum Tipo{
+    CELULAR,
+    FIJO,
+    TRABAJO;
+}

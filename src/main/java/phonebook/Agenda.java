@@ -19,7 +19,7 @@ public class Agenda {
     /**
      * List con el nombre de cada contacto
      */
-    List<String> listaNombres = new ArrayList<>();
+    List<String> lista_nombres = new ArrayList<>();
     /**
      * Validador usado en la clase Agenda
      */
@@ -40,7 +40,7 @@ public class Agenda {
         // Crea el contacto nuevo y lo agrega a la List
         Contacto nuevo = new Contacto(nombreContacto);
         lista_contactos.add(nuevo);
-        listaNombres.add(nombreContacto);
+        lista_nombres.add(nombreContacto);
         System.out.println("El contacto fue guardado exitosamente.");
 
         GestorJSON.guardarJSON();
@@ -52,7 +52,7 @@ public class Agenda {
     public void listarContactos() {
         // Mostrar nombres de los contactos guardados
         System.out.println("Contactos guardados:");
-        System.out.println(Menu.enumerarListaString(listaNombres));
+        System.out.println(Menu.enumerarListaString(lista_nombres));
     }
 
     /**
@@ -93,7 +93,7 @@ public class Agenda {
         new MenuEditor(posicionContacto);
 
         // Actualiza la lista de nombres de la agenda
-        listaNombres.set(posicionContacto, lista_contactos.get(posicionContacto).getNombre());
+        lista_nombres.set(posicionContacto, lista_contactos.get(posicionContacto).getNombre());
 
         GestorJSON.guardarJSON();
     }
@@ -124,7 +124,7 @@ public class Agenda {
         switch (x) {
             case 1:
                 lista_contactos.remove(posicion);
-                listaNombres.remove(posicion);
+                lista_nombres.remove(posicion);
                 System.out.println("El contacto ha sido borrado exitosamente.");
                 break;
             case 0:
@@ -135,11 +135,11 @@ public class Agenda {
 
     public void actualizarListaNombres(){
         // Limpia la lista
-        this.listaNombres.clear();
+        this.lista_nombres.clear();
 
         // Añade cada nombre a la lista
         for (Contacto c : lista_contactos) {
-            listaNombres.add(c.getNombre());
+            lista_nombres.add(c.getNombre());
         }
     }
 

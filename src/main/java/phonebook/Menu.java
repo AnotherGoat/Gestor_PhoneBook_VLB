@@ -38,7 +38,7 @@ public class Menu {
     static final int FECHACUMPLE = 3;
     static final int EMAIL = 4;
     static final int APODO = 5;
-    static final int NOTAS = 6;
+    static final int NOTA = 6;
 
     //// Constructores
     public Menu() {
@@ -142,4 +142,14 @@ public class Menu {
 
         return a == 1;
     }
+}
+
+enum TipoDeDato{
+    NOMBRE,
+    TELEFONO,
+    DIRECCION,
+    FECHACUMPLE,
+    EMAIL,
+    APODO,
+    NOTA
 }
