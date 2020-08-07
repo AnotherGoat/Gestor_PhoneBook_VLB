@@ -15,7 +15,7 @@ public class Agenda {
     /**
      * List con los contactos guardados
      */
-    private List<Contacto> contactos = new ArrayList<>();
+    private List<Contacto> lista_contactos = new ArrayList<>();
     /**
      * List con el nombre de cada contacto
      */
