@@ -32,12 +32,12 @@ public class AgendaTest {
     public void crearContacto1() {
         v.simularInput("Juan Pérez");
         a.crearContacto();
-        String nombreContacto = a.getContactos().get(0).getNombre();
+        String nombreContacto = a.getLista_Contactos().get(0).getNombre();
         assertEquals("Juan Pérez", nombreContacto);
 
         v.simularInput("Pablo");
         a.crearContacto();
-        nombreContacto = a.getContactos().get(1).getNombre();
+        nombreContacto = a.getLista_Contactos().get(1).getNombre();
         assertEquals("Pablo", nombreContacto);
     }
 
@@ -52,7 +52,7 @@ public class AgendaTest {
         v.simularInput("Francisca");
         a.crearContacto();
 
-        assertEquals(2, a.getContactos().size()); // Tamaño original
+        assertEquals(2, a.getLista_Contactos().size()); // Tamaño original
 
         // Simula el borrado del contacto 1 (Camila)
         v.simularInput("1");
@@ -62,7 +62,7 @@ public class AgendaTest {
         a.confirmarBorrado(idContacto-1);
 
         // Verifica el tamaño y el borrado del contacto correcto
-        assertEquals(1, a.getContactos().size()); // Tamaño cambia
-        assertEquals("Francisca", a.getContactos().get(0).getNombre());
+        assertEquals(1, a.getLista_Contactos().size()); // Tamaño cambia
+        assertEquals("Francisca", a.getLista_Contactos().get(0).getNombre());
     }
 }

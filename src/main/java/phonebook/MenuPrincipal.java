@@ -59,7 +59,7 @@ public class MenuPrincipal extends Menu {
 
             case 2: //// "Mostrar lista de contactos"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getContactos().size() == 0) {
+                if (agenda.getLista_Contactos().size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -69,7 +69,7 @@ public class MenuPrincipal extends Menu {
 
             case 3: //// "Ver detalles de un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getContactos().size() == 0) {
+                if (agenda.getLista_Contactos().size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -79,7 +79,7 @@ public class MenuPrincipal extends Menu {
 
             case 4: //// "Editar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getContactos().size() == 0) {
+                if (agenda.getLista_Contactos().size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -89,7 +89,7 @@ public class MenuPrincipal extends Menu {
 
             case 5: //// "Eliminar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getContactos().size() == 0) {
+                if (agenda.getLista_Contactos().size() == 0) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {

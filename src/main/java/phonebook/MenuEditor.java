@@ -40,7 +40,7 @@ public class MenuEditor extends Menu {
         this.opciones.add("Salir");
 
         // Tomar contacto que se va a editar (paso por referencia) y su posición
-        this.original = agenda.getContactos().get(posicionOriginal);
+        this.original = agenda.getLista_Contactos().get(posicionOriginal);
         this.posicionOriginal = posicionOriginal;
 
         // Copia el contacto original a uno auxiliar (paso por valor)
@@ -123,7 +123,7 @@ public class MenuEditor extends Menu {
             switch (b) {
                 case 1:
                     // Copia el contacto de vuelta
-                    agenda.getContactos().set(posicionOriginal, new Contacto(aux));
+                    agenda.getLista_Contactos().set(posicionOriginal, new Contacto(aux));
 
                     System.out.println("Los cambios han sido guardados.");
                     break;

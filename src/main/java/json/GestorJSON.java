@@ -19,7 +19,7 @@ public class GestorJSON {
 
         JSONArray agenda = new JSONArray();
 
-        for(Contacto c: test.getContactos()){
+        for(Contacto c: test.getLista_Contactos()){
             JSONObject contacto = new JSONObject(); // Par ordenado "contacto":datosContacto
             JSONObject datosContacto = new JSONObject();
 
@@ -199,7 +199,7 @@ public class GestorJSON {
                     }
 
                     // Añade el contacto a la agenda
-                    Principal.agenda.getContactos().add(contactoNuevo);
+                    Principal.agenda.getLista_Contactos().add(contactoNuevo);
                 }
 
                 else{

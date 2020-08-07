@@ -141,11 +141,11 @@ public class Agenda {
     }
 
     //// Getters y Setters
-    public List<Contacto> getContactos() {
+    public List<Contacto> getLista_Contactos() {
         return lista_contactos;
     }
 
-    public void setContactos(List<Contacto> contactos) {
+    public void setLista_Contactos(List<Contacto> contactos) {
         this.lista_contactos = contactos;
     }
 
