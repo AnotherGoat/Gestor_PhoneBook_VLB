@@ -39,7 +39,7 @@ public class Agenda {
 
         // Crea el contacto nuevo y lo agrega a la List
         Contacto nuevo = new Contacto(nombreContacto);
-        contactos.add(nuevo);
+        lista_contactos.add(nuevo);
         listaNombres.add(nombreContacto);
         System.out.println("El contacto fue guardado exitosamente.");
 
@@ -64,7 +64,7 @@ public class Agenda {
 
         // Muestra los detalles del contacto
         System.out.println("*****Contacto #"+(posicionContacto+1)+"*****");
-        System.out.println(contactos.get(posicionContacto).toString());
+        System.out.println(lista_contactos.get(posicionContacto).toString());
     }
 
     /**
@@ -77,7 +77,7 @@ public class Agenda {
         listarContactos();
 
         // Toma la entrada entre 1 y el contacto de rango máximo
-        return v.validarInt(1, contactos.size(),
+        return v.validarInt(1, lista_contactos.size(),
                 "Escoja el contacto que quiere "+verbo+": ",
                 "El contacto ingresado no existe.");
     }
@@ -92,7 +92,7 @@ public class Agenda {
         MenuEditor editor = new MenuEditor(posicionContacto);
 
         // Actualiza la lista de nombres de la agenda
-        listaNombres.set(posicionContacto, contactos.get(posicionContacto).getNombre());
+        listaNombres.set(posicionContacto, lista_contactos.get(posicionContacto).getNombre());
 
         GestorJSON.guardarJSON();
     }
@@ -117,12 +117,12 @@ public class Agenda {
     public void confirmarBorrado(int posicion) {
         int x;
         x = v.validarInt(0, 1,
-                "Se borrará el contacto "+contactos.get(posicion).getNombre()+" ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+                "Se borrará el contacto "+lista_contactos.get(posicion).getNombre()+" ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
         switch (x) {
             case 1:
-                contactos.remove(posicion);
+                lista_contactos.remove(posicion);
                 listaNombres.remove(posicion);
                 System.out.println("El contacto ha sido borrado exitosamente.");
                 break;
@@ -135,18 +135,18 @@ public class Agenda {
     public void actualizarListaNombres(){
         this.listaNombres.clear();
 
-        for(int i=0; i<contactos.size(); i++){
-            listaNombres.add(contactos.get(i).getNombre());
+        for(int i=0; i<lista_contactos.size(); i++){
+            listaNombres.add(lista_contactos.get(i).getNombre());
         }
     }
 
     //// Getters y Setters
     public List<Contacto> getContactos() {
-        return contactos;
+        return lista_contactos;
     }
 
     public void setContactos(List<Contacto> contactos) {
-        this.contactos = contactos;
+        this.lista_contactos = contactos;
     }
 
     public List<String> getListaNombres() {
