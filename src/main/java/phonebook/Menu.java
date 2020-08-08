@@ -143,13 +143,3 @@ public class Menu {
         return a == 1;
     }
 }
-
-enum TipoDeDato{
-    NOMBRE,
-    TELEFONO,
-    DIRECCION,
-    FECHACUMPLE,
-    EMAIL,
-    APODO,
-    NOTA
-}

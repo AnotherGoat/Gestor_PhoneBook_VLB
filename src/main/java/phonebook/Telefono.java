@@ -13,15 +13,15 @@ public class Telefono {
     /**
      * Tipo de teléfono ("Celular, "Fijo", "Trabajo")
      */
-    Tipo tipo;
+    TipoTelefono tipo;
 
     //// Constructores
     public Telefono(int numero, String tipo) {
         this.numero = numero;
         switch (tipo) {
-            case "Celular" -> this.tipo=Tipo.CELULAR;
-            case "Fijo" -> this.tipo=Tipo.FIJO;
-            case "Trabajo" ->  this.tipo=Tipo.TRABAJO;
+            case "Celular" -> this.tipo=TipoTelefono.CELULAR;
+            case "Fijo" -> this.tipo=TipoTelefono.FIJO;
+            case "Trabajo" ->  this.tipo=TipoTelefono.TRABAJO;
         }
     }
 
@@ -53,9 +53,9 @@ public class Telefono {
      */
     public void setTipo(String tipo) {
         switch (tipo) {
-            case "Celular" -> this.tipo=Tipo.CELULAR;
-            case "Fijo" -> this.tipo=Tipo.FIJO;
-            case "Trabajo" ->  this.tipo=Tipo.TRABAJO;
+            case "Celular" -> this.tipo=TipoTelefono.CELULAR;
+            case "Fijo" -> this.tipo=TipoTelefono.FIJO;
+            case "Trabajo" ->  this.tipo=TipoTelefono.TRABAJO;
             default -> System.out.println("Error en los parámetros");
         }
     }
@@ -71,10 +71,8 @@ public class Telefono {
     }
 }
 
-enum Tipo{
+enum TipoTelefono{
     CELULAR,
     FIJO,
     TRABAJO;
-
-
 }

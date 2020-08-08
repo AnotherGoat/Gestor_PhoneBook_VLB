@@ -78,28 +78,21 @@ public class MenuEditor extends Menu {
 
         switch (eleccion) {
             //// "Cambiar nombre"
-            case NOMBRE + 1 -> new SubmenuEditor(aux, NOMBRE);
-
-            //// "Editar números de celular"
-            case TELEFONO + 1 -> new SubmenuEditor(aux, TELEFONO);
-
+            case 1 -> new EditorNombre(aux);
+            //// "Editar números de teléfono"
+            case 2 -> new EditorTelefono(aux);
             //// "Editar dirección"
-            case DIRECCION + 1 -> new SubmenuEditor(aux, DIRECCION);
-
+            case 3 -> new EditorDireccion(aux);
             //// "Editar fecha de cumpleaños"
-            case FECHACUMPLE + 1 -> new SubmenuEditor(aux, FECHACUMPLE);
-
+            case 4 -> new EditorFechaCumple(aux);
             //// "Editar emails"
-            case EMAIL + 1 -> new SubmenuEditor(aux, EMAIL);
-
-            //// "Editar apodo"
-            case APODO + 1 -> new SubmenuEditor(aux, APODO);
-
+            case 5 -> new EditorEmail(aux);
+            //// "Editar apodos"
+            case 6 -> new EditorApodo(aux);
             //// "Editar notas"
-            case NOTA + 1 -> new SubmenuEditor(aux, NOTA);
-
+            case 7 -> new EditorNota(aux);
             //// "Salir"
-            case NOTA + 2 -> this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
+            case 8 -> this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
     }
 
@@ -131,4 +124,14 @@ public class MenuEditor extends Menu {
 
         return salirEditor;
     }
+}
+
+enum TipoMenu{
+    NOMBRE,
+    TELEFONO,
+    DIRECCION,
+    FECHACUMPLE,
+    EMAIL,
+    APODO,
+    NOTA
 }
