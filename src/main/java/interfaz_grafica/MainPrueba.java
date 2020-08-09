@@ -1,9 +1,14 @@
 package interfaz_grafica;
 
-public class mainprueba {
+import java.awt.*;
+import java.net.URL;
+
+public class MainPrueba {
+
+
+
     public static void main(String[] args) {
-        menuVentana prueba = new menuVentana();
-        prueba.setVisible(true);
-        prueba.setResizable(false); // Inhabilita el funcionamiento del boton minimizar
+        VentanaPrincipal vPrincipal = new VentanaPrincipal();
+        vPrincipal.setVisible(true); // Ventana visible
     }
 }

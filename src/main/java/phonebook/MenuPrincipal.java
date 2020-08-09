@@ -14,9 +14,9 @@ public class MenuPrincipal extends Menu {
         this.nombreMenu = "programa";
 
         // Llenar ArrayList con opciones
-        this.opciones.add("Crear contacto nuevo");
+        this.opciones.add("Crear un contacto nuevo");
         this.opciones.add("Mostrar lista de contactos");
-        this.opciones.add("Ver detalles de un contacto");
+        this.opciones.add("Ver datos de un contacto");
         this.opciones.add("Editar un contacto");
         this.opciones.add("Eliminar un contacto");
         this.opciones.add("Salir");
