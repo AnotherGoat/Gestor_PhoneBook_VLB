@@ -125,13 +125,3 @@ public class MenuEditor extends Menu {
         return salirEditor;
     }
 }
-
-enum TipoMenu{
-    NOMBRE,
-    TELEFONO,
-    DIRECCION,
-    FECHACUMPLE,
-    EMAIL,
-    APODO,
-    NOTA
-}
