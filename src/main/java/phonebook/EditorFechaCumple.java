@@ -1,15 +1,10 @@
 package phonebook;
 
 public class EditorFechaCumple extends Editor {
-    //// Atributos
-    /**
-     * Contacto que se va a editar
-     */
-    Contacto contacto;
 
     //// Constructores
     EditorFechaCumple(Contacto contacto){
-        this.contacto=contacto;
+        super(contacto);
         this.nombreMenu = "menú de edición de fecha de cumpleaños";
 
         // Muestra el editor y lo repite hasta que "seguir" sea false

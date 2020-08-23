@@ -1,15 +1,11 @@
 package phonebook;
 
 public class EditorDireccion extends Editor {
-    //// Atributos
-    /**
-     * Contacto que se va a editar
-     */
-    Contacto contacto;
 
     //// Constructores
     EditorDireccion(Contacto contacto){
-        this.contacto=contacto;
+        super(contacto);
+
         nombreMenu = "menú de edición de dirección";
 
         // Muestra el editor y lo repite hasta que "seguir" sea false

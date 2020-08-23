@@ -1,15 +1,10 @@
 package phonebook;
 
 public class EditorApodo extends Editor {
-    //// Atributos
-    /**
-     * Contacto que se va a editar
-     */
-    Contacto contacto;
 
     //// Constructores
     EditorApodo(Contacto contacto){
-        this.contacto=contacto;
+        super(contacto);
         nombreMenu = "menú de edición de fecha de apodos";
 
         // Muestra el editor y lo repite hasta que "seguir" sea false

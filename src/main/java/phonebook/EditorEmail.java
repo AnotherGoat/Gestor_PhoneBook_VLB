@@ -1,15 +1,10 @@
 package phonebook;
 
 public class EditorEmail extends Editor {
-    //// Atributos
-    /**
-     * Contacto que se va a editar
-     */
-    Contacto contacto;
 
     //// Constructores
     EditorEmail(Contacto contacto){
-        this.contacto=contacto;
+        super(contacto);
         this.nombreMenu = "menú de edición de emails";
 
         // Muestra el editor y lo repite hasta que "seguir" sea false

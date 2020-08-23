@@ -1,15 +1,11 @@
 package phonebook;
 
-public class EditorNombre extends Menu{
-
-    //// Atributos
-    /**
-     * Contacto que se va a editar
-     */
-    Contacto contacto;
+public class EditorNombre extends Editor{
 
     //// Constructores
     EditorNombre(Contacto contacto){
+        super(contacto);
+
         this.contacto=contacto;
 
         cambiarNombre();

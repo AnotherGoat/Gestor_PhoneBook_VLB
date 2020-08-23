@@ -1,15 +1,10 @@
 package phonebook;
 
 public class EditorNota extends Editor {
-    //// Atributos
-    /**
-     * Contacto que se va a editar
-     */
-    Contacto contacto;
 
     //// Constructores
     EditorNota(Contacto contacto){
-        this.contacto=contacto;
+        super(contacto);
         this.nombreMenu = "menú de edición de notas";
 
         // Muestra el editor y lo repite hasta que "seguir" sea false
