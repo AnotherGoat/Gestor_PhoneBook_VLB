@@ -6,7 +6,7 @@ public class Editor extends Menu{
     /**
      * Contacto que se va a editar
      */
-    Contacto contacto;
+    protected Contacto contacto;
 
     //// Constructores
     Editor(Contacto contacto){
