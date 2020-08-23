@@ -22,7 +22,7 @@ public class VentanaPrincipal extends JFrame {
         iniciarBotones();
     }
 
-    private void cargarIcono(){
+    private void cargarIcono() {
         Image icono = Toolkit.getDefaultToolkit().getImage("archivos/icono_phonebook_nuevo.png");
         setIconImage(icono);
     }
