@@ -11,7 +11,7 @@ public class EditorNota extends Editor {
         this.seguir = true;
 
         do {
-            // Llenar ArrayList de opciones
+            // Llenar ArrayList con opciones
             llenarOpciones();
             // Mostrar menú
             desplegarMenu();
