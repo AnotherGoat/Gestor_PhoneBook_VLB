@@ -10,9 +10,19 @@
 * Víctor Mardones (@VictorMardones, @Acrozz)
 * Bayron Muñoz (@bayron997-deb)
 
+***
+
 ## Descripción
 
 Este repositorio incluye el código fuente y todos los archivos relacionados a nuestro proyecto, el Gestor PhoneBook VLB. El objetivo del proyecto es crear una agenda digital fácil de usar y que permita al usuario registrar los contactos que quiera, incluyendo los datos que quiera agregar, y permitir exportar los contactos a un archivo .json. La versión final tendrá un manual con instrucciones de uso e implementará el uso de una interfaz gráfica de usuario.
+
+Actualmente, nuestro separa en 4 ramas, estas son las siguientes:
+* master: esta es la versión actual estable del proyecto
+* trabajo: aquí se encuentra la versión inestable actual del proyecto
+* avance1: aquí se encuentra todo el trabajo hecho hasta la entrega del avance 1
+* avance2: contiene todo el trabajo hecho hasta la entrega del avance 2
+
+***
 
 ## Enlaces de utilidad
 
