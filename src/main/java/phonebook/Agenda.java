@@ -73,7 +73,7 @@ public class Agenda {
     /**
      * Método que muestra una lista de los contactos guardados y pide al usuario que escoja uno
      * @param verbo Verbo usado en el String "Escoja el contacto que quiere... :"
-     * @return int con el contacto elegido
+     * @return int con el contacto elegido (no su posición en el arreglo)
      */
     public int elegirContacto(String verbo){
         // Muestra la lista de contactos
@@ -121,8 +121,10 @@ public class Agenda {
 
         switch (x) {
             case 1:
+                // Borra el contacto de las listas de contactos y de nombres
                 lista_contactos.remove(posicion);
                 lista_nombres.remove(posicion);
+
                 System.out.println("El contacto ha sido borrado exitosamente.");
                 break;
             case 0:
