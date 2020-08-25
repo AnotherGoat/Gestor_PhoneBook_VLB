@@ -3,6 +3,8 @@ package phonebook;
 // Importa la clase ArrayList
 import json.GestorJSON;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -131,6 +133,20 @@ public class Agenda {
                 System.out.println("El contacto no se borró.");
                 break;
         }
+    }
+
+    public void ordenarContactos(){
+        // Se necesita crear un comparador para ordenar según el nombre de cada contacto
+        Comparator c = new Comparator<Contacto>() {
+            public int compare(Contacto c1, Contacto c2) {
+                return c1.getNombre().compareTo(c2.getNombre());
+            }
+        };
+
+        // Se usa el método sort para ordenar lista_contactos alfabéticamente, usando el comparador
+        Collections.sort(lista_contactos, c);
+        // Actualiza la lista de nombres
+        actualizarListaNombres();
     }
 
     public void actualizarListaNombres(){
