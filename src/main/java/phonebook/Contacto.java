@@ -126,7 +126,7 @@ public class Contacto {
         StringBuilder s;
         s = new StringBuilder("Nombre: " + nombre);
 
-        if (lista_telefonos.size() != 0) {
+        if (!lista_telefonos.isEmpty()) {
             s.append("\nTeléfonos guardados:");
             for(Telefono t: lista_telefonos) {
                 s.append("\n  ").append(t.toString());
@@ -141,21 +141,21 @@ public class Contacto {
             s.append("\n").append(fechaCumple.toString());
         }
 
-        if (lista_emails.size() != 0) {
+        if (!lista_emails.isEmpty()) {
             s.append("\nEmails guardados:");
             for(String e: lista_emails) {
                 s.append("\n  ").append(e);
             }
         }
 
-        if (lista_apodos.size() != 0) {
+        if (!lista_apodos.isEmpty()) {
             s.append("\nApodos guardados:");
             for(String a: lista_apodos) {
                 s.append("\n  ").append(a);
             }
         }
 
-        if (lista_notas.size() != 0) {
+        if (!lista_notas.isEmpty()) {
             s.append("\nNotas guardadas:");
             for(String n: lista_notas) {
                 s.append("\n  ").append(n);

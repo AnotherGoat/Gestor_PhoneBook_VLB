@@ -59,7 +59,7 @@ public class EditorEmail extends Editor {
                 agregarEmail();
             case 2:
                 // En caso de no tener emails guardados
-                if(contacto.getLista_Emails().size() == 0){
+                if(contacto.getLista_Emails().isEmpty()){
                     System.out.println("Este contacto no tiene emails guardados");
                 }
 
@@ -70,7 +70,7 @@ public class EditorEmail extends Editor {
                 break;
             case 3:
                 // Si no hay emails guardados
-                if(contacto.getLista_Emails().size() == 0){
+                if(contacto.getLista_Emails().isEmpty()){
                     System.out.println("Este contacto no tiene emails guardados");
                 }
                 else{

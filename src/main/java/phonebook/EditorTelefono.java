@@ -59,7 +59,7 @@ public class EditorTelefono extends Editor {
                 agregarTelefono();
                 break;
             case 2:
-                if(contacto.getLista_Telefonos().size() == 0){
+                if(contacto.getLista_Telefonos().isEmpty()){
                     System.out.println("Este contacto no tiene números de teléfono guardados");
                 }
                 else {
@@ -68,7 +68,7 @@ public class EditorTelefono extends Editor {
                 break;
             case 3:
                 // Si no hay teléfonos guardados
-                if(contacto.getLista_Telefonos().size() == 0){
+                if(contacto.getLista_Telefonos().isEmpty()){
                     System.out.println("Este contacto no tiene números de teléfono guardados");
                 }
                 else{

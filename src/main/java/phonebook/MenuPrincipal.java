@@ -37,7 +37,7 @@ public class MenuPrincipal extends Menu {
     public void llenarOpciones() {
         this.opciones.add("Crear un contacto nuevo");
 
-        if(agenda.getLista_Contactos().size() == 0){
+        if(agenda.getLista_Contactos().isEmpty()){
             this.opciones.add("Mostrar lista de contactos (No disponible)");
             this.opciones.add("Ver datos de un contacto (No disponible)");
             this.opciones.add("Editar un contacto (No disponible)");
@@ -81,7 +81,7 @@ public class MenuPrincipal extends Menu {
 
             case 2: //// "Mostrar lista de contactos"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getLista_Contactos().size() == 0) {
+                if (agenda.getLista_Contactos().isEmpty()) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -91,7 +91,7 @@ public class MenuPrincipal extends Menu {
 
             case 3: //// "Ver detalles de un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getLista_Contactos().size() == 0) {
+                if (agenda.getLista_Contactos().isEmpty()) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -101,7 +101,7 @@ public class MenuPrincipal extends Menu {
 
             case 4: //// "Editar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getLista_Contactos().size() == 0) {
+                if (agenda.getLista_Contactos().isEmpty()) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
@@ -111,7 +111,7 @@ public class MenuPrincipal extends Menu {
 
             case 5: //// "Eliminar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getLista_Contactos().size() == 0) {
+                if (agenda.getLista_Contactos().isEmpty()) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {

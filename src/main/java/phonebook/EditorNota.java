@@ -60,7 +60,7 @@ public class EditorNota extends Editor {
                 break;
             case 2:
                 // Si no hay notas guardadas
-                if(contacto.getLista_Notas().size() == 0){
+                if(contacto.getLista_Notas().isEmpty()){
                     System.out.println("Este contacto no tiene notas guardadas");
                 }
 
@@ -70,7 +70,7 @@ public class EditorNota extends Editor {
                 }
                 break;
             case 3:
-                if(contacto.getLista_Notas().size() == 0){
+                if(contacto.getLista_Notas().isEmpty()){
                     System.out.println("Este contacto no tiene notas guardadas");
                 }
                 else{

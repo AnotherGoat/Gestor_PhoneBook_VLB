@@ -59,7 +59,7 @@ public class EditorApodo extends Editor {
                 agregarApodo();
             case 2:
                 // En caso de no tener apodos guardados
-                if(contacto.getLista_Apodos().size() == 0){
+                if(contacto.getLista_Apodos().isEmpty()){
                     System.out.println("Este contacto no tiene apodos guardados");
                 }
 
@@ -69,7 +69,7 @@ public class EditorApodo extends Editor {
                 }
                 break;
             case 3:
-                if(contacto.getLista_Apodos().size() == 0){
+                if(contacto.getLista_Apodos().isEmpty()){
                     System.out.println("Este contacto no tiene apodos guardados");
                 }
                 else{
