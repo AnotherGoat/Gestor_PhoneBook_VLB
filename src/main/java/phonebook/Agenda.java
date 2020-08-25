@@ -133,6 +133,9 @@ public class Agenda {
         }
     }
 
+    /**
+     * Ordena la lista de contactos alfabéticamente según el nombre de cada uno y actualiza la lista de nombres
+     */
     public void ordenarContactos(){
         // Se necesita crear un comparador para ordenar según el nombre de cada contacto
         Comparator c = new Comparator<Contacto>() {
@@ -147,6 +150,9 @@ public class Agenda {
         actualizarListaNombres();
     }
 
+    /**
+     * Este método actualiza la lista de nombres de la agenda en base a la lista de contactos actual
+     */
     public void actualizarListaNombres(){
         // Limpia la lista
         this.lista_nombres.clear();
