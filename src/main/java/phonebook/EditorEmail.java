@@ -67,6 +67,7 @@ public class EditorEmail extends Editor {
         switch (eleccion) {
             case 1:
                 agregarEmail();
+                break;
             case 2:
                 // En caso de no tener emails guardados
                 if(contacto.getLista_Emails().isEmpty()){
