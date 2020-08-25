@@ -67,6 +67,7 @@ public class EditorApodo extends Editor {
         switch (eleccion) {
             case 1:
                 agregarApodo();
+                break;
             case 2:
                 // En caso de no tener apodos guardados
                 if(contacto.getLista_Apodos().isEmpty()){
