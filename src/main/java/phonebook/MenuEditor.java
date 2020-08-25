@@ -1,6 +1,8 @@
 package phonebook;
 
 // Importa la agenda de uso "global"
+import json.GestorJSON;
+
 import static lanzador.Principal.agenda;
 
 /**
@@ -112,8 +114,12 @@ public class MenuEditor extends Menu {
 
             switch (b) {
                 case 1:
-                    // Copia el contacto de vuelta
+                    // Copia el contacto de vuelta a la agenda
                     agenda.getLista_Contactos().set(posicionOriginal, new Contacto(aux));
+                    // Ordena la lista de contactos
+                    agenda.ordenarContactos();
+                    // Guarda los cambios hechos en "agenda.json"
+                    GestorJSON.guardarJSON();
 
                     System.out.println("Los cambios han sido guardados.");
                     break;

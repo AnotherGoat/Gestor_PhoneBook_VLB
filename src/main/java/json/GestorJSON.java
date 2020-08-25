@@ -99,7 +99,7 @@ public class GestorJSON {
         }
 
         // Muestra el JSON
-        System.out.println(agenda.toString(6));
+        // System.out.println(agenda.toString(6));
 
         // Guarda el JSON en un archivo "agenda.json"
         ga.crearArchivo(agenda.toString(6), "agenda.json");
@@ -114,7 +114,7 @@ public class GestorJSON {
             // Carga los datos de "agenda.json" al JSONArray agendaJSON
             Principal.agendaJSON = ga.convertirArchivoAJSONArray("agenda.json");
 
-            System.out.println("Datos de \"agenda.json\" cargados");
+            System.out.println("Datos de \"agenda.json\" cargados correctamente");
 
             // Muestra el JSON en pantalla, para verificar que funcionó bien
             // System.out.println(Principal.agendaJSON.toString());
@@ -203,12 +203,9 @@ public class GestorJSON {
                 }
 
                 else{
-                    System.out.println("Error: Contacto en el JSON no tiene nombre registrado");
+                    System.out.println("Error: Contacto en el JSON no tiene nombre guardado");
                 }
             }
-
-            // Actualiza la lista de nombres
-            Principal.agenda.actualizarListaNombres();
         }
     }
 }

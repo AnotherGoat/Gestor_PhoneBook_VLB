@@ -39,13 +39,17 @@ public class Principal {
      * Objeto de la clase Agenda en el cual se almacenan todos los contactos durante la ejecución del programa
      */
     public static Agenda agenda = new Agenda();
-
+    /**
+     * JSONArray que contiene la misma agenda global, pero como un objeto JSON
+     */
     public static JSONArray agendaJSON = new JSONArray();
 
     public static void main(String[] args) {
+        // Carga datos del archivo "agenda.json"
         GestorJSON.cargarJSON();
+        // Ordena el ArrayList con los contactos
         agenda.ordenarContactos();
-
+        // Instancia el menú principal
         new MenuPrincipal();
     }
 }

@@ -42,7 +42,8 @@ public class Agenda {
         // Crea el contacto nuevo y lo agrega a la List
         Contacto nuevo = new Contacto(nombreContacto);
         lista_contactos.add(nuevo);
-        lista_nombres.add(nombreContacto);
+        // Ordena la lista de contactos
+        ordenarContactos();
         System.out.println("El contacto fue guardado exitosamente.");
 
         GestorJSON.guardarJSON();
@@ -93,11 +94,6 @@ public class Agenda {
 
         // Instancia el menú editor
         new MenuEditor(posicionContacto);
-
-        // Actualiza la lista de nombres de la agenda
-        lista_nombres.set(posicionContacto, lista_contactos.get(posicionContacto).getNombre());
-
-        GestorJSON.guardarJSON();
     }
 
     /**
