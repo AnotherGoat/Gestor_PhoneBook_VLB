@@ -28,8 +28,18 @@ public class EditorNota extends Editor {
      */
     public void llenarOpciones() {
         opciones.add("Agregar nota");
-        opciones.add("Cambiar nota");
-        opciones.add("Borrar nota");
+
+        // Si hay notas guardadas
+        if(!contacto.getLista_Notas().isEmpty()) {
+            opciones.add("Cambiar nota");
+            opciones.add("Borrar nota");
+        }
+        // Si no hay notas guardadas
+        else{
+            opciones.add("Cambiar nota (no disponible)");
+            opciones.add("Borrar nota (no disponible)");
+        }
+
         opciones.add("Volver atrás");
     }
 

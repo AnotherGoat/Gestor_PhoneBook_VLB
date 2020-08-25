@@ -28,8 +28,18 @@ public class EditorTelefono extends Editor {
      */
     public void llenarOpciones() {
         opciones.add("Agregar teléfono");
-        opciones.add("Cambiar teléfono");
-        opciones.add("Borrar teléfono");
+
+        // Si hay teléfonos guardados
+        if(!contacto.getLista_Telefonos().isEmpty()){
+            opciones.add("Cambiar teléfono");
+            opciones.add("Borrar teléfono");
+        }
+        // Si no hay teléfonos guardados
+        else {
+            opciones.add("Cambiar teléfono (no disponible)");
+            opciones.add("Borrar teléfono (no disponible)");
+        }
+
         opciones.add("Volver atrás");
     }
 

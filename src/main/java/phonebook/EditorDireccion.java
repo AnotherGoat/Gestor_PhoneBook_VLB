@@ -5,7 +5,6 @@ public class EditorDireccion extends Editor {
     //// Constructores
     EditorDireccion(Contacto contacto){
         super(contacto);
-
         nombreMenu = "menú de edición de dirección";
 
         // Muestra el editor y lo repite hasta que "seguir" sea false

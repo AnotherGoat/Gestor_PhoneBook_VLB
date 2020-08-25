@@ -5,7 +5,7 @@ public class EditorApodo extends Editor {
     //// Constructores
     EditorApodo(Contacto contacto){
         super(contacto);
-        nombreMenu = "menú de edición de fecha de apodos";
+        nombreMenu = "menú de edición de apodos";
 
         // Muestra el editor y lo repite hasta que "seguir" sea false
         this.seguir = true;
@@ -28,8 +28,18 @@ public class EditorApodo extends Editor {
      */
     public void llenarOpciones() {
         opciones.add("Agregar apodo");
-        opciones.add("Cambiar apodo");
-        opciones.add("Borrar apodo");
+
+        // Si hay apodos guardados
+        if(!contacto.getLista_Apodos().isEmpty()) {
+            opciones.add("Cambiar apodo");
+            opciones.add("Borrar apodo");
+        }
+        // Si no hay apodos guardados
+        else{
+            opciones.add("Cambiar apodo (no disponible)");
+            opciones.add("Borrar apodo (no disponible)");
+        }
+
         opciones.add("Volver atrás");
     }
 

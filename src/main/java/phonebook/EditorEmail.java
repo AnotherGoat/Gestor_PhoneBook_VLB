@@ -28,8 +28,18 @@ public class EditorEmail extends Editor {
      */
     public void llenarOpciones() {
         opciones.add("Agregar email");
-        opciones.add("Cambiar email");
-        opciones.add("Borrar email");
+
+        // Si hay emails guardados
+        if(!contacto.getLista_Emails().isEmpty()) {
+            opciones.add("Cambiar email");
+            opciones.add("Borrar email");
+        }
+        // Si no hay emails guardados
+        else{
+            opciones.add("Cambiar email (no disponible)");
+            opciones.add("Borrar email (no disponible)");
+        }
+
         opciones.add("Volver atrás");
     }
 

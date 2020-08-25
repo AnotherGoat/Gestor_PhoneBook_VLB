@@ -13,9 +13,6 @@ public class MenuPrincipal extends Menu {
         // Nombre
         this.nombreMenu = "programa";
 
-        // Llenar ArrayList con opciones
-
-
         // Muestra el menú principal del gestor y lo repite hasta que "seguir" sea false
         this.seguir = true;
         do {
@@ -35,21 +32,25 @@ public class MenuPrincipal extends Menu {
      * Método que llena las opciones del menú
      */
     public void llenarOpciones() {
-        this.opciones.add("Crear un contacto nuevo");
+        opciones.add("Crear un contacto nuevo");
 
-        if(agenda.getLista_Contactos().isEmpty()){
-            this.opciones.add("Mostrar lista de contactos (No disponible)");
-            this.opciones.add("Ver datos de un contacto (No disponible)");
-            this.opciones.add("Editar un contacto (No disponible)");
-            this.opciones.add("Eliminar un contacto (No disponible)");
+        // Si hay contactos guardados
+        if(!agenda.getLista_Contactos().isEmpty()){
+            opciones.add("Mostrar lista de contactos");
+            opciones.add("Ver datos de un contacto");
+            opciones.add("Editar un contacto");
+            opciones.add("Eliminar un contacto");
         }
+
+        // Si no hay contactos guardados
         else {
-            this.opciones.add("Mostrar lista de contactos");
-            this.opciones.add("Ver datos de un contacto");
-            this.opciones.add("Editar un contacto");
-            this.opciones.add("Eliminar un contacto");
+            opciones.add("Mostrar lista de contactos (no disponible)");
+            opciones.add("Ver datos de un contacto (no disponible)");
+            opciones.add("Editar un contacto (no disponible)");
+            opciones.add("Eliminar un contacto (no disponible)");
         }
-        this.opciones.add("Salir");
+
+        opciones.add("Salir");
     }
 
     /**
