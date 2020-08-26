@@ -31,3 +31,5 @@ Actualmente, nuestro proyecto se separa en 4 ramas, estas son las siguientes:
 * [Diseño de Interfaz Gráfica](https://app.moqups.com/xblfzqRdYi/view/page/a7e8cd9b8)
 
 * [Defensa y PPT](https://drive.google.com/drive/folders/1L7B_Nk0ljEXgTYxvfaua4JwaWtehGo5C?usp=sharing)
+
+Alternativamente, se pueden encontrar los documentos en [documentos](https://github.com/VictorMardones/Gestor_PhoneBook_VLB/tree/master/documentos).
