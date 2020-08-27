@@ -40,9 +40,9 @@ public class Principal {
      */
     public static Agenda agenda = new Agenda();
     /**
-     * JSONArray que contiene la misma agenda global, pero como un objeto JSON
+     * JSONArray que representa la agenda global
      */
-    public static JSONArray agendaJSON = new JSONArray();
+    public static JSONArray agenda_json = new JSONArray();
 
     public static void main(String[] args) {
         // Carga datos del archivo "agenda.json"

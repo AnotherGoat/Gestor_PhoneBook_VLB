@@ -11,201 +11,269 @@ import phonebook.*;
 public class GestorJSON {
 
     //// Atributos
-    static Agenda test = Principal.agenda;
+    /**
+     * Agenda principal
+     */
+    static Agenda agenda_principal = Principal.agenda;
+    /**
+     * JSONArray que representa la agenda principal
+     */
+    static JSONArray agenda_json_principal = Principal.agenda_json;
+    /**
+     * Instancia del gestor de archivos
+     */
     static GestorArchivo ga = new GestorArchivo();
 
     //// Métodos
+    /**
+     * Este método recibe los datos de la agenda principal y los guarda en un archivo "agenda.json"
+     */
     public static void guardarJSON(){
 
-        JSONArray agenda = new JSONArray();
+        // JSONArray que representa la agenda con la que se trabaja
+        JSONArray agenda_json = new JSONArray();
 
-        for(Contacto c: test.getLista_Contactos()){
-            JSONObject contacto = new JSONObject(); // Par ordenado "contacto":datosContacto
-            JSONObject datosContacto = new JSONObject();
+        // Para cada contacto "c" dentro de la agenda principal
+        for(Contacto c: agenda_principal.getLista_Contactos()){
 
-            //// NOMBRE
-            // Añade el nombre al JSONArray del contacto
-            datosContacto.put("nombre", c.getNombre());
+            // Crea un JSONObject que representa un contacto
+            JSONObject contacto_json = new JSONObject();
+            // Crea un JSONObject que representa los datos de un contacto
+            JSONObject datosContacto_json = new JSONObject();
 
-            //// TELEFONO
+            //// Obtención de nombre (el cual debe existir sí o sí)
+
+            // Añade el nombre al JSONObject con los datos del contacto
+            datosContacto_json.put("nombre", c.getNombre());
+
+            //// Obtención de teléfonos
+
+            // Si el contacto "c" tiene al menos un telefono guardado...
             if(c.getLista_Telefonos().size() != 0) {
-                JSONArray lista_telefonos = new JSONArray();
 
-                // Procesa todos los teléfonos y
+                // Crea un JSONArray que representa la lista de teléfonos de la agenda_principal
+                JSONArray lista_telefonos_json = new JSONArray();
+
+                // Para cada teléfono "t" dentro del contacto "c"
                 for (Telefono t : c.getLista_Telefonos()) {
-                    JSONObject datosTelefono = new JSONObject(); // Pares ordenados que representan un telefono ("numero", "") ("tipo", "")
 
-                    // Guarda el número y tipo en un JSONObject
-                    datosTelefono.put("numero", t.getNumero());
-                    datosTelefono.put("tipo", t.getTipo());
+                    // Crea un JSONObject que representa los datos del teléfono
+                    JSONObject datosTelefono_json = new JSONObject(); // Pares ordenados que representan un telefono ("numero", "") ("tipo", "")
 
-                    // Añade los pares ordenados a la lista de teléfonos
-                    lista_telefonos.put(datosTelefono);
+                    // Guarda el número y tipo en el JSONObject
+                    datosTelefono_json.put("numero", t.getNumero());
+                    datosTelefono_json.put("tipo", t.getTipo());
+
+                    // Añade los datos del teléfono a la lista de teléfonos
+                    lista_telefonos_json.put(datosTelefono_json);
                 }
 
-                // Añade el par ordenado a
-                datosContacto.put("telefonos", lista_telefonos);
+                // Añade la lista de teléfonos a los datos del contacto
+                datosContacto_json.put("telefonos", lista_telefonos_json);
             }
 
+            // Si el contacto "c" tiene una dirección guardada...
             if(c.getDireccion() != null){
-                JSONObject datosDireccion = new JSONObject(); // Objeto con los datos de la dirección
 
-                datosDireccion.put("ciudad", c.getDireccion().getCiudad());
-                datosDireccion.put("calle", c.getDireccion().getCalle());
-                datosDireccion.put("numero", c.getDireccion().getNumero());
+                // Crea un JSONObject que representa los datos de la dirección
+                JSONObject datosDireccion_json = new JSONObject();
 
-                // Añade la dirección
-                datosContacto.put("direccion", datosDireccion);
+                // Añade los datos de la dirección al JSONObject
+                datosDireccion_json.put("ciudad", c.getDireccion().getCiudad());
+                datosDireccion_json.put("calle", c.getDireccion().getCalle());
+                datosDireccion_json.put("numero", c.getDireccion().getNumero());
+
+                // Añade la dirección a los datos del contacto
+                datosContacto_json.put("direccion", datosDireccion_json);
             }
 
+            // Si el contacto "c" tiene una fecha de cumpleaños guardada...
             if(c.getFechaCumple() != null){
-                JSONObject datosFechaCumple = new JSONObject();
-                datosFechaCumple.put("dia", c.getFechaCumple().getDia());
-                datosFechaCumple.put("numeroMes", c.getFechaCumple().getNumeroMes());
-                datosFechaCumple.put("mes", c.getFechaCumple().getMes());
 
-                // Añade el mes
-                datosContacto.put("fechacumple", datosFechaCumple);
+                // Crea un JSONObject que representa los datos de la fecha de cumpleaños
+                JSONObject datosFechaCumple_json = new JSONObject();
+
+                // Añade los datos de la fecha de cumpleaños al JSONObject
+                datosFechaCumple_json.put("dia", c.getFechaCumple().getDia());
+                datosFechaCumple_json.put("numeroMes", c.getFechaCumple().getNumeroMes());
+                datosFechaCumple_json.put("mes", c.getFechaCumple().getMes());
+
+                // Añade la fecha de cumpleaños a los datos del contacto
+                datosContacto_json.put("fechacumple", datosFechaCumple_json);
             }
 
+            // Si el contacto "c" tiene al menos un email guardado...
             if(c.getLista_Emails().size() != 0){
-                // Crea la lista de emails usando el ArrayList
-                JSONArray lista_emails = new JSONArray(c.getLista_Emails());
+
+                // Crea un JSONArray que representa la lista de emails (directamente desde el ArrayList de "c")
+                JSONArray lista_emails_json = new JSONArray(c.getLista_Emails());
 
                 // Añade la  lista de emails al contacto
-                datosContacto.put("emails", lista_emails);
+                datosContacto_json.put("emails", lista_emails_json);
             }
 
+            // Si el contacto "c" tiene al menos un apodo guardado...
             if(c.getLista_Apodos().size() != 0){
-                // Crea la lista de apodos usando el ArrayList
-                JSONArray lista_apodos = new JSONArray(c.getLista_Apodos());
+
+                // Crea un JSONArray que representa la lista de apodos (directamente desde el ArrayList de "c")
+                JSONArray lista_apodos_json = new JSONArray(c.getLista_Apodos());
 
                 // Añade la  lista de apodos al contacto
-                datosContacto.put("apodos", lista_apodos);
+                datosContacto_json.put("apodos", lista_apodos_json);
             }
 
+            // Si el contacto "c" tiene al menos una nota guardada...
             if(c.getLista_Notas().size() != 0){
-                // Crea la lista de notas usando el ArrayList
-                JSONArray lista_notas = new JSONArray(c.getLista_Notas());
+
+                // Crea un JSONArray que representa la lista de notas (directamente desde el ArrayList de "c")
+                JSONArray lista_notas_json = new JSONArray(c.getLista_Notas());
 
                 // Añade la  lista de notas al contacto
-                datosContacto.put("notas", lista_notas);
+                datosContacto_json.put("notas", lista_notas_json);
             }
 
-            contacto.put("contacto", datosContacto);
+            // Añade los datos del contacto a un par ordenado
+            contacto_json.put("contacto", datosContacto_json);
 
-            // Añade el contacto a la agenda
-            agenda.put(contacto);
+            // Añade el contacto a la agenda_json
+            agenda_json.put(contacto_json);
         }
 
-        // Muestra el JSON
-        // System.out.println(agenda.toString(6));
+        // Después de repetir lo de arriba para cada contacto, se debe guardar el archivo...
 
-        // Guarda el JSON en un archivo "agenda.json"
-        ga.crearArchivo(agenda.toString(6), "agenda.json");
+        // Guarda el JSON en el archivo "agenda.json", con indentación de 6 espacios
+        ga.crearArchivo(agenda_json.toString(6), "agenda.json");
+
+        // ¡Listo!
     }
 
     /**
-     * Método que carga un el archivo agenda.json (si este existe), y carga sus datos en en JSONArray Principal.agendaJSON
+     * Método que carga un el archivo "agenda.json" (si este existe), y carga sus datos en en JSONArray Principal.agendaJSON
      */
     public static void cargarJSON(){
-        // Si el archivo "agenda.json" existe, cargarlo
+
+        // Si el archivo "agenda.json" existe...
         if (Files.exists(Paths.get("agenda.json"))) {
+
             // Carga los datos de "agenda.json" al JSONArray agendaJSON
-            Principal.agendaJSON = ga.convertirArchivoAJSONArray("agenda.json");
+            agenda_json_principal = ga.convertirArchivoAJSONArray("agenda.json");
 
-            System.out.println("Datos de \"agenda.json\" cargados correctamente");
+            // Para cada contacto dentro del JSONArray...
+            for(int i=0; i<agenda_json_principal.length(); i++){
 
-            // Muestra el JSON en pantalla, para verificar que funcionó bien
-            // System.out.println(Principal.agendaJSON.toString());
+                // Crea un JSONObject que representa a un contacto
+                JSONObject contacto_json = agenda_json_principal.getJSONObject(i).getJSONObject("contacto");
 
-            // Para cada contacto
-            for(int i=0; i<Principal.agendaJSON.length(); i++){
-                JSONObject contacto = Principal.agendaJSON.getJSONObject(i).getJSONObject("contacto");
+                // Verifica que el contacto tiene un nombre guardado
+                if(contacto_json.has("nombre")) {
 
-                // El contacto solo se puede crear si se tiene un nombre guardado
-                if(contacto.has("nombre")) {
-                    // Crea un contacto nuevo con el nombre del key
-                    Contacto contactoNuevo = new Contacto(contacto.getString("nombre"));
+                    // Crea un contacto nuevo con el nombre del JSONArray
+                    Contacto contactoNuevo = new Contacto(contacto_json.getString("nombre"));
 
-                    // Si tiene telefonos guardados
-                    if(contacto.has("telefonos")) {
-                        // Nombramos la lista de telefonos
-                        JSONArray listaTelefonos = contacto.getJSONArray("telefonos");
+                    // Si el JSON tiene teléfonos guardados...
+                    if(contacto_json.has("telefonos")) {
 
-                        // Para cada telefono dentro de la lista
-                        for (int j = 0; j < listaTelefonos.length(); j++) {
-                            // Obtiene el JSONObject que representa un telefono
-                            JSONObject telefono = listaTelefonos.getJSONObject(j);
+                        // Crea un JSONArray que representa la lista de teléfonos
+                        JSONArray lista_telefonos_json = contacto_json.getJSONArray("telefonos");
 
-                            // Crea un objeto de tipo Telefono con el numero y el tipo del JSON
-                            Telefono telefonoNuevo = new Telefono(telefono.getInt("numero"), telefono.getString("tipo"));
+                        // Para cada teléfono dentro de la lista...
+                        for (int j = 0; j < lista_telefonos_json.length(); j++) {
+
+                            // Obtiene el JSONObject que representa un teléfono
+                            JSONObject telefono_json = lista_telefonos_json.getJSONObject(j);
+
+                            // Crea un objeto de tipo Telefono obteniendo los datos del JSON
+                            Telefono telefonoNuevo = new Telefono(telefono_json.getInt("numero"), telefono_json.getString("tipo"));
 
                             // Añade el Telefono nuevo al contacto nuevo
                             contactoNuevo.getLista_Telefonos().add(telefonoNuevo);
                         }
                     }
 
-                    if(contacto.has("direccion")){
-                        // Nombramos al JSONObject que contiene la dirección
-                        JSONObject direccion = contacto.getJSONObject("direccion");
+                    // Si el JSON tiene una dirección guardada...
+                    if(contacto_json.has("direccion")){
+
+                        // Crea un JSONObject que representa la dirección
+                        JSONObject direccion = contacto_json.getJSONObject("direccion");
 
                         // Crea una dirección nueva con los datos del JSON
                         Direccion direccionNueva = new Direccion(direccion.getString("ciudad"), direccion.getString("calle"), direccion.getInt("numero"));
 
-                        // Cambia la dirección del contacto nuevo
+                        // Añade la dirección al contacto nuevo
                         contactoNuevo.setDireccion(direccionNueva);
                     }
 
-                    if(contacto.has("fechacumple")){
-                        // Nombramos la fecha de cumpleaños
-                        JSONObject fechaCumple = contacto.getJSONObject("fechacumple");
+                    // Si el JSON tiene una fecha de cumpleaños guardada...
+                    if(contacto_json.has("fechacumple")){
+
+                        // Crea un JSONObject que representa la fecha de cumpleaños
+                        JSONObject fechaCumple = contacto_json.getJSONObject("fechacumple");
 
                         // Crea una fecha de cumpleaños nueva con los datos del JSON
                         FechaCumple fechaCumpleNueva = new FechaCumple(fechaCumple.getInt("dia"), fechaCumple.getInt("numeroMes"));
 
-                        // Añade la fecha de cumpleaños
+                        // Añade la fecha de cumpleaños al contacto nuevo
                         contactoNuevo.setFechaCumple(fechaCumpleNueva);
                     }
 
-                    if(contacto.has("emails")){
-                        // Nombramos al JSONArray que contiene los correos
-                        JSONArray listaEmails = contacto.getJSONArray("emails");
+                    // Si el JSON tiene emails guardados...
+                    if(contacto_json.has("emails")){
 
-                        // Para cada email dentro de la lista
-                        for(int j=0; j<listaEmails.length(); j++){
-                            contactoNuevo.getLista_Emails().add(listaEmails.getString(j));
+                        // Crea un JSONArray que representa la lista de emails
+                        JSONArray lista_emails_json = contacto_json.getJSONArray("emails");
+
+                        // Para cada email dentro del JSONArray...
+                        for(int j=0; j<lista_emails_json.length(); j++){
+                            // Se añade el email al contacto nuevo
+                            contactoNuevo.getLista_Emails().add(lista_emails_json.getString(j));
                         }
                     }
 
-                    if(contacto.has("apodos")){
-                        // Nombramos al JSONArray que contiene los apodos
-                        JSONArray listaApodos = contacto.getJSONArray("apodos");
+                    // Si el JSON tiene apodos guardados...
+                    if(contacto_json.has("apodos")){
 
-                        // Para cada apodo dentro de la lista
+                        // Crea un JSONArray que representa la lista de apodos
+                        JSONArray listaApodos = contacto_json.getJSONArray("apodos");
+
+                        // Para cada apodo dentro del JSONArray...
                         for(int j=0; j<listaApodos.length(); j++){
+                            // Se añade el apodo al contacto nuevo
                             contactoNuevo.getLista_Apodos().add(listaApodos.getString(j));
                         }
                     }
 
-                    if(contacto.has("notas")){
-                        // Nombramos al JSONArray que contiene las notas
-                        JSONArray listaNotas = contacto.getJSONArray("notas");
+                    // Si el JSON tiene notas guardadas...
+                    if(contacto_json.has("notas")){
 
-                        // Para cada nota dentro de la lista
+                        // Crea un JSONArray que representa la lista de notas
+                        JSONArray listaNotas = contacto_json.getJSONArray("notas");
+
+                        // Para cada nota dentro del JSONArray...
                         for(int j=0; j<listaNotas.length(); j++){
+                            // Se añade la nota al contacto nuevo
                             contactoNuevo.getLista_Notas().add(listaNotas.getString(j));
                         }
                     }
 
-                    // Añade el contacto a la agenda
+                    // Añade el contacto a la agenda principal
                     Principal.agenda.getLista_Contactos().add(contactoNuevo);
                 }
 
+                // En caso de que el contacto del JSON no tenga un nombre...
                 else{
+                    // Muestra un mensaje de error
                     System.out.println("Error: Contacto en el JSON no tiene nombre guardado");
                 }
             }
+
+            // Muestra un mensaje de éxito
+            System.out.println("Datos de \"agenda.json\" cargados correctamente");
+
+            // Cuando llega a esta sección, significa que la agenda principal cargó los datos correctamente
+            // Para terminar, se ordenan alfabéticamente los contactos para la ejecución del programa
+            Principal.agenda.ordenarContactos();
         }
+
+        // Si el archivo "agenda.json" no existe, no hace nada
     }
 }
