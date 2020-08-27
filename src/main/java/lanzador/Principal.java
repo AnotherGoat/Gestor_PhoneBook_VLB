@@ -47,8 +47,6 @@ public class Principal {
     public static void main(String[] args) {
         // Carga datos del archivo "agenda.json"
         GestorJSON.cargarJSON();
-        // Ordena el ArrayList con los contactos
-        agenda.ordenarContactos();
         // Instancia el menú principal
         new MenuPrincipal();
     }
