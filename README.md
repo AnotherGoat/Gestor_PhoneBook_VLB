@@ -36,4 +36,4 @@ Actualmente, nuestro proyecto se separa en 4 ramas, estas son las siguientes:
 
 * [Defensa y PPT](https://drive.google.com/drive/folders/1L7B_Nk0ljEXgTYxvfaua4JwaWtehGo5C?usp=sharing)
 
-Alternativamente, se pueden encontrar los documentos en [documentos](https://github.com/VictorMardones/Gestor_PhoneBook_VLB/tree/master/documentos).
+Alternativamente, se pueden encontrar la mayoría de los documentos en [documentos](https://github.com/VictorMardones/Gestor_PhoneBook_VLB/tree/master/documentos) y los videos en [videos](https://github.com/VictorMardones/Gestor_PhoneBook_VLB/tree/master/videos).
