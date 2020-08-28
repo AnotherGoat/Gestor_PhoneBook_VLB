@@ -7,6 +7,9 @@ import java.util.ArrayList;
 /**
  * Clase con atributos y métodos para menús en general
  */
+
+/*Relacion de Dependencia: Menu usa recursos de las clases Validador, es decir, depende de las funcionalidades de la otra clase
+y no de forma inversa,es decir, la otra clase no necesita de la clase Validador*/
 public class Menu {
 
     //// Atributos
