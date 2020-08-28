@@ -7,7 +7,8 @@ import lanzador.Principal;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import phonebook.*;
-
+/*Relacion de Dependencia: Gestor JSON usa recursos de las clases GestorArchivo,Agenda,Principal es decir, depende de las funcionalidades de las otras clases
+y no de forma inversa,es decir, las otras clases no necesitan de la clase GestorJson*/
 public class GestorJSON {
 
     //// Atributos
