@@ -1,8 +1,7 @@
 package phonebook;
 
-/*Relacion de Dependencia: EditorEmail usa recursos de las clases Editor, es decir, depende de las funcionalidades de la otra clase
-y no de forma inversa,es decir, la otra clase no necesita de la clase EditorEmail*/
-
+/*Relacion de Generalización(Herencia): La clase EditorEmail es una clase hija de la clase Editor,por lo tanto, la clase hija hereda
+  recursos de la clase padre excepto los privados*/
 public class EditorEmail extends Editor {
 
     //// Constructores
