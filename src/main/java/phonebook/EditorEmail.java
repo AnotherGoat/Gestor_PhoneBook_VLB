@@ -1,5 +1,8 @@
 package phonebook;
 
+/*Relacion de Dependencia: EditorEmail usa recursos de las clases Editor, es decir, depende de las funcionalidades de la otra clase
+y no de forma inversa,es decir, la otra clase no necesita de la clase EditorEmail*/
+
 public class EditorEmail extends Editor {
 
     //// Constructores
