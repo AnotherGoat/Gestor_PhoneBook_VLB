@@ -6,6 +6,11 @@ import static lanzador.Principal.agenda;
 /**
  * Acá irá el menú principal del proyecto PhoneBook
  */
+
+/*Relacion de Dependencia: MenuPrincipal usa recursos de las clase Agenda, es decir, depende de las funcionalidades de la clase
+  y no de forma inversa,es decir, la otra clase no necesita de la clase MenuValidador
+  Relacion de Generalización(Herencia): La clase MenuPrincipal es una clase hija de la clase Menu,por lo tanto, la clase hija hereda
+  recursos de la clase padre excepto los privados*/
 public class MenuPrincipal extends Menu {
 
     //// Constructores
