@@ -32,6 +32,9 @@ import phonebook.MenuPrincipal;
  * @author Luis Burgos
  * @author Víctor Mardones
  */
+
+/*Relacion de Dependencia: Principal usa recursos de las clases GestorJson,Agenda,MenuPrincipal, es decir, depende de las funcionalidades de las otras clases
+y no de forma inversa,es decir, las otras clases no necesitan de la clase Principal*/
 public class Principal {
 
     //// Atributos
