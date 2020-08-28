@@ -11,6 +11,10 @@ import java.util.ArrayList;
 /**
  * Esta clase almacena todos los contactos y métodos para trabajar con ellos
  */
+
+/*Relacion de Dependencia: Agenda usa recursos de la clase Validador, es decir, depende de las funcionalidades de las otras clases
+y no de forma inversa,es decir, la otra clase no necesitan de la clase Agenda.
+  Relacion de Agregación: Agenda es parte de la clase Contacto, con atributo de multiplicidad cero es a muchos considerando un ArrayList.   */
 public class Agenda {
 
     //// Atributos
