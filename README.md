@@ -24,9 +24,13 @@ Actualmente, nuestro proyecto se separa en 4 ramas, estas son las siguientes:
 
 * [Informe Avance 01](https://drive.google.com/file/d/1chdxzxu8_79bxgB0mlFJHnqTxnIppITO/view?usp=sharing)
 
-* [Carta Gantt](https://app.ganttpro.com/shared/token/5088777d9fefb3c17b18fa39a815528dfeffe260aa6eda752877a197ed78cc39/540408)
+* [Informe Avance 02](https://drive.google.com/file/d/1XH0lfNh-vlEcsl2YNxOMzNpZBFhZ8x7a/view?usp=sharing)
 
-* [Diagrama de Estructura](https://docs.google.com/drawings/d/1hd4YHceJR3SvHM320ALIMN6bfhUhFbo2lYSMqHg369s/edit?usp=sharing)
+* [Carta Gantt](https://drive.google.com/file/d/1BvpC6a_10Ra5qB5gEKPj0eXb01FkisYf/view?usp=sharing)
+
+* [Diagrama de Estructura (Antiguo)](https://docs.google.com/drawings/d/1hd4YHceJR3SvHM320ALIMN6bfhUhFbo2lYSMqHg369s/edit?usp=sharing)
+
+* [Diagrama UML](https://drive.google.com/file/d/1_YfIYzNmhl12iphlD8SVLC-OCG4lrwWd/view?usp=sharing)
 
 * [Diseño de Interfaz Gráfica](https://app.moqups.com/xblfzqRdYi/view/page/a7e8cd9b8)
 
