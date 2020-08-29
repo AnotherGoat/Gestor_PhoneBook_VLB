@@ -92,10 +92,22 @@ public class Validador {
             }
 
             // Repite el proceso
-        } while(numero<min && numero>max);
+        } while(numero<min || numero>max);
 
         // Retorna el número válido
         return numero;
+    }
+
+    /**
+     * Revisa si el int del parámetro es un teléfono (no tiene más de 9 dígitos)
+     * @param numero
+     * @return
+     */
+    public boolean esTelefono(int numero){
+        if(numero>=1 && numero <=999999999){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -103,9 +115,22 @@ public class Validador {
      * @return Número de teléfono válido, de no más de 9 dígitos
      */
     public int validarNumeroTelefono(){
-        return validarIntEntre(1, 999999999,
-                "Ingrese el número de teléfono: ",
-                "El número de teléfono ingresado no es válido.");
+        int numero;
+
+        do{
+            // Se asegura de que el número sea un int
+            numero = validarInt("Ingrese un número de teléfono: ");
+
+            // Si el número no está dentro del rango de los parámetros, muestra un mensaje de error y...
+            if(!esTelefono(numero)){
+                System.out.println("Error: Por favor ingrese un número de teléfono válido");
+            }
+
+            // Repite el proceso
+        } while(!esTelefono(numero));
+
+        // Retorna el número válido
+        return numero;
     }
 
     /**
