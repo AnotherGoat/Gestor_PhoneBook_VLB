@@ -13,7 +13,9 @@ import java.net.URL;
 public class MainPrueba {
 
     public static void main(String[] args) {
+        // Instancia la ventana principal
         VentanaPrincipal vPrincipal = new VentanaPrincipal();
-        vPrincipal.setVisible(true); // Ventana visible
+        // Hace que sea visible
+        vPrincipal.setVisible(true);
     }
 }
