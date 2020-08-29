@@ -45,11 +45,11 @@ public class VentanaPrincipal extends JFrame {
         // Título
         setTitle("Gestor Phonebook VLB");
         // Tamaño inicial
-        setSize(200, 400);
+        setSize(400, 400);
         // La ventana inicia centrada
         setLocationRelativeTo(null);
         // Inhabilita la opción de cambiar el tamaño de la ventana
-        setResizable(false);
+        // setResizable(false);
         // Cuando se cierre la ventana se finaliza el programa
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -58,27 +58,36 @@ public class VentanaPrincipal extends JFrame {
     private void iniciarVentanaPrincipal(){
         // Instancia el panel
         panel = new JPanel();
-        //panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+        // Usa el BoxLayout (para mostrar los botones de arriba a abajo
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         // Instancia el label
         labelGestorPhoneBook = new JLabel();
         labelGestorPhoneBook.setText("Gestor PhoneBook VLB");
+        // Centra el label (con los botones se hace lo mismo)
+        labelGestorPhoneBook.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Instancia los botones
         botonNuevoContacto = new JButton();
         botonNuevoContacto.setText("Crear un contacto nuevo");
+        botonNuevoContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         botonDatosContacto = new JButton();
         botonDatosContacto.setText("Ver datos de un contacto");
+        botonDatosContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         botonEditarContacto = new JButton();
         botonEditarContacto.setText("Editar un contacto");
+        botonEditarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         botonEliminarContacto = new JButton();
         botonEliminarContacto.setText("Eliminar un contacto");
+        botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         botonSalir = new JButton();
         botonSalir.setText("Salir del programa");
+        botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Añade el label y los botones al panel
         panel.add(labelGestorPhoneBook);
