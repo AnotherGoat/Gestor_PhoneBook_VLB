@@ -11,7 +11,7 @@ public class Telefono {
      */
     int numero;
     /**
-     * Tipo de teléfono ("Celular, "Fijo", "Trabajo")
+     * Tipo de teléfono (CELULAR, FIJO, TRABAJO)
      */
     TipoTelefono tipo;
 
@@ -43,7 +43,6 @@ public class Telefono {
             case CELULAR -> "Celular";
             case FIJO -> "Fijo";
             case TRABAJO -> "Trabajo";
-            default -> "???";
         };
     }
 
@@ -56,7 +55,7 @@ public class Telefono {
             case "Celular" -> this.tipo=TipoTelefono.CELULAR;
             case "Fijo" -> this.tipo=TipoTelefono.FIJO;
             case "Trabajo" ->  this.tipo=TipoTelefono.TRABAJO;
-            default -> System.out.println("Error en los parámetros");
+            default -> System.out.println("Error: Parámetros incorrectos");
         }
     }
 
@@ -66,7 +65,6 @@ public class Telefono {
             case CELULAR -> "Celular: " + numero;
             case FIJO -> "Fijo: " + numero;
             case TRABAJO -> "Trabajo: " + numero;
-            default -> "???: " + numero;
         };
     }
 }

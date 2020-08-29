@@ -17,6 +17,9 @@ public class Validador {
     private Scanner teclado;
 
     //// Constructores
+    /**
+     * Constructor de clase Validador (instancia su Scanner otra vez para evitar errores)
+     */
     public Validador() {
         this.teclado = new Scanner(System.in);
     }
