@@ -51,11 +51,19 @@ public class Telefono {
      * @param tipo String que tiene el nombre del tipo2
      */
     public void setTipo(String tipo) {
-        switch (tipo) {
-            case "Celular" -> this.tipo=TipoTelefono.CELULAR;
-            case "Fijo" -> this.tipo=TipoTelefono.FIJO;
-            case "Trabajo" ->  this.tipo=TipoTelefono.TRABAJO;
-            default -> System.out.println("Error: Parámetros incorrectos");
+        // Siempre que el tipo no sea nulo...
+        if(tipo!=null) {
+
+            // Define el tipo del teléfono
+            switch (tipo) {
+                case "Celular" -> this.tipo = TipoTelefono.CELULAR;
+                case "Fijo" -> this.tipo = TipoTelefono.FIJO;
+                case "Trabajo" -> this.tipo = TipoTelefono.TRABAJO;
+
+                // Normalmente, este último paso no debería pasar a no ser que el código esté mal hecho
+                default -> System.out.println("Error: Parámetros incorrectos");
+            }
+
         }
     }
 
