@@ -100,8 +100,8 @@ public class Validador {
 
     /**
      * Revisa si el int del parámetro es un teléfono (no tiene más de 9 dígitos)
-     * @param numero
-     * @return
+     * @param numero Número que se quiere verificar
+     * @return Boolean que indica si el número es un número de teléfono válido o no
      */
     public boolean esTelefono(int numero){
         if(numero>=1 && numero <=999999999){
@@ -121,7 +121,7 @@ public class Validador {
             // Se asegura de que el número sea un int
             numero = validarInt("Ingrese un número de teléfono: ");
 
-            // Si el número no está dentro del rango de los parámetros, muestra un mensaje de error y...
+            // Si no es un número de teléfono válido...
             if(!esTelefono(numero)){
                 System.out.println("Error: Por favor ingrese un número de teléfono válido");
             }

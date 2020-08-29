@@ -65,6 +65,26 @@ public class ValidadorTest {
     }
 
     /**
+     * Test que revisa los casos donde se ingresa un número de teléfono válido
+     */
+    @Test
+    public void esTelefono1() {
+        assertTrue(v.esTelefono(912345678));
+        assertTrue(v.esTelefono(133));
+        assertTrue(v.esTelefono(911));
+    }
+
+    /**
+     * Test que revisa los casos donde se ingresa un número de teléfono no válido
+     */
+    @Test
+    public void esTelefono2() {
+        assertFalse(v.esTelefono(0));
+        assertFalse(v.esTelefono(-12312312));
+        assertFalse(v.esTelefono(1000000000));
+    }
+
+    /**
      * Test para revisar que el método acepta emails válidos
      */
     @Test
