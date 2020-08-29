@@ -40,12 +40,18 @@ public class VentanaPrincipal extends JFrame {
     public VentanaPrincipal(){
         iniciarVentanaPrincipal();
 
+        //// Otras características de la ventana
+
         // Título
         setTitle("Gestor Phonebook VLB");
-        setSize(200, 400); // Se define el tamaño de ventana
-        setLocationRelativeTo(null); // Centrar la ventana
-        setResizable(false); // Inhabilita el funcionamiento del botón maximizar
-        setDefaultCloseOperation(EXIT_ON_CLOSE); // Cuando se cierre la ventana se finaliza el programa
+        // Tamaño inicial
+        setSize(200, 400);
+        // La ventana inicia centrada
+        setLocationRelativeTo(null);
+        // Inhabilita la opción de cambiar el tamaño de la ventana
+        setResizable(false);
+        // Cuando se cierre la ventana se finaliza el programa
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     //// Métodos
@@ -87,6 +93,24 @@ public class VentanaPrincipal extends JFrame {
 
         // Carga el ícono de la aplicación
         cargarIcono();
+
+        // Implementación de ActionListener para el botón salirButton
+        botonSalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Crea el panel para pedir confirmación
+                int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                        "¿Está seguro de que desea salir?",
+                        "Salir del programa",
+                        JOptionPane.YES_NO_OPTION);
+
+                // Si el usuario escoge "Sí"
+                if(n == JOptionPane.YES_OPTION){
+                    // Sale del programa y retorna 0
+                    System.exit(0);
+                }
+            }
+        });
     }
 
     /**
