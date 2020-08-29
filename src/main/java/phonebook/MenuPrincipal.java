@@ -71,7 +71,7 @@ public class MenuPrincipal extends Menu {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarInt(1, opciones.size(),
+        eleccion = v.validarIntEntre(1, opciones.size(),
                 "Escoja una opción: ",
                 "La opción ingresada no existe.");
     }

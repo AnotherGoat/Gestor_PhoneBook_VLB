@@ -55,7 +55,7 @@ public class EditorApodo extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarInt(1, opciones.size(),
+        eleccion = v.validarIntEntre(1, opciones.size(),
                 "Escoja una opción: ",
                 "La opción ingresada no existe.");
     }
@@ -103,7 +103,7 @@ public class EditorApodo extends Editor {
         System.out.println(enumerarListaString(contacto.getLista_Apodos()));
 
         // Pide al usuario que elija uno
-        return v.validarInt(1, contacto.getLista_Apodos().size(),
+        return v.validarIntEntre(1, contacto.getLista_Apodos().size(),
                 "Escoja el apodo que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
@@ -151,7 +151,7 @@ public class EditorApodo extends Editor {
      * @param posicion Posición del apodo que se desea borrar
      */
     private void confirmarBorradoApodo(int posicion) {
-        int x = v.validarInt(0, 1,
+        int x = v.validarIntEntre(0, 1,
                 "Se borrará el apodo "+contacto.getLista_Apodos().get(posicion)+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");

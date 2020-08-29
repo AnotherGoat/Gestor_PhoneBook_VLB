@@ -139,10 +139,11 @@ public class Menu {
      * @return Boolean que le indica al programa si se quiere salir (true) o no (false)
      */
     public boolean salir() {
-        int a = v.validarInt(0, 1,
+        int a = v.validarIntEntre(0, 1,
                 "¿Desea salir del "+nombreMenu+"? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 
+        // Si a
         return a == 1;
     }
 }

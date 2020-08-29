@@ -68,7 +68,7 @@ public class MenuEditor extends Menu {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarInt(1, opciones.size(),
+        eleccion = v.validarIntEntre(1, opciones.size(),
                 "Escoja una opción: ",
                 "La opción ingresada no existe.");
     }
@@ -108,7 +108,7 @@ public class MenuEditor extends Menu {
         // En caso de querer salir, hacer lo siguiente
         if(salirEditor) {
             System.out.println("¿Desea guardar los cambios realizados? 1=Sí, 0=No");
-            int b = v.validarInt(0, 1,
+            int b = v.validarIntEntre(0, 1,
                     "Escoja una opción: ",
                     "La opción ingresada no existe.");
 

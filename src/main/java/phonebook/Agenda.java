@@ -11,7 +11,6 @@ import java.util.ArrayList;
 /**
  * Esta clase almacena todos los contactos y métodos para trabajar con ellos
  */
-
 /*Relacion de Dependencia: Agenda usa recursos de la clase Validador, es decir, depende de las funcionalidades de las otras clases
 y no de forma inversa,es decir, la otra clase no necesitan de la clase Agenda.
   Relacion de Agregación: Agenda es parte de la clase Contacto, con atributo de multiplicidad cero es a muchos considerando un ArrayList.   */
@@ -84,7 +83,7 @@ public class Agenda {
         listarContactos();
 
         // Toma la entrada entre 1 y el contacto de rango máximo
-        return v.validarInt(1, lista_contactos.size(),
+        return v.validarIntEntre(1, lista_contactos.size(),
                 "Escoja el contacto que quiere "+verbo+": ",
                 "El contacto ingresado no existe.");
     }
@@ -119,7 +118,7 @@ public class Agenda {
      */
     public void confirmarBorrado(int posicion) {
         int x;
-        x = v.validarInt(0, 1,
+        x = v.validarIntEntre(0, 1,
                 "Se borrará el contacto "+lista_contactos.get(posicion).getNombre()+" ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
 

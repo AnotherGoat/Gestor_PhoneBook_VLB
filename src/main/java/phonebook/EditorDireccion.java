@@ -49,7 +49,7 @@ public class EditorDireccion extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarInt(1, opciones.size(),
+        eleccion = v.validarIntEntre(1, opciones.size(),
                 "Escoja una opción: ",
                 "La opción ingresada no existe.");
     }
@@ -132,7 +132,7 @@ public class EditorDireccion extends Editor {
      * Método para confirmar el borrado de la dirección guardada
      */
     private void confirmarBorradoDireccion(){
-        int x = v.validarInt(0, 1,
+        int x = v.validarIntEntre(0, 1,
                 "Se borrará la dirección del contacto "+contacto.getNombre()+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");

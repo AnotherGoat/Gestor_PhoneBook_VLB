@@ -29,69 +29,68 @@ public class ValidadorTest {
     }
 
     /**
-     * Test para revisar que la entrada mantiene el int ingresado
+     * Test para revisar que la entrada acepta ints válidos
      */
     @Test
-    public void tryCatchInt1() {
-        v.simularInput("1");
-        assertEquals(1, v.tryCatchInt(""));
-        v.simularInput("100");
-        assertEquals(100, v.tryCatchInt(""));
-        v.simularInput("-256");
-        assertEquals(-256, v.tryCatchInt(""));
+    public void esInt1() {
+        assertTrue(v.esInt("1"));
+        assertTrue(v.esInt("100"));
+        assertTrue(v.esInt("-256"));
     }
 
     /**
-     * Test para revisar que al ingresar símbolos el programa sigue funcionando
+     * Test para revisar que al ingresar símbolos o letras no se valida como un int
      */
     @Test
-    public void tryCatchInt2() {
-        v.simularInput("a");
-        assertEquals(-1, v.tryCatchInt(""));
-        v.simularInput(" ");
-        assertEquals(-1, v.tryCatchInt(""));
-        v.simularInput("asdasda");
-        assertEquals(-1, v.tryCatchInt(""));
+    public void esInt2() {
+        assertFalse(v.esInt("a"));
+        assertFalse(v.esInt(" "));
+        assertFalse(v.esInt("asdasda"));
+        assertFalse(v.esInt("!\"#=?"));
     }
 
     /**
-     * Test para revisar que al ingresar un número demasiado grande el programa sigue funcionando
+     * Test para revisar que al ingresar un número demasiado grande no se valida como un int
      */
     @Test
-    public void tryCatchInt3() {
-        v.simularInput("23172617381238");
-        assertEquals(-1, v.tryCatchInt(""));
-        v.simularInput("-92347821332912");
-        assertEquals(-1, v.tryCatchInt(""));
+    public void esInt3() {
+        assertFalse(v.esInt("23172617381238"));
+        assertFalse(v.esInt("-92347821332912"));
     }
 
     /**
-     * Test para revisar que al ingresar un String su valor no cambia
+     * Test para revisar que al ingresar un String null no se valida como un int
      */
     @Test
-    public void recibirString1() {
-        v.simularInput("Hola mundo");
-        assertEquals("Hola mundo", v.recibirString(""));
+    public void esInt4() {
+        assertFalse(v.esInt(null));
     }
 
     /**
-     * Test para revisar que el email se valida correctamente
+     * Test para revisar que el método acepta emails válidos
      */
     @Test
-    public void esEmailValido1() {
-        assertFalse(v.esEmailValido("0.#$s.213"));
-        assertFalse(v.esEmailValido("..."));
-        assertFalse(v.esEmailValido("holamundo"));
-        assertTrue(v.esEmailValido("v.mardones04@ufromail.cl"));
-        assertTrue(v.esEmailValido("l.burgos02@ufromail.cl"));
-        assertTrue(v.esEmailValido("b.munoz15@ufromail.cl"));
+    public void esEmail1() {
+        assertTrue(v.esEmail("v.mardones04@gmail.com"));
+        assertTrue(v.esEmail("l.burgos02@ufromail.cl"));
+        assertTrue(v.esEmail("b.munoz15@hotmail.com"));
     }
 
     /**
-     * Test para revisar qué ocurre si el String email es null
+     * Test para revisar que el método rechaza emails no válidos
      */
     @Test
-    public void esEmailValido2(){
-        assertFalse(v.esEmailValido(null));
+    public void esEmail2() {
+        assertFalse(v.esEmail("0.#$s.213"));
+        assertFalse(v.esEmail("..."));
+        assertFalse(v.esEmail("holamundo"));
+    }
+
+    /**
+     * Test para revisar que si se ingresa un String null, el email no es válido
+     */
+    @Test
+    public void esEmail3() {
+        assertFalse(v.esEmail(null));
     }
 }

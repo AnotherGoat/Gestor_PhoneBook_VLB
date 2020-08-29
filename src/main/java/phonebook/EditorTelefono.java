@@ -55,7 +55,7 @@ public class EditorTelefono extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarInt(1, opciones.size(),
+        eleccion = v.validarIntEntre(1, opciones.size(),
                 "Escoja una opción: ",
                 "La opción ingresada no existe.");
     }
@@ -101,7 +101,7 @@ public class EditorTelefono extends Editor {
         System.out.println(enumerarListaTelefono(contacto.getLista_Telefonos()));
 
         // Pide al usuario que elija uno
-        return v.validarInt(1, contacto.getLista_Telefonos().size(),
+        return v.validarIntEntre(1, contacto.getLista_Telefonos().size(),
                 "Escoja el número de teléfono que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
@@ -111,7 +111,7 @@ public class EditorTelefono extends Editor {
      * @return Número de que representa el tipo de teléfono elegido
      */
     private int elegirTipoTelefono(){
-        return v.validarInt(1, 3,
+        return v.validarIntEntre(1, 3,
                 "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
                 "La opción ingresada no es válida");
     }
@@ -181,7 +181,7 @@ public class EditorTelefono extends Editor {
      * @param posicion Posición del número que se desea borrar
      */
     private void confirmarBorradoTelefono(int posicion) {
-        int x = v.validarInt(0, 1,
+        int x = v.validarIntEntre(0, 1,
                 "Se borrará el número "+contacto.getLista_Telefonos().get(posicion).getNumero()+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");

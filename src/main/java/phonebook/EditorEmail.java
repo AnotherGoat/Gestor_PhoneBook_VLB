@@ -57,7 +57,7 @@ public class EditorEmail extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarInt(1, opciones.size(),
+        eleccion = v.validarIntEntre(1, opciones.size(),
                 "Escoja una opción: ",
                 "La opción ingresada no existe.");
     }
@@ -106,7 +106,7 @@ public class EditorEmail extends Editor {
         System.out.println(enumerarListaString(contacto.getLista_Emails()));
 
         // Pide al usuario que elija uno
-        return v.validarInt(1, contacto.getLista_Emails().size(),
+        return v.validarIntEntre(1, contacto.getLista_Emails().size(),
                 "Escoja el email que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
@@ -154,7 +154,7 @@ public class EditorEmail extends Editor {
      * @param posicion Posición del email que se desea borrar
      */
     private void confirmarBorradoEmail(int posicion) {
-        int x = v.validarInt(0, 1,
+        int x = v.validarIntEntre(0, 1,
                 "Se borrará el email "+contacto.getLista_Emails().get(posicion)+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");

@@ -49,7 +49,7 @@ public class EditorFechaCumple extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarInt(1, opciones.size(),
+        eleccion = v.validarIntEntre(1, opciones.size(),
                 "Escoja una opción: ",
                 "La opción ingresada no existe.");
     }
@@ -90,9 +90,9 @@ public class EditorFechaCumple extends Editor {
     private void agregarFechaCumple(){
         System.out.println("Ingrese los datos de la fecha de cumpleaños del contacto");
 
-        int mesNuevo = v.validarInt(1, 12, "Mes: ", "Error: Por favor ingrese un número entre 1 y 12");
+        int mesNuevo = v.validarIntEntre(1, 12, "Mes: ", "Error: Por favor ingrese un número entre 1 y 12");
         int diasDelMes = obtenerDiasDelMes(mesNuevo);
-        int diaNuevo = v.validarInt(1, diasDelMes, "Día: ", "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
+        int diaNuevo = v.validarIntEntre(1, diasDelMes, "Día: ", "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
 
         // Guarda la fecha de cumpleaños nueva
         contacto.setFechaCumple(new FechaCumple(diaNuevo, mesNuevo));
@@ -108,13 +108,13 @@ public class EditorFechaCumple extends Editor {
         System.out.println("Ingrese los datos de la nueva fecha de cumpleaños");
 
         // Pide al usuario que ingrese el mes nuevo
-        int mesNuevo = v.validarInt(1, 12,
+        int mesNuevo = v.validarIntEntre(1, 12,
                 "Mes actual: "+contacto.getFechaCumple().getMes()+" ("+contacto.getFechaCumple().getNumeroMes()+")\nMes nuevo: ",
                 "Error: Por favor ingrese un número entre 1 y 12");
 
         int diasDelMes = obtenerDiasDelMes(mesNuevo);
 
-        int diaNuevo = v.validarInt(1, diasDelMes, "Día actual: "+contacto.getFechaCumple().getDia()+"\nDía nuevo: ",
+        int diaNuevo = v.validarIntEntre(1, diasDelMes, "Día actual: "+contacto.getFechaCumple().getDia()+"\nDía nuevo: ",
                 "Error: Por favor ingrese un número entre 1 y " + diasDelMes);
 
         // Guarda la fecha de cumpleaños nueva
@@ -155,7 +155,7 @@ public class EditorFechaCumple extends Editor {
      * Método para confirmar el borrado de la fecha de cumpleaños guardada
      */
     private void confirmarBorradoFechaCumple(){
-        int x = v.validarInt(0, 1,
+        int x = v.validarIntEntre(0, 1,
                 "Se borrará la fecha de cumpleaños del contacto "+contacto.getNombre()+
                         " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
                 "La opción ingresada no existe.");
