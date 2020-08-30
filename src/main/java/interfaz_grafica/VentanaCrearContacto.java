@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class VentanaCrearContacto extends JFrame {
+public class VentanaCrearContacto extends JDialog {
 
     //// Atributos
     /**
@@ -42,6 +42,8 @@ public class VentanaCrearContacto extends JFrame {
         setLocationRelativeTo(null);
         // Cuando se cierre la ventana, se borra de la memoria
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        setIconImage(null);
     }
 
     //// Métodos
@@ -74,6 +76,23 @@ public class VentanaCrearContacto extends JFrame {
 
         // Carga el ícono de la aplicación
         cargarIcono();
+
+        botonVolverAtras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Crea el panel para pedir confirmación
+                int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                        "¿Volver atrás?",
+                        "Volver atrás",
+                        JOptionPane.YES_NO_OPTION);
+
+                // Si el usuario escoge "Sí"
+                if(n == JOptionPane.YES_OPTION){
+                    // Borra la ventana
+                    dispose();
+                }
+            }
+        });
     }
 
     /**

@@ -17,8 +17,5 @@ public class MainPrueba {
         VentanaPrincipal vPrincipal = new VentanaPrincipal();
         // Hace que sea visible
         vPrincipal.setVisible(true);
-        
-        VentanaCrearContacto vCrearContacto = new VentanaCrearContacto();
-        vCrearContacto.setVisible(true);
     }
 }
