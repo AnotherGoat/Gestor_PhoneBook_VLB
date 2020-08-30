@@ -103,19 +103,17 @@ public class VentanaPrincipal extends JFrame {
         // Carga el ícono de la aplicación
         cargarIcono();
 
-        // Implementación de ActionListener para el botón salirButton
+        // Implementación de ActionListener para el botón botonNuevoContacto
         botonNuevoContacto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Instancia una ventana para crear un contacto y la hace visible
                 VentanaCrearContacto vcc = new VentanaCrearContacto();
                 vcc.setVisible(true);
-
-                
             }
         });
 
-        // Implementación de ActionListener para el botón salirButton
+        // Implementación de ActionListener para el botón botonSalir
         botonSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
