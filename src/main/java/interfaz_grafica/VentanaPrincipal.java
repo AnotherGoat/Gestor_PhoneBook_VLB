@@ -45,7 +45,7 @@ public class VentanaPrincipal extends JFrame {
         // Título
         setTitle("Gestor Phonebook VLB");
         // Tamaño inicial
-        setSize(400, 400);
+        setSize(500, 500);
         // La ventana inicia centrada
         setLocationRelativeTo(null);
         // Inhabilita la opción de cambiar el tamaño de la ventana
