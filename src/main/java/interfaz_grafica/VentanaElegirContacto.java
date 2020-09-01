@@ -1,7 +1,11 @@
 package interfaz_grafica;
 
+import lanzador.Principal;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 public class VentanaElegirContacto extends JDialogGeneral {
@@ -15,6 +19,10 @@ public class VentanaElegirContacto extends JDialogGeneral {
      * String con el texto del label
      */
     private String texto;
+    /**
+     * List con los botones que representan a cada contacto
+     */
+    private List<JButton> botonesContactos = new ArrayList<>();
 
     //// Constructores
     public VentanaElegirContacto(String texto) {
@@ -27,7 +35,7 @@ public class VentanaElegirContacto extends JDialogGeneral {
         // Título
         setTitle("Elegir contacto");
         // Tamaño inicial
-        setSize(300, 200);
+        setSize(300, 700);
 
         configurar();
     }
@@ -46,8 +54,16 @@ public class VentanaElegirContacto extends JDialogGeneral {
         // Instancia los botones
         botonVolverAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        for(String s : Principal.agenda.getLista_Nombres()){
+            botonesContactos.add(new JButton(s));
+        }
+
         // Añade el label y los botones al panel
         panel.add(labelEscojaContacto);
+        for(JButton jb : botonesContactos){
+            panel.add(jb);
+            jb.setAlignmentX(Component.CENTER_ALIGNMENT);
+        }
         panel.add(botonVolverAtras);
 
         // Añade el panel a la ventana

@@ -175,4 +175,8 @@ public class Agenda {
     public void setLista_Contactos(List<Contacto> contactos) {
         this.lista_contactos = contactos;
     }
+
+    public List<String> getLista_Nombres() {
+        return lista_nombres;
+    }
 }
