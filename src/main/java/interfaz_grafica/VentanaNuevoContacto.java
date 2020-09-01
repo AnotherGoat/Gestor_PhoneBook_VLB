@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class VentanaCrearContacto extends JDialog {
+public class VentanaNuevoContacto extends JDialog {
 
     //// Atributos
     /**
@@ -29,25 +29,23 @@ public class VentanaCrearContacto extends JDialog {
     private JButton botonVolverAtras;
 
     //// Constructores
-    public VentanaCrearContacto() {
-        iniciarVentanaCrearContacto();
+    public VentanaNuevoContacto() {
+        iniciarVentanaNuevoContacto();
 
         //// Otras características de la ventana
 
         // Título
-        setTitle("Crear nuevo contacto");
+        setTitle("Nuevo contacto");
         // Tamaño inicial
         setSize(300, 200);
         // La ventana inicia centrada
         setLocationRelativeTo(null);
         // Cuando se cierre la ventana, se borra de la memoria
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-        setIconImage(null);
     }
 
     //// Métodos
-    public void iniciarVentanaCrearContacto(){
+    public void iniciarVentanaNuevoContacto(){
         // Instancia el panel
         panel = new JPanel();
 

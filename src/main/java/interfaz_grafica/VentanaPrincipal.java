@@ -108,10 +108,20 @@ public class VentanaPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Instancia una ventana para crear un contacto y la hace visible
-                VentanaCrearContacto vcc = new VentanaCrearContacto();
-                vcc.setVisible(true);
+                VentanaNuevoContacto vnc = new VentanaNuevoContacto();
+                vnc.setVisible(true);
             }
         });
+
+        botonDatosContacto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Instancia una ventana para elegir un contacto y la hace visible
+                VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que desea ver");
+                vec.setVisible(true);
+            }
+        });
+
 
         // Implementación de ActionListener para el botón botonSalir
         botonSalir.addActionListener(new ActionListener() {
