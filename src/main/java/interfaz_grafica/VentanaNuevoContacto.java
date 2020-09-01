@@ -50,18 +50,15 @@ public class VentanaNuevoContacto extends JDialog {
         panel = new JPanel();
 
         // Instancia el label
-        labelIngreseNombre = new JLabel();
-        labelIngreseNombre.setText("Nombre del contacto: ");
+        labelIngreseNombre = new JLabel("Nombre del contacto:");
 
         // Instancia el text field
         textFieldIngreseNombre = new JTextField(10);
 
         // Instancia los botones
-        botonGuardar = new JButton();
-        botonGuardar.setText("Guardar");
+        botonGuardar = new JButton("Guardar");
 
-        botonVolverAtras = new JButton();
-        botonVolverAtras.setText("Volver atrás");
+        botonVolverAtras = new JButton("Volver atrás");
 
         // Añade el label y los botones al panel
         panel.add(labelIngreseNombre);

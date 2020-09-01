@@ -62,31 +62,25 @@ public class VentanaPrincipal extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         // Instancia el label
-        labelGestorPhoneBook = new JLabel();
-        labelGestorPhoneBook.setText("Gestor PhoneBook VLB");
+        labelGestorPhoneBook = new JLabel("Gestor PhoneBook VLB");
         // Centra el label (con los botones se hace lo mismo)
         labelGestorPhoneBook.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Instancia los botones
-        botonNuevoContacto = new JButton();
-        botonNuevoContacto.setText("Crear un contacto nuevo");
+        botonNuevoContacto = new JButton("Crear un contacto nuevo");
         botonNuevoContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        botonDatosContacto = new JButton();
-        botonDatosContacto.setText("Ver datos de un contacto");
+        botonDatosContacto = new JButton("Ver datos de un contacto");
         botonDatosContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        botonEditarContacto = new JButton();
-        botonEditarContacto.setText("Editar un contacto");
+        botonEditarContacto = new JButton("Editar un contacto");
         botonEditarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
-        botonEliminarContacto = new JButton();
-        botonEliminarContacto.setText("Eliminar un contacto");
+        botonEliminarContacto = new JButton("Eliminar un contacto");
         botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        botonSalir = new JButton();
-        botonSalir.setText("Salir del programa");
+        botonSalir = new JButton("Salir del programa");
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Añade el label y los botones al panel

@@ -19,6 +19,10 @@ public class VentanaElegirContacto extends JDialog {
      * String con el texto del label
      */
     private String texto;
+    /**
+     * Botón para volver atrás
+     */
+    private JButton botonVolverAtras;
 
     //// Constructores
     public VentanaElegirContacto(String texto) {
@@ -45,10 +49,31 @@ public class VentanaElegirContacto extends JDialog {
         // Instancia el label
         labelEscojaContacto = new JLabel(texto);
 
+        // Instancia los botones
+        botonVolverAtras = new JButton("Volver atrás");
+
         // Añade el label y los botones al panel
         panel.add(labelEscojaContacto);
+        panel.add(botonVolverAtras);
 
         // Añade el panel a la ventana
         add(panel);
+
+        botonVolverAtras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Crea el panel para pedir confirmación
+                int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                        "¿Volver atrás?",
+                        "Volver atrás",
+                        JOptionPane.YES_NO_OPTION);
+
+                // Si el usuario escoge "Sí"
+                if(n == JOptionPane.YES_OPTION){
+                    // Borra la ventana
+                    dispose();
+                }
+            }
+        });
     }
 }
