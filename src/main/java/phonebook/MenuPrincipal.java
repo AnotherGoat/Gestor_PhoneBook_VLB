@@ -82,7 +82,7 @@ public class MenuPrincipal extends Menu {
     private void switchMenu() {
         switch (eleccion) {
             case 1: //// "Crear contacto nuevo"
-                agenda.crearContacto(); // recordar que agenda = App.agenda
+                //## agenda.crearContacto(); // recordar que agenda = App.agenda
                 break;
 
             case 2: //// "Mostrar lista de contactos"

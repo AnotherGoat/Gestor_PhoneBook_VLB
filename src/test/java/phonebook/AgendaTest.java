@@ -30,13 +30,11 @@ public class AgendaTest {
      */
     @Test
     public void crearContacto1() {
-        v.simularInput("Juan Pérez");
-        a.crearContacto();
+        a.crearContacto("Juan Pérez");
         String nombreContacto = a.getLista_Contactos().get(0).getNombre();
         assertEquals("Juan Pérez", nombreContacto);
 
-        v.simularInput("Pablo");
-        a.crearContacto();
+        a.crearContacto("Pablo");
         nombreContacto = a.getLista_Contactos().get(1).getNombre();
         assertEquals("Pablo", nombreContacto);
     }
@@ -47,10 +45,8 @@ public class AgendaTest {
     @Test
     public void eliminarContacto1() {
         // Crea 2 contactos
-        v.simularInput("Camila");
-        a.crearContacto();
-        v.simularInput("Francisca");
-        a.crearContacto();
+        a.crearContacto("Camila");
+        a.crearContacto("Francisca");
 
         assertEquals(2, a.getLista_Contactos().size()); // Tamaño original
 
@@ -65,4 +61,5 @@ public class AgendaTest {
         assertEquals(1, a.getLista_Contactos().size()); // Tamaño cambia
         assertEquals("Francisca", a.getLista_Contactos().get(0).getNombre());
     }
+
 }

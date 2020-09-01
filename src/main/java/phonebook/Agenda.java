@@ -38,18 +38,19 @@ public class Agenda {
     /**
      * Método para crear un contacto nuevo
      */
-    public void crearContacto() {
+    public void crearContacto(String entrada) {
         // Pide el nombre del contacto
-        String nombreContacto = v.recibirString("Ingrese el nombre del contacto: ");
+        // String nombreContacto = v.recibirString("Ingrese el nombre del contacto: ");
 
         // Crea el contacto nuevo y lo agrega a la List
-        Contacto nuevo = new Contacto(nombreContacto);
+        Contacto nuevo = new Contacto(entrada);
         lista_contactos.add(nuevo);
         // Ordena la lista de contactos
         ordenarContactos();
-        System.out.println("El contacto fue guardado exitosamente.");
 
         GestorJSON.guardarJSON();
+
+        System.out.println("El contacto fue guardado exitosamente.");
     }
 
     /**

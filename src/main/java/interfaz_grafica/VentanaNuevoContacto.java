@@ -1,5 +1,7 @@
 package interfaz_grafica;
 
+import lanzador.Principal;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -16,7 +18,7 @@ public class VentanaNuevoContacto extends JDialog {
      */
     private JLabel labelIngreseNombre;
     /**
-     * TextForm para ingresar el nombre
+     * TextField para ingresar el nombre
      */
     private JTextField textFieldIngreseNombre;
     /**
@@ -71,6 +73,21 @@ public class VentanaNuevoContacto extends JDialog {
 
         // Carga el ícono de la aplicación
         cargarIcono();
+
+        // Implementación de ActionListener para botonGuardar
+        botonGuardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(textFieldIngreseNombre.getText().equals("")){
+                    // Muestra mensaje de error en algún lugar
+                }
+                else{
+                    Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
+
+                    textFieldIngreseNombre.setText("");
+                }
+            }
+        });
 
         // Implementación de ActionListener para botonVolverAtras
         botonVolverAtras.addActionListener(new ActionListener() {
