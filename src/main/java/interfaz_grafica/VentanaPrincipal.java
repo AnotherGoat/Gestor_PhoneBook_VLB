@@ -97,30 +97,50 @@ public class VentanaPrincipal extends JFrame {
         // Carga el ícono de la aplicación
         cargarIcono();
 
-        // Implementación de ActionListener para el botón botonNuevoContacto
+        // Implementación de ActionListener para botonNuevoContacto
         botonNuevoContacto.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ae) {
                 // Instancia una ventana para crear un contacto y la hace visible
                 VentanaNuevoContacto vnc = new VentanaNuevoContacto();
                 vnc.setVisible(true);
             }
         });
 
+        // Implementación de ActionListener para botonDatosContacto
         botonDatosContacto.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ae) {
                 // Instancia una ventana para elegir un contacto y la hace visible
-                VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que desea ver");
+                VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere ver");
                 vec.setVisible(true);
             }
         });
 
+        // Implementación de ActionListener para botonEditarContacto
+        botonEditarContacto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                // Instancia una ventana para elegir un contacto y la hace visible
+                VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar");
+                vec.setVisible(true);
+            }
+        });
+
+        // Implementación de ActionListener para botonEliminarContacto
+        botonEliminarContacto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                // Instancia una ventana para elegir un contacto y la hace visible
+                VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar");
+                vec.setVisible(true);
+            }
+        });
 
         // Implementación de ActionListener para el botón botonSalir
         botonSalir.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ae) {
                 // Crea el panel para pedir confirmación
                 int n = JOptionPane.showConfirmDialog(panel.getParent(),
                         "¿Está seguro de que desea salir?",

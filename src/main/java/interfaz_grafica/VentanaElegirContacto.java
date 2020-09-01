@@ -59,9 +59,10 @@ public class VentanaElegirContacto extends JDialog {
         // Añade el panel a la ventana
         add(panel);
 
+        // Implementación de ActionListener para botonVolverAtras
         botonVolverAtras.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ae) {
                 // Crea el panel para pedir confirmación
                 int n = JOptionPane.showConfirmDialog(panel.getParent(),
                         "¿Volver atrás?",
