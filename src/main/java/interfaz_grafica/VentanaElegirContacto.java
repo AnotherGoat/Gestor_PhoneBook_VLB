@@ -4,13 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class VentanaElegirContacto extends JDialog {
+public class VentanaElegirContacto extends JDialogGeneral {
 
     //// Atributos
-    /**
-     * Panel principal
-     */
-    private JPanel panel;
     /**
      * Label que tendrá el texto ingresado en el constructor
      */
@@ -19,15 +15,12 @@ public class VentanaElegirContacto extends JDialog {
      * String con el texto del label
      */
     private String texto;
-    /**
-     * Botón para volver atrás
-     */
-    private JButton botonVolverAtras;
 
     //// Constructores
     public VentanaElegirContacto(String texto) {
         this.texto = texto;
-        iniciarVentanaElegirContacto();
+
+        iniciar();
 
         //// Otras características de la ventana
 
@@ -35,22 +28,23 @@ public class VentanaElegirContacto extends JDialog {
         setTitle("Elegir contacto");
         // Tamaño inicial
         setSize(300, 200);
-        // La ventana inicia centrada
-        setLocationRelativeTo(null);
-        // Cuando se cierre la ventana, se borra de la memoria
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        configurar();
     }
 
     //// Métodos
-    public void iniciarVentanaElegirContacto(){
-        // Instancia el panel
-        panel = new JPanel();
+    public void iniciar(){
+        super.iniciar();
+
+        // Usa el BoxLayout (para mostrar los botones de arriba a abajo
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         // Instancia el label
         labelEscojaContacto = new JLabel(texto);
+        labelEscojaContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Instancia los botones
-        botonVolverAtras = new JButton("Volver atrás");
+        botonVolverAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Añade el label y los botones al panel
         panel.add(labelEscojaContacto);
@@ -58,23 +52,5 @@ public class VentanaElegirContacto extends JDialog {
 
         // Añade el panel a la ventana
         add(panel);
-
-        // Implementación de ActionListener para botonVolverAtras
-        botonVolverAtras.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                // Crea el panel para pedir confirmación
-                int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                        "¿Volver atrás?",
-                        "Volver atrás",
-                        JOptionPane.YES_NO_OPTION);
-
-                // Si el usuario escoge "Sí"
-                if(n == JOptionPane.YES_OPTION){
-                    // Borra la ventana
-                    dispose();
-                }
-            }
-        });
     }
 }

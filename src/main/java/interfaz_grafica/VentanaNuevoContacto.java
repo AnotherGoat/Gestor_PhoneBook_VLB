@@ -6,13 +6,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class VentanaNuevoContacto extends JDialog {
+public class VentanaNuevoContacto extends JDialogGeneral {
 
     //// Atributos
-    /**
-     * Panel principal
-     */
-    private JPanel panel;
     /**
      * Label con el nombre del programa
      */
@@ -25,14 +21,10 @@ public class VentanaNuevoContacto extends JDialog {
      * Botón para guardar el contacto
      */
     private JButton botonGuardar;
-    /**
-     * Botón para volver atrás
-     */
-    private JButton botonVolverAtras;
 
     //// Constructores
     public VentanaNuevoContacto() {
-        iniciarVentanaNuevoContacto();
+        iniciar();
 
         //// Otras características de la ventana
 
@@ -40,16 +32,12 @@ public class VentanaNuevoContacto extends JDialog {
         setTitle("Nuevo contacto");
         // Tamaño inicial
         setSize(300, 200);
-        // La ventana inicia centrada
-        setLocationRelativeTo(null);
-        // Cuando se cierre la ventana, se borra de la memoria
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        configurar();
     }
 
     //// Métodos
-    public void iniciarVentanaNuevoContacto(){
-        // Instancia el panel
-        panel = new JPanel();
+    public void iniciar(){
+        super.iniciar();
 
         // Instancia el label
         labelIngreseNombre = new JLabel("Nombre del contacto:");
@@ -60,8 +48,6 @@ public class VentanaNuevoContacto extends JDialog {
         // Instancia los botones
         botonGuardar = new JButton("Guardar");
 
-        botonVolverAtras = new JButton("Volver atrás");
-
         // Añade el label y los botones al panel
         panel.add(labelIngreseNombre);
         panel.add(textFieldIngreseNombre);
@@ -70,9 +56,6 @@ public class VentanaNuevoContacto extends JDialog {
 
         // Añade el panel a la ventana
         add(panel);
-
-        // Carga el ícono de la aplicación
-        cargarIcono();
 
         // Implementación de ActionListener para botonGuardar
         botonGuardar.addActionListener(new ActionListener() {
@@ -88,31 +71,5 @@ public class VentanaNuevoContacto extends JDialog {
                 }
             }
         });
-
-        // Implementación de ActionListener para botonVolverAtras
-        botonVolverAtras.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                // Crea el panel para pedir confirmación
-                int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                        "¿Volver atrás?",
-                        "Volver atrás",
-                        JOptionPane.YES_NO_OPTION);
-
-                // Si el usuario escoge "Sí"
-                if(n == JOptionPane.YES_OPTION){
-                    // Borra la ventana
-                    dispose();
-                }
-            }
-        });
-    }
-
-    /**
-     * Método que carga el ícono de la aplicación desde un archivo externo
-     */
-    private void cargarIcono() {
-        Image icono = Toolkit.getDefaultToolkit().getImage("archivos/icono_phonebook_nuevo.png");
-        setIconImage(icono);
     }
 }
