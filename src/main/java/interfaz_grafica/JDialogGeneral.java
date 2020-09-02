@@ -21,6 +21,9 @@ public abstract class JDialogGeneral extends JDialog {
     }
 
     //// Métodos
+    /**
+     * Método para iniciar la ventana
+     */
     public void iniciar(){
         // Carga el ícono de la aplicación
         cargarIcono();
@@ -50,6 +53,9 @@ public abstract class JDialogGeneral extends JDialog {
         });
     }
 
+    /**
+     * Método para configurar las propiedades que todas las ventanas JDialog tienen en común
+     */
     public void configurar(){
         // La ventana inicia centrada
         setLocationRelativeTo(null);

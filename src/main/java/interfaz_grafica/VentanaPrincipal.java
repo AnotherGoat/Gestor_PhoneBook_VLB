@@ -55,6 +55,9 @@ public class VentanaPrincipal extends JFrame {
     }
 
     //// Métodos
+    /**
+     * Método para iniciar la ventana principal (instancia todos los objetos necesarios)
+     */
     private void iniciarVentanaPrincipal(){
         // Instancia el panel
         panel = new JPanel();
@@ -65,6 +68,7 @@ public class VentanaPrincipal extends JFrame {
         labelGestorPhoneBook = new JLabel("Gestor PhoneBook VLB");
         // Centra el label (con los botones se hace lo mismo)
         labelGestorPhoneBook.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelGestorPhoneBook.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
 
         // Instancia los botones
         botonNuevoContacto = new JButton("Crear un contacto nuevo");
@@ -75,7 +79,6 @@ public class VentanaPrincipal extends JFrame {
 
         botonEditarContacto = new JButton("Editar un contacto");
         botonEditarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
-
 
         botonEliminarContacto = new JButton("Eliminar un contacto");
         botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);

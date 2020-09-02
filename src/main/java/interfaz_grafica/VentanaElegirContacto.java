@@ -31,10 +31,6 @@ public class VentanaElegirContacto extends JDialogGeneral {
      * Scroll para el panel con los botones
      */
     private JScrollPane scroll;
-    /**
-     * Panel principal (parte 2)
-     */
-    private JPanel panel2;
 
     //// Constructores
     public VentanaElegirContacto(String texto) {
@@ -58,36 +54,49 @@ public class VentanaElegirContacto extends JDialogGeneral {
 
         // Usa el BoxLayout (para mostrar los botones de arriba a abajo
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panelBotones = new JPanel();
-        panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
-        panel2 = new JPanel();
 
-        // Instancia el label
-        labelEscojaContacto = new JLabel(texto);
-        labelEscojaContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        // Instancia los botones
-        botonVolverAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel2.add(botonVolverAtras);
-
-        for(String s : Principal.agenda.getLista_Nombres()){
-            lista_botones.add(new JButton(s));
+        // Si no hay contactos guardados
+        if(Principal.agenda.getLista_Contactos().isEmpty()) {
+            labelEscojaContacto.setText("Error: Todavía no hay contactos guardados en la agenda");
+            // Añade los objetos al panel
+            panel.add(labelEscojaContacto);
+            panel.add(botonVolverAtras);
         }
 
-        for(JButton jb : lista_botones){
-            panelBotones.add(jb);
-            jb.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Si hay contactos guardados
+        else {
+            panelBotones = new JPanel();
+            panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
+
+            // Instancia el label
+            labelEscojaContacto = new JLabel(texto);
+            labelEscojaContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            // Instancia los botones
+            botonVolverAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            // Por cada nombre dentro de la agenda crea un botón
+            for (String s : Principal.agenda.getLista_Nombres()) {
+                lista_botones.add(new JButton(s));
+            }
+
+            // Añade todos los botones al panelBotones y los centra
+            for (JButton jb : lista_botones) {
+                panelBotones.add(jb);
+                jb.setAlignmentX(Component.CENTER_ALIGNMENT);
+            }
+
+            // Instancia el JScrollPane, usando el panel con los botones
+            scroll = new JScrollPane(panelBotones);
+            // Define como funciona el scroll vertical y horizontal
+            scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+            scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+            // Añade los objetos al panel
+            panel.add(labelEscojaContacto);
+            panel.add(scroll);
+            panel.add(botonVolverAtras);
         }
-
-        // Configurar JScrollPane
-        scroll = new JScrollPane(panelBotones);
-        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        // Añade el label y los botones al panel
-        panel.add(labelEscojaContacto);
-        panel.add(scroll);
-        panel.add(botonVolverAtras);
 
         // Añade el panel a la ventana
         add(panel);
