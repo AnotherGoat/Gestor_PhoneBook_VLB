@@ -31,6 +31,10 @@ public class VentanaElegirContacto extends JDialogGeneral {
      * Scroll para el panel con los botones
      */
     private JScrollPane scroll;
+    /**
+     * Opción que ingresa el usuario
+     */
+    private int eleccion;
 
     //// Constructores
     public VentanaElegirContacto(String texto) {
@@ -93,6 +97,21 @@ public class VentanaElegirContacto extends JDialogGeneral {
             // Define como funciona el scroll vertical y horizontal
             scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
             scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+            // Implementa ActionListener para los JButton
+            for(int i=0; i<lista_botones.size(); i++) {
+
+                int posicion = i;
+
+                lista_botones.get(i).addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        eleccion = posicion;
+                        lista_botones.get(posicion).setText("posición: "+posicion);
+                    }
+                });
+
+            }
 
             // Añade los objetos al JPanel
             panel.add(labelEscojaContacto);

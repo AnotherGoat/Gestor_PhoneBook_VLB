@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Esta clase incluye todos los métodos para validar y recibir entrada
+ * Esta clase tiene todos los métodos para validar y recibir entrada
  */
 public class Validador {
 
@@ -18,7 +18,7 @@ public class Validador {
 
     //// Constructores
     /**
-     * Constructor de clase Validador (instancia su Scanner otra vez para evitar errores)
+     * Constructor de clase Validador (instancia su Scanner cada vez para evitar errores)
      */
     public Validador() {
         this.teclado = new Scanner(System.in);
