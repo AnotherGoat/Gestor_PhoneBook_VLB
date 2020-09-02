@@ -68,6 +68,7 @@ public class VentanaNuevoContacto extends JDialogGeneral {
                     Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
 
                     textFieldIngreseNombre.setText("");
+                    dispose();
                 }
             }
         });
