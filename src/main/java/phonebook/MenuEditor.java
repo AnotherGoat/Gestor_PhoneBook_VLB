@@ -2,8 +2,7 @@ package phonebook;
 
 // Importa la agenda de uso "global"
 import json.GestorJSON;
-
-import static lanzador.Principal.agenda;
+import lanzador.Principal;
 
 /**
  * Acá irá el menú para editar contactos
@@ -40,7 +39,7 @@ public class MenuEditor extends Menu {
         this.opciones.add("Salir");
 
         // Tomar contacto que se va a editar (paso por referencia) y su posición
-        this.original = agenda.getLista_Contactos().get(posicionOriginal);
+        this.original = Principal.agenda.getLista_Contactos().get(posicionOriginal);
         this.posicionOriginal = posicionOriginal;
 
         // Copia el contacto original a uno auxiliar (paso por valor)
@@ -115,9 +114,9 @@ public class MenuEditor extends Menu {
             switch (b) {
                 case 1:
                     // Copia el contacto de vuelta a la agenda
-                    agenda.getLista_Contactos().set(posicionOriginal, new Contacto(aux));
+                    Principal.agenda.getLista_Contactos().set(posicionOriginal, new Contacto(aux));
                     // Ordena la lista de contactos
-                    agenda.ordenarContactos();
+                    Principal.agenda.ordenarContactos();
                     // Guarda los cambios hechos en "agenda.json"
                     GestorJSON.guardarJSON();
 

@@ -1,7 +1,6 @@
 package phonebook;
 
-// Importa la agenda de uso "global"
-import static lanzador.Principal.agenda;
+import lanzador.Principal;
 
 /**
  * Acá irá el menú principal del proyecto PhoneBook
@@ -40,7 +39,7 @@ public class MenuPrincipal extends Menu {
         opciones.add("Crear un contacto nuevo");
 
         // Si hay contactos guardados
-        if(!agenda.getLista_Contactos().isEmpty()){
+        if(!Principal.agenda.getLista_Contactos().isEmpty()){
             opciones.add("Mostrar lista de contactos");
             opciones.add("Ver datos de un contacto");
             opciones.add("Editar un contacto");
@@ -87,41 +86,41 @@ public class MenuPrincipal extends Menu {
 
             case 2: //// "Mostrar lista de contactos"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getLista_Contactos().isEmpty()) {
+                if (Principal.agenda.getLista_Contactos().isEmpty()) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    agenda.listarContactos();
+                    Principal.agenda.listarContactos();
                 }
                 break;
 
             case 3: //// "Ver detalles de un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getLista_Contactos().isEmpty()) {
+                if (Principal.agenda.getLista_Contactos().isEmpty()) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    agenda.mostrarContacto();
+                    Principal.agenda.mostrarContacto();
                 }
                 break;
 
             case 4: //// "Editar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getLista_Contactos().isEmpty()) {
+                if (Principal.agenda.getLista_Contactos().isEmpty()) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    agenda.editarContacto();
+                    Principal.agenda.editarContacto();
                 }
                 break;
 
             case 5: //// "Eliminar un contacto"
                 // Verificar que hayan contactos guardados antes de usar
-                if (agenda.getLista_Contactos().isEmpty()) {
+                if (Principal.agenda.getLista_Contactos().isEmpty()) {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    agenda.eliminarContacto();
+                    Principal.agenda.eliminarContacto();
                 }
                 break;
 

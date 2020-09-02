@@ -13,14 +13,6 @@ public class GestorJSON {
 
     //// Atributos
     /**
-     * Agenda principal
-     */
-    static Agenda agenda_principal = Principal.agenda;
-    /**
-     * JSONArray que representa la agenda principal
-     */
-    static JSONArray agenda_json_principal = Principal.agenda_json;
-    /**
      * Instancia del gestor de archivos
      */
     static GestorArchivo ga = new GestorArchivo();
@@ -35,7 +27,7 @@ public class GestorJSON {
         JSONArray agenda_json = new JSONArray();
 
         // Para cada contacto "c" dentro de la agenda principal
-        for(Contacto c: agenda_principal.getLista_Contactos()){
+        for(Contacto c: Principal.agenda.getLista_Contactos()){
 
             // Crea un JSONObject que representa un contacto
             JSONObject contacto_json = new JSONObject();
@@ -157,13 +149,13 @@ public class GestorJSON {
         if (Files.exists(Paths.get("agenda.json"))) {
 
             // Carga los datos de "agenda.json" al JSONArray agendaJSON
-            agenda_json_principal = ga.convertirArchivoAJSONArray("agenda.json");
+            Principal.agenda_json = ga.convertirArchivoAJSONArray("agenda.json");
 
             // Para cada contacto dentro del JSONArray...
-            for(int i=0; i<agenda_json_principal.length(); i++){
+            for(int i=0; i<Principal.agenda_json.length(); i++){
 
                 // Crea un JSONObject que representa a un contacto
-                JSONObject contacto_json = agenda_json_principal.getJSONObject(i).getJSONObject("contacto");
+                JSONObject contacto_json = Principal.agenda_json.getJSONObject(i).getJSONObject("contacto");
 
                 // Verifica que el contacto tiene un nombre guardado
                 if(contacto_json.has("nombre")) {
