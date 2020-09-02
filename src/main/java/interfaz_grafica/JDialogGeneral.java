@@ -28,13 +28,13 @@ public abstract class JDialogGeneral extends JDialog {
         // Carga el ícono de la aplicación
         cargarIcono();
 
-        // Instancia el panel
+        // Instancia el JPanel
         panel = new JPanel();
 
-        // Instancia el botón para volver atrás
+        // Instancia el JButton para volver atrás
         botonVolverAtras = new JButton("Volver atrás");
 
-        // Implementación de ActionListener para botonVolverAtras
+        // Implementa ActionListener para botonVolverAtras
         botonVolverAtras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {

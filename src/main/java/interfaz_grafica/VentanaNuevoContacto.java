@@ -39,25 +39,25 @@ public class VentanaNuevoContacto extends JDialogGeneral {
     public void iniciar(){
         super.iniciar();
 
-        // Instancia el label
+        // Instancia el JLabel
         labelIngreseNombre = new JLabel("Nombre del contacto:");
 
-        // Instancia el text field
+        // Instancia el JTextField
         textFieldIngreseNombre = new JTextField(10);
 
-        // Instancia los botones
+        // Instancia el JButton
         botonGuardar = new JButton("Guardar");
 
-        // Añade el label y los botones al panel
+        // Añade los objetos al JPanel
         panel.add(labelIngreseNombre);
         panel.add(textFieldIngreseNombre);
         panel.add(botonGuardar);
         panel.add(botonVolverAtras);
 
-        // Añade el panel a la ventana
+        // Añade el JPanel al JFrame
         add(panel);
 
-        // Implementación de ActionListener para botonGuardar
+        // Implementa ActionListener para botonGuardar
         botonGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {

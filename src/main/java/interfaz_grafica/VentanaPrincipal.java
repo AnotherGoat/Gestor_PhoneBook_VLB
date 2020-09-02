@@ -59,18 +59,22 @@ public class VentanaPrincipal extends JFrame {
      * Método para iniciar la ventana principal (instancia todos los objetos necesarios)
      */
     private void iniciarVentanaPrincipal(){
-        // Instancia el panel
+        // Carga el ícono de la aplicación
+        cargarIcono();
+
+        // Instancia el JPanel
         panel = new JPanel();
-        // Usa el BoxLayout (para mostrar los botones de arriba a abajo
+        // Usa el BoxLayout para mostrar los botones verticalmente
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        // Instancia el label
+        // Instancia el JLabel
         labelGestorPhoneBook = new JLabel("Gestor PhoneBook VLB");
         // Centra el label (con los botones se hace lo mismo)
         labelGestorPhoneBook.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Usa letra más grande
         labelGestorPhoneBook.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
 
-        // Instancia los botones
+        // Instancia los JButton
         botonNuevoContacto = new JButton("Crear un contacto nuevo");
         botonNuevoContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -86,7 +90,7 @@ public class VentanaPrincipal extends JFrame {
         botonSalir = new JButton("Salir del programa");
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Añade el label y los botones al panel
+        // Añade los objetos al JPanel
         panel.add(labelGestorPhoneBook);
         panel.add(botonNuevoContacto);
         panel.add(botonDatosContacto);
@@ -94,13 +98,10 @@ public class VentanaPrincipal extends JFrame {
         panel.add(botonEliminarContacto);
         panel.add(botonSalir);
 
-        // Añade el panel a la ventana
+        // Añade el JPanel al JFrame
         add(panel);
 
-        // Carga el ícono de la aplicación
-        cargarIcono();
-
-        // Implementación de ActionListener para botonNuevoContacto
+        // Implementa ActionListener para botonNuevoContacto
         botonNuevoContacto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -110,7 +111,7 @@ public class VentanaPrincipal extends JFrame {
             }
         });
 
-        // Implementación de ActionListener para botonDatosContacto
+        // Implementa ActionListener para botonDatosContacto
         botonDatosContacto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -120,7 +121,7 @@ public class VentanaPrincipal extends JFrame {
             }
         });
 
-        // Implementación de ActionListener para botonEditarContacto
+        // Implementa ActionListener para botonEditarContacto
         botonEditarContacto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -130,7 +131,7 @@ public class VentanaPrincipal extends JFrame {
             }
         });
 
-        // Implementación de ActionListener para botonEliminarContacto
+        // Implementa ActionListener para botonEliminarContacto
         botonEliminarContacto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -140,7 +141,7 @@ public class VentanaPrincipal extends JFrame {
             }
         });
 
-        // Implementación de ActionListener para el botón botonSalir
+        // Implementa ActionListener para botonSalir
         botonSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
