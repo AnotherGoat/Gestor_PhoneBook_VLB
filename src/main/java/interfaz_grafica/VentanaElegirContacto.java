@@ -95,11 +95,8 @@ public class VentanaElegirContacto extends JDialogGeneral {
                 jb.setAlignmentX(Component.CENTER_ALIGNMENT);
             }
 
-            // Instancia el JScrollPane, usando el JPanel con los botones
-            scroll = new JScrollPane(panelBotones);
-            // Define como funciona el scroll vertical y horizontal
-            scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-            scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            // Instancia el JScrollPane, usando el JPanel con los botones (y define el funcionamiento vertical y horizontal)
+            scroll = new JScrollPane(panelBotones, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             // Implementa ActionListener para los JButton
             for(JButton jb : lista_botones) {

@@ -147,8 +147,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         }
 
         if (ae.getSource() == botonSalir){
-
-
             // Crea el panel para pedir confirmación
             int n = JOptionPane.showConfirmDialog(panel.getParent(),
                     "¿Está seguro de que desea salir?",

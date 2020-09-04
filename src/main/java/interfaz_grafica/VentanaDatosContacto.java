@@ -13,6 +13,10 @@ public class VentanaDatosContacto extends JDialogGeneral{
      * Área con el texto
      */
     JTextArea textArea;
+    /**
+     * Scroll para el área de texto
+     */
+    private JScrollPane scroll;
 
     int posicion;
 
@@ -28,7 +32,7 @@ public class VentanaDatosContacto extends JDialogGeneral{
         // Título
         setTitle("Datos de "+Principal.agenda.getLista_Nombres().get(posicion));
         // Tamaño inicial
-        setSize(300, 400);
+        setSize(400, 500);
 
         configurar();
     }
@@ -38,11 +42,19 @@ public class VentanaDatosContacto extends JDialogGeneral{
     public void inicializar(){
         super.inicializar();
 
+        // Usa el BoxLayout para mostrar los botones verticalmente
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        botonVolverAtras.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         textArea = new JTextArea(Principal.agenda.getLista_Contactos().get(posicion).toString());
         textArea.setVisible(true);
 
-        panel.add(textArea, BorderLayout.NORTH);
-        panel.add(botonVolverAtras, BorderLayout.SOUTH);
+        // Instancia el JScrollPane para la textArea (y define el funcionamiento vertical y horizontal)
+        scroll = new JScrollPane(textArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        panel.add(scroll);
+        panel.add(botonVolverAtras);
 
         add(panel);
     }
