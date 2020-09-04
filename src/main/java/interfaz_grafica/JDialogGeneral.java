@@ -47,20 +47,12 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == botonVolverAtras){
-            // Crea el panel para pedir confirmación
-            int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                    "¿Volver atrás?",
-                    "Volver atrás",
-                    JOptionPane.YES_NO_OPTION);
-
-            // Si el usuario escoge "Sí"
-            if(n == JOptionPane.YES_OPTION){
-                setVisible(false);
-
-                ventanaAnterior.setVisible(true);
-                // Borra la ventana
-                dispose();
-            }
+            // Esconde la ventana actual
+            setVisible(false);
+            // Vuelve a la ventana anterior
+            ventanaAnterior.setVisible(true);
+            // Borra la ventana actual
+            dispose();
         }
     }
 
