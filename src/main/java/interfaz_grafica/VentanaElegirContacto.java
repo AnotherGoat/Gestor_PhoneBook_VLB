@@ -120,8 +120,22 @@ public class VentanaElegirContacto extends JDialogGeneral {
 
         for(JButton jb : lista_botones) {
             if(ae.getSource() == jb) {
+                // Elección pasa a ser el índice del botón
                 eleccion = lista_botones.indexOf(jb);
-                jb.setText("posición: "+lista_botones.indexOf(jb));
+                // Esconde la ventana
+                //setVisible(false);
+
+                switch(getTitle()) {
+                    case "Escoja el contacto que quiere ver":
+                        VentanaDatosContacto vdc = new VentanaDatosContacto(eleccion);
+                        vdc.setVisible(true);
+                        break;
+
+                    case "Escoja el contacto que quiere editar":
+                        break;
+
+                    case "Escoja el contacto que quiere borrar":
+                }
             }
         }
     }

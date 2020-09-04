@@ -20,6 +20,7 @@ ValidadorTest: listo
 Nota: Si a alguno se le ocurre otro test unitario relevante, puede añadirlo
  */
 
+import interfaz_grafica.VentanaDatosContacto;
 import interfaz_grafica.VentanaPrincipal;
 import json.GestorJSON;
 import org.json.JSONArray;
@@ -48,14 +49,19 @@ public class Principal {
      */
     public static JSONArray agenda_json = new JSONArray();
 
+    public static VentanaPrincipal vPrincipal;
+
     public static void main(String[] args) {
         // Carga datos del archivo "agenda.json"
         GestorJSON.cargarJSON();
         // Instancia el menú principal
         // new MenuPrincipal();
         // Instancia la ventana principal
-        VentanaPrincipal vPrincipal = new VentanaPrincipal();
+        vPrincipal = new VentanaPrincipal();
         // Hace que sea visible
         vPrincipal.setVisible(true);
+
+        VentanaDatosContacto vdc = new VentanaDatosContacto(3);
+        vdc.setVisible(true);
     }
 }

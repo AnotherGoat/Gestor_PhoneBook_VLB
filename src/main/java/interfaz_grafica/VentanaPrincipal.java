@@ -123,30 +123,40 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == botonNuevoContacto){
+            setVisible(false);
+
             // Instancia una ventana para crear un contacto y la hace visible
             VentanaNuevoContacto vnc = new VentanaNuevoContacto();
             vnc.setVisible(true);
         }
 
-        if (ae.getSource() == botonDatosContacto){
+        if (ae.getSource() == botonDatosContacto) {
+            setVisible(false);
+
             // Instancia una ventana para elegir un contacto y la hace visible
             VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere ver");
             vec.setVisible(true);
         }
 
         if (ae.getSource() == botonEditarContacto){
+            setVisible(false);
+
             // Instancia una ventana para elegir un contacto y la hace visible
             VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar");
             vec.setVisible(true);
         }
 
         if (ae.getSource() == botonEliminarContacto){
+            setVisible(false);
+
             // Instancia una ventana para elegir un contacto y la hace visible
             VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar");
             vec.setVisible(true);
         }
 
         if (ae.getSource() == botonSalir){
+            setVisible(false);
+
             // Crea el panel para pedir confirmación
             int n = JOptionPane.showConfirmDialog(panel.getParent(),
                     "¿Está seguro de que desea salir?",

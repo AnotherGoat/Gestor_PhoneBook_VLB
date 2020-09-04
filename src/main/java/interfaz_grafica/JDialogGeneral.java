@@ -1,5 +1,7 @@
 package interfaz_grafica;
 
+import lanzador.Principal;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -48,6 +50,9 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
 
             // Si el usuario escoge "Sí"
             if(n == JOptionPane.YES_OPTION){
+                setVisible(false);
+
+                Principal.vPrincipal.setVisible(true);
                 // Borra la ventana
                 dispose();
             }
