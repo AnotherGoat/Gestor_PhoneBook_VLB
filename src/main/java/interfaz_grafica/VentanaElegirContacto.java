@@ -124,8 +124,6 @@ public class VentanaElegirContacto extends JDialogGeneral {
             if(ae.getSource() == jb) {
                 // Elección pasa a ser el índice del botón
                 eleccion = lista_botones.indexOf(jb);
-                // Esconde la ventana
-                setVisible(false);
 
                 switch(labelEscojaContacto.getText()) {
                     case "Escoja el contacto que quiere ver":

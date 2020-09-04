@@ -47,10 +47,6 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if(ae.getSource() == botonVolverAtras){
-            // Esconde la ventana actual
-            setVisible(false);
-            // Vuelve a la ventana anterior
-            ventanaAnterior.setVisible(true);
             // Borra la ventana actual
             dispose();
         }
@@ -64,6 +60,8 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
         setLocationRelativeTo(null);
         // Cuando se cierre la ventana, se borra de la memoria
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        // Modalidad, para hacer que las ventanas anteriores no funcionen
+        setModalityType(ModalityType.APPLICATION_MODAL);
     }
 
     /**
