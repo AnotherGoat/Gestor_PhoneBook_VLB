@@ -23,7 +23,9 @@ public class VentanaNuevoContacto extends JDialogGeneral {
     private JButton botonGuardar;
 
     //// Constructores
-    public VentanaNuevoContacto() {
+    public VentanaNuevoContacto(Component ventanaAnterior) {
+        super(ventanaAnterior);
+
         inicializar();
 
         //// Otras características de la ventana
@@ -36,6 +38,7 @@ public class VentanaNuevoContacto extends JDialogGeneral {
     }
 
     //// Métodos
+    @Override
     public void inicializar(){
         super.inicializar();
 
@@ -61,6 +64,7 @@ public class VentanaNuevoContacto extends JDialogGeneral {
         botonGuardar.addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent ae){
         super.actionPerformed(ae);
 

@@ -126,7 +126,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             setVisible(false);
 
             // Instancia una ventana para crear un contacto y la hace visible
-            VentanaNuevoContacto vnc = new VentanaNuevoContacto();
+            VentanaNuevoContacto vnc = new VentanaNuevoContacto(this);
             vnc.setVisible(true);
         }
 
@@ -134,7 +134,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             setVisible(false);
 
             // Instancia una ventana para elegir un contacto y la hace visible
-            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere ver");
+            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere ver", this);
             vec.setVisible(true);
         }
 
@@ -142,7 +142,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             setVisible(false);
 
             // Instancia una ventana para elegir un contacto y la hace visible
-            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar");
+            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar", this);
             vec.setVisible(true);
         }
 
@@ -150,7 +150,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             setVisible(false);
 
             // Instancia una ventana para elegir un contacto y la hace visible
-            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar");
+            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar", this);
             vec.setVisible(true);
         }
 

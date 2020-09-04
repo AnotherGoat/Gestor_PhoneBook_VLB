@@ -17,9 +17,14 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
      * Botón para volver atrás
      */
     protected JButton botonVolverAtras;
+    /**
+     * Componente que representa la ventana anterior en la que se estaba
+     */
+    protected Component ventanaAnterior;
 
     //// Constructores
-    public JDialogGeneral() {
+    public JDialogGeneral(Component ventanaAnterior) {
+        this.ventanaAnterior = ventanaAnterior;
     }
 
     //// Métodos
@@ -52,7 +57,7 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
             if(n == JOptionPane.YES_OPTION){
                 setVisible(false);
 
-                Principal.vPrincipal.setVisible(true);
+                ventanaAnterior.setVisible(true);
                 // Borra la ventana
                 dispose();
             }

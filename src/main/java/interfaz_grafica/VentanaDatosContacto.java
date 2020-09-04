@@ -4,6 +4,7 @@ import lanzador.Principal;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class VentanaDatosContacto extends JDialogGeneral{
 
@@ -16,7 +17,8 @@ public class VentanaDatosContacto extends JDialogGeneral{
     int posicion;
 
     //// Constructores
-    public VentanaDatosContacto(int posicion) {
+    public VentanaDatosContacto(int posicion, Component ventanaAnterior) {
+        super(ventanaAnterior);
         this.posicion = posicion;
 
         inicializar();
@@ -32,16 +34,16 @@ public class VentanaDatosContacto extends JDialogGeneral{
     }
 
     //// Métodos
+    @Override
     public void inicializar(){
         super.inicializar();
 
         textArea = new JTextArea(Principal.agenda.getLista_Contactos().get(posicion).toString());
         textArea.setVisible(true);
 
-        panel.setLayout(new FlowLayout());
+        panel.add(textArea, BorderLayout.NORTH);
+        panel.add(botonVolverAtras, BorderLayout.SOUTH);
 
-        //panel.add(textArea);
-         panel.add(botonVolverAtras);
+        add(panel);
     }
-
 }

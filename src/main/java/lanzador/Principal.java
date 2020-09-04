@@ -60,8 +60,5 @@ public class Principal {
         vPrincipal = new VentanaPrincipal();
         // Hace que sea visible
         vPrincipal.setVisible(true);
-
-        VentanaDatosContacto vdc = new VentanaDatosContacto(3);
-        vdc.setVisible(true);
     }
 }

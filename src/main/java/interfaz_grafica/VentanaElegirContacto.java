@@ -37,7 +37,8 @@ public class VentanaElegirContacto extends JDialogGeneral {
     private int eleccion;
 
     //// Constructores
-    public VentanaElegirContacto(String texto) {
+    public VentanaElegirContacto(String texto, Component ventanaAnterior) {
+        super(ventanaAnterior);
         this.texto = texto;
 
         inicializar();
@@ -53,6 +54,7 @@ public class VentanaElegirContacto extends JDialogGeneral {
     }
 
     //// Métodos
+    @Override
     public void inicializar(){
         super.inicializar();
 
@@ -123,11 +125,11 @@ public class VentanaElegirContacto extends JDialogGeneral {
                 // Elección pasa a ser el índice del botón
                 eleccion = lista_botones.indexOf(jb);
                 // Esconde la ventana
-                //setVisible(false);
+                setVisible(false);
 
-                switch(getTitle()) {
+                switch(labelEscojaContacto.getText()) {
                     case "Escoja el contacto que quiere ver":
-                        VentanaDatosContacto vdc = new VentanaDatosContacto(eleccion);
+                        VentanaDatosContacto vdc = new VentanaDatosContacto(eleccion, this);
                         vdc.setVisible(true);
                         break;
 
