@@ -24,7 +24,7 @@ public class VentanaNuevoContacto extends JDialogGeneral {
 
     //// Constructores
     public VentanaNuevoContacto() {
-        iniciar();
+        inicializar();
 
         //// Otras características de la ventana
 
@@ -36,8 +36,8 @@ public class VentanaNuevoContacto extends JDialogGeneral {
     }
 
     //// Métodos
-    public void iniciar(){
-        super.iniciar();
+    public void inicializar(){
+        super.inicializar();
 
         // Instancia el JLabel
         labelIngreseNombre = new JLabel("Nombre del contacto:");
@@ -72,5 +72,9 @@ public class VentanaNuevoContacto extends JDialogGeneral {
                 }
             }
         });
+    }
+
+    public void actionPerformed(ActionEvent ae){
+
     }
 }

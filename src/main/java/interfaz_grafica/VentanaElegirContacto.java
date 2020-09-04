@@ -40,7 +40,7 @@ public class VentanaElegirContacto extends JDialogGeneral {
     public VentanaElegirContacto(String texto) {
         this.texto = texto;
 
-        iniciar();
+        inicializar();
 
         //// Otras características de la ventana
 
@@ -53,8 +53,8 @@ public class VentanaElegirContacto extends JDialogGeneral {
     }
 
     //// Métodos
-    public void iniciar(){
-        super.iniciar();
+    public void inicializar(){
+        super.inicializar();
 
         // Usa el BoxLayout para mostrar los botones verticalmente
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -74,6 +74,7 @@ public class VentanaElegirContacto extends JDialogGeneral {
             // Instancia un JPanel para los botones
             panelBotones = new JPanel();
             panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.Y_AXIS));
+            panelBotones.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Lista de contactos"));
 
             // Instancia el JLabel
             labelEscojaContacto = new JLabel(texto);

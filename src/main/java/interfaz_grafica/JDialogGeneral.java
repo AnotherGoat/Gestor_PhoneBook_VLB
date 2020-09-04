@@ -24,7 +24,7 @@ public abstract class JDialogGeneral extends JDialog {
     /**
      * Método para iniciar la ventana
      */
-    public void iniciar(){
+    public void inicializar(){
         // Carga el ícono de la aplicación
         cargarIcono();
 

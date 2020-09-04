@@ -4,13 +4,17 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class VentanaPrincipal extends JFrame {
+public class VentanaPrincipal extends JFrame implements ActionListener {
 
     //// Atributos
     /**
      * Panel principal
      */
     private JPanel panel;
+    /**
+     * Panel con las opciones del menú principal
+     */
+    private JPanel panelOpciones;
     /**
      * Label con el nombre del programa
      */
@@ -38,7 +42,7 @@ public class VentanaPrincipal extends JFrame {
 
     //// Constructores
     public VentanaPrincipal(){
-        iniciarVentanaPrincipal();
+        inicializar();
 
         //// Otras características de la ventana
 
@@ -58,7 +62,7 @@ public class VentanaPrincipal extends JFrame {
     /**
      * Método para iniciar la ventana principal (instancia todos los objetos necesarios)
      */
-    private void iniciarVentanaPrincipal(){
+    private void inicializar(){
         // Carga el ícono de la aplicación
         cargarIcono();
 
@@ -66,6 +70,11 @@ public class VentanaPrincipal extends JFrame {
         panel = new JPanel();
         // Usa el BoxLayout para mostrar los botones verticalmente
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        panelOpciones = new JPanel();
+        panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
+        // Crea un borde para el panel con las opciones
+        panelOpciones.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones"));
 
         // Instancia el JLabel
         labelGestorPhoneBook = new JLabel("Gestor PhoneBook VLB");
@@ -92,72 +101,64 @@ public class VentanaPrincipal extends JFrame {
 
         // Añade los objetos al JPanel
         panel.add(labelGestorPhoneBook);
-        panel.add(botonNuevoContacto);
-        panel.add(botonDatosContacto);
-        panel.add(botonEditarContacto);
-        panel.add(botonEliminarContacto);
-        panel.add(botonSalir);
+
+        panelOpciones.add(botonNuevoContacto);
+        panelOpciones.add(botonDatosContacto);
+        panelOpciones.add(botonEditarContacto);
+        panelOpciones.add(botonEliminarContacto);
+        panelOpciones.add(botonSalir);
+        panel.add(panelOpciones);
 
         // Añade el JPanel al JFrame
         add(panel);
 
-        // Implementa ActionListener para botonNuevoContacto
-        botonNuevoContacto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                // Instancia una ventana para crear un contacto y la hace visible
-                VentanaNuevoContacto vnc = new VentanaNuevoContacto();
-                vnc.setVisible(true);
-            }
-        });
+        // Implementa ActionListener para los botones
+        botonNuevoContacto.addActionListener(this);
+        botonDatosContacto.addActionListener(this);
+        botonEditarContacto.addActionListener(this);
+        botonEliminarContacto.addActionListener(this);
+        botonSalir.addActionListener(this);
+    }
 
-        // Implementa ActionListener para botonDatosContacto
-        botonDatosContacto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                // Instancia una ventana para elegir un contacto y la hace visible
-                VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere ver");
-                vec.setVisible(true);
-            }
-        });
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == botonNuevoContacto){
+            // Instancia una ventana para crear un contacto y la hace visible
+            VentanaNuevoContacto vnc = new VentanaNuevoContacto();
+            vnc.setVisible(true);
+        }
 
-        // Implementa ActionListener para botonEditarContacto
-        botonEditarContacto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                // Instancia una ventana para elegir un contacto y la hace visible
-                VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar");
-                vec.setVisible(true);
-            }
-        });
+        if (ae.getSource() == botonDatosContacto){
+            // Instancia una ventana para elegir un contacto y la hace visible
+            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere ver");
+            vec.setVisible(true);
+        }
 
-        // Implementa ActionListener para botonEliminarContacto
-        botonEliminarContacto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                // Instancia una ventana para elegir un contacto y la hace visible
-                VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar");
-                vec.setVisible(true);
-            }
-        });
+        if (ae.getSource() == botonEditarContacto){
+            // Instancia una ventana para elegir un contacto y la hace visible
+            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar");
+            vec.setVisible(true);
+        }
 
-        // Implementa ActionListener para botonSalir
-        botonSalir.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                // Crea el panel para pedir confirmación
-                int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                        "¿Está seguro de que desea salir?",
-                        "Salir del programa",
-                        JOptionPane.YES_NO_OPTION);
+        if (ae.getSource() == botonEliminarContacto){
+            // Instancia una ventana para elegir un contacto y la hace visible
+            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar");
+            vec.setVisible(true);
+        }
 
-                // Si el usuario escoge "Sí"
-                if(n == JOptionPane.YES_OPTION){
-                    // Sale del programa y retorna 0
-                    System.exit(0);
-                }
+        if (ae.getSource() == botonSalir){
+            // Crea el panel para pedir confirmación
+            int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                    "¿Está seguro de que desea salir?",
+                    "Salir del programa",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Si el usuario escoge "Sí"
+            if(n == JOptionPane.YES_OPTION){
+                // Sale del programa y retorna 0
+                System.exit(0);
             }
-        });
+        }
     }
 
     /**
