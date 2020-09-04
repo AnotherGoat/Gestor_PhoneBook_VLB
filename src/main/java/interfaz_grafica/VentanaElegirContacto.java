@@ -100,18 +100,8 @@ public class VentanaElegirContacto extends JDialogGeneral {
             scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             // Implementa ActionListener para los JButton
-            for(int i=0; i<lista_botones.size(); i++) {
-
-                int posicion = i;
-
-                lista_botones.get(i).addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        eleccion = posicion;
-                        lista_botones.get(posicion).setText("posición: "+posicion);
-                    }
-                });
-
+            for(JButton jb : lista_botones) {
+                    jb.addActionListener(this);
             }
 
             // Añade los objetos al JPanel
@@ -122,5 +112,17 @@ public class VentanaElegirContacto extends JDialogGeneral {
 
         // Añade el JPanel al JFrame
         add(panel);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        super.actionPerformed(ae);
+
+        for(JButton jb : lista_botones) {
+            if(ae.getSource() == jb) {
+                eleccion = lista_botones.indexOf(jb);
+                jb.setText("posición: "+lista_botones.indexOf(jb));
+            }
+        }
     }
 }

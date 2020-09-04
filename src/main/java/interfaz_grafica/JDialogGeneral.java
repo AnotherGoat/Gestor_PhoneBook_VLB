@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public abstract class JDialogGeneral extends JDialog {
+public abstract class JDialogGeneral extends JDialog implements ActionListener {
 
     //// Atributos
     /**
@@ -34,23 +34,24 @@ public abstract class JDialogGeneral extends JDialog {
         // Instancia el JButton para volver atrás
         botonVolverAtras = new JButton("Volver atrás");
 
-        // Implementa ActionListener para botonVolverAtras
-        botonVolverAtras.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                // Crea el panel para pedir confirmación
-                int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                        "¿Volver atrás?",
-                        "Volver atrás",
-                        JOptionPane.YES_NO_OPTION);
+        // Implementa ActionListener para los botones
+        botonVolverAtras.addActionListener(this);
+    }
 
-                // Si el usuario escoge "Sí"
-                if(n == JOptionPane.YES_OPTION){
-                    // Borra la ventana
-                    dispose();
-                }
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource() == botonVolverAtras){
+            // Crea el panel para pedir confirmación
+            int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                    "¿Volver atrás?",
+                    "Volver atrás",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Si el usuario escoge "Sí"
+            if(n == JOptionPane.YES_OPTION){
+                // Borra la ventana
+                dispose();
             }
-        });
+        }
     }
 
     /**

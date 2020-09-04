@@ -57,24 +57,23 @@ public class VentanaNuevoContacto extends JDialogGeneral {
         // Añade el JPanel al JFrame
         add(panel);
 
-        // Implementa ActionListener para botonGuardar
-        botonGuardar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(textFieldIngreseNombre.getText().equals("")){
-                    // Muestra mensaje de error en algún lugar
-                }
-                else{
-                    Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
-
-                    textFieldIngreseNombre.setText("");
-                    dispose();
-                }
-            }
-        });
+        // Implementa ActionListener para los botones
+        botonGuardar.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent ae){
+        super.actionPerformed(ae);
 
+        if(ae.getSource() == botonGuardar){
+            if(textFieldIngreseNombre.getText().equals("")){
+                // Muestra mensaje de error en algún lugar
+            }
+            else{
+                Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
+
+                textFieldIngreseNombre.setText("");
+                dispose();
+            }
+        }
     }
 }
