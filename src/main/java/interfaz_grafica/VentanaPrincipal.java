@@ -170,11 +170,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         }
 
         if (ae.getSource() == botonDatosAgenda){
-
+            // Instancia la ventana con los datos de la agenda
+            VentanaDatosAgenda vda = new VentanaDatosAgenda(this);
+            vda.setVisible(true);
         }
 
         if (ae.getSource() == botonVerJson){
-
+            // Instancia la ventana con los datos de "agenda.json"
+            VentanaVerJSON vvj = new VentanaVerJSON(this);
+            vvj.setVisible(true);
         }
 
         if (ae.getSource() == botonSalir){

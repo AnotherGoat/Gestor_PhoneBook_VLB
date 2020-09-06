@@ -180,4 +180,24 @@ public class Agenda {
     public List<String> getLista_Nombres() {
         return lista_nombres;
     }
+
+    //// toString
+    @Override
+    /**
+     * Convierte la información guardada en la agenda a un String
+     */
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+
+        if(!lista_contactos.isEmpty()) {
+            s.append("Lista de contactos guardados:");
+
+            for (Contacto c : lista_contactos) {
+                s.append("\n*****Contacto #").append(lista_contactos.indexOf(c) + 1).append("*****\n");
+                s.append(c.toString());
+            }
+        }
+
+        return s.toString();
+    }
 }

@@ -117,6 +117,7 @@ public class Contacto {
         return lista_notas;
     }
 
+    // toString
     /**
      * Método toString con un formato personalizado
      * @return String detallando los datos del contacto, no muestra los que todavía no existen
