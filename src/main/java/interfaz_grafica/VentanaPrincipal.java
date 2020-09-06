@@ -84,6 +84,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Carga el ícono de la aplicación
         cargarIcono();
 
+        // Traduce la opción "Yes" de los OptionPane
+        UIManager.put("OptionPane.yesButtonText", "Sí");
+
         // Instancia el JPanel
         panel = new JPanel();
         // Usa el BoxLayout para mostrar los botones verticalmente
