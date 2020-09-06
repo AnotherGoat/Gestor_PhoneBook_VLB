@@ -38,6 +38,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JButton botonEliminarContacto;
     /**
+     * Botón para ver los datos guardados en la agenda
+     */
+    private JButton botonDatosAgenda;
+    /**
+     * Botón para ver datos guardados en el archivo "agenda.json"
+     */
+    private JButton botonVerJson;
+    /**
      * Botón para salir del programa
      */
     private JButton botonSalir;
@@ -101,6 +109,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonEliminarContacto = new JButton("Eliminar un contacto");
         botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        botonDatosAgenda = new JButton("Ver datos de la agenda");
+        botonDatosAgenda.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        botonVerJson = new JButton("Ver archivo \"agenda.json\"");
+        botonVerJson.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         botonSalir = new JButton("Salir del programa");
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -111,6 +125,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panelOpciones.add(botonDatosContacto);
         panelOpciones.add(botonEditarContacto);
         panelOpciones.add(botonEliminarContacto);
+        panelOpciones.add(botonDatosAgenda);
+        panelOpciones.add(botonVerJson);
         panelOpciones.add(botonSalir);
         panel.add(panelOpciones);
 
@@ -122,6 +138,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonDatosContacto.addActionListener(this);
         botonEditarContacto.addActionListener(this);
         botonEliminarContacto.addActionListener(this);
+        botonDatosAgenda.addActionListener(this);
+        botonVerJson.addActionListener(this);
         botonSalir.addActionListener(this);
     }
 
@@ -149,6 +167,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             // Instancia una ventana para elegir un contacto y la hace visible
             VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar", this);
             vec.setVisible(true);
+        }
+
+        if (ae.getSource() == botonDatosAgenda){
+
+        }
+
+        if (ae.getSource() == botonVerJson){
+
         }
 
         if (ae.getSource() == botonSalir){
