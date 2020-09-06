@@ -72,8 +72,26 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         // Inhabilita la opción de cambiar el tamaño de la ventana
         // setResizable(false);
-        // Cuando se cierre la ventana se finaliza el programa
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // Cuando se cierre la ventana no hace nada...
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        // Pero se agrega un WindowListener para pedir confirmación al hacer click en la X
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                // Crea el panel para pedir confirmación
+                int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                        "¿Está seguro de que desea salir?",
+                        "Salir del programa",
+                        JOptionPane.YES_NO_OPTION);
+
+                // Si el usuario escoge "Sí"
+                if(n == JOptionPane.YES_OPTION){
+                    // Sale del programa y retorna 0
+                    System.exit(0);
+                }
+            }
+        });
     }
 
     //// Métodos
