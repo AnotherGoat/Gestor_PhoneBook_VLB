@@ -2,6 +2,8 @@ package phonebook;
 
 // Importa la clase ArrayList
 import json.GestorJSON;
+import lanzador.Principal;
+import org.json.JSONArray;
 import utilidades.Validador;
 
 import java.util.Collections;
@@ -142,8 +144,9 @@ public class Agenda {
      * Ordena la lista de contactos alfabéticamente según el nombre de cada uno y actualiza la lista de nombres
      */
     public void ordenarContactos(){
-        // Se necesita crear un comparador para ordenar según el nombre de cada contacto
+        // Se necesita crear un comparador para ordenar contactos
         Comparator c = new Comparator<Contacto>() {
+            // Se añade un método para que compare contactos según su nnombre
             public int compare(Contacto c1, Contacto c2) {
                 return c1.getNombre().compareTo(c2.getNombre());
             }
@@ -166,6 +169,13 @@ public class Agenda {
         for (Contacto c : lista_contactos) {
             lista_nombres.add(c.getNombre());
         }
+    }
+    public void borrarTodo(){
+        // Limpia los 2 ArrayLists que contienen todos los datos
+        this.getLista_Nombres().clear();
+        this.getLista_Contactos().clear();
+        // Hace que el GestorJSON borre el archivo "agenda.json"
+        GestorJSON.borrarJSON();
     }
 
     //// Getters y Setters

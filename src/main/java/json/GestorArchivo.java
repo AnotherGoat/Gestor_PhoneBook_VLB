@@ -107,11 +107,9 @@ public class GestorArchivo {
         }
     }
 
-    public void eliminarArchivo(){
-        Scanner teclado= new Scanner(System.in);
-        System.out.println("Ingrese la ruta del archivo");
-        String ruta =teclado.nextLine();
+    public void eliminarArchivo(String ruta){
         Path archivo = Paths.get(ruta);
+
         try{
             Files.deleteIfExists(archivo);
             System.out.println("El archivo fue eliminado exitosamente ");

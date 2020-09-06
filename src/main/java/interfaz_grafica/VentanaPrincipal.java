@@ -1,6 +1,7 @@
 package interfaz_grafica;
 
 import json.GestorJSON;
+import lanzador.Principal;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -44,7 +45,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     /**
      * Botón para ver datos guardados en el archivo "agenda.json"
      */
-    private JButton botonVerJson;
+    private JButton botonVerJSON;
+    /**
+     * Botón para borrar todos los datos guardados
+     */
+    private JButton botonBorrarTodo;
     /**
      * Botón para salir del programa
      */
@@ -112,8 +117,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonDatosAgenda = new JButton("Ver datos de la agenda");
         botonDatosAgenda.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        botonVerJson = new JButton("Ver archivo \"agenda.json\"");
-        botonVerJson.setAlignmentX(Component.CENTER_ALIGNMENT);
+        botonVerJSON = new JButton("Ver archivo \"agenda.json\"");
+        botonVerJSON.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        botonBorrarTodo = new JButton("Borrar todos los datos guardados");
+        botonBorrarTodo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         botonSalir = new JButton("Salir del programa");
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -126,7 +134,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panelOpciones.add(botonEditarContacto);
         panelOpciones.add(botonEliminarContacto);
         panelOpciones.add(botonDatosAgenda);
-        panelOpciones.add(botonVerJson);
+        panelOpciones.add(botonVerJSON);
+        panelOpciones.add(botonBorrarTodo);
         panelOpciones.add(botonSalir);
         panel.add(panelOpciones);
 
@@ -139,7 +148,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonEditarContacto.addActionListener(this);
         botonEliminarContacto.addActionListener(this);
         botonDatosAgenda.addActionListener(this);
-        botonVerJson.addActionListener(this);
+        botonVerJSON.addActionListener(this);
+        botonBorrarTodo.addActionListener(this);
         botonSalir.addActionListener(this);
     }
 
@@ -175,10 +185,24 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             vda.setVisible(true);
         }
 
-        if (ae.getSource() == botonVerJson){
+        if (ae.getSource() == botonVerJSON){
             // Instancia la ventana con los datos de "agenda.json"
             VentanaVerJSON vvj = new VentanaVerJSON(this);
             vvj.setVisible(true);
+        }
+
+        if (ae.getSource() == botonBorrarTodo){
+            // Crea el panel para pedir confirmación
+            int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                    "¿Está seguro de que quiere borrar TODOS los datos guardados?\nEsta operación no se puede deshacer.",
+                    "Borrar todo",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Si el usuario escoge "Sí"
+            if(n == JOptionPane.YES_OPTION){
+                // Borra todos los datos
+                Principal.agenda.borrarTodo();
+            }
         }
 
         if (ae.getSource() == botonSalir){

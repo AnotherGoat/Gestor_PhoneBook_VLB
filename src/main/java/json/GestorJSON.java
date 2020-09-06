@@ -269,4 +269,9 @@ public class GestorJSON {
 
         // Si el archivo "agenda.json" no existe, no hace nada
     }
+
+    public static void borrarJSON(){
+        Principal.agenda_json = new JSONArray();
+        ga.eliminarArchivo("agenda.json");
+    }
 }
