@@ -1,5 +1,7 @@
 package interfaz_grafica;
 
+import json.GestorJSON;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -42,6 +44,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     //// Constructores
     public VentanaPrincipal(){
+        // Carga datos del archivo "agenda.json"
+        GestorJSON.cargarJSON();
+
         inicializar();
 
         //// Otras características de la ventana
