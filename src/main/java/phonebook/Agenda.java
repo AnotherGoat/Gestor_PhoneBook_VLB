@@ -189,11 +189,12 @@ public class Agenda {
     public String toString() {
         StringBuilder s = new StringBuilder();
 
+        // Si hay contactos en la lista
         if(!lista_contactos.isEmpty()) {
             s.append("Lista de contactos guardados:");
 
             for (Contacto c : lista_contactos) {
-                s.append("\n*****Contacto #").append(lista_contactos.indexOf(c) + 1).append("*****\n");
+                s.append("\n\n*****Contacto #").append(lista_contactos.indexOf(c) + 1).append("*****\n");
                 s.append(c.toString());
             }
         }

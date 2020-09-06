@@ -130,7 +130,7 @@ public class Contacto {
         if (!lista_telefonos.isEmpty()) {
             s.append("\nTeléfonos guardados:");
             for(Telefono t: lista_telefonos) {
-                s.append("\n  ").append(t.toString());
+                s.append("\n    ").append(t.toString());
             }
         }
 
@@ -145,21 +145,21 @@ public class Contacto {
         if (!lista_emails.isEmpty()) {
             s.append("\nEmails guardados:");
             for(String e: lista_emails) {
-                s.append("\n  ").append(e);
+                s.append("\n    ").append(e);
             }
         }
 
         if (!lista_apodos.isEmpty()) {
             s.append("\nApodos guardados:");
             for(String a: lista_apodos) {
-                s.append("\n  ").append(a);
+                s.append("\n    ").append(a);
             }
         }
 
         if (!lista_notas.isEmpty()) {
             s.append("\nNotas guardadas:");
             for(String n: lista_notas) {
-                s.append("\n  ").append(n);
+                s.append("\n    ").append(n);
             }
         }
 
