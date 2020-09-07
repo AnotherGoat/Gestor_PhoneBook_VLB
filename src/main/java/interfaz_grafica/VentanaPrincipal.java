@@ -141,7 +141,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         GridBagConstraints c = new GridBagConstraints();
 
         panelTitulo = new JPanel();
-        panelTitulo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true)));
+        // Para centrar el label
+        panelTitulo.setLayout(new GridBagLayout());
+        panelTitulo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Información del proyecto"));
 
         panelOpciones = new JPanel();
         panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
@@ -161,9 +163,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
         // Instancia el JLabel
         labelGestorPhoneBook = new JLabel("Gestor PhoneBook VLB");
-        // Centra el label (con los botones se hace lo mismo)
-        labelGestorPhoneBook.setAlignmentX(Component.CENTER_ALIGNMENT);
-        labelGestorPhoneBook.setAlignmentY(Component.CENTER_ALIGNMENT);
         // Usa letra más grande
         labelGestorPhoneBook.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
 
