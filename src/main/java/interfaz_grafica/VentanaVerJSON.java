@@ -26,7 +26,7 @@ public class VentanaVerJSON extends JDialogTextoGeneral {
         // Título
         setTitle("Información guardada en \"agenda.json\"");
         // Tamaño inicial
-        setSize(400, 500);
+        setSize(400, 350);
 
         configurar();
     }

@@ -20,7 +20,7 @@ public class VentanaDatosAgenda extends JDialogTextoGeneral {
         // Título
         setTitle("Datos guardados en la agenda");
         // Tamaño inicial
-        setSize(400, 500);
+        setSize(400, 350);
 
         configurar();
     }
