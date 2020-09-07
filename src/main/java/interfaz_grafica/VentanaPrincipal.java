@@ -67,6 +67,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JPanel panelLista;
     /**
+     * Modelo con los nombres de los contactos (se usa en el JList)
+     */
+    private DefaultListModel<String> modelo_contactos;
+    /**
      * Lista con los contactos
      */
     private JList<String> jlist_contactos;
@@ -144,7 +148,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Usa el BoxLayout para mostrar los botones verticalmente
         // panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
 
         panelTitulo = new JPanel();
         // Para centrar el label
@@ -198,14 +201,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonEliminarContacto = new JButton("Eliminar");
         botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Crea un arreglo con los nombres de los contactos
-        // Convierte el arreglo a un JList
-        jlist_contactos = new JList(Principal.agenda.getLista_Nombres().toArray());
+        // Instancia un modelo para usarlo en la JList
+        modelo_contactos = new DefaultListModel();
+        // Instancia un JList con los datos de la lista de contactos
+        jlist_contactos = new JList(modelo_contactos);
+
+        for(String s : Principal.agenda.getLista_Nombres()){
+            modelo_contactos.addElement(s);
+        }
 
         // Instancia el JScrollPane, usando la JList (y define el funcionamiento vertical y horizontal)
         scroll = new JScrollPane(jlist_contactos, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         //// Añade los objetos al JPanel
+
+        // Instancia GriadBagConstraints para configurar el Layout
+        GridBagConstraints c = new GridBagConstraints();
+
         // Añade el panel con el título
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
@@ -325,15 +337,25 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == botonEditarContacto) {
-            // Instancia una ventana para elegir un contacto y la hace visible
+            // Instancia una ventana que muestra los datos del contacto elegido
             VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar", this);
             vec.setVisible(true);
         }
 
         if (e.getSource() == botonEliminarContacto){
-            // Instancia una ventana para elegir un contacto y la hace visible
-            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar", this);
-            vec.setVisible(true);
+            // Crea el panel para pedir confirmación
+            int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                    "¿Está seguro de que quiere borrar el contacto \""+Principal.agenda.getLista_Nombres().get(eleccion)+"\"?\nEsta operación no se puede deshacer.",
+                    "Borrar el contacto \""+Principal.agenda.getLista_Nombres().get(eleccion)+"\"",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Si el usuario escoge "Sí"
+            if(n == JOptionPane.YES_OPTION){
+                // Borra el contacto seleccionado
+                Principal.agenda.eliminarContacto(eleccion);
+
+                modelo_contactos.remove(eleccion);
+            }
         }
 
         if (e.getSource() == botonDatosAgenda){

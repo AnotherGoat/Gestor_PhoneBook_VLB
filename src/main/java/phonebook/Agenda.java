@@ -105,14 +105,13 @@ public class Agenda {
 
     /**
      * Método para eliminar un contacto
+     * @param posicion int con la posición del contacto, debe ser negativo
      */
-    public void eliminarContacto() {
-        int posicionContacto = elegirContacto("eliminar");
-        posicionContacto--; // Le resta 1 porque los índices empiezan desde 0
-
-        // Pide confirmación para borrar el contacto elegido
-        confirmarBorrado(posicionContacto);
-
+    public void eliminarContacto(int posicion) {
+        // Borra el contacto de las listas de contactos y de nombres
+        lista_contactos.remove(posicion);
+        lista_nombres.remove(posicion);
+        // Guarda el archivo JSON con los cambios
         GestorJSON.guardarJSON();
     }
 
@@ -128,9 +127,7 @@ public class Agenda {
 
         switch (x) {
             case 1:
-                // Borra el contacto de las listas de contactos y de nombres
-                lista_contactos.remove(posicion);
-                lista_nombres.remove(posicion);
+
 
                 System.out.println("El contacto ha sido borrado exitosamente.");
                 break;

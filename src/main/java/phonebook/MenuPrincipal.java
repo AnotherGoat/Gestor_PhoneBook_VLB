@@ -120,7 +120,7 @@ public class MenuPrincipal extends Menu {
                     System.out.println("Todavía no ha guardado ningún contacto.");
                 }
                 else {
-                    Principal.agenda.eliminarContacto();
+                    // Principal.agenda.eliminarContacto();
                 }
                 break;
 
