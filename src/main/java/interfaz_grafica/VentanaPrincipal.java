@@ -13,11 +13,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     //// Atributos
     /**
+     * WindowListener para el JFrame
+     */
+    private WindowListener windowListener;
+    /**
      * Panel principal
      */
     private JPanel panel;
-
-    private WindowListener windowListener;
     /**
      * Panel con el nombre del programa
      */
@@ -34,18 +36,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      * Botón para crear un nuevo contacto
      */
     private JButton botonNuevoContacto;
-    /**
-     * Botón para ver los datos de un contacto
-     */
-    private JButton botonDatosContacto;
-    /**
-     * Botón para acceder al menú de edición de un contacto
-     */
-    private JButton botonEditarContacto;
-    /**
-     * Botón para eliminar a un contacto
-     */
-    private JButton botonEliminarContacto;
     /**
      * Botón para ver los datos guardados en la agenda
      */
@@ -75,9 +65,25 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JList<String> jlist_contactos;
     /**
+     * Scroll para el panel con los botones
+     */
+    private JScrollPane scroll;
+    /**
+     * Opción que ingresa el usuario, empieza en -1 para validar
+     */
+    private int eleccion = -1;
+    /**
+     * MouseListener para la JList
+     */
+    private MouseListener mouseListener;
+    /**
      * Panel que tendrá los componentes necesarios para crear un contacto
      */
     private JPanel panelNuevoContacto;
+    /**
+     * Panel con el JLabel y el JTextField
+     */
+    private JPanel panelEntrada;
     /**
      * Label con el nombre del programa
      */
@@ -91,22 +97,21 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JButton botonGuardar;
     /**
-     * Panel con opciones para lista de contactos
+     * Panel con las opciones para el contacto seleccionado de la lista
      */
     private JPanel panelOpcionesLista;
-    private List<JButton> lista_botones = new ArrayList<>();
     /**
-     * Scroll para el panel con los botones
+     * Botón para ver los datos de un contacto
      */
-    private JScrollPane scroll;
+    private JButton botonDatosContacto;
     /**
-     * Opción que ingresa el usuario, empieza en -1 para validar
+     * Botón para acceder al menú de edición de un contacto
      */
-    private int eleccion = -1;
+    private JButton botonEditarContacto;
     /**
-     * MouseListener para la JList
+     * Botón para eliminar a un contacto
      */
-    private MouseListener mouseListener;
+    private JButton botonEliminarContacto;
 
     //// Constructores
     public VentanaPrincipal(){
@@ -167,6 +172,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panelNuevoContacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nuevo contacto"));
         panelNuevoContacto.setLayout(new BoxLayout(panelNuevoContacto, BoxLayout.Y_AXIS));
 
+        panelEntrada = new JPanel();
+        panelEntrada.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         panelOpcionesLista = new JPanel();
         panelOpcionesLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones de la lista"));
         panelOpcionesLista.setLayout(new BoxLayout(panelOpcionesLista, BoxLayout.Y_AXIS));
@@ -192,6 +200,18 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonSalir = new JButton("Salir del programa");
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Instancia el JLabel para crear un nuevo contacto
+        labelIngreseNombre = new JLabel("Nombre:");
+        labelIngreseNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Instancia el JTextField para crear un nuevo contacto
+        textFieldIngreseNombre = new JTextField(10);
+        textFieldIngreseNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Instancia el JButton para crear un nuevo contacto
+        botonGuardar = new JButton("Guardar");
+        botonGuardar.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         botonDatosContacto = new JButton("Ver datos");
         botonDatosContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -203,7 +223,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
         // Instancia un modelo para usarlo en la JList
         modelo_contactos = new DefaultListModel();
-        // Instancia un JList con los datos de la lista de contactos
+        // Instancia un JList con los datos del modelo
         jlist_contactos = new JList(modelo_contactos);
 
         for(String s : Principal.agenda.getLista_Nombres()){
@@ -214,8 +234,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         scroll = new JScrollPane(jlist_contactos, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         //// Añade los objetos al JPanel
-
-        // Instancia GriadBagConstraints para configurar el Layout
+        // Instancia GriadBagConstraints para configurar el GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
 
         // Añade el panel con el título
@@ -262,6 +281,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.gridheight = 1;
         c.weightx = 0.3;
         c.weighty = 0.5;
+        panelEntrada.add(labelIngreseNombre);
+        panelEntrada.add(textFieldIngreseNombre);
+        panelNuevoContacto.add(panelEntrada);
+        panelNuevoContacto.add(botonGuardar);
         panel.add(panelNuevoContacto, c);
 
         c.fill = GridBagConstraints.BOTH;
@@ -282,13 +305,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
         // Implementa ActionListener para los botones
         botonNuevoContacto.addActionListener(this);
-        botonDatosContacto.addActionListener(this);
-        botonEditarContacto.addActionListener(this);
-        botonEliminarContacto.addActionListener(this);
         botonDatosAgenda.addActionListener(this);
         botonVerJSON.addActionListener(this);
         botonBorrarTodo.addActionListener(this);
         botonSalir.addActionListener(this);
+        botonDatosContacto.addActionListener(this);
+        botonEditarContacto.addActionListener(this);
+        botonEliminarContacto.addActionListener(this);
+        botonGuardar.addActionListener(this);
 
         // Instancia el WindowListener para el JFrame (se agrega en el constructor)
         windowListener = new WindowAdapter() {
@@ -327,6 +351,68 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             vnc.setVisible(true);
         }
 
+        if (e.getSource() == botonDatosAgenda){
+            // Instancia la ventana con los datos de la agenda
+            VentanaDatosAgenda vda = new VentanaDatosAgenda(this);
+            vda.setVisible(true);
+        }
+
+        if (e.getSource() == botonVerJSON){
+            // Instancia la ventana con los datos de "agenda.json"
+            VentanaVerJSON vvj = new VentanaVerJSON(this);
+            vvj.setVisible(true);
+        }
+
+        if (e.getSource() == botonBorrarTodo){
+            // Crea el panel para pedir confirmación
+            int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                    "¿Está seguro de que quiere borrar TODOS los datos guardados?\nEsta operación no se puede deshacer.",
+                    "Borrar todo",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Si el usuario escoge "Sí"
+            if(n == JOptionPane.YES_OPTION){
+                // Borra todos los datos
+                Principal.agenda.borrarTodo();
+
+                // Limpia los datos del modelo
+                modelo_contactos.clear();
+            }
+        }
+
+        if (e.getSource() == botonSalir){
+            // Crea el panel para pedir confirmación
+            int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                    "¿Está seguro de que desea salir?",
+                    "Salir del programa",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Si el usuario escoge "Sí"
+            if(n == JOptionPane.YES_OPTION){
+                // Sale del programa y retorna 0
+                System.exit(0);
+            }
+        }
+
+        if(e.getSource() == botonGuardar) {
+            if(textFieldIngreseNombre.getText().equals("")){
+                // Muestra mensaje de error en algún lugar
+            }
+
+            else {
+                // Borra el texto del textField
+                textFieldIngreseNombre.setText("");
+                // Crea un contacto con el nombre ingresado
+                Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
+                // Limpia el modelo
+                modelo_contactos.clear();
+                // Recarga el modelo
+                for(String s : Principal.agenda.getLista_Nombres()){
+                    modelo_contactos.addElement(s);
+                }
+            }
+        }
+
         if (e.getSource() == botonDatosContacto) {
             // Si el usuario ha seleccionado un objeto de la lista
             if(eleccion!=-1) {
@@ -354,48 +440,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                 // Borra el contacto seleccionado
                 Principal.agenda.eliminarContacto(eleccion);
 
+                // Borra el contacto del modelo
                 modelo_contactos.remove(eleccion);
-            }
-        }
-
-        if (e.getSource() == botonDatosAgenda){
-            // Instancia la ventana con los datos de la agenda
-            VentanaDatosAgenda vda = new VentanaDatosAgenda(this);
-            vda.setVisible(true);
-        }
-
-        if (e.getSource() == botonVerJSON){
-            // Instancia la ventana con los datos de "agenda.json"
-            VentanaVerJSON vvj = new VentanaVerJSON(this);
-            vvj.setVisible(true);
-        }
-
-        if (e.getSource() == botonBorrarTodo){
-            // Crea el panel para pedir confirmación
-            int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                    "¿Está seguro de que quiere borrar TODOS los datos guardados?\nEsta operación no se puede deshacer.",
-                    "Borrar todo",
-                    JOptionPane.YES_NO_OPTION);
-
-            // Si el usuario escoge "Sí"
-            if(n == JOptionPane.YES_OPTION){
-                // Borra todos los datos
-                Principal.agenda.borrarTodo();
-                modelo_contactos.clear();
-            }
-        }
-
-        if (e.getSource() == botonSalir){
-            // Crea el panel para pedir confirmación
-            int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                    "¿Está seguro de que desea salir?",
-                    "Salir del programa",
-                    JOptionPane.YES_NO_OPTION);
-
-            // Si el usuario escoge "Sí"
-            if(n == JOptionPane.YES_OPTION){
-                // Sale del programa y retorna 0
-                System.exit(0);
             }
         }
     }
