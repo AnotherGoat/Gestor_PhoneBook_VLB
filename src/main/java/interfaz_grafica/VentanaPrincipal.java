@@ -19,17 +19,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JPanel panelTitulo;
     /**
-     * Panel con las opciones del menú principal
-     */
-    private JPanel panelOpciones;
-    /**
-     * Panel con la lista de contactos
-     */
-    private JPanel panelLista;
-    /**
      * Label con el nombre del programa
      */
     private JLabel labelGestorPhoneBook;
+    /**
+     * Panel con las opciones del menú principal
+     */
+    private JPanel panelOpciones;
     /**
      * Botón para crear un nuevo contacto
      */
@@ -62,6 +58,18 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      * Botón para salir del programa
      */
     private JButton botonSalir;
+    /**
+     * Panel que tiene la lista de contactos
+     */
+    private JPanel panelLista;
+    /**
+     * Panel que tendrá los componentes necesarios para crear un contacto
+     */
+    private JPanel panelNuevoContacto;
+    /**
+     * Panel con opciones para lista de contactos
+     */
+    private JPanel panelOpcionesLista;
 
     //// Constructores
     public VentanaPrincipal(){
@@ -126,10 +134,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panelLista = new JPanel();
         panelLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panelLista"));
 
-        JPanel panel3 = new JPanel();
-        panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panel3"));
-        JPanel panel4 = new JPanel();
-        panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panel4"));
+        panelNuevoContacto = new JPanel();
+        panelNuevoContacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panelNuevoContacto"));
+        panelOpcionesLista = new JPanel();
+        panelOpcionesLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panelOpcionesLista"));
 
 
 
@@ -220,7 +228,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.gridheight = 1;
         c.weightx = 0.3;
         c.weighty = 0.4;
-        panel.add(panel3, c);
+        panel.add(panelNuevoContacto, c);
 
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 2;
@@ -229,7 +237,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.gridheight = 1;
         c.weightx = 0.3;
         c.weighty = 0.4;
-        panel.add(panel4, c);
+        panel.add(panelOpcionesLista, c);
         // panel.add(panelOpciones);
 
         // Añade el JPanel al JFrame
