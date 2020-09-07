@@ -5,6 +5,8 @@ import lanzador.Principal;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
@@ -63,6 +65,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JPanel panelLista;
     /**
+     * Lista con los contactos
+     */
+    private JList<String> jlist_contactos;
+    /**
      * Panel que tendrá los componentes necesarios para crear un contacto
      */
     private JPanel panelNuevoContacto;
@@ -82,6 +88,16 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      * Panel con opciones para lista de contactos
      */
     private JPanel panelOpcionesLista;
+    private List<JButton> lista_botones = new ArrayList<>();
+    /**
+     * Scroll para el panel con los botones
+     */
+    private JScrollPane scroll;
+    /**
+     * Opción que ingresa el usuario
+     */
+    private int eleccion;
+
 
     //// Constructores
     public VentanaPrincipal(){
@@ -95,7 +111,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Título
         setTitle("Gestor Phonebook VLB");
         // Tamaño inicial
-        setSize(500, 500);
+        setSize(700, 400);
         // La ventana inicia centrada
         setLocationRelativeTo(null);
         // Inhabilita la opción de cambiar el tamaño de la ventana
@@ -151,6 +167,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panelOpciones.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones"));
 
         panelLista = new JPanel();
+        panelLista.setLayout(new BorderLayout());
         panelLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Lista de contactos"));
 
         panelNuevoContacto = new JPanel();
@@ -191,6 +208,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonEliminarContacto = new JButton("Eliminar");
         botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Crea un arreglo con los nombres de los contactos
+        // Convierte el arreglo a un JList
+        jlist_contactos = new JList(Principal.agenda.getLista_Nombres().toArray());
+        // Instancia el JScrollPane, usando la JList (y define el funcionamiento vertical y horizontal)
+        scroll = new JScrollPane(jlist_contactos, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         //// Añade los objetos al JPanel
         // Añade el panel con el título
         c.fill = GridBagConstraints.BOTH;
@@ -226,6 +249,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.gridheight = 2;
         c.weightx = 0.4;
         c.weighty = 1;
+        panelLista.add(scroll, BorderLayout.CENTER);
         panel.add(panelLista, c);
 
         c.fill = GridBagConstraints.BOTH;

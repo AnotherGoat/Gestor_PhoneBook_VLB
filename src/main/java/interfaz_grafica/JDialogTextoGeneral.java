@@ -39,6 +39,8 @@ public abstract class JDialogTextoGeneral extends JDialogGeneral {
 
         textArea = new JTextArea(texto);
         textArea.setVisible(true);
+        // Para que no se pueda editar
+        textArea.setEditable(false);
 
         // Instancia el JScrollPane para la textArea (y define el funcionamiento vertical y horizontal)
         scroll = new JScrollPane(textArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
