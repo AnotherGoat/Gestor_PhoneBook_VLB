@@ -1,9 +1,6 @@
 package phonebook;
 
-// Importa la clase ArrayList
 import json.GestorJSON;
-import lanzador.Principal;
-import org.json.JSONArray;
 import utilidades.Validador;
 
 import java.util.Collections;

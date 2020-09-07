@@ -381,6 +381,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             if(n == JOptionPane.YES_OPTION){
                 // Borra todos los datos
                 Principal.agenda.borrarTodo();
+                modelo_contactos.clear();
             }
         }
 
