@@ -33,10 +33,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JPanel panelOpciones;
     /**
-     * Botón para crear un nuevo contacto
-     */
-    private JButton botonNuevoContacto;
-    /**
      * Botón para ver los datos guardados en la agenda
      */
     private JButton botonDatosAgenda;
@@ -185,9 +181,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         labelGestorPhoneBook.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
 
         // Instancia los JButton
-        botonNuevoContacto = new JButton("Crear un contacto nuevo");
-        botonNuevoContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         botonDatosAgenda = new JButton("Ver datos de la agenda");
         botonDatosAgenda.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -256,7 +249,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.gridheight = 1;
         c.weightx = 0.3;
         c.weighty = 0.5;
-        panelOpciones.add(botonNuevoContacto);
         panelOpciones.add(botonDatosAgenda);
         panelOpciones.add(botonVerJSON);
         panelOpciones.add(botonBorrarTodo);
@@ -304,7 +296,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         add(panel);
 
         // Implementa ActionListener para los botones
-        botonNuevoContacto.addActionListener(this);
         botonDatosAgenda.addActionListener(this);
         botonVerJSON.addActionListener(this);
         botonBorrarTodo.addActionListener(this);
@@ -345,12 +336,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botonNuevoContacto){
-            // Instancia una ventana para crear un contacto y la hace visible
-            VentanaNuevoContacto vnc = new VentanaNuevoContacto(this);
-            vnc.setVisible(true);
-        }
-
         if (e.getSource() == botonDatosAgenda){
             // Instancia la ventana con los datos de la agenda
             VentanaDatosAgenda vda = new VentanaDatosAgenda(this);
@@ -400,8 +385,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             }
 
             else {
-                // Borra el texto del textField
-                textFieldIngreseNombre.setText("");
                 // Crea un contacto con el nombre ingresado
                 Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
                 // Limpia el modelo
@@ -410,6 +393,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                 for(String s : Principal.agenda.getLista_Nombres()){
                     modelo_contactos.addElement(s);
                 }
+                // Borra el texto del textField
+                textFieldIngreseNombre.setText("");
             }
         }
 
