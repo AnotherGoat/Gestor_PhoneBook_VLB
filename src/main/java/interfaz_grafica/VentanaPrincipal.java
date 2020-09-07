@@ -427,6 +427,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
                 // Borra el contacto del modelo
                 modelo_contactos.remove(eleccion);
+
+                // Reinicia la elección (para evitar errores del tipo IndexOutOfBounds)
+                eleccion = -1;
             }
         }
     }
