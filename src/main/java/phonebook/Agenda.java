@@ -37,8 +37,9 @@ public class Agenda {
     //// Métodos
     /**
      * Método para crear un contacto nuevo
+     * @return int con la posición en la que se añadió el contacto
      */
-    public void crearContacto(String entrada) {
+    public int crearContacto(String entrada) {
         // Pide el nombre del contacto
         // String nombreContacto = v.recibirString("Ingrese el nombre del contacto: ");
 
@@ -51,6 +52,9 @@ public class Agenda {
         GestorJSON.guardarJSON();
 
         System.out.println("El contacto fue guardado exitosamente.");
+
+        // Retorna el índice del contacto nuevo
+        return lista_contactos.indexOf(nuevo);
     }
 
     /**

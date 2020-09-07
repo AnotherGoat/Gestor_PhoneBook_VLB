@@ -386,13 +386,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
             else {
                 // Crea un contacto con el nombre ingresado
-                Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
-                // Limpia el modelo
-                modelo_contactos.clear();
-                // Recarga el modelo
-                for(String s : Principal.agenda.getLista_Nombres()){
-                    modelo_contactos.addElement(s);
-                }
+                int posicionNueva = Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
+                // Añade el contacto nuevo al modelo, en la misma posición que el ArrayList
+                modelo_contactos.insertElementAt(textFieldIngreseNombre.getText(), posicionNueva);
                 // Borra el texto del textField
                 textFieldIngreseNombre.setText("");
             }
