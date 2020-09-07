@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
-public class VentanaPrincipal extends JFrame implements ActionListener {
+public class VentanaPrincipal extends JFrame implements ActionListener, MouseListener, KeyListener{
 
     //// Atributos
     /**
@@ -68,10 +68,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      * Opción que ingresa el usuario, empieza en -1 para validar
      */
     private int eleccion = -1;
-    /**
-     * MouseListener para la JList
-     */
-    private MouseListener mouseListener;
     /**
      * Panel que tendrá los componentes necesarios para crear un contacto
      */
@@ -137,7 +133,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     /**
      * Método para iniciar la ventana principal (instancia todos los objetos necesarios)
      */
-    private void inicializar(){
+    private void inicializar() {
         // Carga el ícono de la aplicación
         cargarIcono();
 
@@ -219,7 +215,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Instancia un JList con los datos del modelo
         jlist_contactos = new JList(modelo_contactos);
 
-        for(String s : Principal.agenda.getLista_Nombres()){
+        for (String s : Principal.agenda.getLista_Nombres()) {
             modelo_contactos.addElement(s);
         }
 
@@ -295,7 +291,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Añade el JPanel al JFrame
         add(panel);
 
-        // Implementa ActionListener para los botones
+        // Implementación de los listener
         botonDatosAgenda.addActionListener(this);
         botonVerJSON.addActionListener(this);
         botonBorrarTodo.addActionListener(this);
@@ -304,6 +300,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonEditarContacto.addActionListener(this);
         botonEliminarContacto.addActionListener(this);
         botonGuardar.addActionListener(this);
+        textFieldIngreseNombre.addKeyListener(this);
+        jlist_contactos.addMouseListener(this);
 
         // Instancia el WindowListener para el JFrame (se agrega en el constructor)
         windowListener = new WindowAdapter() {
@@ -316,22 +314,20 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                         JOptionPane.YES_NO_OPTION);
 
                 // Si el usuario escoge "Sí"
-                if(n == JOptionPane.YES_OPTION){
+                if (n == JOptionPane.YES_OPTION) {
                     // Sale del programa y retorna 0
                     System.exit(0);
                 }
             }
         };
+    }
 
-        // Instancia el mouseListener para la JList
-        mouseListener = new MouseAdapter() {
-            // Al hacer click en un objeto
-            public void mouseClicked(MouseEvent e) {
-                // Obtiene el índice que se escogió
-                eleccion = jlist_contactos.getSelectedIndex();
-            }
-        };
-        jlist_contactos.addMouseListener(mouseListener);
+    /**
+     * Método que carga el ícono de la aplicación desde un archivo externo
+     */
+    private void cargarIcono() {
+        Image icono = Toolkit.getDefaultToolkit().getImage("archivos/icono_phonebook_nuevo.png");
+        setIconImage(icono);
     }
 
     @Override
@@ -430,11 +426,63 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         }
     }
 
-    /**
-     * Método que carga el ícono de la aplicación desde un archivo externo
-     */
-    private void cargarIcono() {
-        Image icono = Toolkit.getDefaultToolkit().getImage("archivos/icono_phonebook_nuevo.png");
-        setIconImage(icono);
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // Si se pulsa enter al estar escribiendo en el textField
+        if (e.getSource() == textFieldIngreseNombre && e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if(textFieldIngreseNombre.getText().equals("")){
+                // Muestra mensaje de error en algún lugar
+            }
+
+            else {
+                // Crea un contacto con el nombre ingresado
+                int posicionNueva = Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
+
+                // Añade el contacto nuevo al modelo, en la misma posición que el ArrayList
+                modelo_contactos.insertElementAt(textFieldIngreseNombre.getText(), posicionNueva);
+
+                // Borra el texto del textField
+                textFieldIngreseNombre.setText("");
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // Si se hace click en un elemento de la lista
+        if(e.getSource() == jlist_contactos){
+            // Obtiene el índice que se escogió
+            eleccion = jlist_contactos.getSelectedIndex();
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
