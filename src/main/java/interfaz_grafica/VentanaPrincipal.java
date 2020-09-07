@@ -163,6 +163,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         labelGestorPhoneBook = new JLabel("Gestor PhoneBook VLB");
         // Centra el label (con los botones se hace lo mismo)
         labelGestorPhoneBook.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelGestorPhoneBook.setAlignmentY(Component.CENTER_ALIGNMENT);
         // Usa letra más grande
         labelGestorPhoneBook.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
 
@@ -196,10 +197,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
-        c.gridwidth = 3;
+        c.gridwidth = 1;
         c.gridheight = 1;
-        c.weightx = 1;
-        c.weighty = 0.2;
+        c.weightx = 0.3;
+        c.weighty = 0.5;
         panelTitulo.add(labelGestorPhoneBook);
         panel.add(panelTitulo, c);
 
@@ -208,9 +209,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
         c.gridwidth = 1;
-        c.gridheight = 2;
+        c.gridheight = 1;
         c.weightx = 0.3;
-        c.weighty = 0.8;
+        c.weighty = 0.5;
         panelOpciones.add(botonNuevoContacto);
         panelOpciones.add(botonDatosAgenda);
         panelOpciones.add(botonVerJSON);
@@ -221,29 +222,29 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Añade panel con la lista de contactos
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
-        c.gridy = 1;
+        c.gridy = 0;
         c.gridwidth = 1;
         c.gridheight = 2;
         c.weightx = 0.4;
-        c.weighty = 0.8;
+        c.weighty = 1;
         panel.add(panelLista, c);
 
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 2;
-        c.gridy = 1;
+        c.gridy = 0;
         c.gridwidth = 1;
         c.gridheight = 1;
         c.weightx = 0.3;
-        c.weighty = 0.4;
+        c.weighty = 0.5;
         panel.add(panelNuevoContacto, c);
 
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 2;
-        c.gridy = 2;
+        c.gridy = 1;
         c.gridwidth = 1;
         c.gridheight = 1;
         c.weightx = 0.3;
-        c.weighty = 0.4;
+        c.weighty = 0.5;
         panelOpcionesLista.add(botonDatosContacto);
         panelOpcionesLista.add(botonEditarContacto);
         panelOpcionesLista.add(botonEliminarContacto);
