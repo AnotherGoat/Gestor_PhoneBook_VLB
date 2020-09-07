@@ -67,6 +67,18 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JPanel panelNuevoContacto;
     /**
+     * Label con el nombre del programa
+     */
+    private JLabel labelIngreseNombre;
+    /**
+     * TextField para ingresar el nombre
+     */
+    private JTextField textFieldIngreseNombre;
+    /**
+     * Botón para guardar el contacto
+     */
+    private JButton botonGuardar;
+    /**
      * Panel con opciones para lista de contactos
      */
     private JPanel panelOpcionesLista;
@@ -129,15 +141,16 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         GridBagConstraints c = new GridBagConstraints();
 
         panelTitulo = new JPanel();
-        panelTitulo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panelTitulo"));
+        panelTitulo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true)));
 
         panelLista = new JPanel();
-        panelLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panelLista"));
+        panelLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Lista de contactos"));
 
         panelNuevoContacto = new JPanel();
-        panelNuevoContacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panelNuevoContacto"));
+        panelNuevoContacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nuevo contacto"));
+
         panelOpcionesLista = new JPanel();
-        panelOpcionesLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panelOpcionesLista"));
+        panelOpcionesLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones de la lista"));
 
 
 
