@@ -27,7 +27,7 @@ public class VentanaDatosContacto extends JDialogTextoGeneral{
         // Título
         setTitle("Datos de "+Principal.agenda.getLista_Nombres().get(posicion));
         // Tamaño inicial
-        setSize(400, 500);
+        setSize(400, 350);
 
         configurar();
     }

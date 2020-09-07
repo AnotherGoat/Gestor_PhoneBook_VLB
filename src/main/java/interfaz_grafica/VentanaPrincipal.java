@@ -16,6 +16,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      * Panel principal
      */
     private JPanel panel;
+
+    private WindowListener windowListener;
     /**
      * Panel con el nombre del programa
      */
@@ -94,10 +96,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JScrollPane scroll;
     /**
-     * Opción que ingresa el usuario
+     * Opción que ingresa el usuario, empieza en -1 para validar
      */
-    private int eleccion;
-
+    private int eleccion = -1;
+    /**
+     * MouseListener para la JList
+     */
+    private MouseListener mouseListener;
 
     //// Constructores
     public VentanaPrincipal(){
@@ -120,22 +125,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Cuando se cierre la ventana no hace nada...
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         // Pero se agrega un WindowListener para pedir confirmación al hacer click en la X
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent we) {
-                // Crea el panel para pedir confirmación
-                int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                        "¿Está seguro de que desea salir?",
-                        "Salir del programa",
-                        JOptionPane.YES_NO_OPTION);
-
-                // Si el usuario escoge "Sí"
-                if(n == JOptionPane.YES_OPTION){
-                    // Sale del programa y retorna 0
-                    System.exit(0);
-                }
-            }
-        });
+        addWindowListener(windowListener);
     }
 
     //// Métodos
@@ -211,6 +201,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Crea un arreglo con los nombres de los contactos
         // Convierte el arreglo a un JList
         jlist_contactos = new JList(Principal.agenda.getLista_Nombres().toArray());
+
         // Instancia el JScrollPane, usando la JList (y define el funcionamiento vertical y horizontal)
         scroll = new JScrollPane(jlist_contactos, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -286,47 +277,78 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonVerJSON.addActionListener(this);
         botonBorrarTodo.addActionListener(this);
         botonSalir.addActionListener(this);
+
+        // Instancia el WindowListener para el JFrame (se agrega en el constructor)
+        windowListener = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Crea el panel para pedir confirmación
+                int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                        "¿Está seguro de que desea salir?",
+                        "Salir del programa",
+                        JOptionPane.YES_NO_OPTION);
+
+                // Si el usuario escoge "Sí"
+                if(n == JOptionPane.YES_OPTION){
+                    // Sale del programa y retorna 0
+                    System.exit(0);
+                }
+            }
+        };
+
+        // Instancia el mouseListener para la JList
+        mouseListener = new MouseAdapter() {
+            // Al hacer click en un objeto
+            public void mouseClicked(MouseEvent e) {
+                // Obtiene el índice que se escogió
+                eleccion = jlist_contactos.getSelectedIndex();
+            }
+        };
+        jlist_contactos.addMouseListener(mouseListener);
     }
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == botonNuevoContacto){
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == botonNuevoContacto){
             // Instancia una ventana para crear un contacto y la hace visible
             VentanaNuevoContacto vnc = new VentanaNuevoContacto(this);
             vnc.setVisible(true);
         }
 
-        if (ae.getSource() == botonDatosContacto) {
-            // Instancia una ventana para elegir un contacto y la hace visible
-            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere ver", this);
-            vec.setVisible(true);
+        if (e.getSource() == botonDatosContacto) {
+            // Si el usuario ha seleccionado un objeto de la lista
+            if(eleccion!=-1) {
+                // Instancia una ventana para elegir un contacto y la hace visible
+                VentanaDatosContacto vdc = new VentanaDatosContacto(eleccion, this);
+                vdc.setVisible(true);
+            }
         }
 
-        if (ae.getSource() == botonEditarContacto) {
+        if (e.getSource() == botonEditarContacto) {
             // Instancia una ventana para elegir un contacto y la hace visible
             VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar", this);
             vec.setVisible(true);
         }
 
-        if (ae.getSource() == botonEliminarContacto){
+        if (e.getSource() == botonEliminarContacto){
             // Instancia una ventana para elegir un contacto y la hace visible
             VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere borrar", this);
             vec.setVisible(true);
         }
 
-        if (ae.getSource() == botonDatosAgenda){
+        if (e.getSource() == botonDatosAgenda){
             // Instancia la ventana con los datos de la agenda
             VentanaDatosAgenda vda = new VentanaDatosAgenda(this);
             vda.setVisible(true);
         }
 
-        if (ae.getSource() == botonVerJSON){
+        if (e.getSource() == botonVerJSON){
             // Instancia la ventana con los datos de "agenda.json"
             VentanaVerJSON vvj = new VentanaVerJSON(this);
             vvj.setVisible(true);
         }
 
-        if (ae.getSource() == botonBorrarTodo){
+        if (e.getSource() == botonBorrarTodo){
             // Crea el panel para pedir confirmación
             int n = JOptionPane.showConfirmDialog(panel.getParent(),
                     "¿Está seguro de que quiere borrar TODOS los datos guardados?\nEsta operación no se puede deshacer.",
@@ -340,7 +362,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             }
         }
 
-        if (ae.getSource() == botonSalir){
+        if (e.getSource() == botonSalir){
             // Crea el panel para pedir confirmación
             int n = JOptionPane.showConfirmDialog(panel.getParent(),
                     "¿Está seguro de que desea salir?",
