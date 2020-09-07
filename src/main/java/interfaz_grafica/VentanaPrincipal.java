@@ -143,22 +143,21 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panelTitulo = new JPanel();
         panelTitulo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true)));
 
+        panelOpciones = new JPanel();
+        panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
+        // Crea un borde para el panel con las opciones
+        panelOpciones.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones"));
+
         panelLista = new JPanel();
         panelLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Lista de contactos"));
 
         panelNuevoContacto = new JPanel();
         panelNuevoContacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nuevo contacto"));
+        panelNuevoContacto.setLayout(new BoxLayout(panelNuevoContacto, BoxLayout.Y_AXIS));
 
         panelOpcionesLista = new JPanel();
         panelOpcionesLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones de la lista"));
-
-
-
-
-        panelOpciones = new JPanel();
-        panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
-        // Crea un borde para el panel con las opciones
-        panelOpciones.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones"));
+        panelOpcionesLista.setLayout(new BoxLayout(panelOpcionesLista, BoxLayout.Y_AXIS));
 
         // Instancia el JLabel
         labelGestorPhoneBook = new JLabel("Gestor PhoneBook VLB");
@@ -170,15 +169,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Instancia los JButton
         botonNuevoContacto = new JButton("Crear un contacto nuevo");
         botonNuevoContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        botonDatosContacto = new JButton("Ver datos de un contacto");
-        botonDatosContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        botonEditarContacto = new JButton("Editar un contacto");
-        botonEditarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        botonEliminarContacto = new JButton("Eliminar un contacto");
-        botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         botonDatosAgenda = new JButton("Ver datos de la agenda");
         botonDatosAgenda.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -192,6 +182,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonSalir = new JButton("Salir del programa");
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        botonDatosContacto = new JButton("Ver datos");
+        botonDatosContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        botonEditarContacto = new JButton("Editar");
+        botonEditarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        botonEliminarContacto = new JButton("Eliminar");
+        botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         //// Añade los objetos al JPanel
         // Añade el panel con el título
         c.fill = GridBagConstraints.BOTH;
@@ -204,16 +203,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panelTitulo.add(labelGestorPhoneBook);
         panel.add(panelTitulo, c);
 
-        // Añadir las opciones a su propio panel
-        panelOpciones.add(botonNuevoContacto);
-        panelOpciones.add(botonDatosContacto);
-        panelOpciones.add(botonEditarContacto);
-        panelOpciones.add(botonEliminarContacto);
-        panelOpciones.add(botonDatosAgenda);
-        panelOpciones.add(botonVerJSON);
-        panelOpciones.add(botonBorrarTodo);
-        panelOpciones.add(botonSalir);
-
         // Añade panel con las opciones
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
@@ -222,6 +211,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.gridheight = 2;
         c.weightx = 0.3;
         c.weighty = 0.8;
+        panelOpciones.add(botonNuevoContacto);
+        panelOpciones.add(botonDatosAgenda);
+        panelOpciones.add(botonVerJSON);
+        panelOpciones.add(botonBorrarTodo);
+        panelOpciones.add(botonSalir);
         panel.add(panelOpciones, c);
 
         // Añade panel con la lista de contactos
@@ -250,6 +244,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         c.gridheight = 1;
         c.weightx = 0.3;
         c.weighty = 0.4;
+        panelOpcionesLista.add(botonDatosContacto);
+        panelOpcionesLista.add(botonEditarContacto);
+        panelOpcionesLista.add(botonEliminarContacto);
         panel.add(panelOpcionesLista, c);
         // panel.add(panelOpciones);
 
