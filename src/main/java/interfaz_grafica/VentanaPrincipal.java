@@ -15,6 +15,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
      */
     private JPanel panel;
     /**
+     * Panel con el nombre del programa
+     */
+    private JPanel panelTitulo;
+    /**
      * Panel con las opciones del menú principal
      */
     private JPanel panelOpciones;
@@ -108,7 +112,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         // Instancia el JPanel
         panel = new JPanel();
         // Usa el BoxLayout para mostrar los botones verticalmente
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        // panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        panelTitulo = new JPanel();
+        panelTitulo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panelTitulo"));
+
+
+        JPanel panel2 = new JPanel();
+        panel2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panel2"));
+        JPanel panel3 = new JPanel();
+        panel3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panel3"));
+        JPanel panel4 = new JPanel();
+        panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "panel4"));
+
+
+
 
         panelOpciones = new JPanel();
         panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
@@ -148,8 +168,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Añade los objetos al JPanel
-        panel.add(labelGestorPhoneBook);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        panelTitulo.add(labelGestorPhoneBook);
+        panel.add(panelTitulo, gbc);
 
+        // Añadir las opciones a su propio panel+
         panelOpciones.add(botonNuevoContacto);
         panelOpciones.add(botonDatosContacto);
         panelOpciones.add(botonEditarContacto);
@@ -158,7 +185,35 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         panelOpciones.add(botonVerJSON);
         panelOpciones.add(botonBorrarTodo);
         panelOpciones.add(botonSalir);
-        panel.add(panelOpciones);
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 2;
+        panel.add(panelOpciones, gbc);
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 2;
+        panel.add(panel2, gbc);
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        panel.add(panel4, gbc);
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        panel.add(panel4, gbc);
+        // panel.add(panelOpciones);
 
         // Añade el JPanel al JFrame
         add(panel);
@@ -239,6 +294,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                 System.exit(0);
             }
         }
+    }
+
+    private static void addComponent(Container container, Component component, int gridx, int gridy,
+                                     int gridwidth, int gridheight, int anchor, int fill) {
+        GridBagConstraints gbc = new GridBagConstraints(gridx, gridy, gridwidth, gridheight, 1.0, 1.0,
+                anchor, fill, new Insets(0, 0, 0, 0), 0, 0);
+        container.add(component, gbc);
     }
 
     /**
