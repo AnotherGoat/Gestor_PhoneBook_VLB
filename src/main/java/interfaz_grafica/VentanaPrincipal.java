@@ -425,7 +425,43 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         }
 
         if (e.getSource() == botonExportarJSON){
+            String original = "agenda.json";
 
+            // Si el archivo existe
+            if(Files.exists(Paths.get(original))){
+                // El resultado indica si se eligió algo válido o no
+                int resultado = selectorArchivo.showSaveDialog(panel.getParent());
+
+                // Si el resultado es válido...
+                if (resultado == JFileChooser.APPROVE_OPTION) {
+
+                    // Guarda la ruta del archivo destino
+                    String destino = selectorArchivo.getSelectedFile().getPath();
+
+                    // Si el archivo destino ya existe, se tiene que pedir confirmación
+                    if (Files.exists(Paths.get(destino))) {
+
+                        // Pide la confirmación para reemplazarlo
+                        int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                                "El archivo destino ya existe. ¿Desea reemplazarlo?\nEsta operación no se puede deshacer.",
+                                "El archivo ya existe",
+                                JOptionPane.YES_NO_OPTION);
+
+                        // Si el usuario escoge "Sí"
+                        if (n == JOptionPane.YES_OPTION) {
+                            GestorJSON.exportarJSON(original, destino);
+                        }
+                    }
+
+                    else {
+                        GestorJSON.exportarJSON(original, destino);
+                    }
+                }
+            }
+
+            else{
+                // Mensaje de que "no existe la agenda en algún lugar"
+            }
         }
 
         if (e.getSource() == botonBorrarTodo){

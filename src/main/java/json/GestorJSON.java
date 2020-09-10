@@ -283,6 +283,11 @@ public class GestorJSON {
         ga.eliminarArchivo(ruta);
     }
 
+    /**
+     * Importa un archivo JSON externo al programa, y carga todos sus datos
+     * @param ruta Ruta del archivo original
+     * @param destino Ruta de destino
+     */
     public static void importarJSON(String ruta, String destino){
         // Vuelve a instanciar la agenda_json en Principal
         Principal.agenda_json = new JSONArray();
@@ -292,5 +297,15 @@ public class GestorJSON {
         ga.copiarArchivo(ruta, destino);
         // Vuelve a cargar el archivo JSON
         cargarJSON(destino);
+    }
+
+    /**
+     * Exporta un archivo JSON con los datos actuales de la agenda a la ruta especificada
+     * @param ruta Ruta del archivo original
+     * @param destino Ruta de destino a donde se copiará el archivo
+     */
+    public static void exportarJSON(String ruta, String destino){
+        // Copia el archivo usando el gestor de archivos
+        ga.copiarArchivo(ruta, destino);
     }
 }
