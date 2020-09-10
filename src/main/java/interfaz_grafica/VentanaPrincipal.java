@@ -5,8 +5,8 @@ import lanzador.Principal;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javax.swing.*;
 
 public class VentanaPrincipal extends JFrame implements ActionListener, MouseListener, KeyListener{
@@ -40,6 +40,18 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
      * Botón para ver datos guardados en el archivo "agenda.json"
      */
     private JButton botonVerJSON;
+    /**
+     * Selector de archivos que se usa para importar y exportar
+     */
+    private JFileChooser selectorArchivo;
+    /**
+     * Botón para importar un archivo JSON al programa
+     */
+    private JButton botonImportarJSON;
+    /**
+     * Botón para exportar un archivo JSON
+     */
+    private JButton botonExportarJSON;
     /**
      * Botón para borrar todos los datos guardados
      */
@@ -183,6 +195,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         botonVerJSON = new JButton("Ver archivo \"agenda.json\"");
         botonVerJSON.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        selectorArchivo = new JFileChooser();
+
+        botonImportarJSON = new JButton("Importar archivo json");
+        botonImportarJSON.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        botonExportarJSON = new JButton("Exportar \"agenda.json\"");
+        botonExportarJSON.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         botonBorrarTodo = new JButton("Borrar todos los datos guardados");
         botonBorrarTodo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -215,6 +235,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         // Instancia un JList con los datos del modelo
         jlist_contactos = new JList(modelo_contactos);
 
+        // Añada todos los nombres de los contactos al modelo
         for (String s : Principal.agenda.getLista_Nombres()) {
             modelo_contactos.addElement(s);
         }
@@ -247,6 +268,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         c.weighty = 0.5;
         panelOpciones.add(botonDatosAgenda);
         panelOpciones.add(botonVerJSON);
+        panelOpciones.add(botonImportarJSON);
+        panelOpciones.add(botonExportarJSON);
         panelOpciones.add(botonBorrarTodo);
         panelOpciones.add(botonSalir);
         panel.add(panelOpciones, c);
@@ -294,6 +317,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         // Implementación de los listener
         botonDatosAgenda.addActionListener(this);
         botonVerJSON.addActionListener(this);
+        botonImportarJSON.addActionListener(this);
+        botonExportarJSON.addActionListener(this);
         botonBorrarTodo.addActionListener(this);
         botonSalir.addActionListener(this);
         botonDatosContacto.addActionListener(this);
@@ -342,6 +367,65 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
             // Instancia la ventana con los datos de "agenda.json"
             VentanaVerJSON vvj = new VentanaVerJSON(this);
             vvj.setVisible(true);
+        }
+
+        if (e.getSource() == botonImportarJSON){
+            // El resultado indica si se eligió algo válido o no
+            int resultado = selectorArchivo.showOpenDialog(panel.getParent());
+
+            // Si el resultado se puede abrir...
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+
+                // Guarda la ruta del archivo elegido, si es que existe
+                String ruta = selectorArchivo.getSelectedFile().getPath();
+                // También indicamos el destino
+                String destino = "agenda.json";
+
+                // Si el archivo destino existe, se tiene que pedir confirmación
+                if(Files.exists(Paths.get(destino))){
+
+                    // Pide la confirmación para reemplazarlo
+                    int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                            "El archivo \""+destino+"\" ya existe. ¿Desea reemplazarlo?\nEsta operación no se puede deshacer.",
+                            "El archivo ya existe",
+                            JOptionPane.YES_NO_OPTION);
+
+                    // Si el usuario escoge "Sí"
+                    if(n == JOptionPane.YES_OPTION){
+                        // Borra todos los datos
+                        Principal.agenda.borrarTodo();
+
+                        // Limpia los datos del modelo
+                        modelo_contactos.clear();
+
+                        GestorJSON.importarJSON(ruta, destino);
+
+                        // Añada todos los nombres de los contactos al modelo
+                        for (String s : Principal.agenda.getLista_Nombres()) {
+                            modelo_contactos.addElement(s);
+                        }
+                    }
+                }
+
+                else{
+                    // Borra todos los datos
+                    Principal.agenda.borrarTodo();
+
+                    // Limpia los datos del modelo
+                    modelo_contactos.clear();
+
+                    GestorJSON.importarJSON(ruta, destino);
+
+                    // Añada todos los nombres de los contactos al modelo
+                    for (String s : Principal.agenda.getLista_Nombres()) {
+                        modelo_contactos.addElement(s);
+                    }
+                }
+            }
+        }
+
+        if (e.getSource() == botonExportarJSON){
+
         }
 
         if (e.getSource() == botonBorrarTodo){

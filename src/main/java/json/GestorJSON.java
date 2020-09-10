@@ -277,7 +277,20 @@ public class GestorJSON {
      * @param ruta Ruta del archivo JSON que se va a borrar
      */
     public static void borrarJSON(String ruta){
+        // Vuelve a instanciar la agenda en principal
         Principal.agenda_json = new JSONArray();
+        // Borra el archivo
         ga.eliminarArchivo(ruta);
+    }
+
+    public static void importarJSON(String ruta, String destino){
+        // Vuelve a instanciar la agenda_json en Principal
+        Principal.agenda_json = new JSONArray();
+        // Borra el archivo
+        ga.eliminarArchivo(destino);
+        // Copia el archivo
+        ga.copiarArchivo(ruta, destino);
+        // Vuelve a cargar el archivo JSON
+        cargarJSON(destino);
     }
 }
