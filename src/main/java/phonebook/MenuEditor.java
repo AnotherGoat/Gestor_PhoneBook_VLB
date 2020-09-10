@@ -118,7 +118,7 @@ public class MenuEditor extends Menu {
                     // Ordena la lista de contactos
                     Principal.agenda.ordenarContactos();
                     // Guarda los cambios hechos en "agenda.json"
-                    GestorJSON.guardarJSON();
+                    GestorJSON.guardarJSON("agenda.json");
 
                     System.out.println("Los cambios han sido guardados.");
                     break;

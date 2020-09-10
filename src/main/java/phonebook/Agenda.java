@@ -49,7 +49,7 @@ public class Agenda {
         // Ordena la lista de contactos
         ordenarContactos();
 
-        GestorJSON.guardarJSON();
+        GestorJSON.guardarJSON("agenda.json");
 
         System.out.println("El contacto fue guardado exitosamente.");
 
@@ -113,7 +113,7 @@ public class Agenda {
         lista_contactos.remove(posicion);
         lista_nombres.remove(posicion);
         // Guarda el archivo JSON con los cambios
-        GestorJSON.guardarJSON();
+        GestorJSON.guardarJSON("agenda.json");
     }
 
     /**
@@ -173,7 +173,7 @@ public class Agenda {
         this.getLista_Nombres().clear();
         this.getLista_Contactos().clear();
         // Hace que el GestorJSON borre el archivo "agenda.json"
-        GestorJSON.borrarJSON();
+        GestorJSON.borrarJSON("agenda.json");
     }
 
     //// Getters y Setters

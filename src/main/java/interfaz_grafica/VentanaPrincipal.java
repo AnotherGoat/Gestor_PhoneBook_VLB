@@ -108,7 +108,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
     //// Constructores
     public VentanaPrincipal(){
         // Carga datos del archivo "agenda.json"
-        GestorJSON.cargarJSON();
+        GestorJSON.cargarJSON("agenda.json");
 
         inicializar();
 

@@ -19,9 +19,10 @@ public class GestorJSON {
 
     //// Métodos
     /**
-     * Este método recibe los datos de la agenda principal y los guarda en un archivo "agenda.json"
+     * Este método recibe los datos de la agenda principal y los guarda en un archivo
+     * @param ruta Ruta donde se guardará el archivo
      */
-    public static void guardarJSON(){
+    public static void guardarJSON(String ruta){
 
         // JSONArray que representa la agenda con la que se trabaja
         JSONArray agenda_json = new JSONArray();
@@ -134,22 +135,23 @@ public class GestorJSON {
 
         // Después de repetir lo de arriba para cada contacto, se debe guardar el archivo...
 
-        // Guarda el JSON en el archivo "agenda.json", con indentación de 6 espacios
-        ga.crearArchivo(agenda_json.toString(6), "agenda.json");
+        // Guarda el JSON en el archivo de destino, con indentación de 6 espacios
+        ga.crearArchivo(agenda_json.toString(6), ruta);
 
         // ¡Listo!
     }
 
     /**
-     * Método que carga un el archivo "agenda.json" (si este existe), y carga sus datos en en JSONArray Principal.agendaJSON
+     * Método que carga un el archivo "agenda.json" (si este existe), y carga sus datos en en JSONArray agenda_json
+     * @param ruta Ruta del archivo que se va a cargar
      */
-    public static void cargarJSON(){
+    public static void cargarJSON(String ruta){
 
-        // Si el archivo "agenda.json" existe...
-        if (Files.exists(Paths.get("agenda.json"))) {
+        // Si el archivo de la ruta indicada existe...
+        if (Files.exists(Paths.get(ruta))) {
 
-            // Carga los datos de "agenda.json" al JSONArray agendaJSON
-            Principal.agenda_json = ga.convertirArchivoAJSONArray("agenda.json");
+            // Carga los datos de la ruta al JSONArray agendaJSON
+            Principal.agenda_json = ga.convertirArchivoAJSONArray(ruta);
 
             // Para cada contacto dentro del JSONArray...
             for(int i=0; i<Principal.agenda_json.length(); i++){
@@ -260,7 +262,7 @@ public class GestorJSON {
             }
 
             // Muestra un mensaje de éxito
-            System.out.println("Datos de \"agenda.json\" cargados correctamente");
+            System.out.println("Datos de \""+ruta+"\" cargados correctamente");
 
             // Cuando llega a esta sección, significa que la agenda principal cargó los datos correctamente
             // Para terminar, se ordenan alfabéticamente los contactos para la ejecución del programa
@@ -270,8 +272,12 @@ public class GestorJSON {
         // Si el archivo "agenda.json" no existe, no hace nada
     }
 
-    public static void borrarJSON(){
+    /**
+     * Reinstancia la agenda principal y borra el archivo de la ruta indicada
+     * @param ruta Ruta del archivo JSON que se va a borrar
+     */
+    public static void borrarJSON(String ruta){
         Principal.agenda_json = new JSONArray();
-        ga.eliminarArchivo("agenda.json");
+        ga.eliminarArchivo(ruta);
     }
 }
