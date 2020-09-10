@@ -5,9 +5,11 @@ import lanzador.Principal;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 
 public class VentanaPrincipal extends JFrame implements ActionListener, MouseListener, KeyListener{
 
@@ -195,7 +197,36 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         botonVerJSON = new JButton("Ver archivo \"agenda.json\"");
         botonVerJSON.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Instancia el selectorArchivo que se usará para importar y exportar
         selectorArchivo = new JFileChooser();
+        // Instancia un FileFilter para sólo mostrar directorios y archivos .json
+        FileFilter filtroJSON = new FileFilter(){
+            
+            public String getDescription(){
+                // Se cambia la descripción
+                return "Archivos JSON (*.json)";
+            }
+
+            @Override
+            public boolean accept(File f) {
+                // Mostrará directorios
+                if(f.isDirectory()){
+                    return true;
+                }
+
+                // También mostrará archivos .json
+                else{
+                    // Pasa el nombre del archivo a minúsculas
+                    // Lo hace para aceptar cualquier combinación de mayúsculas o minúsculas al final
+                    String nombreArchivo = f.getName().toLowerCase();
+
+                    // Retorna true sólo si el archivo termina con ".json"
+                    return nombreArchivo.endsWith(".json");
+                }
+            }
+        };
+        // Usar ese filtro en el selector de archivos
+        selectorArchivo.setFileFilter(filtroJSON);
 
         botonImportarJSON = new JButton("Importar archivo json");
         botonImportarJSON.setAlignmentX(Component.CENTER_ALIGNMENT);
