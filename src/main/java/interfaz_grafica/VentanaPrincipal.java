@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Locale;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
@@ -121,6 +122,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
     //// Constructores
     public VentanaPrincipal(){
+        // Por algún motivo, se puede traducir a chino pero no a español
+        // Locale.setDefault(new Locale("zh", "CN")); // Funciona
+        // Locale.setDefault(new Locale("es", "ES")); // No funciona
+
         // Carga datos del archivo "agenda.json"
         GestorJSON.cargarJSON("agenda.json");
 
@@ -151,8 +156,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         // Carga el ícono de la aplicación
         cargarIcono();
 
-        // Traduce la opción "Yes" de los OptionPane
+        // Traduce la opción "Yes" de los JOptionPane
         UIManager.put("OptionPane.yesButtonText", "Sí");
+        // Traduce las opciones de los JFileChooser
+        UIManager.put("FileChooser.openButtonText", "Abrir");
+        UIManager.put("FileChooser.saveButtonText", "Guardar");
+        UIManager.put("FileChooser.cancelButtonText", "Cancelar");
+        UIManager.put("FileChooser.acceptAllFileFilterText", "Todos los archivos");
 
         // Instancia el JPanel
         panel = new JPanel();
@@ -227,6 +237,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         };
         // Usar ese filtro en el selector de archivos
         selectorArchivo.setFileFilter(filtroJSON);
+        selectorArchivo.setLocale(Locale.getDefault());
+        selectorArchivo.updateUI();
 
         botonImportarJSON = new JButton("Importar archivo json");
         botonImportarJSON.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -401,6 +413,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         }
 
         if (e.getSource() == botonImportarJSON){
+            // Cambiar título
+            selectorArchivo.setDialogTitle("Importar archivo");
+
             // El resultado indica si se eligió algo válido o no
             int resultado = selectorArchivo.showOpenDialog(panel.getParent());
 
@@ -460,6 +475,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
             // Si el archivo existe
             if(Files.exists(Paths.get(original))){
+                // Cambiar título
+                selectorArchivo.setDialogTitle("Exportar archivo");
+
                 // El resultado indica si se eligió algo válido o no
                 int resultado = selectorArchivo.showSaveDialog(panel.getParent());
 
