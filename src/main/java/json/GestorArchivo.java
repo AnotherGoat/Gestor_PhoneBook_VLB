@@ -10,67 +10,145 @@ import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
 public class GestorArchivo {
-
-    public void crearDirectorio(){
-        Scanner teclado = new Scanner(System.in);
-        System.out.println();
-        String ruta = teclado.nextLine();
+    /**
+     * Crea un directorio en la ruta específica, sólo si no existe
+     * @param ruta Ruta deonde se va a crear el directorio
+     */
+    public void crearDirectorio(String ruta){
         Path directorio = Paths.get(ruta);
-        if(Files.exists(directorio)){
-            System.out.println("El directorio ya existe");
 
-        }else{
+        if(Files.exists(directorio)){
+        }
+
+        else{
             try{
                 Files.createDirectories(directorio);
             }catch(IOException e){
-                System.out.println("el directorio no pudo ser creado");
             }
         }
 
     }
 
-    public void crearArchivo(){
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("Ingrese la ruta completa del archivo");
-        String ruta = teclado.nextLine();
-        Path archivo = Paths.get(ruta);
-        System.out.println("Ingrese el texto a guardar en el archivo");
-        String texto = teclado.nextLine();
-        try{
-            Files.write(archivo,texto.getBytes());
-            System.out.println("se ha guardado el archivo");
-        }catch(IOException e){
-            System.out.println("El archivo no puede ser guardado");
-        }
-    }
-
-    public void crearArchivo(String texto, String ruta){
+    /**
+     * Crea un archivo vacío en la ruta especificada
+     * @param ruta Ruta donde se va a crear el archivo
+     */
+    public void crearArchivo(String ruta){
         Path archivo = Paths.get(ruta);
         try{
-            Files.write(archivo,texto.getBytes());
-            System.out.println("El archivo JSON se ha guardado en "+ruta);
+            Files.write(archivo, "".getBytes());
         }catch(IOException e){
-            System.out.println("El archivo no puede ser guardado.");
         }
-
     }
 
     /**
-     * Método que retorna un String con el contenido de un archivo de texto, o retorna un String vacío si no existe
-     * @param ruta Ruta del archivo a leer
-     * @return String con el texto del archivo
+     * Crea un archivo en la ruta especificada, y con el contenido ingresado
+     * @param ruta Ruta donde se va a crear el archivo
      */
-    public String convertirArchivoAString(String ruta){
+    public void crearArchivo(String ruta, String contenido){
         Path archivo = Paths.get(ruta);
-
-        String texto="";
         try{
-            texto = new String(Files.readAllBytes(archivo));
+            Files.write(archivo, contenido.getBytes());
         }catch(IOException e){
-            System.out.println("El archivo no pudo ser leído");
+        }
+    }
+
+    /**
+     * Método que retorna un String con el contenido de un archivo, o retorna un String vacío si no existe
+     * @param ruta Ruta del archivo a leer
+     * @return String con el contenido del archivo
+     */
+    public String leerArchivo(String ruta){
+        Path archivo = Paths.get(ruta);
+        String contenido="";
+
+        try{
+            contenido = new String(Files.readAllBytes(archivo));
+        } catch(IOException e){
         }
 
-        return texto;
+        return contenido;
+    }
+
+    /**
+     * Mueve el archivo desde la ruta especificada a su destino (no hace nada si ya existe)
+     * @param ruta Ruta del archivo original
+     * @param destino Destino al que se quiere mover el archivo
+     */
+    public void moverArchivo(String ruta, String destino){
+        // Inicia los Paths al archivo original y al archivo nuevo
+        Path archivoOriginal = Paths.get(ruta);
+        Path archivoNuevo = Paths.get(destino);
+
+        try{
+            // Mueve el archivo
+            Files.move(archivoOriginal, archivoNuevo, StandardCopyOption.COPY_ATTRIBUTES);
+        } catch(IOException e){
+        }
+    }
+
+    /**
+     * Mueve el archivo desde la ruta especificada a su destino, y lo sobreescribe si es que ya existe
+     * @param ruta Ruta del archivo original
+     * @param destino Destino al que se quiere mover el archivo
+     */
+    public void moverArchivoYReemplazar(String ruta, String destino){
+        // Inicia los Paths al archivo original y al archivo nuevo
+        Path archivoOriginal = Paths.get(ruta);
+        Path archivoNuevo = Paths.get(destino);
+
+        try{
+            // Mueve el archivo
+            Files.move(archivoOriginal, archivoNuevo, StandardCopyOption.REPLACE_EXISTING);
+        } catch(IOException e){
+        }
+    }
+
+    /**
+     * Copia el archivo desde la ruta especificada a su destino (no hace nada si ya existe)
+     * @param ruta Ruta del archivo original
+     * @param destino Destino al que se quiere copiar el archivo
+     */
+    public void copiarArchivo(String ruta, String destino){
+        // Inicia los Paths al archivo original y al archivo nuevo
+        Path archivoOriginal = Paths.get(ruta);
+        Path archivoNuevo = Paths.get(destino);
+
+        try{
+            // Copia el archivo
+            Files.copy(archivoOriginal, archivoNuevo, StandardCopyOption.COPY_ATTRIBUTES);
+        } catch(IOException e){
+        }
+    }
+
+    /**
+     * Copia el archivo desde la ruta especificada a su destino, y lo sobreescribe si es que ya existe
+     * @param ruta Ruta del archivo original
+     * @param destino Destino al que se quiere copiar el archivo
+     */
+    public void copiarArchivoYReemplazar(String ruta, String destino){
+        // Inicia los Paths al archivo original y al archivo nuevo
+        Path archivoOriginal = Paths.get(ruta);
+        Path archivoNuevo = Paths.get(destino);
+
+        try{
+            // Copia el archivo
+            Files.copy(archivoOriginal, archivoNuevo, StandardCopyOption.REPLACE_EXISTING);
+        } catch(IOException e){
+        }
+    }
+
+    /**
+     * Elimina el archivo de la ruta especificada, siempre que no ocurra alguna excepción
+     * @param ruta Ruta del archivo que se quiere borrar
+     */
+    public void eliminarArchivo(String ruta){
+        Path archivo = Paths.get(ruta);
+
+        try{
+            Files.deleteIfExists(archivo);
+        } catch (IOException e){
+        }
     }
 
     /**
@@ -89,39 +167,5 @@ public class GestorArchivo {
         }
 
         return new JSONArray(texto);
-    }
-
-    /**
-     * Copia el archivo desde la ruta especificada a su destino, y lo sobreescribe si es que ya existe
-     * @param ruta Ruta del archivo original
-     * @param destino Destino al que se quiere copiar el archivo
-     */
-    public void copiarArchivo(String ruta, String destino){
-        // Inicia los Paths al archivo original y al archivo nuevo
-        Path archivoOriginal = Paths.get(ruta);
-        Path archivoNuevo = Paths.get(destino);
-
-        try{
-            // Copia el archivo
-            Files.copy(archivoOriginal, archivoNuevo, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("El archivo fue copiado exitosamente");
-        }catch(IOException e){
-            System.out.println("El archivo no pudo ser copiado");
-        }
-    }
-
-    /**
-     * Elimina el archivo de la ruta especificada, siempre que no ocurra alguna excepción
-     * @param ruta Ruta del archivo que se quiere borrar
-     */
-    public void eliminarArchivo(String ruta){
-        Path archivo = Paths.get(ruta);
-
-        try{
-            Files.deleteIfExists(archivo);
-            System.out.println("El archivo fue eliminado exitosamente ");
-        }catch (IOException e){
-            System.out.println("El archivo no pudo ser eliminado");
-        }
     }
 }

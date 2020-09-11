@@ -28,7 +28,7 @@ public class Validador {
     /**
      * Verifica que un String ingresado puede ser convertido a int sin tirar ninguna excepción
      * @param entrada String que contiene la entrada del usuario
-     * @return Un boolean que indica si la entrada es int (true) o no (false)
+     * @return Boolean que indica si la entrada es int (true) o no (false)
      */
     public boolean esInt(String entrada) {
         // Si la entrada es nula, retornar false automáticamente
@@ -41,11 +41,11 @@ public class Validador {
                 // Intenta convertir el String a un int
                 int i = Integer.parseInt(entrada);
             } catch (NumberFormatException nfe) {
-                // Si la conversión tira un err
-                System.out.println("Error: NumberFormatException. Ingrese un número válido, por favor.");
+                // Si la conversión tira un error
                 return false;
             }
         }
+
         return true;
     }
 
@@ -111,6 +111,22 @@ public class Validador {
     }
 
     /**
+     * Revisa si la entrada un número de teléfono válido
+     * @param entrada String que representa la entrada del usuario
+     * @return Boolean que indica si el número es un número de teléfono válido o no
+     */
+    public boolean esNumeroTelefonico(String entrada){
+        if (entrada == null){
+            return false;
+        }
+
+        // El patrón es: puede tener "+" en la primera posición + entre 1 y 15 dígitos, en una sola línea
+        Pattern pattern = Pattern.compile("^[+]?[0-9]{1,15}]$");
+        Matcher matcher = pattern.matcher(entrada);
+        return matcher.matches();
+    }
+
+    /**
      * Caso específico de validarIntEntre, se usa para validar un número de teléfono
      * @return Número de teléfono válido, de no más de 9 dígitos
      */
@@ -148,16 +164,17 @@ public class Validador {
 
     /**
      * Este método verifica que el String del parámetro es un email válido
-     * @param email Email que se quiere verificar
+     * @param entrada Email que se quiere verificar
      * @return Retorna un boolean que indica si el email ingresado es válido (true) o no (false)
      */
-    public Boolean esEmail (String email) {
-        if(email!=null) {
-            Pattern pattern = Pattern.compile("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$");
-            Matcher matcher = pattern.matcher(email);
-            return matcher.matches();
+    public Boolean esEmail (String entrada) {
+        if(entrada == null){
+            return false;
         }
-        return false;
+
+        Pattern pattern = Pattern.compile("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$");
+        Matcher matcher = pattern.matcher(entrada);
+        return matcher.matches();
     }
 
     /**

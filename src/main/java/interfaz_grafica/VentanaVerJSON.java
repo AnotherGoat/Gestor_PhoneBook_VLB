@@ -17,7 +17,7 @@ public class VentanaVerJSON extends JDialogTextoGeneral {
     //// Constructores
     public VentanaVerJSON(Component ventanaAnterior) {
         super(ventanaAnterior);
-        this.texto = ga.convertirArchivoAString("agenda.json");
+        this.texto = ga.leerArchivo("agenda.json");
 
         inicializar();
 
