@@ -201,7 +201,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         selectorArchivo = new JFileChooser();
         // Instancia un FileFilter para sólo mostrar directorios y archivos .json
         FileFilter filtroJSON = new FileFilter(){
-            
+
             public String getDescription(){
                 // Se cambia la descripción
                 return "Archivos JSON (*.json)";
