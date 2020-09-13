@@ -122,39 +122,33 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
     //// Constructores
     public VentanaPrincipal(){
-        // Por algún motivo, se puede traducir a chino pero no a español
-        // Locale.setDefault(new Locale("zh", "CN")); // Funciona
-        // Locale.setDefault(new Locale("es", "ES")); // No funciona
 
-        // Carga datos del archivo "agenda.json"
-        GestorJSON.cargarJSON("agenda.json");
-
-        inicializar();
-
-        //// Otras características de la ventana
-
-        // Título
-        setTitle("Gestor Phonebook VLB");
-        // Tamaño inicial
-        setSize(700, 400);
-        // La ventana inicia centrada
-        setLocationRelativeTo(null);
-        // Inhabilita la opción de cambiar el tamaño de la ventana
-        // setResizable(false);
-
-        // Cuando se cierre la ventana no hace nada...
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        // Pero se agrega un WindowListener para pedir confirmación al hacer click en la X
-        addWindowListener(windowListener);
+        cargarDatos();
+        traducirTextos();
+        cargarIcono();
+        inicializarComponentes();
+        ubicarComponentes();
+        implementarListeners();
+        configurarVentana();
     }
 
     //// Métodos
+
     /**
-     * Método para iniciar la ventana principal (instancia todos los objetos necesarios)
+     * Método que carga los datos del archivo JSON y de las fotos de contactos
      */
-    private void inicializar() {
-        // Carga el ícono de la aplicación
-        cargarIcono();
+    private void cargarDatos() {
+        // Carga datos del archivo "agenda.json"
+        GestorJSON.cargarJSON("agenda.json");
+    }
+
+    /**
+     * Método para traducir los textos de los componentes
+     */
+    private void traducirTextos() {
+        // Por algún motivo, se puede traducir a chino pero no a español
+        // Locale.setDefault(new Locale("zh", "CN")); // Funciona
+        // Locale.setDefault(new Locale("es", "ES")); // No funciona
 
         // Traduce la opción "Yes" de los JOptionPane
         UIManager.put("OptionPane.yesButtonText", "Sí");
@@ -163,6 +157,20 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         UIManager.put("FileChooser.saveButtonText", "Guardar");
         UIManager.put("FileChooser.cancelButtonText", "Cancelar");
         UIManager.put("FileChooser.acceptAllFileFilterText", "Todos los archivos");
+    }
+
+    /**
+     * Método que carga el ícono de la aplicación desde un archivo externo
+     */
+    private void cargarIcono() {
+        Image icono = Toolkit.getDefaultToolkit().getImage("archivos/icono_phonebook_nuevo.png");
+        setIconImage(icono);
+    }
+
+    /**
+     * Método para iniciar la ventana principal (instancia y configura todos los componentes necesarios)
+     */
+    private void inicializarComponentes() {
 
         // Instancia el JPanel
         panel = new JPanel();
@@ -285,8 +293,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
         // Instancia el JScrollPane, usando la JList (y define el funcionamiento vertical y horizontal)
         scroll = new JScrollPane(jlist_contactos, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    }
 
-        //// Añade los objetos al JPanel
+    /**
+     * Método que ubica los paneles y el resto de componentes usando GridBagLayout
+     */
+    private void ubicarComponentes() {
         // Instancia GriadBagConstraints para configurar el GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
 
@@ -356,7 +368,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
         // Añade el JPanel al JFrame
         add(panel);
+    }
 
+    /**
+     * Método que agrega los listeners para los componentes de la ventana
+     */
+    private void implementarListeners() {
         // Implementación de los listener
         botonDatosAgenda.addActionListener(this);
         botonVerJSON.addActionListener(this);
@@ -391,11 +408,21 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
     }
 
     /**
-     * Método que carga el ícono de la aplicación desde un archivo externo
+     * Realiza configuraciones de la ventana como tamaño, acción al cerrar, etc.
      */
-    private void cargarIcono() {
-        Image icono = Toolkit.getDefaultToolkit().getImage("archivos/icono_phonebook_nuevo.png");
-        setIconImage(icono);
+    private void configurarVentana() {
+        // Título
+        setTitle("Gestor Phonebook VLB");
+        // Tamaño inicial
+        setSize(700, 400);
+        // La ventana inicia centrada
+        setLocationRelativeTo(null);
+        // Inhabilita la opción de cambiar el tamaño de la ventana
+        // setResizable(false);
+        // Cuando se cierre la ventana no hace nada...
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        // Pero se agrega un WindowListener para pedir confirmación al hacer click en la X
+        addWindowListener(windowListener);
     }
 
     @Override
