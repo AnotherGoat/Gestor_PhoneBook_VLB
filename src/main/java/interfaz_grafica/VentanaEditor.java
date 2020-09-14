@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class VentanaEditor extends JDialogGeneral{
+public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
     //// Atributos
     private JPanel panelNombre;
@@ -33,6 +33,11 @@ public class VentanaEditor extends JDialogGeneral{
 
     //// Métodos
     @Override
+    protected void inicializarComponentes() {
+
+    }
+
+    @Override
     protected void configurarVentana() {
         super.configurarVentana();
 
@@ -42,5 +47,12 @@ public class VentanaEditor extends JDialogGeneral{
         setSize(700, 400);
         // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
         setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == botonVolverAtras){
+                // Todavía no configurado
+        }
     }
 }

@@ -2,9 +2,9 @@ package interfaz_grafica;
 
 import lanzador.Principal;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class VentanaDatosContacto extends JDialogTextoGeneral{
 
