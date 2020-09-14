@@ -135,8 +135,8 @@ public class GestorJSON {
 
         // Después de repetir lo de arriba para cada contacto, se debe guardar el archivo...
 
-        // Guarda el JSON en el archivo de destino, con indentación de 6 espacios
-        ga.crearArchivo(agenda_json.toString(6), ruta);
+        // Guarda el JSON en el archivo de destino, con indentación de 5 espacios
+        ga.crearArchivo(ruta, agenda_json.toString(5));
 
         // ¡Listo!
     }

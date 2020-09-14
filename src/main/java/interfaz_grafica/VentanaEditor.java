@@ -21,7 +21,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     /**
      * Posicion del contacto original en la agenda
      */
-    // private final int posicion;
+    private final int posicion;
     /**
      * Contacto original de la agenda
      */
@@ -33,12 +33,12 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
     //// Constructores
     public VentanaEditor(int posicion) {
-        // this.posicion = posicion;
+        this.posicion = posicion;
         // Tomar contacto que se va a editar (paso por referencia)
-        // this.original = Principal.agenda.getLista_Contactos().get(posicion);
+        this.original = Principal.agenda.getLista_Contactos().get(posicion);
 
         // Copia el contacto original a uno auxiliar (paso por valor)
-        // this.aux = new Contacto(original);
+        this.aux = new Contacto(original);
 
         cargarIcono();
         inicializarComponentes();
@@ -173,7 +173,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         super.configurarVentana();
 
         // Título
-        setTitle("Editando contacto");
+        setTitle("Editando contacto \""+aux.getNombre()+"\"");
         // Tamaño inicial
         setSize(700, 400);
         // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
