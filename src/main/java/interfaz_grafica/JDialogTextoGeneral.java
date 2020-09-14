@@ -20,7 +20,7 @@ public abstract class JDialogTextoGeneral extends JDialogGeneral {
     /**
      * Scroll para el área de texto
      */
-    private JScrollPane scroll;
+    protected JScrollPane scroll;
 
     //// Constructores
     public JDialogTextoGeneral() {
@@ -28,7 +28,7 @@ public abstract class JDialogTextoGeneral extends JDialogGeneral {
 
     //// Métodos
     @Override
-    public void inicializarComponentes(){
+    protected void inicializarComponentes(){
         super.inicializarComponentes();
 
         // Usa el BoxLayout para mostrar los botones verticalmente
@@ -45,7 +45,7 @@ public abstract class JDialogTextoGeneral extends JDialogGeneral {
         scroll = new JScrollPane(textArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     }
 
-    public void ubicarComponentes(){
+    protected void ubicarComponentes(){
         panel.add(scroll);
         panel.add(botonVolverAtras);
 
@@ -53,7 +53,7 @@ public abstract class JDialogTextoGeneral extends JDialogGeneral {
     }
 
     @Override
-    public void configurarVentana(){
+    protected void configurarVentana(){
         super.configurarVentana();
 
         // Tamaño inicial

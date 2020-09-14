@@ -1,18 +1,17 @@
 package interfaz_grafica;
 
 import json.GestorArchivo;
-import lanzador.Principal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent.*;
 
 public class VentanaVerJSON extends JDialogTextoGeneral {
 
     /**
      * Instancia del gestor de archivos
      */
-    static GestorArchivo ga = new GestorArchivo();
+    private GestorArchivo ga = new GestorArchivo();
 
     //// Constructores
     public VentanaVerJSON() {
@@ -27,7 +26,7 @@ public class VentanaVerJSON extends JDialogTextoGeneral {
 
     //// Métodos
     @Override
-    public void configurarVentana() {
+    protected void configurarVentana() {
         super.configurarVentana();
 
         // Título

@@ -15,14 +15,25 @@ public class VentanaEditor extends JDialogGeneral{
     private JPanel panelEmails;
     private JPanel panelApodos;
     private JPanel panelNotas;
+    /**
+     * Posición del contacto que se va a leer
+     */
+    private int posicion;
 
     //// Constructores
-    public VentanaEditor() {
+    public VentanaEditor(int posicion) {
+        this.posicion = posicion;
+
+        cargarIcono();
+        inicializarComponentes();
+        //ubicarComponentes();
+        implementarListeners();
+        configurarVentana();
     }
 
     //// Métodos
     @Override
-    public void configurarVentana() {
+    protected void configurarVentana() {
         super.configurarVentana();
 
         // Título

@@ -4,7 +4,7 @@ import lanzador.Principal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class VentanaDatosContacto extends JDialogTextoGeneral{
 
@@ -12,7 +12,7 @@ public class VentanaDatosContacto extends JDialogTextoGeneral{
     /**
      * Posición del contacto que se va a leer
      */
-    int posicion;
+    private int posicion;
 
     //// Constructores
     public VentanaDatosContacto(int posicion) {
@@ -28,7 +28,7 @@ public class VentanaDatosContacto extends JDialogTextoGeneral{
 
     //// Métodos
     @Override
-    public void configurarVentana() {
+    protected void configurarVentana() {
         super.configurarVentana();
 
         // Título

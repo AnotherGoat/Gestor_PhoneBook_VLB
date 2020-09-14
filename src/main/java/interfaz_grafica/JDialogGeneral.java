@@ -24,7 +24,7 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
     /**
      * Método que carga el ícono de la aplicación desde un archivo externo
      */
-    public void cargarIcono() {
+    protected void cargarIcono() {
         Image icono = Toolkit.getDefaultToolkit().getImage("archivos/icono_phonebook_nuevo.png");
         setIconImage(icono);
     }
@@ -32,7 +32,7 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
     /**
      * Método para iniciar la ventana
      */
-    public void inicializarComponentes(){
+    protected void inicializarComponentes(){
         // Instancia el JPanel
         panel = new JPanel();
 
@@ -40,7 +40,7 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
         botonVolverAtras = new JButton("Volver atrás");
     }
 
-    public void implementarListeners(){
+    protected void implementarListeners(){
         // Implementa ActionListener para los botones
         botonVolverAtras.addActionListener(this);
     }
@@ -48,15 +48,16 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
     /**
      * Método para configurar las propiedades que todas las ventanas JDialog tienen en común
      */
-    public void configurarVentana(){
+    protected void configurarVentana(){
         // Cuando se cierre la ventana, se borra de la memoria
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         // Modalidad, para hacer que las ventanas anteriores no funcionen
         setModalityType(ModalityType.APPLICATION_MODAL);
     }
 
-    public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() == botonVolverAtras){
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == botonVolverAtras){
             // Borra la ventana actual
             dispose();
         }

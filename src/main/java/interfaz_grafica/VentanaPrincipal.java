@@ -596,7 +596,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
         if (e.getSource() == botonEditarContacto) {
             // Instancia una ventana que muestra el editor de datos del contacto elegido
-            VentanaEditor ve = new VentanaEditor();
+            VentanaEditor ve = new VentanaEditor(eleccion);
             ve.setVisible(true);
         }
 

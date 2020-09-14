@@ -4,7 +4,7 @@ import lanzador.Principal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class VentanaDatosAgenda extends JDialogTextoGeneral {
 
@@ -21,7 +21,7 @@ public class VentanaDatosAgenda extends JDialogTextoGeneral {
 
     //// Métodos
     @Override
-    public void configurarVentana() {
+    protected void configurarVentana() {
         super.configurarVentana();
 
         // Título
