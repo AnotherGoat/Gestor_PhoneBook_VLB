@@ -173,8 +173,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
         // Instancia el JPanel
         panel = new JPanel();
-        // Usa el BoxLayout para mostrar los botones verticalmente
-        // panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        // Usa el GridBagLayout para organizar los componentes
         panel.setLayout(new GridBagLayout());
 
         panelTitulo = new JPanel();
