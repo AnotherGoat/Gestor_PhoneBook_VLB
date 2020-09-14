@@ -191,7 +191,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
         panelNuevoContacto = new JPanel();
         panelNuevoContacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nuevo contacto"));
-        panelNuevoContacto.setLayout(new BoxLayout(panelNuevoContacto, BoxLayout.Y_AXIS));
+        panelNuevoContacto.setLayout(new GridBagLayout());
 
         panelEntrada = new JPanel();
         panelEntrada.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -296,74 +296,67 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
      * Método que ubica los paneles y el resto de componentes usando GridBagLayout
      */
     private void ubicarComponentes() {
-        // Instancia GriadBagConstraints para configurar el GridBagLayout
-        GridBagConstraints c = new GridBagConstraints();
-
         // Añade el panel con el título
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0.3;
-        c.weighty = 0.5;
         panelTitulo.add(labelGestorPhoneBook);
-        panel.add(panelTitulo, c);
+        panel.add(panelTitulo, gbc(0, 0, 1, 1, 0.3, 0.5));
 
         // Añade panel con las opciones
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0.3;
-        c.weighty = 0.5;
         panelOpciones.add(botonDatosAgenda);
         panelOpciones.add(botonVerJSON);
         panelOpciones.add(botonImportarJSON);
         panelOpciones.add(botonExportarJSON);
         panelOpciones.add(botonBorrarTodo);
         panelOpciones.add(botonSalir);
-        panel.add(panelOpciones, c);
+        panel.add(panelOpciones, gbc(0, 1, 1, 1, 0.3, 0.5));
 
         // Añade panel con la lista de contactos
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 1;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 2;
-        c.weightx = 0.4;
-        c.weighty = 1;
         panelLista.add(scroll, BorderLayout.CENTER);
-        panel.add(panelLista, c);
+        panel.add(panelLista, gbc(1, 0, 1, 2, 0.4, 1));
 
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 2;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0.3;
-        c.weighty = 0.5;
-        panelEntrada.add(labelIngreseNombre);
-        panelEntrada.add(campoIngreseNombre);
-        panelNuevoContacto.add(panelEntrada);
-        panelNuevoContacto.add(botonGuardar);
-        panel.add(panelNuevoContacto, c);
+        // Añade el panel para crear un nuevo contacto
+        panelNuevoContacto.add(labelIngreseNombre, gbc(0, 0, 1, 1));
+        panelNuevoContacto.add(campoIngreseNombre, gbc(1, 0, 1, 1));
+        panelNuevoContacto.add(botonGuardar, gbc(0, 1, 2, 1));
+        panel.add(panelNuevoContacto, gbc(2, 0, 1, 1, 0.3, 0.5));
 
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 2;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0.3;
-        c.weighty = 0.5;
+        // Añade el panel con las opciones de la lista de contactos
         panelOpcionesLista.add(botonDatosContacto);
         panelOpcionesLista.add(botonEditarContacto);
         panelOpcionesLista.add(botonEliminarContacto);
-        panel.add(panelOpcionesLista, c);
+        panel.add(panelOpcionesLista, gbc(2, 1, 1, 1, 0.3, 0.5));
 
         // Añade el JPanel al JFrame
         add(panel);
+    }
+
+    private GridBagConstraints gbc(int x, int y, int ancho, int altura){
+        // Instancia GriadBagConstraints para configurar un GridBagLayout
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.gridx = x;
+        c.gridy = y;
+        c.gridwidth = ancho;
+        c.gridheight = altura;
+        c.weightx = 0;
+        c.weighty = 0;
+        c.fill = GridBagConstraints.BOTH;
+
+        return c;
+    }
+
+    private GridBagConstraints gbc(int x, int y, int ancho, int altura, double pesox, double pesoy){
+        // Instancia GriadBagConstraints para configurar un GridBagLayout
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.gridx = x;
+        c.gridy = y;
+        c.gridwidth = ancho;
+        c.gridheight = altura;
+        c.weightx = pesox;
+        c.weighty = pesoy;
+        c.fill = GridBagConstraints.BOTH;
+
+        return c;
     }
 
     /**

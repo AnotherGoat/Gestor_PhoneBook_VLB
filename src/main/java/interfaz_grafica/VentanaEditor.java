@@ -216,7 +216,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         add(panel);
     }
 
-    public GridBagConstraints gbc(int x, int y, int ancho, int altura){
+    private GridBagConstraints gbc(int x, int y, int ancho, int altura){
         // Instancia GriadBagConstraints para configurar un GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
 
@@ -231,7 +231,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         return c;
     }
 
-    public GridBagConstraints gbc(int x, int y, int ancho, int altura, double pesox, double pesoy){
+    private GridBagConstraints gbc(int x, int y, int ancho, int altura, double pesox, double pesoy){
         // Instancia GriadBagConstraints para configurar un GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
 
