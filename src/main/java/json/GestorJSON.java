@@ -150,7 +150,7 @@ public class GestorJSON {
         // Si el archivo de la ruta indicada existe...
         if (Files.exists(Paths.get(ruta))) {
 
-            // Carga los datos de la ruta al JSONArray agendaJSON
+            // Carga los datos de la ruta al JSONArray agenda_json
             Principal.agenda_json = ga.convertirArchivoAJSONArray(ruta);
 
             // Para cada contacto dentro del JSONArray...

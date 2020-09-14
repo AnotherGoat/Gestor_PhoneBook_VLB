@@ -10,6 +10,7 @@ import javax.swing.*;
 public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
     //// Atributos
+    private JPanel panelNorte;
     private JPanel panelNombre;
     private JPanel panelDireccion;
     private JPanel panelFoto;
@@ -18,6 +19,8 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     private JPanel panelEmails;
     private JPanel panelApodos;
     private JPanel panelNotas;
+    private JPanel panelSur;
+    private JButton botonGuardarCambios;
     /**
      * Posicion del contacto original en la agenda
      */
@@ -52,8 +55,12 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     protected void inicializarComponentes() {
         super.inicializarComponentes();
 
+        // Ordena el pabel para organizar componentes verticalmente
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        panelNorte = new JPanel();
         // Usa el GridBagLayout para organizar los componentes
-        panel.setLayout(new GridBagLayout());
+        panelNorte.setLayout(new GridBagLayout());
 
         panelNombre = new JPanel();
         panelNombre.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nombre"));
@@ -78,6 +85,10 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
         panelNotas = new JPanel();
         panelNotas.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Notas"));
+
+        panelSur = new JPanel();
+
+        botonGuardarCambios = new JButton("Guardar cambios");
     }
 
     private void ubicarComponentes() {
@@ -92,7 +103,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         c.gridheight = 1;
         c.weightx = 0.2;
         c.weighty = 0.33;
-        panel.add(panelNombre, c);
+        panelNorte.add(panelNombre, c);
 
         // Añadir el panel para editar dirección
         c.fill = GridBagConstraints.BOTH;
@@ -102,7 +113,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         c.gridheight = 2;
         c.weightx = 0.2;
         c.weighty = 0.67;
-        panel.add(panelDireccion, c);
+        panelNorte.add(panelDireccion, c);
 
         // Añadir el panel para editar foto
         c.fill = GridBagConstraints.BOTH;
@@ -112,7 +123,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         c.gridheight = 1;
         c.weightx = 0.2;
         c.weighty = 0.33;
-        panel.add(panelFoto, c);
+        panelNorte.add(panelFoto, c);
 
         // Añadir el panel para editar fecha de cumpleaños
         c.fill = GridBagConstraints.BOTH;
@@ -122,7 +133,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         c.gridheight = 2;
         c.weightx = 0.2;
         c.weighty = 0.67;
-        panel.add(panelFechaCumple, c);
+        panelNorte.add(panelFechaCumple, c);
 
         // Añadir el panel para editar teléfonos
         c.fill = GridBagConstraints.BOTH;
@@ -132,7 +143,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         c.gridheight = 3;
         c.weightx = 0.2;
         c.weighty = 1;
-        panel.add(panelTelefonos, c);
+        panelNorte.add(panelTelefonos, c);
 
         // Añadir el panel para editar emails
         c.fill = GridBagConstraints.BOTH;
@@ -142,7 +153,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         c.gridheight = 1;
         c.weightx = 0.4;
         c.weighty = 0.33;
-        panel.add(panelEmails, c);
+        panelNorte.add(panelEmails, c);
 
         // Añadir el panel para editar apodos
         c.fill = GridBagConstraints.BOTH;
@@ -152,7 +163,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         c.gridheight = 1;
         c.weightx = 0.4;
         c.weighty = 0.34;
-        panel.add(panelApodos, c);
+        panelNorte.add(panelApodos, c);
 
         // Añadir el panel para editar notas
         c.fill = GridBagConstraints.BOTH;
@@ -162,7 +173,28 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         c.gridheight = 1;
         c.weightx = 0.4;
         c.weighty = 0.33;
-        panel.add(panelNotas, c);
+        panelNorte.add(panelNotas, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 0;
+        c.gridy = 3;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.weightx = 0;
+        c.weighty = 0;
+        panelSur.add(botonGuardarCambios, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 1;
+        c.gridy = 3;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.weightx = 0;
+        c.weighty = 0;
+        panelSur.add(botonVolverAtras, c);
+
+        panel.add(panelNorte);
+        panel.add(panelSur);
 
         // Añade el JPanel al JFrame
         add(panel);
@@ -175,7 +207,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         // Título
         setTitle("Editando contacto \""+aux.getNombre()+"\"");
         // Tamaño inicial
-        setSize(700, 400);
+        setSize(700, 500);
         // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
         setLocationRelativeTo(null);
     }
