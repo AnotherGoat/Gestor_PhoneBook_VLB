@@ -132,7 +132,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
     }
 
     //// Métodos
-
     /**
      * Método que carga los datos del archivo JSON y de las fotos de contactos
      */
@@ -362,7 +361,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         panelOpcionesLista.add(botonEditarContacto);
         panelOpcionesLista.add(botonEliminarContacto);
         panel.add(panelOpcionesLista, c);
-        // panel.add(panelOpciones);
 
         // Añade el JPanel al JFrame
         add(panel);
@@ -594,9 +592,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         }
 
         if (e.getSource() == botonEditarContacto) {
-            // Instancia una ventana que muestra el editor de datos del contacto elegido
-            VentanaEditor ve = new VentanaEditor(eleccion);
-            ve.setVisible(true);
+            // Si el usuario ha seleccionado un objeto de la lista
+            if(eleccion!=-1) {
+                // Instancia una ventana que muestra el editor de datos del contacto elegido
+                VentanaEditor ve = new VentanaEditor(eleccion);
+                ve.setVisible(true);
+            }
         }
 
         if (e.getSource() == botonEliminarContacto){
