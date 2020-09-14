@@ -122,7 +122,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
     //// Constructores
     public VentanaPrincipal(){
-
         cargarDatos();
         traducirTextos();
         cargarIcono();
@@ -596,9 +595,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         }
 
         if (e.getSource() == botonEditarContacto) {
-            // Instancia una ventana que muestra los datos del contacto elegido
-            VentanaElegirContacto vec = new VentanaElegirContacto("Escoja el contacto que quiere editar", this);
-            vec.setVisible(true);
+            // Instancia una ventana que muestra el editor de datos del contacto elegido
+            VentanaEditor ve = new VentanaEditor();
+            ve.setVisible(true);
         }
 
         if (e.getSource() == botonEliminarContacto){

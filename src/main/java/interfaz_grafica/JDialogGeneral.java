@@ -1,14 +1,12 @@
 package interfaz_grafica;
 
-import lanzador.Principal;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public abstract class JDialogGeneral extends JDialog implements ActionListener {
 
-    //// Atributos
+    //// Atributos  4fc 
     /**
      * Panel principal
      */
