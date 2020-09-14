@@ -15,20 +15,25 @@ public class VentanaDatosContacto extends JDialogTextoGeneral{
     int posicion;
 
     //// Constructores
-    public VentanaDatosContacto(int posicion, Component ventanaAnterior) {
-        super(ventanaAnterior);
+    public VentanaDatosContacto(int posicion) {
         this.posicion = posicion;
         this.texto = Principal.agenda.getLista_Contactos().get(posicion).toString();
 
-        inicializar();
+        cargarIcono();
+        inicializarComponentes();
+        ubicarComponentes();
+        implementarListeners();
+        configurarVentana();
+    }
 
-        //// Otras características de la ventana
+    //// Métodos
+    @Override
+    public void configurarVentana() {
+        super.configurarVentana();
 
         // Título
         setTitle("Datos de "+Principal.agenda.getLista_Nombres().get(posicion));
-        // Tamaño inicial
-        setSize(400, 350);
-
-        configurar();
+        // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
+        setLocationRelativeTo(null);
     }
 }

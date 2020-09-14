@@ -20,13 +20,9 @@ ValidadorTest: listo
 Nota: Si a alguno se le ocurre otro test unitario relevante, puede añadirlo
  */
 
-import interfaz_grafica.VentanaDatosContacto;
-import interfaz_grafica.VentanaElegirContacto;
 import interfaz_grafica.VentanaPrincipal;
-import json.GestorJSON;
 import org.json.JSONArray;
 import phonebook.Agenda;
-import phonebook.MenuPrincipal;
 
 /**
  * <h2>"Gestor PhoneBook VLB"</h2>

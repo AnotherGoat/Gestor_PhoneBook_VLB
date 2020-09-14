@@ -9,19 +9,24 @@ import java.awt.event.ActionEvent;
 public class VentanaDatosAgenda extends JDialogTextoGeneral {
 
     //// Constructores
-    public VentanaDatosAgenda(Component ventanaAnterior) {
-        super(ventanaAnterior);
+    public VentanaDatosAgenda() {
         this.texto = Principal.agenda.toString();
 
-        inicializar();
+        cargarIcono();
+        inicializarComponentes();
+        ubicarComponentes();
+        implementarListeners();
+        configurarVentana();
+    }
 
-        //// Otras características de la ventana
+    //// Métodos
+    @Override
+    public void configurarVentana() {
+        super.configurarVentana();
 
         // Título
         setTitle("Datos guardados en la agenda");
-        // Tamaño inicial
-        setSize(400, 350);
-
-        configurar();
+        // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
+        setLocationRelativeTo(null);
     }
 }

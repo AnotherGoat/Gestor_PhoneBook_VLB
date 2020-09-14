@@ -4,7 +4,7 @@ import lanzador.Principal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public abstract class JDialogTextoGeneral extends JDialogGeneral {
 
@@ -23,14 +23,13 @@ public abstract class JDialogTextoGeneral extends JDialogGeneral {
     private JScrollPane scroll;
 
     //// Constructores
-    public JDialogTextoGeneral(Component ventanaAnterior) {
-        super(ventanaAnterior);
+    public JDialogTextoGeneral() {
     }
 
     //// Métodos
     @Override
-    public void inicializar(){
-        super.inicializar();
+    public void inicializarComponentes(){
+        super.inicializarComponentes();
 
         // Usa el BoxLayout para mostrar los botones verticalmente
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -44,10 +43,20 @@ public abstract class JDialogTextoGeneral extends JDialogGeneral {
 
         // Instancia el JScrollPane para la textArea (y define el funcionamiento vertical y horizontal)
         scroll = new JScrollPane(textArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    }
 
+    public void ubicarComponentes(){
         panel.add(scroll);
         panel.add(botonVolverAtras);
 
         add(panel);
+    }
+
+    @Override
+    public void configurarVentana(){
+        super.configurarVentana();
+
+        // Tamaño inicial
+        setSize(400, 350);
     }
 }

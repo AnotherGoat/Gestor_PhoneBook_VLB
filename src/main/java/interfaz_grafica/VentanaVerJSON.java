@@ -15,19 +15,24 @@ public class VentanaVerJSON extends JDialogTextoGeneral {
     static GestorArchivo ga = new GestorArchivo();
 
     //// Constructores
-    public VentanaVerJSON(Component ventanaAnterior) {
-        super(ventanaAnterior);
+    public VentanaVerJSON() {
         this.texto = ga.leerArchivo("agenda.json");
 
-        inicializar();
+        cargarIcono();
+        inicializarComponentes();
+        ubicarComponentes();
+        implementarListeners();
+        configurarVentana();
+    }
 
-        //// Otras características de la ventana
+    //// Métodos
+    @Override
+    public void configurarVentana() {
+        super.configurarVentana();
 
         // Título
         setTitle("Información guardada en \"agenda.json\"");
-        // Tamaño inicial
-        setSize(400, 350);
-
-        configurar();
+        // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
+        setLocationRelativeTo(null);
     }
 }

@@ -428,13 +428,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botonDatosAgenda){
             // Instancia la ventana con los datos de la agenda
-            VentanaDatosAgenda vda = new VentanaDatosAgenda(this);
+            VentanaDatosAgenda vda = new VentanaDatosAgenda();
             vda.setVisible(true);
         }
 
         if (e.getSource() == botonVerJSON){
             // Instancia la ventana con los datos de "agenda.json"
-            VentanaVerJSON vvj = new VentanaVerJSON(this);
+            VentanaVerJSON vvj = new VentanaVerJSON();
             vvj.setVisible(true);
         }
 
@@ -589,7 +589,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
             // Si el usuario ha seleccionado un objeto de la lista
             if(eleccion!=-1) {
                 // Instancia una ventana para elegir un contacto y la hace visible
-                VentanaDatosContacto vdc = new VentanaDatosContacto(eleccion, this);
+                VentanaDatosContacto vdc = new VentanaDatosContacto(eleccion);
                 vdc.setVisible(true);
             }
         }
