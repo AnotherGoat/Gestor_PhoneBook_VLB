@@ -12,7 +12,17 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     //// Atributos
     private JPanel panelNorte;
     private JPanel panelNombre;
+    private JLabel labelNombreActual;
+    private JTextField campoNombreActual;
+    private JLabel labelNombreNuevo;
+    private JTextField campoNombreNuevo;
+    private JButton botonCambiarNombre;
     private JPanel panelDireccion;
+    private JPanel panelCiudad;
+    private JLabel labelCiudadActual;
+    private JTextField campoCiudadActual;
+    private JLabel labelCiudadNueva;
+
     private JPanel panelFoto;
     private JPanel panelFechaCumple;
     private JPanel panelTelefonos;
@@ -64,6 +74,15 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
         panelNombre = new JPanel();
         panelNombre.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nombre"));
+        panelNombre.setLayout(new GridBagLayout());
+
+        labelNombreActual = new JLabel("Nombre actual:");
+        campoNombreActual = new JTextField(10);
+        campoNombreActual.setText(aux.getNombre());
+        labelNombreNuevo = new JLabel("Nombre nuevo:");
+        campoNombreNuevo = new JTextField(10);
+        botonCambiarNombre = new JButton("Cambiar");
+        botonCambiarNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panelDireccion = new JPanel();
         panelDireccion.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Dirección"));
@@ -94,6 +113,42 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     private void ubicarComponentes() {
         // Instancia GriadBagConstraints para configurar el GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
+
+        // Añadir componentes del panel para editar nombre
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        panelNombre.add(labelNombreActual, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 1;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        panelNombre.add(campoNombreActual, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        panelNombre.add(labelNombreNuevo, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 1;
+        c.gridy = 1;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        panelNombre.add(campoNombreNuevo, c);
+
+        c.fill = GridBagConstraints.NONE;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 2;
+        c.gridheight = 1;
+        panelNombre.add(botonCambiarNombre, c);
 
         // Añade el panel para editar nombre
         c.fill = GridBagConstraints.BOTH;

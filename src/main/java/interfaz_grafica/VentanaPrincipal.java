@@ -98,7 +98,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
     /**
      * TextField para ingresar el nombre
      */
-    private JTextField textFieldIngreseNombre;
+    private JTextField campoIngreseNombre;
     /**
      * Botón para guardar el contacto
      */
@@ -262,8 +262,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         labelIngreseNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Instancia el JTextField para crear un nuevo contacto
-        textFieldIngreseNombre = new JTextField(10);
-        textFieldIngreseNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
+        campoIngreseNombre = new JTextField(10);
+        campoIngreseNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Instancia el JButton para crear un nuevo contacto
         botonGuardar = new JButton("Guardar");
@@ -345,7 +345,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         c.weightx = 0.3;
         c.weighty = 0.5;
         panelEntrada.add(labelIngreseNombre);
-        panelEntrada.add(textFieldIngreseNombre);
+        panelEntrada.add(campoIngreseNombre);
         panelNuevoContacto.add(panelEntrada);
         panelNuevoContacto.add(botonGuardar);
         panel.add(panelNuevoContacto, c);
@@ -381,7 +381,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         botonEditarContacto.addActionListener(this);
         botonEliminarContacto.addActionListener(this);
         botonGuardar.addActionListener(this);
-        textFieldIngreseNombre.addKeyListener(this);
+        campoIngreseNombre.addKeyListener(this);
         jlist_contactos.addMouseListener(this);
 
         // Instancia el WindowListener para el JFrame (se agrega en el constructor)
@@ -568,17 +568,17 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         }
 
         if(e.getSource() == botonGuardar) {
-            if(textFieldIngreseNombre.getText().equals("")){
+            if(campoIngreseNombre.getText().equals("")){
                 // Muestra mensaje de error en algún lugar
             }
 
             else {
                 // Crea un contacto con el nombre ingresado
-                int posicionNueva = Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
+                int posicionNueva = Principal.agenda.crearContacto(campoIngreseNombre.getText());
                 // Añade el contacto nuevo al modelo, en la misma posición que el ArrayList
-                modelo_contactos.insertElementAt(textFieldIngreseNombre.getText(), posicionNueva);
+                modelo_contactos.insertElementAt(campoIngreseNombre.getText(), posicionNueva);
                 // Borra el texto del textField
-                textFieldIngreseNombre.setText("");
+                campoIngreseNombre.setText("");
             }
         }
 
@@ -629,20 +629,20 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
     @Override
     public void keyPressed(KeyEvent e) {
         // Si se pulsa enter al estar escribiendo en el textField
-        if (e.getSource() == textFieldIngreseNombre && e.getKeyCode() == KeyEvent.VK_ENTER) {
-            if(textFieldIngreseNombre.getText().equals("")){
+        if (e.getSource() == campoIngreseNombre && e.getKeyCode() == KeyEvent.VK_ENTER) {
+            if(campoIngreseNombre.getText().equals("")){
                 // Muestra mensaje de error en algún lugar
             }
 
             else {
                 // Crea un contacto con el nombre ingresado
-                int posicionNueva = Principal.agenda.crearContacto(textFieldIngreseNombre.getText());
+                int posicionNueva = Principal.agenda.crearContacto(campoIngreseNombre.getText());
 
                 // Añade el contacto nuevo al modelo, en la misma posición que el ArrayList
-                modelo_contactos.insertElementAt(textFieldIngreseNombre.getText(), posicionNueva);
+                modelo_contactos.insertElementAt(campoIngreseNombre.getText(), posicionNueva);
 
                 // Borra el texto del textField
-                textFieldIngreseNombre.setText("");
+                campoIngreseNombre.setText("");
             }
         }
     }
