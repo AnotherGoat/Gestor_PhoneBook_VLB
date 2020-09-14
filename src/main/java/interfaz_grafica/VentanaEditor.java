@@ -22,7 +22,18 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     private JLabel labelCiudadActual;
     private JTextField campoCiudadActual;
     private JLabel labelCiudadNueva;
-
+    private JTextField campoCiudadNueva;
+    private JPanel panelCalle;
+    private JLabel labelCalleActual;
+    private JTextField campoCalleActual;
+    private JLabel labelCalleNueva;
+    private JTextField campoCalleNueva;
+    private JPanel panelNo;
+    private JLabel labelNoActual;
+    private JTextField campoNoActual;
+    private JLabel labelNoNuevo;
+    private JTextField campoNoNuevo;
+    private JButton botonGuardarDireccion;
     private JPanel panelFoto;
     private JPanel panelFechaCumple;
     private JPanel panelTelefonos;
@@ -79,6 +90,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         labelNombreActual = new JLabel("Nombre actual:");
         campoNombreActual = new JTextField(10);
         campoNombreActual.setText(aux.getNombre());
+        campoNombreActual.setEditable(false);
         labelNombreNuevo = new JLabel("Nombre nuevo:");
         campoNombreNuevo = new JTextField(10);
         botonCambiarNombre = new JButton("Cambiar");
@@ -86,6 +98,48 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
         panelDireccion = new JPanel();
         panelDireccion.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Dirección"));
+        panelDireccion.setLayout(new BoxLayout(panelDireccion, BoxLayout.Y_AXIS));
+
+        panelCiudad = new JPanel();
+        panelCiudad.setLayout(new GridBagLayout());
+        panelCiudad.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Ciudad"));
+
+        labelCiudadActual = new JLabel("Ciudad actual:");
+        campoCiudadActual = new JTextField(10);
+        if(aux.getDireccion()!=null) {
+            campoCiudadActual.setText(aux.getDireccion().getCiudad());
+        }
+        campoCiudadActual.setEditable(false);
+        labelCiudadNueva = new JLabel("Ciudad nueva:");
+        campoCiudadNueva = new JTextField(10);
+
+        panelCalle = new JPanel();
+        panelCalle.setLayout(new GridBagLayout());
+        panelCalle.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Calle"));
+
+        labelCalleActual = new JLabel("Calle actual:");
+        campoCalleActual = new JTextField(10);
+        if(aux.getDireccion()!=null) {
+            campoCalleActual.setText(aux.getDireccion().getCalle());
+        }
+        campoCalleActual.setEditable(false);
+        labelCalleNueva = new JLabel("Calle nueva:");
+        campoCalleNueva = new JTextField(10);
+
+        panelNo = new JPanel();
+        panelNo.setLayout(new GridBagLayout());
+        panelNo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Número"));
+
+        labelNoActual = new JLabel("Número actual:");
+        campoNoActual = new JTextField(10);
+        if(aux.getDireccion()!=null) {
+            campoNoActual.setText("" + aux.getDireccion().getNumero());
+        }
+        campoNoActual.setEditable(false);
+        labelNoNuevo = new JLabel("Número nuevo:");
+        campoNoNuevo = new JTextField(10);
+
+        botonGuardarDireccion = new JButton("Guardar");
 
         panelFoto = new JPanel();
         panelFoto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Foto de contacto"));
@@ -111,148 +165,85 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     }
 
     private void ubicarComponentes() {
-        // Instancia GriadBagConstraints para configurar el GridBagLayout
-        GridBagConstraints c = new GridBagConstraints();
 
         // Añadir componentes del panel para editar nombre
-        c.fill = GridBagConstraints.NONE;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        panelNombre.add(labelNombreActual, c);
-
-        c.fill = GridBagConstraints.NONE;
-        c.gridx = 1;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        panelNombre.add(campoNombreActual, c);
-
-        c.fill = GridBagConstraints.NONE;
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        panelNombre.add(labelNombreNuevo, c);
-
-        c.fill = GridBagConstraints.NONE;
-        c.gridx = 1;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        panelNombre.add(campoNombreNuevo, c);
-
-        c.fill = GridBagConstraints.NONE;
-        c.gridx = 0;
-        c.gridy = 2;
-        c.gridwidth = 2;
-        c.gridheight = 1;
-        panelNombre.add(botonCambiarNombre, c);
+        panelNombre.add(labelNombreActual, gbc(0, 0, 1, 1));
+        panelNombre.add(campoNombreActual, gbc(1, 0, 1, 1));
+        panelNombre.add(labelNombreNuevo, gbc(0, 1, 1, 1));
+        panelNombre.add(campoNombreNuevo, gbc(1, 1, 1, 1));
+        panelNombre.add(botonCambiarNombre, gbc(0, 2, 2, 1));
 
         // Añade el panel para editar nombre
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0.2;
-        c.weighty = 0.33;
-        panelNorte.add(panelNombre, c);
+        panelNorte.add(panelNombre, gbc(0, 0, 1, 1, 0.2, 0.33));
+
+        // Añadir componentes del panel para editar ciudad
+        panelCiudad.add(labelCiudadActual, gbc(0, 0, 1, 1));
+        panelCiudad.add(campoCiudadActual, gbc(1, 0, 1, 1));
+        panelCiudad.add(labelCiudadNueva, gbc(0, 1, 1, 1));
+        panelCiudad.add(campoCiudadNueva, gbc(1, 1, 1, 1));
+        panelDireccion.add(panelCiudad);
 
         // Añadir el panel para editar dirección
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 0;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 2;
-        c.weightx = 0.2;
-        c.weighty = 0.67;
-        panelNorte.add(panelDireccion, c);
+        panelNorte.add(panelDireccion, gbc(0, 1, 1, 2, 0.2, 0.67));
 
         // Añadir el panel para editar foto
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 1;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0.2;
-        c.weighty = 0.33;
-        panelNorte.add(panelFoto, c);
+        panelNorte.add(panelFoto, gbc(1, 0, 1, 1, 0.2, 0.33));
 
         // Añadir el panel para editar fecha de cumpleaños
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 1;
-        c.gridy = 1;
-        c.gridwidth = 1;
-        c.gridheight = 2;
-        c.weightx = 0.2;
-        c.weighty = 0.67;
-        panelNorte.add(panelFechaCumple, c);
+        panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.2, 0.67));
 
         // Añadir el panel para editar teléfonos
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 2;
-        c.gridy = 0;
-        c.gridwidth = 1;
-        c.gridheight = 3;
-        c.weightx = 0.2;
-        c.weighty = 1;
-        panelNorte.add(panelTelefonos, c);
+        panelNorte.add(panelTelefonos, gbc(2, 0, 1, 3, 0.2, 1));
 
         // Añadir el panel para editar emails
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 3;
-        c.gridy = 0;
-        c.gridwidth = 2;
-        c.gridheight = 1;
-        c.weightx = 0.4;
-        c.weighty = 0.33;
-        panelNorte.add(panelEmails, c);
+        panelNorte.add(panelEmails, gbc(3, 0, 2, 1, 0.4, 0.33));
 
         // Añadir el panel para editar apodos
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 3;
-        c.gridy = 1;
-        c.gridwidth = 2;
-        c.gridheight = 1;
-        c.weightx = 0.4;
-        c.weighty = 0.34;
-        panelNorte.add(panelApodos, c);
+        panelNorte.add(panelApodos, gbc(3, 1, 2, 1, 0.4, 0.34));
 
         // Añadir el panel para editar notas
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 3;
-        c.gridy = 2;
-        c.gridwidth = 2;
-        c.gridheight = 1;
-        c.weightx = 0.4;
-        c.weighty = 0.33;
-        panelNorte.add(panelNotas, c);
+        panelNorte.add(panelNotas, gbc(3, 2, 2, 1, 0.4, 0.33));
 
-        c.fill = GridBagConstraints.NONE;
-        c.gridx = 0;
-        c.gridy = 3;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0;
-        c.weighty = 0;
-        panelSur.add(botonGuardarCambios, c);
+        // Añadir botones de abajo al panel sur
+        panelSur.add(botonGuardarCambios, gbc(0, 3, 1, 1));
+        panelSur.add(botonVolverAtras, gbc(1, 3, 1, 1));
 
-        c.fill = GridBagConstraints.NONE;
-        c.gridx = 1;
-        c.gridy = 3;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.weightx = 0;
-        c.weighty = 0;
-        panelSur.add(botonVolverAtras, c);
-
+        // Añadir los dos paneles al panel principal
         panel.add(panelNorte);
         panel.add(panelSur);
 
         // Añade el JPanel al JFrame
         add(panel);
+    }
+
+    public GridBagConstraints gbc(int x, int y, int ancho, int altura){
+        // Instancia GriadBagConstraints para configurar un GridBagLayout
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.gridx = x;
+        c.gridy = y;
+        c.gridwidth = ancho;
+        c.gridheight = altura;
+        c.weightx = 0;
+        c.weighty = 0;
+        c.fill = GridBagConstraints.BOTH;
+
+        return c;
+    }
+
+    public GridBagConstraints gbc(int x, int y, int ancho, int altura, double pesox, double pesoy){
+        // Instancia GriadBagConstraints para configurar un GridBagLayout
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.gridx = x;
+        c.gridy = y;
+        c.gridwidth = ancho;
+        c.gridheight = altura;
+        c.weightx = pesox;
+        c.weighty = pesoy;
+        c.fill = GridBagConstraints.BOTH;
+
+        return c;
     }
 
     @Override
