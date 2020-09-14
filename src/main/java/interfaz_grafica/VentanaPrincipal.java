@@ -193,9 +193,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         panelNuevoContacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nuevo contacto"));
         panelNuevoContacto.setLayout(new GridBagLayout());
 
-        panelEntrada = new JPanel();
-        panelEntrada.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         panelOpcionesLista = new JPanel();
         panelOpcionesLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones de la lista"));
         panelOpcionesLista.setLayout(new BoxLayout(panelOpcionesLista, BoxLayout.Y_AXIS));
@@ -266,7 +263,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         campoIngreseNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Instancia el JButton para crear un nuevo contacto
-        botonGuardar = new JButton("Guardar");
+        botonGuardar = new JButton("Añadir");
         botonGuardar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         botonDatosContacto = new JButton("Ver datos");
