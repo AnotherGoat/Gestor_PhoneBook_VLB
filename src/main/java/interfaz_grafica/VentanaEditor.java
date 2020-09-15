@@ -308,17 +308,16 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
             }
 
             else {
-                // Crea un contacto con el nombre ingresado
+                // Cambia el nombre del contacto auxiliar
                 aux.setNombre(campoNombreNuevo.getText());
                 // Cambia el nombre actual
                 campoNombreActual.setText(campoNombreNuevo.getText());
-                // Borra el texto del textField
+                // Borra el texto del nombre nuevo
                 campoNombreNuevo.setText("");
             }
         }
 
         if(e.getSource() == botonGuardarDireccion){
-
         }
 
         if(e.getSource() == botonGuardarFecha){
