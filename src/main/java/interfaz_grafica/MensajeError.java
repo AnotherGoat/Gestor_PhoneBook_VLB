@@ -14,6 +14,8 @@ public class MensajeError extends JOptionPane {
 
     //// Constructores
     public MensajeError(String mensaje){
+        this.mensaje = mensaje;
+
         showMessageDialog(null, "Error: "+mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

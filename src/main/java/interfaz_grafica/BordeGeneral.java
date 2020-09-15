@@ -11,7 +11,8 @@ import javax.swing.border.TitledBorder;
 public class BordeGeneral{
 
     //// Constructores
-    public BordeGeneral() {
+    private BordeGeneral() {
+        // Este constructor es privado, significa que esta clase no se puede instanciar
     }
 
     //// Métodos

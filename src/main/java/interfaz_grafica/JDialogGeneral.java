@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public abstract class JDialogGeneral extends JDialog implements ActionListener {
+public class JDialogGeneral extends JDialog implements ActionListener {
 
     //// Atributos
     /**
@@ -17,7 +17,8 @@ public abstract class JDialogGeneral extends JDialog implements ActionListener {
     protected JButton botonVolverAtras;
 
     //// Constructores
-    public JDialogGeneral() {
+    protected JDialogGeneral() {
+        // Este constructor es protegido, significa que esta clase no se puede instanciar
     }
 
     //// Métodos

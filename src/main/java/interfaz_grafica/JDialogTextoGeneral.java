@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public abstract class JDialogTextoGeneral extends JDialogGeneral {
+public class JDialogTextoGeneral extends JDialogGeneral {
 
     //// Atributos
     /**
@@ -23,7 +23,8 @@ public abstract class JDialogTextoGeneral extends JDialogGeneral {
     protected JScrollPane scroll;
 
     //// Constructores
-    public JDialogTextoGeneral() {
+    protected JDialogTextoGeneral() {
+        // Este constructor es protegido, significa que esta clase no se puede instanciar
     }
 
     //// Métodos
