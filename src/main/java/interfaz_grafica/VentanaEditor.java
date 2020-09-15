@@ -36,6 +36,13 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     private JButton botonGuardarDireccion;
     private JPanel panelFoto;
     private JPanel panelFechaCumple;
+    private JPanel panelFechaActual;
+    private JComboBox<Integer> comboDiaActual;
+    private JComboBox<String> comboMesActual;
+    private JPanel panelFechaNueva;
+    private JComboBox<Integer> comboDiaNuevo;
+    private JComboBox<String> comboMesNuevo;
+    private JButton botonGuardarFecha;
     private JPanel panelTelefonos;
     private JPanel panelEmails;
     private JPanel panelApodos;
@@ -84,7 +91,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         panelNorte.setLayout(new GridBagLayout());
 
         panelNombre = new JPanel();
-        panelNombre.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nombre"));
+        panelNombre.setBorder(BordeGeneral.crearBorde("Nombre"));
         panelNombre.setLayout(new GridBagLayout());
 
         labelNombreActual = new JLabel("Nombre actual:");
@@ -97,12 +104,12 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         botonCambiarNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panelDireccion = new JPanel();
-        panelDireccion.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Dirección"));
+        panelDireccion.setBorder(BordeGeneral.crearBorde("Dirección"));
         panelDireccion.setLayout(new BoxLayout(panelDireccion, BoxLayout.Y_AXIS));
 
         panelCiudad = new JPanel();
         panelCiudad.setLayout(new GridBagLayout());
-        panelCiudad.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Ciudad"));
+        panelCiudad.setBorder(BordeGeneral.crearBorde("Ciudad"));
 
         labelCiudadActual = new JLabel("Ciudad actual:");
         campoCiudadActual = new JTextField(10);
@@ -115,7 +122,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
         panelCalle = new JPanel();
         panelCalle.setLayout(new GridBagLayout());
-        panelCalle.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Calle"));
+        panelCalle.setBorder(BordeGeneral.crearBorde("Calle"));
 
         labelCalleActual = new JLabel("Calle actual:");
         campoCalleActual = new JTextField(10);
@@ -128,7 +135,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
         panelNo = new JPanel();
         panelNo.setLayout(new GridBagLayout());
-        panelNo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Número"));
+        panelNo.setBorder(BordeGeneral.crearBorde("Número"));
 
         labelNoActual = new JLabel("Número actual:");
         campoNoActual = new JTextField(10);
@@ -142,22 +149,30 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         botonGuardarDireccion = new JButton("Guardar");
 
         panelFoto = new JPanel();
-        panelFoto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Foto de contacto"));
+        panelFoto.setBorder(BordeGeneral.crearBorde("Foto de contacto"));
 
         panelFechaCumple = new JPanel();
-        panelFechaCumple.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Fecha de cumpleaños"));
+        panelFechaCumple.setBorder(BordeGeneral.crearBorde("Fecha de cumpleaños"));
+
+        panelFechaActual = new JPanel();
+        panelFechaActual.setBorder(BordeGeneral.crearBorde("Fecha actual"));
+
+        panelFechaNueva = new JPanel();
+        panelFechaNueva.setBorder(BordeGeneral.crearBorde("Fecha nueva"));
+
+        botonGuardarFecha = new JButton("Guardar");
 
         panelTelefonos = new JPanel();
-        panelTelefonos.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Teléfonos"));
+        panelTelefonos.setBorder(BordeGeneral.crearBorde("Teléfonos"));
 
         panelEmails = new JPanel();
-        panelEmails.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Emails"));
+        panelEmails.setBorder(BordeGeneral.crearBorde("Emails"));
 
         panelApodos = new JPanel();
-        panelApodos.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Apodos"));
+        panelApodos.setBorder(BordeGeneral.crearBorde("Apodos"));
 
         panelNotas = new JPanel();
-        panelNotas.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Notas"));
+        panelNotas.setBorder(BordeGeneral.crearBorde("Notas"));
 
         panelSur = new JPanel();
 
@@ -182,6 +197,22 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         panelCiudad.add(labelCiudadNueva, gbc(0, 1, 1, 1));
         panelCiudad.add(campoCiudadNueva, gbc(1, 1, 1, 1));
         panelDireccion.add(panelCiudad);
+
+        // Añadir componentes del panel para editar calle
+        panelCalle.add(labelCalleActual, gbc(0, 0, 1, 1));
+        panelCalle.add(campoCalleActual, gbc(1, 0, 1, 1));
+        panelCalle.add(labelCalleNueva, gbc(0, 1, 1, 1));
+        panelCalle.add(campoCalleNueva, gbc(1, 1, 1, 1));
+        panelDireccion.add(panelCalle);
+
+        // Añadir componentes del panel para editar número
+        panelNo.add(labelNoActual, gbc(0, 0, 1, 1));
+        panelNo.add(campoNoActual, gbc(1, 0, 1, 1));
+        panelNo.add(labelNoNuevo, gbc(0, 1, 1, 1));
+        panelNo.add(campoNoNuevo, gbc(1, 1, 1, 1));
+        panelDireccion.add(panelNo);
+
+        panelDireccion.add(botonGuardarDireccion);
 
         // Añadir el panel para editar dirección
         panelNorte.add(panelDireccion, gbc(0, 1, 1, 2, 0.2, 0.67));

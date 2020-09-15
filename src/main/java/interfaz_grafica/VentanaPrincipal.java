@@ -178,23 +178,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         panelTitulo = new JPanel();
         // Para centrar el label
         panelTitulo.setLayout(new GridBagLayout());
-        panelTitulo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Información del proyecto"));
+        panelTitulo.setBorder(BordeGeneral.crearBorde("Información del proyecto"));
 
         panelOpciones = new JPanel();
         panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
         // Crea un borde para el panel con las opciones
-        panelOpciones.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones"));
+        panelOpciones.setBorder(BordeGeneral.crearBorde("Opciones"));
 
         panelLista = new JPanel();
         panelLista.setLayout(new BorderLayout());
-        panelLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Lista de contactos"));
+        panelLista.setBorder(BordeGeneral.crearBorde("Lista de contactos"));
 
         panelNuevoContacto = new JPanel();
-        panelNuevoContacto.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Nuevo contacto"));
+        panelNuevoContacto.setBorder(BordeGeneral.crearBorde("Nuevo contacto"));
         panelNuevoContacto.setLayout(new GridBagLayout());
 
         panelOpcionesLista = new JPanel();
-        panelOpcionesLista.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2, true), "Opciones de la lista"));
+        panelOpcionesLista.setBorder(BordeGeneral.crearBorde("Opciones de la lista"));
         panelOpcionesLista.setLayout(new BoxLayout(panelOpcionesLista, BoxLayout.Y_AXIS));
 
         // Instancia el JLabel
