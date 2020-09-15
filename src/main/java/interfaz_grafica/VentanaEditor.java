@@ -278,6 +278,17 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
     }
 
     @Override
+    protected void implementarListeners() {
+        super.implementarListeners();
+
+        // Implementa listeners para otros botones
+        botonGuardarCambios.addActionListener(this);
+        botonCambiarNombre.addActionListener(this);
+        botonGuardarDireccion.addActionListener(this);
+        botonGuardarFecha.addActionListener(this);
+    }
+
+    @Override
     protected void configurarVentana() {
         super.configurarVentana();
 
@@ -291,6 +302,33 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == botonCambiarNombre){
+            if(campoNombreNuevo.getText().equals("")){
+                // Muestra mensaje de error en algún lugar
+            }
+
+            else {
+                // Crea un contacto con el nombre ingresado
+                aux.setNombre(campoNombreNuevo.getText());
+                // Cambia el nombre actual
+                campoNombreActual.setText(campoNombreNuevo.getText());
+                // Borra el texto del textField
+                campoNombreNuevo.setText("");
+            }
+        }
+
+        if(e.getSource() == botonGuardarDireccion){
+
+        }
+
+        if(e.getSource() == botonGuardarFecha){
+
+        }
+
+        if(e.getSource() == botonGuardarCambios){
+
+        }
+
         if(e.getSource() == botonVolverAtras){
                 // Todavía no configurado
         }
