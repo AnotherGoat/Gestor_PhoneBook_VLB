@@ -12,12 +12,14 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
     //// Atributos
     private JPanel panelNorte;
+
     private JPanel panelNombre;
     private JLabel labelNombreActual;
     private JTextField campoNombreActual;
     private JLabel labelNombreNuevo;
     private JTextField campoNombreNuevo;
     private JButton botonCambiarNombre;
+
     private JPanel panelDireccion;
     private JPanel panelCiudad;
     private JLabel labelCiudadActual;
@@ -35,7 +37,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JLabel labelNoNuevo;
     private JTextField campoNoNuevo;
     private JButton botonGuardarDireccion;
+    
     private JPanel panelFoto;
+
     private JPanel panelFechaCumple;
     private JPanel panelFechaActual;
     private JComboBox<Integer> comboDiaActual;
@@ -157,6 +161,8 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         panelFechaActual = new JPanel();
         panelFechaActual.setBorder(BordeGeneral.crearBorde("Fecha actual"));
+
+        comboDiaActual = new JComboBox();
 
         panelFechaNueva = new JPanel();
         panelFechaNueva.setBorder(BordeGeneral.crearBorde("Fecha nueva"));
