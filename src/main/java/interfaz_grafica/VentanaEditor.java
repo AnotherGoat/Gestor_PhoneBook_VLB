@@ -2,12 +2,13 @@ package interfaz_grafica;
 
 import lanzador.Principal;
 import phonebook.Contacto;
+import phonebook.Direccion;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class VentanaEditor extends JDialogGeneral implements ActionListener{
+public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
     //// Atributos
     private JPanel panelNorte;
@@ -113,7 +114,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
         labelCiudadActual = new JLabel("Ciudad actual:");
         campoCiudadActual = new JTextField(10);
-        if(aux.getDireccion()!=null) {
+        if (aux.getDireccion() != null) {
             campoCiudadActual.setText(aux.getDireccion().getCiudad());
         }
         campoCiudadActual.setEditable(false);
@@ -126,7 +127,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
         labelCalleActual = new JLabel("Calle actual:");
         campoCalleActual = new JTextField(10);
-        if(aux.getDireccion()!=null) {
+        if (aux.getDireccion() != null) {
             campoCalleActual.setText(aux.getDireccion().getCalle());
         }
         campoCalleActual.setEditable(false);
@@ -139,7 +140,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
         labelNoActual = new JLabel("Número actual:");
         campoNoActual = new JTextField(10);
-        if(aux.getDireccion()!=null) {
+        if (aux.getDireccion() != null) {
             campoNoActual.setText("" + aux.getDireccion().getNumero());
         }
         campoNoActual.setEditable(false);
@@ -247,7 +248,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         add(panel);
     }
 
-    private GridBagConstraints gbc(int x, int y, int ancho, int altura){
+    private GridBagConstraints gbc(int x, int y, int ancho, int altura) {
         // Instancia GriadBagConstraints para configurar un GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
 
@@ -262,7 +263,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         return c;
     }
 
-    private GridBagConstraints gbc(int x, int y, int ancho, int altura, double pesox, double pesoy){
+    private GridBagConstraints gbc(int x, int y, int ancho, int altura, double pesox, double pesoy) {
         // Instancia GriadBagConstraints para configurar un GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
 
@@ -293,7 +294,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
         super.configurarVentana();
 
         // Título
-        setTitle("Editando contacto \""+aux.getNombre()+"\"");
+        setTitle("Editando contacto \"" + aux.getNombre() + "\"");
         // Tamaño inicial
         setSize(700, 500);
         // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
@@ -302,12 +303,10 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == botonCambiarNombre){
-            if(campoNombreNuevo.getText().equals("")){
+        if (e.getSource() == botonCambiarNombre) {
+            if (campoNombreNuevo.getText().equals("")) {
                 // Muestra mensaje de error en algún lugar
-            }
-
-            else {
+            } else {
                 // Cambia el nombre del contacto auxiliar
                 aux.setNombre(campoNombreNuevo.getText());
                 // Cambia el nombre actual
@@ -317,19 +316,29 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener{
             }
         }
 
-        if(e.getSource() == botonGuardarDireccion){
-        }
+        if (e.getSource() == botonGuardarDireccion) {
 
-        if(e.getSource() == botonGuardarFecha){
+                //nueva direccion con datos campo
+                Direccion newD = new Direccion(campoCiudadNueva.getText(), campoCalleNueva.getText(), Integer.parseInt(campoNoNuevo.getText()));
+                aux.setDireccion(newD);
+                //cambio de nombre
+                campoCiudadActual.setText(campoCiudadNueva.getText());
+                campoCalleActual.setText(campoCalleNueva.getText());
+                campoNoActual.setText(campoNoNuevo.getText());
 
-        }
+            }
 
-        if(e.getSource() == botonGuardarCambios){
+            if (e.getSource() == botonGuardarFecha) {
 
-        }
+            }
 
-        if(e.getSource() == botonVolverAtras){
+            if (e.getSource() == botonGuardarCambios) {
+
+            }
+
+            if (e.getSource() == botonVolverAtras) {
                 // Todavía no configurado
+            }
         }
     }
 }
