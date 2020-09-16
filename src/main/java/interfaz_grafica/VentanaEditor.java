@@ -343,4 +343,4 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
             }
         }
     }
-}
+
