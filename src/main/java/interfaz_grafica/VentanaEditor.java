@@ -333,6 +333,8 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
             }
 
             if (e.getSource() == botonGuardarCambios) {
+                //agregar contacto auxiliar a la posicion que se edita
+                Principal.agenda.getLista_Contactos().set(posicion, new Contacto(aux));
 
             }
 
