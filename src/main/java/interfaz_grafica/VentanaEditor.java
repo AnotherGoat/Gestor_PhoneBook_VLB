@@ -447,7 +447,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Título
         setTitle("Editando contacto \"" + aux.getNombre() + "\"");
         // Tamaño inicial
-        setSize(700, 500);
+        setSize(900, 500);
         // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
         setLocationRelativeTo(null);
     }
