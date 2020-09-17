@@ -237,7 +237,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         botonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Instancia el JLabel para crear un nuevo contacto
-        labelIngreseNombre = new JLabel("Nombre:");
+        labelIngreseNombre = new JLabel("Nombre:  ");
         labelIngreseNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Instancia el JTextField para crear un nuevo contacto

@@ -138,11 +138,11 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelNombre.setBorder(BordeGeneral.crearBorde("Nombre"));
         panelNombre.setLayout(new GridBagLayout());
 
-        labelNombreActual = new JLabel("Nombre actual:");
+        labelNombreActual = new JLabel("Nombre actual:  ");
         campoNombreActual = new JTextField(10);
         campoNombreActual.setText(aux.getNombre());
         campoNombreActual.setEditable(false);
-        labelNombreNuevo = new JLabel("Nombre nuevo:");
+        labelNombreNuevo = new JLabel("Nombre nuevo:  ");
         campoNombreNuevo = new JTextField(10);
         botonCambiarNombre = new JButton("Cambiar");
         botonCambiarNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -155,39 +155,39 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelCiudad.setLayout(new GridBagLayout());
         panelCiudad.setBorder(BordeGeneral.crearBorde("Ciudad"));
 
-        labelCiudadActual = new JLabel("Ciudad actual:");
+        labelCiudadActual = new JLabel("Ciudad actual:  ");
         campoCiudadActual = new JTextField(10);
         if (aux.getDireccion() != null) {
             campoCiudadActual.setText(aux.getDireccion().getCiudad());
         }
         campoCiudadActual.setEditable(false);
-        labelCiudadNueva = new JLabel("Ciudad nueva:");
+        labelCiudadNueva = new JLabel("Ciudad nueva:  ");
         campoCiudadNueva = new JTextField(10);
 
         panelCalle = new JPanel();
         panelCalle.setLayout(new GridBagLayout());
         panelCalle.setBorder(BordeGeneral.crearBorde("Calle"));
 
-        labelCalleActual = new JLabel("Calle actual:");
+        labelCalleActual = new JLabel("Calle actual:  ");
         campoCalleActual = new JTextField(10);
         if (aux.getDireccion() != null) {
             campoCalleActual.setText(aux.getDireccion().getCalle());
         }
         campoCalleActual.setEditable(false);
-        labelCalleNueva = new JLabel("Calle nueva:");
+        labelCalleNueva = new JLabel("Calle nueva:  ");
         campoCalleNueva = new JTextField(10);
 
         panelNo = new JPanel();
         panelNo.setLayout(new GridBagLayout());
         panelNo.setBorder(BordeGeneral.crearBorde("Número"));
 
-        labelNoActual = new JLabel("Número actual:");
+        labelNoActual = new JLabel("Número actual:  ");
         campoNoActual = new JTextField(10);
         if (aux.getDireccion() != null) {
             campoNoActual.setText("" + aux.getDireccion().getNumero());
         }
         campoNoActual.setEditable(false);
-        labelNoNuevo = new JLabel("Número nuevo:");
+        labelNoNuevo = new JLabel("Número nuevo:  ");
         campoNoNuevo = new JTextField(10);
 
         botonGuardarDireccion = new JButton("Guardar");
