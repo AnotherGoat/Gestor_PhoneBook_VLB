@@ -72,10 +72,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
      */
     private JPanel panelNuevoContacto;
     /**
-     * Panel con el JLabel y el JTextField
-     */
-    private JPanel panelEntrada;
-    /**
      * Label con el nombre del programa
      */
     private JLabel labelIngreseNombre;

@@ -61,94 +61,31 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     /**
      * Panel que tiene la lista de teléfonos
      */
-    private JPanel panelListaTelefonos;
+    private JListGeneral listaT;
 
     private JPanel panelOpcionesT;
-    /**
-     * Modelo con los números y tipo de teléfonos (se usa en el JList)
-     */
-    private DefaultListModel<String> modelo_telefonos;
-    /**
-     * Lista con los teléfonos
-     */
-    private JList<String> jlist_telefonos;
-    /**
-     * Scroll para el panel con los teléfonos
-     */
-    private JScrollPane scrollT;
-    /**
-     * Teléfono que escoge el usuario, empieza en -1 para validar
-     */
-    private int eleccionT = -1;
 
     private JPanel panelEmails;
     /**
      * Panel que tiene la lista de emails
      */
-    private JPanel panelListaEmails;
+    private JListGeneral listaE;
     private JPanel panelOpcionesE;
-    /**
-     * Modelo con los emails (se usa en el JList)
-     */
-    private DefaultListModel<String> modelo_emails;
-    /**
-     * Lista con los emails
-     */
-    private JList<String> jlist_emails;
-    /**
-     * Scroll para el panel con los emails
-     */
-    private JScrollPane scrollE;
-    /**
-     * Email que escoge el usuario, empieza en -1 para validar
-     */
-    private int eleccionE = -1;
+
 
     private JPanel panelApodos;
     /**
      * Panel que tiene la lista de apodos
      */
-    private JPanel panelListaApodos;
+    private JListGeneral listaA;
     private JPanel panelOpcionesA;
-    /**
-     * Modelo con los apodos (se usa en el JList)
-     */
-    private DefaultListModel<String> modelo_apodos;
-    /**
-     * JList con los apodos
-     */
-    private JList<String> jlist_apodos;
-    /**
-     * Scroll para el panel con los apodos
-     */
-    private JScrollPane scrollA;
-    /**
-     * Apodo que escoge el usuario, empieza en -1 para validar
-     */
-    private int eleccionA = -1;
 
     private JPanel panelNotas;
     /**
      * Panel que tiene la lista de notas
      */
-    private JPanel panelListaNotas;
+    private JListGeneral listaN;
     private JPanel panelOpcionesN;
-    /**
-     * Modelo con las notas (se usa en el JList)
-     */
-    private DefaultListModel<String> modelo_notas;
-    /**
-     * Lista con las notas
-     */
-    private JList<String> jlist_notas;
-    /**
-     * Scroll para el panel con las notas
-     */
-    private JScrollPane scrollN;
-    /**
-     * Nota que escoge el usuario, empieza en -1 para validar
-     */
-    private int eleccionN = -1;
 
     /**
      * Panel que tendrá el botón para guardar cambios y el botón para salir
@@ -280,19 +217,11 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelNuevoTelefono = new JPanel();
         panelNuevoTelefono.setBorder(BordeGeneral.crearBorde("Nuevo teléfono"));
 
-        panelListaTelefonos = new JPanel();
-        panelListaTelefonos.setLayout(new BorderLayout());
-        panelListaTelefonos.setBorder(BordeGeneral.crearBorde("Lista de teléfonos"));
-        // Instancia un modelo para usarlo en la JList
-        modelo_telefonos = new DefaultListModel();
-        // Instancia un JList con los datos del modelo
-        jlist_telefonos = new JList(modelo_telefonos);
-        // Añada todos los teléfonos del contacto "aux" al modelo
+        listaT = new JListGeneral("Lista de teléfonos");
+        // Añade todos los teléfonos al modelo de la lista
         for (Telefono t : aux.getLista_Telefonos()) {
-            modelo_telefonos.addElement(t.getNumero()+" ("+t.getTipo()+")");
+            listaT.agregarElemento(t.getNumero()+" ("+t.getTipo()+")");
         }
-        // Instancia el JScrollPane, usando la JList (y define el funcionamiento vertical y horizontal)
-        scrollT = new JScrollPane(jlist_telefonos, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         panelOpcionesT = new JPanel();
         panelOpcionesT.setBorder(BordeGeneral.crearBorde("Opciones"));
@@ -302,8 +231,12 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelEmails.setBorder(BordeGeneral.crearBorde("Emails"));
         panelEmails.setLayout(new GridBagLayout());
 
-        panelListaEmails = new JPanel();
-        panelListaEmails.setBorder(BordeGeneral.crearBorde("Lista de emails"));
+        listaE = new JListGeneral("Lista de emails");
+        // Añade todos los emails al modelo de la lista
+        for (String s : aux.getLista_Emails()) {
+            listaE.agregarElemento(s);
+        }
+
         panelOpcionesE = new JPanel();
         panelOpcionesE.setBorder(BordeGeneral.crearBorde("Opciones"));
         panelOpcionesE.setLayout(new GridBagLayout());
@@ -312,8 +245,12 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelApodos.setBorder(BordeGeneral.crearBorde("Apodos"));
         panelApodos.setLayout(new GridBagLayout());
 
-        panelListaApodos = new JPanel();
-        panelListaApodos.setBorder(BordeGeneral.crearBorde("Lista de apodos"));
+        listaA = new JListGeneral("Lista de apodos");
+        // Añade todos los apodos al modelo de la lista
+        for (String s : aux.getLista_Apodos()) {
+            listaA.agregarElemento(s);
+        }
+
         panelOpcionesA = new JPanel();
         panelOpcionesA.setBorder(BordeGeneral.crearBorde("Opciones"));
         panelOpcionesA.setLayout(new GridBagLayout());
@@ -322,8 +259,12 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelNotas.setBorder(BordeGeneral.crearBorde("Notas"));
         panelNotas.setLayout(new GridBagLayout());
 
-        panelListaNotas = new JPanel();
-        panelListaNotas.setBorder(BordeGeneral.crearBorde("Lista de notas"));
+        listaN = new JListGeneral("Lista de notas");
+        // Añade todas las notas al modelo de la lista
+        for (String s : aux.getLista_Notas()) {
+            listaN.agregarElemento(s);
+        }
+
         panelOpcionesN = new JPanel();
         panelOpcionesN.setBorder(BordeGeneral.crearBorde("Opciones"));
         panelOpcionesN.setLayout(new GridBagLayout());
@@ -381,23 +322,22 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.2, 0.67));
 
         panelTelefonos.add(panelNuevoTelefono, gbc(0, 0, 1, 1, 1, 0.25));
-        panelListaTelefonos.add(scrollT, BorderLayout.CENTER);
-        panelTelefonos.add(panelListaTelefonos, gbc(0, 1, 1, 1, 1, 0.5));
+        panelTelefonos.add(listaT, gbc(0, 1, 1, 1, 1, 0.5));
         panelTelefonos.add(panelOpcionesT, gbc(0, 2, 1, 1, 1, 0.25));
         // Añadir el panel para editar teléfonos
         panelNorte.add(panelTelefonos, gbc(2, 0, 1, 3, 0.2, 1));
 
-        panelEmails.add(panelListaEmails, gbc(0, 0, 1, 1, 0.5, 1));
+        panelEmails.add(listaE, gbc(0, 0, 1, 1, 0.5, 1));
         panelEmails.add(panelOpcionesE, gbc(1, 0, 1, 1, 0.5, 1));
         // Añadir el panel para editar emails
         panelNorte.add(panelEmails, gbc(3, 0, 2, 1, 0.4, 0.33));
 
-        panelApodos.add(panelListaApodos, gbc(0, 0, 1, 1, 0.5, 1));
+        panelApodos.add(listaA, gbc(0, 0, 1, 1, 0.5, 1));
         panelApodos.add(panelOpcionesA, gbc(1, 0, 1, 1, 0.5, 1));
         // Añadir el panel para editar apodos
         panelNorte.add(panelApodos, gbc(3, 1, 2, 1, 0.4, 0.34));
 
-        panelNotas.add(panelListaNotas, gbc(0, 0, 1, 1, 0.5, 1));
+        panelNotas.add(listaN, gbc(0, 0, 1, 1, 0.5, 1));
         panelNotas.add(panelOpcionesN, gbc(1, 0, 1, 1, 0.5, 1));
         // Añadir el panel para editar notas
         panelNorte.add(panelNotas, gbc(3, 2, 2, 1, 0.4, 0.33));
@@ -475,7 +415,8 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         if (e.getSource() == botonCambiarNombre) {
             if (campoNombreNuevo.getText().equals("")) {
                 // Muestra mensaje de error en algún lugar
-            } else {
+            }
+            else {
                 // Cambia el nombre del contacto auxiliar
                 aux.setNombre(campoNombreNuevo.getText());
                 // Cambia el nombre actual
@@ -487,25 +428,24 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         if (e.getSource() == botonGuardarDireccion) {
 
-                //nueva direccion con datos campo
-                Direccion newD = new Direccion(campoCiudadNueva.getText(), campoCalleNueva.getText(), Integer.parseInt(campoNoNuevo.getText()));
-                aux.setDireccion(newD);
-                //cambio de nombre
-                campoCiudadActual.setText(campoCiudadNueva.getText());
-                campoCalleActual.setText(campoCalleNueva.getText());
-                campoNoActual.setText(campoNoNuevo.getText());
+            // Nueva direccion con datos campo
+            Direccion newD = new Direccion(campoCiudadNueva.getText(), campoCalleNueva.getText(), Integer.parseInt(campoNoNuevo.getText()));
+            aux.setDireccion(newD);
+            // Cambio de nombre
+            campoCiudadActual.setText(campoCiudadNueva.getText());
+            campoCalleActual.setText(campoCalleNueva.getText());
+            campoNoActual.setText(campoNoNuevo.getText());
 
-            }
+        }
 
-            if (e.getSource() == botonGuardarFecha) {
+        if (e.getSource() == botonGuardarFecha) {
 
-            }
+        }
 
-            if (e.getSource() == botonGuardarCambios) {
-                // Agregar contacto auxiliar a la posición que se edita
-                Principal.agenda.getLista_Contactos().set(posicion, new Contacto(aux));
-
-            }
+        if (e.getSource() == botonGuardarCambios) {
+            // Agregar contacto auxiliar a la posición que se edita
+            Principal.agenda.getLista_Contactos().set(posicion, new Contacto(aux));
         }
     }
+}
 
