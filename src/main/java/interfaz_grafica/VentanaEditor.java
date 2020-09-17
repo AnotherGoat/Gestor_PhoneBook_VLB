@@ -18,6 +18,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     /**
      * JPanel que contiene los otros paneles donde se puede editar un contacto
      */
+    //Panel que contiene componentes para editar nombre
     private JPanel panelNorte;
 
     private JPanel panelNombre;
@@ -27,7 +28,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JTextField campoNombreNuevo;
     private JButton botonCambiarNombre;
 
+    //Panel que contiene componentes para editar Direccion
     private JPanel panelDireccion;
+
     private JPanel panelCiudad;
     private JLabel labelCiudadActual;
     private JTextField campoCiudadActual;
@@ -44,10 +47,13 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JLabel labelNoNuevo;
     private JTextField campoNoNuevo;
     private JButton botonGuardarDireccion;
-    
+
+    //Panel que contiene componentes para editar Foto
     private JPanel panelFoto;
 
+    //Panel que contiene componentes para editar fecha de cumpleaños
     private JPanel panelFechaCumple;
+
     private JPanel panelFechaActual;
     private JComboBox<Integer> comboDiaActual;
     private JComboBox<String> comboMesActual;
@@ -56,7 +62,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JComboBox<String> comboMesNuevo;
     private JButton botonGuardarFecha;
 
+    //Panel que contiene componentes para editar telefono
     private JPanel panelTelefonos;
+
     private JPanel panelNuevoTelefono;
     /**
      * Panel que tiene la lista de teléfonos
@@ -65,6 +73,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
     private JPanel panelOpcionesT;
 
+    //Panel que contiene componentes para editar Email
     private JPanel panelEmails;
     /**
      * Panel que tiene la lista de emails
@@ -72,7 +81,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JListGeneral listaE;
     private JPanel panelOpcionesE;
 
-
+    //Panel que contiene componentes para editar Apodos
     private JPanel panelApodos;
     /**
      * Panel que tiene la lista de apodos
@@ -80,6 +89,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JListGeneral listaA;
     private JPanel panelOpcionesA;
 
+    //Panel que contiene componentes para editar Notas
     private JPanel panelNotas;
     /**
      * Panel que tiene la lista de notas
