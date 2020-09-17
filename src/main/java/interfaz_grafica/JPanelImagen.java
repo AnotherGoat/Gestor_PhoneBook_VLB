@@ -27,7 +27,7 @@ public class JPanelImagen extends JPanel {
         }
 
         // Crea un label con la imagen, y usando el ancho y la altura especificada
-        label = new JLabel(new ImageIcon(imagen.getScaledInstance(ancho, altura, Image.SCALE_FAST)));
+        label = new JLabel(new ImageIcon(imagen.getScaledInstance(ancho, altura, Image.SCALE_SMOOTH)));
         add(label, BorderLayout.CENTER);
     }
 }
