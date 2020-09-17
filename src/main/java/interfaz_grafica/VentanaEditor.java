@@ -8,9 +8,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * Clase que representa una ventana para editar los datos de un contacto
+ */
 public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
     //// Atributos
+    /**
+     * JPanel que contiene los otros paneles donde se puede editar un contacto
+     */
     private JPanel panelNorte;
 
     private JPanel panelNombre;
@@ -48,10 +54,104 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JComboBox<Integer> comboDiaNuevo;
     private JComboBox<String> comboMesNuevo;
     private JButton botonGuardarFecha;
+
     private JPanel panelTelefonos;
+    private JPanel panelNuevoTelefono;
+    /**
+     * Panel que tiene la lista de teléfonos
+     */
+    private JPanel panelListaTelefonos;
+
+    private JPanel panelOpcionesT;
+    /**
+     * Modelo con los números y tipo de teléfonos (se usa en el JList)
+     */
+    private DefaultListModel<String> modelo_contactos;
+    /**
+     * Lista con los teléfonos
+     */
+    private JList<String> jlist_telefonos;
+    /**
+     * Scroll para el panel con los teléfonos
+     */
+    private JScrollPane scrollT;
+    /**
+     * Teléfono que escoge el usuario, empieza en -1 para validar
+     */
+    private int eleccionT = -1;
+
     private JPanel panelEmails;
+    /**
+     * Panel que tiene la lista de emails
+     */
+    private JPanel panelListaEmails;
+    private JPanel panelOpcionesE;
+    /**
+     * Modelo con los emails (se usa en el JList)
+     */
+    private DefaultListModel<String> modelo_emails;
+    /**
+     * Lista con los emails
+     */
+    private JList<String> jlist_emails;
+    /**
+     * Scroll para el panel con los emails
+     */
+    private JScrollPane scrollE;
+    /**
+     * Email que escoge el usuario, empieza en -1 para validar
+     */
+    private int eleccionE = -1;
+
     private JPanel panelApodos;
+    /**
+     * Panel que tiene la lista de apodos
+     */
+    private JPanel panelListaApodos;
+    private JPanel panelOpcionesA;
+    /**
+     * Modelo con los apodos (se usa en el JList)
+     */
+    private DefaultListModel<String> modelo_apodos;
+    /**
+     * JList con los apodos
+     */
+    private JList<String> jlist_apodos;
+    /**
+     * Scroll para el panel con los apodos
+     */
+    private JScrollPane scrollA;
+    /**
+     * Apodo que escoge el usuario, empieza en -1 para validar
+     */
+    private int eleccionA = -1;
+
     private JPanel panelNotas;
+    /**
+     * Panel que tiene la lista de notas
+     */
+    private JPanel panelListaNotas;
+    private JPanel panelOpcionesN;
+    /**
+     * Modelo con las notas (se usa en el JList)
+     */
+    private DefaultListModel<String> modelo_notas;
+    /**
+     * Lista con las notas
+     */
+    private JList<String> jlist_notas;
+    /**
+     * Scroll para el panel con las notas
+     */
+    private JScrollPane scrollN;
+    /**
+     * Nota que escoge el usuario, empieza en -1 para validar
+     */
+    private int eleccionN = -1;
+
+    /**
+     * Panel que tendrá el botón para guardar cambios y el botón para salir
+     */
     private JPanel panelSur;
     private JButton botonGuardarCambios;
     /**
@@ -73,7 +173,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Tomar contacto que se va a editar (paso por referencia)
         this.original = Principal.agenda.getLista_Contactos().get(posicion);
 
-        // Copia el contacto original a uno auxiliar (paso por valor)
+        // Copia el contacto original a uno auxiliar en una nueva instancia (paso por valor)
         this.aux = new Contacto(original);
 
         cargarIcono();
@@ -90,6 +190,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         // Ordena el pabel para organizar componentes verticalmente
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        botonVolverAtras.setText("Salir sin guardar");
 
         panelNorte = new JPanel();
         // Usa el GridBagLayout para organizar los componentes
@@ -158,6 +259,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         panelFechaCumple = new JPanel();
         panelFechaCumple.setBorder(BordeGeneral.crearBorde("Fecha de cumpleaños"));
+        panelFechaCumple.setLayout(new BoxLayout(panelFechaCumple, BoxLayout.Y_AXIS));
 
         panelFechaActual = new JPanel();
         panelFechaActual.setBorder(BordeGeneral.crearBorde("Fecha actual"));
@@ -168,18 +270,49 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelFechaNueva.setBorder(BordeGeneral.crearBorde("Fecha nueva"));
 
         botonGuardarFecha = new JButton("Guardar");
+        botonGuardarFecha.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panelTelefonos = new JPanel();
         panelTelefonos.setBorder(BordeGeneral.crearBorde("Teléfonos"));
+        panelTelefonos.setLayout(new GridBagLayout());
+
+        panelNuevoTelefono = new JPanel();
+        panelNuevoTelefono.setBorder(BordeGeneral.crearBorde("Nuevo teléfono"));
+        panelListaTelefonos = new JPanel();
+        panelListaTelefonos.setBorder(BordeGeneral.crearBorde("Lista de teléfonos"));
+        panelOpcionesT = new JPanel();
+        panelOpcionesT.setBorder(BordeGeneral.crearBorde("Opciones"));
+        panelOpcionesT.setLayout(new GridBagLayout());
 
         panelEmails = new JPanel();
         panelEmails.setBorder(BordeGeneral.crearBorde("Emails"));
+        panelEmails.setLayout(new GridBagLayout());
+
+        panelListaEmails = new JPanel();
+        panelListaEmails.setBorder(BordeGeneral.crearBorde("Lista de emails"));
+        panelOpcionesE = new JPanel();
+        panelOpcionesE.setBorder(BordeGeneral.crearBorde("Opciones"));
+        panelOpcionesE.setLayout(new GridBagLayout());
 
         panelApodos = new JPanel();
         panelApodos.setBorder(BordeGeneral.crearBorde("Apodos"));
+        panelApodos.setLayout(new GridBagLayout());
+
+        panelListaApodos = new JPanel();
+        panelListaApodos.setBorder(BordeGeneral.crearBorde("Lista de apodos"));
+        panelOpcionesA = new JPanel();
+        panelOpcionesA.setBorder(BordeGeneral.crearBorde("Opciones"));
+        panelOpcionesA.setLayout(new GridBagLayout());
 
         panelNotas = new JPanel();
         panelNotas.setBorder(BordeGeneral.crearBorde("Notas"));
+        panelNotas.setLayout(new GridBagLayout());
+
+        panelListaNotas = new JPanel();
+        panelListaNotas.setBorder(BordeGeneral.crearBorde("Lista de notas"));
+        panelOpcionesN = new JPanel();
+        panelOpcionesN.setBorder(BordeGeneral.crearBorde("Opciones"));
+        panelOpcionesN.setLayout(new GridBagLayout());
 
         panelSur = new JPanel();
 
@@ -227,18 +360,30 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Añadir el panel para editar foto
         panelNorte.add(panelFoto, gbc(1, 0, 1, 1, 0.2, 0.33));
 
+        panelFechaCumple.add(panelFechaActual);
+        panelFechaCumple.add(panelFechaNueva);
+        panelFechaCumple.add(botonGuardarFecha);
         // Añadir el panel para editar fecha de cumpleaños
         panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.2, 0.67));
 
+        panelTelefonos.add(panelNuevoTelefono, gbc(0, 0, 1, 1, 1, 0.25));
+        panelTelefonos.add(panelListaTelefonos, gbc(0, 1, 1, 1, 1, 0.5));
+        panelTelefonos.add(panelOpcionesT, gbc(0, 2, 1, 1, 1, 0.25));
         // Añadir el panel para editar teléfonos
         panelNorte.add(panelTelefonos, gbc(2, 0, 1, 3, 0.2, 1));
 
+        panelEmails.add(panelListaEmails, gbc(0, 0, 1, 1, 0.5, 1));
+        panelEmails.add(panelOpcionesE, gbc(1, 0, 1, 1, 0.5, 1));
         // Añadir el panel para editar emails
         panelNorte.add(panelEmails, gbc(3, 0, 2, 1, 0.4, 0.33));
 
+        panelApodos.add(panelListaApodos, gbc(0, 0, 1, 1, 0.5, 1));
+        panelApodos.add(panelOpcionesA, gbc(1, 0, 1, 1, 0.5, 1));
         // Añadir el panel para editar apodos
         panelNorte.add(panelApodos, gbc(3, 1, 2, 1, 0.4, 0.34));
 
+        panelNotas.add(panelListaNotas, gbc(0, 0, 1, 1, 0.5, 1));
+        panelNotas.add(panelOpcionesN, gbc(1, 0, 1, 1, 0.5, 1));
         // Añadir el panel para editar notas
         panelNorte.add(panelNotas, gbc(3, 2, 2, 1, 0.4, 0.33));
 
@@ -309,6 +454,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Para el botón "salir sin guardar cambios"
+        super.actionPerformed(e);
+
         if (e.getSource() == botonCambiarNombre) {
             if (campoNombreNuevo.getText().equals("")) {
                 // Muestra mensaje de error en algún lugar
@@ -339,13 +487,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
             }
 
             if (e.getSource() == botonGuardarCambios) {
-                //agregar contacto auxiliar a la posicion que se edita
+                // Agregar contacto auxiliar a la posición que se edita
                 Principal.agenda.getLista_Contactos().set(posicion, new Contacto(aux));
 
-            }
-
-            if (e.getSource() == botonVolverAtras) {
-                // Todavía no configurado
             }
         }
     }

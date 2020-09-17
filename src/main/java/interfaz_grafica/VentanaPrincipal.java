@@ -76,7 +76,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
      */
     private JList<String> jlist_contactos;
     /**
-     * Scroll para el panel con los botones
+     * Scroll para el panel con los contactos
      */
     private JScrollPane scroll;
     /**
