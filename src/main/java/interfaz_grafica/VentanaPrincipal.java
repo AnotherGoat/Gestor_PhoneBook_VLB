@@ -24,9 +24,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
      */
     private JPanel panel;
     /**
-     * Panel con el nombre del programa
+     * Panel con el logo del programa
      */
-    private JPanel panelTitulo;
+    private JPanelImagen panelLogo;
     /**
      * Label con el nombre del programa
      */
@@ -155,10 +155,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         // Usa el GridBagLayout para organizar los componentes
         panel.setLayout(new GridBagLayout());
 
-        panelTitulo = new JPanel();
-        // Para centrar el label
-        panelTitulo.setLayout(new GridBagLayout());
-        panelTitulo.setBorder(BordeGeneral.crearBorde("Información del proyecto"));
+        // El logo está en la razón 5:2
+        panelLogo = new JPanelImagen("archivos/logo_phonebook.png", 200, 80);
+        // Le añade un borde al logo
+        panelLogo.setBorder(BordeGeneral.crearBorde("Información del proyecto"));
 
         panelOpciones = new JPanel();
         panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
@@ -262,9 +262,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
      * Método que ubica los paneles y el resto de componentes usando GridBagLayout
      */
     private void ubicarComponentes() {
-        // Añade el panel con el título
-        panelTitulo.add(labelGestorPhoneBook);
-        panel.add(panelTitulo, gbc(0, 0, 1, 1, 0.3, 0.5));
+        // Añade el panel con el logo
+        panel.add(panelLogo, gbc(0, 0, 1, 1, 0.3, 0.5));
 
         // Añade panel con las opciones
         panelOpciones.add(botonDatosAgenda);
