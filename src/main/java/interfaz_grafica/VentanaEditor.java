@@ -18,10 +18,11 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     /**
      * JPanel que contiene los otros paneles donde se puede editar un contacto
      */
-    //Panel que contiene componentes para editar nombre
     private JPanel panelNorte;
 
+    //Panel que contiene componentes para editar nombre
     private JPanel panelNombre;
+
     private JLabel labelNombreActual;
     private JTextField campoNombreActual;
     private JLabel labelNombreNuevo;
