@@ -12,7 +12,7 @@ import java.util.Locale;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
-public class VentanaPrincipal extends JFrame implements ActionListener, MouseListener, KeyListener{
+public class VentanaPrincipal extends JFrame implements ActionListener, KeyListener{
 
     //// Atributos
     /**
@@ -66,23 +66,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
     /**
      * Panel que tiene la lista de contactos
      */
-    private JPanel panelLista;
-    /**
-     * Modelo con los nombres de los contactos (se usa en el JList)
-     */
-    private DefaultListModel<String> modelo_contactos;
-    /**
-     * Lista con los contactos
-     */
-    private JList<String> jlist_contactos;
-    /**
-     * Scroll para el panel con los contactos
-     */
-    private JScrollPane scroll;
-    /**
-     * Opción que ingresa el usuario, empieza en -1 para validar
-     */
-    private int eleccion = -1;
+    private JListGeneral listaC;
     /**
      * Panel que tendrá los componentes necesarios para crear un contacto
      */
@@ -185,9 +169,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         // Crea un borde para el panel con las opciones
         panelOpciones.setBorder(BordeGeneral.crearBorde("Opciones"));
 
-        panelLista = new JPanel();
-        panelLista.setLayout(new BorderLayout());
-        panelLista.setBorder(BordeGeneral.crearBorde("Lista de contactos"));
+        listaC = new JListGeneral("Lista de contactos");
+        // Añade todos los nombres de los contactos al modelo de la lista
+        for (String s : Principal.agenda.getLista_Nombres()) {
+            listaC.agregarElemento(s);
+        }
 
         panelNuevoContacto = new JPanel();
         panelNuevoContacto.setBorder(BordeGeneral.crearBorde("Nuevo contacto"));
@@ -274,19 +260,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
         botonEliminarContacto = new JButton("Eliminar");
         botonEliminarContacto.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        // Instancia un modelo para usarlo en la JList
-        modelo_contactos = new DefaultListModel();
-        // Instancia un JList con los datos del modelo
-        jlist_contactos = new JList(modelo_contactos);
-
-        // Añada todos los nombres de los contactos al modelo
-        for (String s : Principal.agenda.getLista_Nombres()) {
-            modelo_contactos.addElement(s);
-        }
-
-        // Instancia el JScrollPane, usando la JList (y define el funcionamiento vertical y horizontal)
-        scroll = new JScrollPane(jlist_contactos, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
     /**
@@ -307,8 +280,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         panel.add(panelOpciones, gbc(0, 1, 1, 1, 0.3, 0.5));
 
         // Añade panel con la lista de contactos
-        panelLista.add(scroll, BorderLayout.CENTER);
-        panel.add(panelLista, gbc(1, 0, 1, 2, 0.4, 1));
+        panel.add(listaC, gbc(1, 0, 1, 2, 0.4, 1));
 
         // Añade el panel para crear un nuevo contacto
         panelNuevoContacto.add(labelIngreseNombre, gbc(0, 0, 1, 1));
@@ -372,7 +344,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         botonEliminarContacto.addActionListener(this);
         botonGuardar.addActionListener(this);
         campoIngreseNombre.addKeyListener(this);
-        jlist_contactos.addMouseListener(this);
 
         // Instancia el WindowListener para el JFrame (se agrega en el constructor)
         windowListener = new WindowAdapter() {
@@ -455,13 +426,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
                         Principal.agenda.borrarTodo();
 
                         // Limpia los datos del modelo
-                        modelo_contactos.clear();
+                        listaC.limpiar();
 
                         GestorJSON.importarJSON(ruta, destino);
 
                         // Añada todos los nombres de los contactos al modelo
                         for (String s : Principal.agenda.getLista_Nombres()) {
-                            modelo_contactos.addElement(s);
+                            listaC.agregarElemento(s);
                         }
                     }
                 }
@@ -471,13 +442,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
                     Principal.agenda.borrarTodo();
 
                     // Limpia los datos del modelo
-                    modelo_contactos.clear();
+                    listaC.limpiar();
 
                     GestorJSON.importarJSON(ruta, destino);
 
                     // Añada todos los nombres de los contactos al modelo
                     for (String s : Principal.agenda.getLista_Nombres()) {
-                        modelo_contactos.addElement(s);
+                        listaC.agregarElemento(s);
                     }
                 }
             }
@@ -539,7 +510,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
                 Principal.agenda.borrarTodo();
 
                 // Limpia los datos del modelo
-                modelo_contactos.clear();
+                listaC.limpiar();
             }
         }
 
@@ -566,7 +537,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
                 // Crea un contacto con el nombre ingresado
                 int posicionNueva = Principal.agenda.crearContacto(campoIngreseNombre.getText());
                 // Añade el contacto nuevo al modelo, en la misma posición que el ArrayList
-                modelo_contactos.insertElementAt(campoIngreseNombre.getText(), posicionNueva);
+                listaC.agregarElemento(campoIngreseNombre.getText(), posicionNueva);
                 // Borra el texto del textField
                 campoIngreseNombre.setText("");
             }
@@ -574,18 +545,18 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
         if (e.getSource() == botonDatosContacto) {
             // Si el usuario ha seleccionado un objeto de la lista
-            if(eleccion!=-1) {
+            if(listaC.getEleccion()!=-1) {
                 // Instancia una ventana para elegir un contacto y la hace visible
-                VentanaDatosContacto vdc = new VentanaDatosContacto(eleccion);
+                VentanaDatosContacto vdc = new VentanaDatosContacto(listaC.getEleccion());
                 vdc.setVisible(true);
             }
         }
 
         if (e.getSource() == botonEditarContacto) {
             // Si el usuario ha seleccionado un objeto de la lista
-            if(eleccion!=-1) {
+            if(listaC.getEleccion()!=-1) {
                 // Instancia una ventana que muestra el editor de datos del contacto elegido
-                VentanaEditor ve = new VentanaEditor(eleccion);
+                VentanaEditor ve = new VentanaEditor(listaC.getEleccion());
                 ve.setVisible(true);
             }
         }
@@ -593,20 +564,22 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
         if (e.getSource() == botonEliminarContacto){
             // Crea el panel para pedir confirmación
             int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                    "¿Está seguro de que quiere borrar el contacto \""+Principal.agenda.getLista_Nombres().get(eleccion)+"\"?\nEsta operación no se puede deshacer.",
-                    "Borrar el contacto \""+Principal.agenda.getLista_Nombres().get(eleccion)+"\"",
+                    "¿Está seguro de que quiere borrar el contacto \""+
+                            Principal.agenda.getLista_Nombres().get(listaC.getEleccion())+
+                            "\"?\nEsta operación no se puede deshacer.",
+                    "Borrar el contacto \""+Principal.agenda.getLista_Nombres().get(listaC.getEleccion())+"\"",
                     JOptionPane.YES_NO_OPTION);
 
             // Si el usuario escoge "Sí"
             if(n == JOptionPane.YES_OPTION){
                 // Borra el contacto seleccionado
-                Principal.agenda.eliminarContacto(eleccion);
+                Principal.agenda.eliminarContacto(listaC.getEleccion());
 
                 // Borra el contacto del modelo
-                modelo_contactos.remove(eleccion);
+                listaC.borrarElegido();
 
                 // Reinicia la elección (para evitar errores del tipo IndexOutOfBounds)
-                eleccion = -1;
+                listaC.reiniciarEleccion();
             }
         }
     }
@@ -625,11 +598,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
             }
 
             else {
-                // Crea un contacto con el nombre ingresado
+                // Obtiene la posición en la que se agregó el contacto
                 int posicionNueva = Principal.agenda.crearContacto(campoIngreseNombre.getText());
 
                 // Añade el contacto nuevo al modelo, en la misma posición que el ArrayList
-                modelo_contactos.insertElementAt(campoIngreseNombre.getText(), posicionNueva);
+                listaC.agregarElemento(campoIngreseNombre.getText(), posicionNueva);
 
                 // Borra el texto del textField
                 campoIngreseNombre.setText("");
@@ -639,35 +612,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener, MouseLis
 
     @Override
     public void keyReleased(KeyEvent e) {
-
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // Si se hace click en un elemento de la lista
-        if(e.getSource() == jlist_contactos){
-            // Obtiene el índice que se escogió
-            eleccion = jlist_contactos.getSelectedIndex();
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
 
     }
 }

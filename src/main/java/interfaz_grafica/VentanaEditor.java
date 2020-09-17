@@ -3,6 +3,7 @@ package interfaz_grafica;
 import lanzador.Principal;
 import phonebook.Contacto;
 import phonebook.Direccion;
+import phonebook.Telefono;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -66,7 +67,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     /**
      * Modelo con los números y tipo de teléfonos (se usa en el JList)
      */
-    private DefaultListModel<String> modelo_contactos;
+    private DefaultListModel<String> modelo_telefonos;
     /**
      * Lista con los teléfonos
      */
@@ -278,8 +279,21 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         panelNuevoTelefono = new JPanel();
         panelNuevoTelefono.setBorder(BordeGeneral.crearBorde("Nuevo teléfono"));
+
         panelListaTelefonos = new JPanel();
+        panelListaTelefonos.setLayout(new BorderLayout());
         panelListaTelefonos.setBorder(BordeGeneral.crearBorde("Lista de teléfonos"));
+        // Instancia un modelo para usarlo en la JList
+        modelo_telefonos = new DefaultListModel();
+        // Instancia un JList con los datos del modelo
+        jlist_telefonos = new JList(modelo_telefonos);
+        // Añada todos los teléfonos del contacto "aux" al modelo
+        for (Telefono t : aux.getLista_Telefonos()) {
+            modelo_telefonos.addElement(t.getNumero()+" ("+t.getTipo()+")");
+        }
+        // Instancia el JScrollPane, usando la JList (y define el funcionamiento vertical y horizontal)
+        scrollT = new JScrollPane(jlist_telefonos, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         panelOpcionesT = new JPanel();
         panelOpcionesT.setBorder(BordeGeneral.crearBorde("Opciones"));
         panelOpcionesT.setLayout(new GridBagLayout());
@@ -367,6 +381,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.2, 0.67));
 
         panelTelefonos.add(panelNuevoTelefono, gbc(0, 0, 1, 1, 1, 0.25));
+        panelListaTelefonos.add(scrollT, BorderLayout.CENTER);
         panelTelefonos.add(panelListaTelefonos, gbc(0, 1, 1, 1, 1, 0.5));
         panelTelefonos.add(panelOpcionesT, gbc(0, 2, 1, 1, 1, 0.25));
         // Añadir el panel para editar teléfonos
