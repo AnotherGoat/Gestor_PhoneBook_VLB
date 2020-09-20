@@ -440,9 +440,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
                             // Borra el archivo
                             GestorJSON.borrarJSON("agenda.json");
-                            // Borra todos los datos
+                            // Borra todos los datos (por precaución)
                             Principal.agenda.borrarTodo();
-                            // Limpia los datos del modelo
+                            // Limpia los datos del modelo (por precaución)
                             listaC.limpiar();
 
                             // Carga el backup
@@ -470,9 +470,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
                         // Borra el archivo
                         GestorJSON.borrarJSON("agenda.json");
-                        // Borra todos los datos
+                        // Borra todos los datos (por precaución)
                         Principal.agenda.borrarTodo();
-                        // Limpia los datos del modelo
+                        // Limpia los datos del modelo (por precaución)
                         listaC.limpiar();
                     }
 
