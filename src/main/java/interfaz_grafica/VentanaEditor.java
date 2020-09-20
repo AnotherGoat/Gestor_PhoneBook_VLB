@@ -1,6 +1,5 @@
 package interfaz_grafica;
 
-import json.GestorJSON;
 import lanzador.Principal;
 import phonebook.Contacto;
 import phonebook.Direccion;
@@ -142,7 +141,6 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         // Ordena el pabel para organizar componentes verticalmente
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        botonVolverAtras.setText("Salir sin guardar");
 
         panelNorte = new JPanel();
         // Usa el GridBagLayout para organizar los componentes
@@ -307,6 +305,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelSur = new JPanel();
 
         botonGuardarCambios = new JButton("Guardar cambios");
+        botonVolverAtras.setText("Salir del editor");
     }
 
     private void agregarDias(){
@@ -477,9 +476,6 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Para el botón "salir sin guardar cambios"
-        super.actionPerformed(e);
-
         if (e.getSource() == botonCambiarNombre) {
 
             // Validación de entrada
@@ -557,6 +553,21 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
             int posicionNueva = Principal.agenda.crearContacto(aux);
             // Añade el contacto auxiliar al modelo, en la posición nueva
             Principal.vPrincipal.getListaC().agregarElemento(aux.getNombre(), posicionNueva);
+        }
+
+        if(e.getSource() == botonVolverAtras){
+
+            // Crea el panel para pedir confirmación
+            int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                    "¿Está seguro de que desea salir del editor?\nLos cambios no se guardarán si no ha pulsado el botón \"Guardar cambios\".",
+                    "Salir del editor",
+                    JOptionPane.YES_NO_OPTION);
+
+            // Si el usuario escoge "Sí"
+            if(n == JOptionPane.YES_OPTION){
+                // Borra la ventana actual
+                dispose();
+            }
         }
     }
 }
