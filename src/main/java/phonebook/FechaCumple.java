@@ -9,10 +9,6 @@ public class FechaCumple {
      */
     private int dia;
     /**
-     * Int que representa el mes del cumpleaños
-     */
-    private int numeroMes;
-    /**
      * String con el nombre del mes de cumpleaños
      */
     private String mes;
@@ -26,12 +22,6 @@ public class FechaCumple {
 
     }
 
-    public FechaCumple(int dia, int numeroMes) {
-        this.dia = dia;
-        this.numeroMes = numeroMes;
-        this.mes = lista_meses[numeroMes - 1];
-    }
-
     public FechaCumple(int dia, String mes) {
         this.dia = dia;
         this.mes = mes;
@@ -40,7 +30,6 @@ public class FechaCumple {
     public FechaCumple(FechaCumple fc) {
         if (fc != null) {
             this.dia = fc.dia;
-            this.numeroMes = fc.numeroMes;
             this.mes = fc.mes;
         }
     }
@@ -52,14 +41,6 @@ public class FechaCumple {
 
     public void setDia(int dia) {
         this.dia = dia;
-    }
-
-    public int getNumeroMes() {
-        return numeroMes;
-    }
-
-    public void setNumeroMes(int numeroMes) {
-        this.numeroMes = numeroMes;
     }
 
     public String getMes() {

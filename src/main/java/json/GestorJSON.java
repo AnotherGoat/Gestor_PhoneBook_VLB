@@ -89,7 +89,6 @@ public class GestorJSON {
 
                 // Añade los datos de la fecha de cumpleaños al JSONObject
                 datosFechaCumple_json.put("dia", c.getFechaCumple().getDia());
-                datosFechaCumple_json.put("numeroMes", c.getFechaCumple().getNumeroMes());
                 datosFechaCumple_json.put("mes", c.getFechaCumple().getMes());
 
                 // Añade la fecha de cumpleaños a los datos del contacto
@@ -205,7 +204,7 @@ public class GestorJSON {
                         JSONObject fechaCumple = contacto_json.getJSONObject("fechacumple");
 
                         // Crea una fecha de cumpleaños nueva con los datos del JSON
-                        FechaCumple fechaCumpleNueva = new FechaCumple(fechaCumple.getInt("dia"), fechaCumple.getInt("numeroMes"));
+                        FechaCumple fechaCumpleNueva = new FechaCumple(fechaCumple.getInt("dia"), fechaCumple.getString("mes"));
 
                         // Añade la fecha de cumpleaños al contacto nuevo
                         contactoNuevo.setFechaCumple(fechaCumpleNueva);
