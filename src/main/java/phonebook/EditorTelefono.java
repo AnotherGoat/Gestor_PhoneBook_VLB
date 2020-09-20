@@ -55,9 +55,9 @@ public class EditorTelefono extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarIntEntre(1, opciones.size(),
-                "Escoja una opción: ",
-                "La opción ingresada no existe.");
+        //eleccion = v.validarIntEntre(1, opciones.size(),
+        //        "Escoja una opción: ",
+        //        "La opción ingresada no existe.");
     }
 
     /**
@@ -90,50 +90,50 @@ public class EditorTelefono extends Editor {
         }
     }
 
-    /**
-     * Permite elegir un teléfono
-     * @param verbo Verbo que va en "Escoja el número de teléfono que quiere ..."
-     * @return posición del teléfono elegido
-     */
-    private int elegirTelefono(String verbo){
+    ///**
+    // * Permite elegir un teléfono
+    // * @param verbo Verbo que va en "Escoja el número de teléfono que quiere ..."
+    // * @return posición del teléfono elegido
+    // */
+    //private int elegirTelefono(String verbo){
         // Muestra los números guardados
-        System.out.println("Números de teléfono guardados: ");
-        System.out.println(enumerarListaTelefono(contacto.getLista_Telefonos()));
-
+    //  System.out.println("Números de teléfono guardados: ");
+    //  System.out.println(enumerarListaTelefono(contacto.getLista_Telefonos()));
+//
         // Pide al usuario que elija uno
-        return v.validarIntEntre(1, contacto.getLista_Telefonos().size(),
-                "Escoja el número de teléfono que quiere "+verbo+": ",
-                "El número ingresado no es válido.");
-    }
+        //return v.validarIntEntre(1, contacto.getLista_Telefonos().size(),
+        //        "Escoja el número de teléfono que quiere "+verbo+": ",
+        //        "El número ingresado no es válido.");
+        //}
 
-    /**
-     * Permite elegir el tipo de teléfono (Celular, Fijo o Trabajo)
-     * @return Número de que representa el tipo de teléfono elegido
-     */
-    private int elegirTipoTelefono(){
-        return v.validarIntEntre(1, 3,
-                "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
-                "La opción ingresada no es válida");
-    }
+    // /**
+    //* Permite elegir el tipo de teléfono (Celular, Fijo o Trabajo)
+    // * @return Número de que representa el tipo de teléfono elegido
+    // */
+    //private int elegirTipoTelefono(){
+        //return v.validarIntEntre(1, 3,
+        //        "¿Qué tipo de teléfono agregó? 1=Celular, 2=Fijo, 3=Trabajo\nEscoja una opción: ",
+        //        "La opción ingresada no es válida");
+    //}
 
     /**
      * Permite agregar un número de teléfono nuevo
      */
     private void agregarTelefono(){
-        int numeroNuevo = v.validarNumeroTelefono();
+        //int numeroNuevo = v.validarNumeroTelefono();
 
-        int tipoTelefono = elegirTipoTelefono();
+        //int tipoTelefono = elegirTipoTelefono();
 
         // Esta sección cambia según el tipo de número que escogió
         String tipoString = "";
-        switch (tipoTelefono) {
-            case 1 -> tipoString = "Celular";
-            case 2 -> tipoString = "Fijo";
-            case 3 -> tipoString = "Trabajo";
-        }
+        //switch (tipoTelefono) {
+        //   case 1 -> tipoString = "Celular";
+        //    case 2 -> tipoString = "Fijo";
+        //     case 3 -> tipoString = "Trabajo";
+        //}
 
-        contacto.getLista_Telefonos().add(new Telefono (numeroNuevo, tipoString));
-        System.out.println("El teléfono ha sido agregado con éxito");
+        // contacto.getLista_Telefonos().add(new Telefono (numeroNuevo, tipoString));
+        // System.out.println("El teléfono ha sido agregado con éxito");
     }
 
     /**
@@ -141,28 +141,28 @@ public class EditorTelefono extends Editor {
      */
     private void cambiarTelefono(){
         // Pedir la posición del número
-        int posicionTelefono = elegirTelefono("cambiar");
-        posicionTelefono--; // Le resta 1 porque los ArrayList empiezan con indice 0
+        //int posicionTelefono = elegirTelefono("cambiar");
+        // posicionTelefono--; // Le resta 1 porque los ArrayList empiezan con indice 0
 
         // Número actual (número + tipo entre paréntesis)
-        String numeroActual = contacto.getLista_Telefonos().get(posicionTelefono).getNumero()+" ("+contacto.getLista_Telefonos().get(posicionTelefono).getTipo()+")";
+        //String numeroActual = contacto.getLista_Telefonos().get(posicionTelefono).getNumero()+" ("+contacto.getLista_Telefonos().get(posicionTelefono).getTipo()+")";
 
         // Muestra el número actual y pide uno nuevo
-        System.out.println("Número actual: "+numeroActual);
-        int numeroNuevo = v.validarNumeroTelefono();
+        //System.out.println("Número actual: "+numeroActual);
+        // int numeroNuevo = v.validarNumeroTelefono();
 
-        int tipoTelefono = elegirTipoTelefono();
+        //int tipoTelefono = elegirTipoTelefono();
 
         // Esta sección cambia según el tipo de teléfono
         String tipoString = "";
-        switch (tipoTelefono) {
-            case 1 -> tipoString = "Celular";
-            case 2 -> tipoString = "Fijo";
-            case 3 -> tipoString = "Trabajo";
-        }
+        //switch (tipoTelefono) {
+        //    case 1 -> tipoString = "Celular";
+        //    case 2 -> tipoString = "Fijo";
+        //    case 3 -> tipoString = "Trabajo";
+        //  }
 
         // Guarda los cambios
-        contacto.getLista_Telefonos().set(posicionTelefono, new Telefono(numeroNuevo, tipoString));
+        //contacto.getLista_Telefonos().set(posicionTelefono, new Telefono(numeroNuevo, tipoString));
         // Muestra el mensaje de éxito
         System.out.println("El teléfono ha sido cambiado con éxito");
     }
@@ -171,9 +171,9 @@ public class EditorTelefono extends Editor {
      * Permite borrar un número de teléfono (y pide confirmación)
      */
     private void borrarTelefono(){
-        int posicionTelefono = elegirTelefono("borrar");
-        posicionTelefono--; // Le resta 1 por el índice que debe tener
-        confirmarBorradoTelefono(posicionTelefono);
+        // int posicionTelefono = elegirTelefono("borrar");
+        //posicionTelefono--; // Le resta 1 por el índice que debe tener
+        //confirmarBorradoTelefono(posicionTelefono);
     }
 
     /**
@@ -181,18 +181,18 @@ public class EditorTelefono extends Editor {
      * @param posicion Posición del número que se desea borrar
      */
     private void confirmarBorradoTelefono(int posicion) {
-        int x = v.validarIntEntre(0, 1,
-                "Se borrará el número "+contacto.getLista_Telefonos().get(posicion).getNumero()+
-                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
+        //int x = v.validarIntEntre(0, 1,
+        //         "Se borrará el número "+contacto.getLista_Telefonos().get(posicion).getNumero()+
+        //                " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+        //       "La opción ingresada no existe.");
 
-        switch (x) {
-            case 1:
-                contacto.getLista_Telefonos().remove(posicion);
-                System.out.println("El contacto ha sido borrado exitosamente.");
-                break;
-            case 0:
-                System.out.println("El número no se borró.");
-        }
+        //switch (x) {
+        //    case 1:
+        //        contacto.getLista_Telefonos().remove(posicion);
+        //        System.out.println("El contacto ha sido borrado exitosamente.");
+        //       break;
+        //    case 0:
+        //        System.out.println("El número no se borró.");
+        //}
     }
 }

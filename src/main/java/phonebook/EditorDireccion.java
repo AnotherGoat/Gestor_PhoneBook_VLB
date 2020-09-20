@@ -49,9 +49,9 @@ public class EditorDireccion extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarIntEntre(1, opciones.size(),
-                "Escoja una opción: ",
-                "La opción ingresada no existe.");
+        //eleccion = v.validarIntEntre(1, opciones.size(),
+        //         "Escoja una opción: ",
+        //         "La opción ingresada no existe.");
     }
 
     /**
@@ -90,13 +90,13 @@ public class EditorDireccion extends Editor {
     private void agregarDireccion(){
         System.out.println("Ingrese los datos de la dirección del contacto");
 
-        String ciudadNueva = v.recibirString("Ciudad: ");
-        String calleNueva = v.recibirString("Calle: ");
-        int numeroDireccionNuevo = v.validarInt("Número: ");
+        //String ciudadNueva = v.recibirString("Ciudad: ");
+        //String calleNueva = v.recibirString("Calle: ");
+        //int numeroDireccionNuevo = v.validarInt("Número: ");
 
         // Guarda la dirección nueva usando los datos ingresados
-        Direccion direccionNueva = new Direccion(ciudadNueva, calleNueva, numeroDireccionNuevo);
-        contacto.setDireccion(direccionNueva);
+        //Direccion direccionNueva = new Direccion(ciudadNueva, calleNueva, numeroDireccionNuevo);
+        //contacto.setDireccion(direccionNueva);
 
         // Muestra el mensaje de éxito
         System.out.println("La dirección fue guardada con éxito.");
@@ -116,13 +116,13 @@ public class EditorDireccion extends Editor {
         System.out.println("Ingrese los datos de la nueva dirección del contacto");
 
         // Datos nuevos de la dirección
-        String ciudadNueva = v.recibirString("Ciudad actual: "+ciudadActual+"\nCiudad nueva: ");
-        String calleNueva = v.recibirString("Calle actual: "+calleActual+"\nCalle nueva: ");
-        int numeroDireccionNuevo = v.validarInt("Número actual: "+numeroDireccionActual+"\nNúmero nuevo: ");
+        //String ciudadNueva = v.recibirString("Ciudad actual: "+ciudadActual+"\nCiudad nueva: ");
+        //String calleNueva = v.recibirString("Calle actual: "+calleActual+"\nCalle nueva: ");
+        //int numeroDireccionNuevo = v.validarInt("Número actual: "+numeroDireccionActual+"\nNúmero nuevo: ");
 
         // Guarda la dirección nueva usando los datos ingresados
-        Direccion direccionNueva = new Direccion(ciudadNueva, calleNueva, numeroDireccionNuevo);
-        contacto.setDireccion(direccionNueva);
+        //Direccion direccionNueva = new Direccion(ciudadNueva, calleNueva, numeroDireccionNuevo);
+        // contacto.setDireccion(direccionNueva);
 
         // Muestra el mensaje de éxito
         System.out.println("La dirección fue guardada con éxito.");
@@ -132,18 +132,18 @@ public class EditorDireccion extends Editor {
      * Método para confirmar el borrado de la dirección guardada
      */
     private void confirmarBorradoDireccion(){
-        int x = v.validarIntEntre(0, 1,
-                "Se borrará la dirección del contacto "+contacto.getNombre()+
-                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
-
-        switch(x){
-            case 1:
-                contacto.setDireccion(null);
-                System.out.println("La dirección ha sido borrada exitosamente.");
-                break;
-            case 0:
-                System.out.println("La dirección no se borró.");
-        }
+        //int x = v.validarIntEntre(0, 1,
+        //        "Se borrará la dirección del contacto "+contacto.getNombre()+
+        //                " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+        //     "La opción ingresada no existe.");
+//
+        // switch(x){
+        //    case 1:
+        //       contacto.setDireccion(null);
+        //         System.out.println("La dirección ha sido borrada exitosamente.");
+        //        break;
+        //    case 0:
+        //       System.out.println("La dirección no se borró.");
+        //}
     }
 }

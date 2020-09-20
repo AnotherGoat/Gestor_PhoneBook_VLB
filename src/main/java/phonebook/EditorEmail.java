@@ -57,9 +57,9 @@ public class EditorEmail extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarIntEntre(1, opciones.size(),
-                "Escoja una opción: ",
-                "La opción ingresada no existe.");
+        //eleccion = v.validarIntEntre(1, opciones.size(),
+        //         "Escoja una opción: ",
+        //        "La opción ingresada no existe.");
     }
 
     /**
@@ -95,30 +95,30 @@ public class EditorEmail extends Editor {
         }
     }
 
-    /**
-     * Permite elegir un email
-     * @param verbo Verbo que va en "Escoja el email que quiere ..."
-     * @return Posición del email elegido
-     */
-    private int elegirEmail(String verbo){
+    ///**
+    // * Permite elegir un email
+    //* @param verbo Verbo que va en "Escoja el email que quiere ..."
+    //* @return Posición del email elegido
+    // */
+    //private int elegirEmail(String verbo){
         // Muestra los números guardados
-        System.out.println("Emails guardados: ");
-        System.out.println(enumerarListaString(contacto.getLista_Emails()));
+    //  System.out.println("Emails guardados: ");
+    //  System.out.println(enumerarListaString(contacto.getLista_Emails()));
 
         // Pide al usuario que elija uno
-        return v.validarIntEntre(1, contacto.getLista_Emails().size(),
-                "Escoja el email que quiere "+verbo+": ",
-                "El número ingresado no es válido.");
-    }
+        //return v.validarIntEntre(1, contacto.getLista_Emails().size(),
+        //       "Escoja el email que quiere "+verbo+": ",
+        //        "El número ingresado no es válido.");
+        //}
 
     /**
      * Permite agregar un nuevo email después de validarlo
      */
     private void agregarEmail(){
-        String emailNuevo = v.validarEmail();
+        //String emailNuevo = v.validarEmail();
 
         // Guarda el email y muestra un mensaje de éxito
-        contacto.getLista_Emails().add(emailNuevo);
+        //contacto.getLista_Emails().add(emailNuevo);
         System.out.println("El email ha sido agregado con éxito");
     }
 
@@ -126,16 +126,16 @@ public class EditorEmail extends Editor {
      * Permite cambiar un email guardado por uno nuevo
      */
     private void cambiarEmail(){
-        int posicionEmail = elegirEmail("cambiar");
-        posicionEmail--; // Le resta 1 porque los ArrayList empiezan con indice 0
-        String emailActual = contacto.getLista_Emails().get(posicionEmail);
+        // int posicionEmail = elegirEmail("cambiar");
+        // posicionEmail--; // Le resta 1 porque los ArrayList empiezan con indice 0
+        // String emailActual = contacto.getLista_Emails().get(posicionEmail);
 
         // Muestra el email actual y pide uno nuevo
-        System.out.println("Email actual: "+emailActual);
-        String emailNuevo = v.validarEmail();
+        // System.out.println("Email actual: "+emailActual);
+        //String emailNuevo = v.validarEmail();
 
         // Actualizar email
-        contacto.getLista_Emails().set(posicionEmail, emailNuevo);
+        //contacto.getLista_Emails().set(posicionEmail, emailNuevo);
         // Muestra el mensaje de éxito
         System.out.println("El email ha sido cambiado con éxito");
     }
@@ -144,9 +144,9 @@ public class EditorEmail extends Editor {
      * Método que pide la posición de un email para luego borrarlo (después de pedir confirmación)
      */
     private void borrarEmail(){
-        int posicionEmail = elegirEmail("borrar");
-        posicionEmail--; // Le resta 1 porque los índices empiezan desde 0
-        confirmarBorradoEmail(posicionEmail);
+        //int posicionEmail = elegirEmail("borrar");
+        // posicionEmail--; // Le resta 1 porque los índices empiezan desde 0
+        // confirmarBorradoEmail(posicionEmail);
     }
 
     /**
@@ -154,18 +154,18 @@ public class EditorEmail extends Editor {
      * @param posicion Posición del email que se desea borrar
      */
     private void confirmarBorradoEmail(int posicion) {
-        int x = v.validarIntEntre(0, 1,
-                "Se borrará el email "+contacto.getLista_Emails().get(posicion)+
-                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
+        //int x = v.validarIntEntre(0, 1,
+        //        "Se borrará el email "+contacto.getLista_Emails().get(posicion)+
+        //                " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+        //         "La opción ingresada no existe.");
 
-        switch (x) {
-            case 1:
-                contacto.getLista_Emails().remove(posicion);
-                System.out.println("El email ha sido borrado exitosamente.");
-                break;
-            case 0:
-                System.out.println("El email no se borró.");
-        }
+        //switch (x) {
+        //     case 1:
+        //        contacto.getLista_Emails().remove(posicion);
+        //         System.out.println("El email ha sido borrado exitosamente.");
+        //        break;
+        //   case 0:
+        //      System.out.println("El email no se borró.");
+        // }
     }
 }

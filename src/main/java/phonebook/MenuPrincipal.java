@@ -70,9 +70,9 @@ public class MenuPrincipal extends Menu {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarIntEntre(1, opciones.size(),
-                "Escoja una opción: ",
-                "La opción ingresada no existe.");
+        //eleccion = v.validarIntEntre(1, opciones.size(),
+        //        "Escoja una opción: ",
+        //        "La opción ingresada no existe.");
     }
 
     /**
@@ -125,7 +125,7 @@ public class MenuPrincipal extends Menu {
                 break;
 
             case 6: //// "Salir"
-                this.seguir = !salir(); // Si se escoge salir, no seguir con el menú principal
+                //this.seguir = !salir(); // Si se escoge salir, no seguir con el menú principal
         }
     }
 }

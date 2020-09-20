@@ -55,9 +55,9 @@ public class EditorNota extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarIntEntre(1, opciones.size(),
-                "Escoja una opción: ",
-                "La opción ingresada no existe.");
+        //eleccion = v.validarIntEntre(1, opciones.size(),
+        //        "Escoja una opción: ",
+        //        "La opción ingresada no existe.");
     }
 
     /**
@@ -91,29 +91,31 @@ public class EditorNota extends Editor {
                 volverAtras();
         }
     }
-
+/*
     /**
      * Permite elegir una nota entre las guardadas
      * @param verbo Verbo que va en "Escoja la nota que quiere ..."
      * @return Posición de la nota elegida
      */
+    /*
     private int elegirNota(String verbo){
         // Muestra las notas guardadas
         System.out.println("Notas guardadas: ");
         System.out.println(enumerarListaString(contacto.getLista_Notas()));
 
         // Pide al usuario que elija una
-        return v.validarIntEntre(1, contacto.getLista_Notas().size(),
-                "Escoja la nota que quiere "+verbo+": ",
-                "El número ingresado no es válido.");
+        //return v.validarIntEntre(1, contacto.getLista_Notas().size(),
+        //        "Escoja la nota que quiere "+verbo+": ",
+        //        "El número ingresado no es válido.");
     }
+    */
 
     /**
      * Permite agregar una nota nueva
      */
     private void agregarNota(){
-        String notaNueva = v.recibirString("Ingrese la nota: ");
-        contacto.getLista_Notas().add(notaNueva);
+        //String notaNueva = v.recibirString("Ingrese la nota: ");
+        // contacto.getLista_Notas().add(notaNueva);
         System.out.println("La nota ha sido agregada con éxito");
     }
 
@@ -121,18 +123,18 @@ public class EditorNota extends Editor {
      * Permite cambiar una nota guardada por una nueva
      */
     private void cambiarNota(){
-        int posicionNota = elegirNota("cambiar");
-        posicionNota--; // Le resta 1 porque los ArrayList empiezan con indice 0
+        //int posicionNota = elegirNota("cambiar");
+        //posicionNota--; // Le resta 1 porque los ArrayList empiezan con indice 0
 
         // Nota actual, según la posición escogida
-        String notaActual = contacto.getLista_Notas().get(posicionNota);
+        //String notaActual = contacto.getLista_Notas().get(posicionNota);
 
         // Muestra la nota actual y pide una nueva
-        System.out.println("Nota actual: "+notaActual);
-        String notaNueva = v.recibirString("Nota nueva: ");
+        //System.out.println("Nota actual: "+notaActual);
+        //String notaNueva = v.recibirString("Nota nueva: ");
 
         // Actualizar nota
-        contacto.getLista_Notas().set(posicionNota, notaNueva);
+        // contacto.getLista_Notas().set(posicionNota, notaNueva);
         // Muestra el mensaje de éxito
         System.out.println("La nota ha sido cambiada con éxito");
     }
@@ -141,9 +143,9 @@ public class EditorNota extends Editor {
      * Método que pide la posición de una nota para luego borrarla (después de pedir confirmación)
      */
     private void borrarNota(){
-        int posicionNota = elegirNota("borrar");
-        posicionNota--;
-        confirmarBorradoNota(posicionNota);
+        //int posicionNota = elegirNota("borrar");
+        //posicionNota--;
+        //confirmarBorradoNota(posicionNota);
     }
 
     /**
@@ -151,11 +153,11 @@ public class EditorNota extends Editor {
      * @param posicion Posición de la nota que se desea borrar
      */
     private void confirmarBorradoNota(int posicion) {
-        int x = v.validarIntEntre(0, 1,
-                "Se borrará la nota \""+contacto.getLista_Notas().get(posicion)+
-                        "\"\n¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
-
+        //int x = v.validarIntEntre(0, 1,
+         //       "Se borrará la nota \""+contacto.getLista_Notas().get(posicion)+
+        //                "\"\n¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+        //        "La opción ingresada no existe.");
+  /*
         switch (x) {
             case 1:
                 contacto.getLista_Notas().remove(posicion);
@@ -164,5 +166,6 @@ public class EditorNota extends Editor {
             case 0:
                 System.out.println("La nota no se borró.");
         }
+        */
     }
 }

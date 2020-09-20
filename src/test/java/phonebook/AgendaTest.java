@@ -14,7 +14,6 @@ public class AgendaTest {
 
     @Before
     public void setUp() throws Exception {
-        v = new Validador();
         a = new Agenda(); // Crea una nueva instancia
     }
 
@@ -51,10 +50,10 @@ public class AgendaTest {
 
         // Simula el borrado del contacto 1 (Camila)
         v.simularInput("1");
-        int idContacto = a.elegirContacto("eliminar"); // id Contacto = número con el que se identifica
+        //int idContacto = a.elegirContacto("eliminar"); // id Contacto = número con el que se identifica
         // Simula la confirmación
         v.simularInput("1");
-        a.confirmarBorrado(idContacto-1);
+        //a.confirmarBorrado(idContacto-1);
 
         // Verifica el tamaño y el borrado del contacto correcto
         assertEquals(1, a.getLista_Contactos().size()); // Tamaño cambia

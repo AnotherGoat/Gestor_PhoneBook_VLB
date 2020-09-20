@@ -25,10 +25,6 @@ public class Agenda {
      * List con el nombre de cada contacto
      */
     List<String> lista_nombres = new ArrayList<>();
-    /**
-     * Validador usado en la clase Agenda
-     */
-    private final Validador v = new Validador();
 
     //// Constructores
     public Agenda() {
@@ -70,19 +66,26 @@ public class Agenda {
      * Método para mostrar detalles de un contacto específico
      */
     public void mostrarContacto() {
+        /*
         int posicionContacto = elegirContacto("ver");
+        */
+        /*
         posicionContacto--; // Le resta 1 porque los índices empiezan desde 0
 
         // Muestra los detalles del contacto
         System.out.println("*****Contacto #"+(posicionContacto+1)+"*****");
         System.out.println(lista_contactos.get(posicionContacto).toString());
+
+         */
     }
 
+    /*
     /**
      * Método que muestra una lista de los contactos guardados y pide al usuario que escoja uno
      * @param verbo Verbo usado en el String "Escoja el contacto que quiere... :"
      * @return int con el contacto elegido (no su posición en el arreglo)
      */
+    /*
     public int elegirContacto(String verbo){
         // Muestra la lista de contactos
         listarContactos();
@@ -92,16 +95,19 @@ public class Agenda {
                 "Escoja el contacto que quiere "+verbo+": ",
                 "El contacto ingresado no existe.");
     }
+    */
 
     /**
      * Método para mostrar un menú de edición de un contacto
      */
     public void editarContacto() {
+        /*
         int posicionContacto = elegirContacto("editar");
         posicionContacto--; // Le resta 1 porque los índices empiezan desde 0
 
         // Instancia el menú editor
         new MenuEditor(posicionContacto);
+         */
     }
 
     /**
@@ -122,11 +128,11 @@ public class Agenda {
      */
     public void confirmarBorrado(int posicion) {
         int x;
-        x = v.validarIntEntre(0, 1,
+        /*x = v.validarIntEntre(0, 1,
                 "Se borrará el contacto "+lista_contactos.get(posicion).getNombre()+" ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
+                "La opción ingresada no existe.");*/
 
-        switch (x) {
+        /*switch (x) {
             case 1:
 
 
@@ -136,6 +142,7 @@ public class Agenda {
                 System.out.println("El contacto no se borró.");
                 break;
         }
+         */
     }
 
     /**

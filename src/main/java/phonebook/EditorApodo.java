@@ -55,9 +55,9 @@ public class EditorApodo extends Editor {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarIntEntre(1, opciones.size(),
-                "Escoja una opción: ",
-                "La opción ingresada no existe.");
+        //eleccion = v.validarIntEntre(1, opciones.size(),
+        //        "Escoja una opción: ",
+        //        "La opción ingresada no existe.");
     }
 
     /**
@@ -92,11 +92,13 @@ public class EditorApodo extends Editor {
         }
     }
 
+    /*
     /**
      * Permite elegir un apodo
      * @param verbo Verbo que va en "Escoja el apodo que quiere ..."
      * @return Posición del apodo elegido
      */
+    /*
     private int elegirApodo(String verbo){
         // Muestra los apodos guardados
         System.out.println("Apodos guardados: ");
@@ -107,13 +109,15 @@ public class EditorApodo extends Editor {
                 "Escoja el apodo que quiere "+verbo+": ",
                 "El número ingresado no es válido.");
     }
+    */
+
 
     /**
      * Permite agregar un apodo nuevo
      */
     private void agregarApodo(){
-        String apodoNuevo = v.recibirString("Ingrese el apodo: ");
-        contacto.getLista_Apodos().add(apodoNuevo);
+        //String apodoNuevo = v.recibirString("Ingrese el apodo: ");
+        //contacto.getLista_Apodos().add(apodoNuevo);
         System.out.println("El apodo ha sido agregado con éxito");
     }
 
@@ -121,18 +125,18 @@ public class EditorApodo extends Editor {
      * Permite cambiar un apodo por uno nuevo
      */
     private void cambiarApodo(){
-        int posicionApodo = elegirApodo("cambiar");
-        posicionApodo--; // Le resta 1 porque los ArrayList empiezan con indice 0
+        //int posicionApodo = elegirApodo("cambiar");
+        //posicionApodo--; // Le resta 1 porque los ArrayList empiezan con indice 0
 
         // Apodo actual, según la posición ingresada
-        String apodoActual = contacto.getLista_Apodos().get(posicionApodo);
+        //String apodoActual = contacto.getLista_Apodos().get(posicionApodo);
 
         // Muestra el apodo actual y pide uno nuevo
-        System.out.println("Apodo actual: "+apodoActual);
-        String apodoNuevo = v.recibirString("Apodo nuevo: ");
+        //System.out.println("Apodo actual: "+apodoActual);
+        //String apodoNuevo = v.recibirString("Apodo nuevo: ");
 
         // Actualizar apodo
-        contacto.getLista_Apodos().set(posicionApodo, apodoNuevo);
+        //contacto.getLista_Apodos().set(posicionApodo, apodoNuevo);
         // Muestra el mensaje de éxito
         System.out.println("El apodo ha sido cambiado con éxito");
     }
@@ -141,9 +145,9 @@ public class EditorApodo extends Editor {
      * Método que pide la posición de un apodo para luego borrarlo (después de pedir confirmación)
      */
     private void borrarApodo(){
-        int posicionApodo = elegirApodo("borrar");
-        posicionApodo--;
-        confirmarBorradoApodo(posicionApodo);
+        //int posicionApodo = elegirApodo("borrar");
+        //posicionApodo--;
+        //confirmarBorradoApodo(posicionApodo);
     }
 
     /**
@@ -151,11 +155,11 @@ public class EditorApodo extends Editor {
      * @param posicion Posición del apodo que se desea borrar
      */
     private void confirmarBorradoApodo(int posicion) {
-        int x = v.validarIntEntre(0, 1,
-                "Se borrará el apodo "+contacto.getLista_Apodos().get(posicion)+
-                        " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
-
+        //int x = v.validarIntEntre(0, 1,
+        //        "Se borrará el apodo "+contacto.getLista_Apodos().get(posicion)+
+        //                " ¿Está seguro? 1=Sí 0=No\nEscoja una opción: ",
+        //        "La opción ingresada no existe.");
+/*
         switch (x) {
             case 1:
                 contacto.getLista_Apodos().remove(posicion);
@@ -164,5 +168,6 @@ public class EditorApodo extends Editor {
             case 0:
                 System.out.println("El apodo no se borró.");
         }
+        */
     }
 }

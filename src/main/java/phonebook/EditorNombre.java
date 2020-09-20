@@ -19,10 +19,10 @@ public class EditorNombre extends Editor{
         String nombreActual = contacto.getNombre();
 
         // Muestra el nombre actual y pide uno nuevo
-        String nombreNuevo = v.recibirString("Nombre actual: " +nombreActual+"\nNombre nuevo: ");
+        //String nombreNuevo = v.recibirString("Nombre actual: " +nombreActual+"\nNombre nuevo: ");
 
         // Cambia el nombre al nombre nuevo
-        contacto.setNombre(nombreNuevo);
+        //contacto.setNombre(nombreNuevo);
         System.out.println("El nombre ha sido cambiado con éxito");
     }
 }

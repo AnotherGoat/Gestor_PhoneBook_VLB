@@ -30,10 +30,6 @@ public class Menu {
      * Opción que ingresa el usuario, se usa en los métodos desplegarMenu y switchMenu
      */
     protected int eleccion;
-    /**
-     * Validador usado en la clase Menu y sus subclases
-     */
-    protected final Validador v = new Validador();
 
     //// Constantes
     static final int NOMBRE = 0;
@@ -134,17 +130,19 @@ public class Menu {
 
         return s.toString();
     }
-
+    /*
     /**
      * Método que se usa para confirmar la salida del programa
      * @return Boolean que le indica al programa si se quiere salir (true) o no (false)
      */
+    /*
     public boolean salir() {
-        int a = v.validarIntEntre(0, 1,
-                "¿Desea salir del "+nombreMenu+"? 1=Sí 0=No\nEscoja una opción: ",
-                "La opción ingresada no existe.");
+        //int a = v.validarIntEntre(0, 1,
+        //        "¿Desea salir del "+nombreMenu+"? 1=Sí 0=No\nEscoja una opción: ",
+        //        "La opción ingresada no existe.");
 
         // Si a
         return a == 1;
     }
+    */
 }

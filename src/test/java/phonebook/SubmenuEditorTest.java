@@ -11,12 +11,10 @@ public class SubmenuEditorTest {
 
     @Before
     public void setUp() throws Exception {
-        v = new Validador();
     }
 
     @After
     public void tearDown() throws Exception {
-        v = null;
     }
 
     @Test

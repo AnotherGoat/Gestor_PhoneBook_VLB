@@ -1,10 +1,12 @@
 package interfaz_grafica;
 
+import json.GestorJSON;
 import lanzador.Principal;
 import phonebook.Contacto;
 import phonebook.Direccion;
 import phonebook.FechaCumple;
 import phonebook.Telefono;
+import utilidades.Validador;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -496,14 +498,27 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         if (e.getSource() == botonCambiarDireccion) {
 
-            // Cambia la dirección del aux usando los datos del campo
-            Direccion newD = new Direccion(campoCiudadNueva.getText(), campoCalleNueva.getText(), Integer.parseInt(campoNoNuevo.getText()));
-            aux.setDireccion(newD);
-            // Cambio de dirección actual
-            campoCiudadActual.setText(campoCiudadNueva.getText());
-            campoCalleActual.setText(campoCalleNueva.getText());
-            campoNoActual.setText(campoNoNuevo.getText());
+            // Validación de entrada
+            if(campoCiudadNueva.getText().equals("") && campoCalleNueva.getText().equals("") && campoNoNuevo.getText().equals("")){
+                new MensajeError("Debe llenar los campos solicitados para guardar una dirección.");
+            }
+            else if(campoCiudadNueva.getText().equals("") || campoCalleNueva.getText().equals("") || campoNoNuevo.getText().equals("")){
+                new MensajeError("No debe dejar campos de texto vacíos.");
+            }
+            else if(!Validador.esInt(campoNoNuevo.getText())){
+                new MensajeError("El número ingresado no debe contener letras o símbolos.");
+            }
 
+            // Si la entrada es válida...
+            else {
+                // Cambia la dirección del aux usando los datos del campo
+                Direccion newD = new Direccion(campoCiudadNueva.getText(), campoCalleNueva.getText(), Integer.parseInt(campoNoNuevo.getText()));
+                aux.setDireccion(newD);
+                // Cambio de dirección actual
+                campoCiudadActual.setText(campoCiudadNueva.getText());
+                campoCalleActual.setText(campoCalleNueva.getText());
+                campoNoActual.setText(campoNoNuevo.getText());
+            }
         }
 
         if (e.getSource() == botonCambiarFecha) {
@@ -533,8 +548,12 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         }
 
         if (e.getSource() == botonGuardarCambios) {
-            // Agregar contacto auxiliar a la posición que se edita
+            // Copia el contacto auxiliar de vuelta a la agenda
             Principal.agenda.getLista_Contactos().set(posicion, new Contacto(aux));
+            // Ordena la lista de contactos
+            Principal.agenda.ordenarContactos();
+            // Guarda los cambios hechos en "agenda.json"
+            GestorJSON.guardarJSON("agenda.json");
         }
     }
 }

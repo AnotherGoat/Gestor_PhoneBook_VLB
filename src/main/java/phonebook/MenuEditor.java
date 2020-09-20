@@ -54,6 +54,7 @@ public class MenuEditor extends Menu {
     }
 
     //// Métodos
+
     /**
      * Método que muestra un menú con las opciones del gestor
      */
@@ -67,9 +68,9 @@ public class MenuEditor extends Menu {
         // Muestra las opciones
         System.out.println(enumerarListaString(opciones));
 
-        eleccion = v.validarIntEntre(1, opciones.size(),
-                "Escoja una opción: ",
-                "La opción ingresada no existe.");
+        //eleccion = v.validarIntEntre(1, opciones.size(),
+        //       "Escoja una opción: ",
+        //        "La opción ingresada no existe.");
     }
 
     /**
@@ -92,25 +93,28 @@ public class MenuEditor extends Menu {
             case 6 -> new EditorApodo(aux);
             //// "Editar notas"
             case 7 -> new EditorNota(aux);
-            //// "Salir"
-            case 8 -> this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
+            //// "Salir
+            //case 8 -> this.seguir = !salirConfirmarCambios(); // Si se escoge salir, no seguir editando
         }
     }
 
+    /*
     /**
      * Método que se usa para confirmar la salida del programa y los cambios realizados
      * @return Boolean que le indica al programa si el usuario quiere salir (true) o no (false)
      */
+    /*
     public boolean salirConfirmarCambios() {
-        boolean salirEditor = salir();
 
+        boolean salirEditor = salir();
         // En caso de querer salir, hacer lo siguiente
         if(salirEditor) {
             System.out.println("¿Desea guardar los cambios realizados? 1=Sí, 0=No");
-            int b = v.validarIntEntre(0, 1,
-                    "Escoja una opción: ",
-                    "La opción ingresada no existe.");
+            //int b = v.validarIntEntre(0, 1,
+            //        "Escoja una opción: ",
+            //        "La opción ingresada no existe.");
 
+            /*
             switch (b) {
                 case 1:
                     // Copia el contacto de vuelta a la agenda
@@ -125,8 +129,10 @@ public class MenuEditor extends Menu {
                 case 0:
                     System.out.println("Los cambios no se han guardado.");
             }
-        }
-
+             */
+        //}
+    /*
         return salirEditor;
     }
+    */
 }

@@ -11,19 +11,12 @@ import static org.junit.Assert.*;
  */
 public class ValidadorTest {
 
-    /**
-     * Validador usado en ValidadorTest
-     */
-    Validador v;
-
     @Before
     public void setUp() throws Exception {
-        v = new Validador(); // Crea una nueva instancia
     }
 
     @After
     public void tearDown() throws Exception {
-        v = null; // Liberar memoria
     }
 
     /**
@@ -31,9 +24,9 @@ public class ValidadorTest {
      */
     @Test
     public void esInt1() {
-        assertTrue(v.esInt("1"));
-        assertTrue(v.esInt("100"));
-        assertTrue(v.esInt("-256"));
+        assertTrue(Validador.esInt("1"));
+        assertTrue(Validador.esInt("100"));
+        assertTrue(Validador.esInt("-256"));
     }
 
     /**
@@ -41,10 +34,10 @@ public class ValidadorTest {
      */
     @Test
     public void esInt2() {
-        assertFalse(v.esInt("a"));
-        assertFalse(v.esInt(" "));
-        assertFalse(v.esInt("asdasda"));
-        assertFalse(v.esInt("!\"#=?"));
+        assertFalse(Validador.esInt("a"));
+        assertFalse(Validador.esInt(" "));
+        assertFalse(Validador.esInt("asdasda"));
+        assertFalse(Validador.esInt("!\"#=?"));
     }
 
     /**
@@ -52,8 +45,8 @@ public class ValidadorTest {
      */
     @Test
     public void esInt3() {
-        assertFalse(v.esInt("23172617381238"));
-        assertFalse(v.esInt("-92347821332912"));
+        assertFalse(Validador.esInt("23172617381238"));
+        assertFalse(Validador.esInt("-92347821332912"));
     }
 
     /**
@@ -61,7 +54,7 @@ public class ValidadorTest {
      */
     @Test
     public void esInt4() {
-        assertFalse(v.esInt(null));
+        assertFalse(Validador.esInt(null));
     }
 
     /**
@@ -69,9 +62,9 @@ public class ValidadorTest {
      */
     @Test
     public void esTelefono1() {
-        assertTrue(v.esTelefono(912345678));
-        assertTrue(v.esTelefono(133));
-        assertTrue(v.esTelefono(911));
+        assertTrue(Validador.esTelefono(912345678));
+        assertTrue(Validador.esTelefono(133));
+        assertTrue(Validador.esTelefono(911));
     }
 
     /**
@@ -79,9 +72,9 @@ public class ValidadorTest {
      */
     @Test
     public void esTelefono2() {
-        assertFalse(v.esTelefono(0));
-        assertFalse(v.esTelefono(-12312312));
-        assertFalse(v.esTelefono(1000000000));
+        assertFalse(Validador.esTelefono(0));
+        assertFalse(Validador.esTelefono(-12312312));
+        assertFalse(Validador.esTelefono(1000000000));
     }
 
     /**
@@ -89,9 +82,9 @@ public class ValidadorTest {
      */
     @Test
     public void esEmail1() {
-        assertTrue(v.esEmail("v.mardones04@gmail.com"));
-        assertTrue(v.esEmail("l.burgos02@ufromail.cl"));
-        assertTrue(v.esEmail("b.munoz15@hotmail.com"));
+        assertTrue(Validador.esEmail("v.mardones04@gmail.com"));
+        assertTrue(Validador.esEmail("l.burgos02@ufromail.cl"));
+        assertTrue(Validador.esEmail("b.munoz15@hotmail.com"));
     }
 
     /**
@@ -99,9 +92,9 @@ public class ValidadorTest {
      */
     @Test
     public void esEmail2() {
-        assertFalse(v.esEmail("0.#$s.213"));
-        assertFalse(v.esEmail("..."));
-        assertFalse(v.esEmail("holamundo"));
+        assertFalse(Validador.esEmail("0.#$s.213"));
+        assertFalse(Validador.esEmail("..."));
+        assertFalse(Validador.esEmail("holamundo"));
     }
 
     /**
@@ -109,6 +102,6 @@ public class ValidadorTest {
      */
     @Test
     public void esEmail3() {
-        assertFalse(v.esEmail(null));
+        assertFalse(Validador.esEmail(null));
     }
 }
