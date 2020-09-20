@@ -3,6 +3,7 @@ package interfaz_grafica;
 import lanzador.Principal;
 import phonebook.Contacto;
 import phonebook.Direccion;
+import phonebook.FechaCumple;
 import phonebook.Telefono;
 
 import java.awt.*;
@@ -47,7 +48,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JTextField campoNoActual;
     private JLabel labelNoNuevo;
     private JTextField campoNoNuevo;
-    private JButton botonGuardarDireccion;
+    private JButton botonCambiarDireccion;
 
     //Panel que contiene componentes para editar Foto
     private JPanel panelFoto;
@@ -61,7 +62,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JPanel panelFechaNueva;
     private JComboBox<String> comboDiaNuevo;
     private JComboBox<String> comboMesNuevo;
-    private JButton botonGuardarFecha;
+    private JButton botonCambiarFecha;
 
     //Panel que contiene componentes para editar telefono
     private JPanel panelTelefonos;
@@ -201,7 +202,8 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         labelNoNuevo = new JLabel("Número nuevo:  ");
         campoNoNuevo = new JTextField(10);
 
-        botonGuardarDireccion = new JButton("Guardar");
+        botonCambiarDireccion = new JButton("Cambiar");
+        botonCambiarDireccion.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panelFoto = new JPanel();
         panelFoto.setBorder(BordeGeneral.crearBorde("Foto de contacto"));
@@ -238,8 +240,8 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         comboMesNuevo.addItem("--");
         agregarMeses();
 
-        botonGuardarFecha = new JButton("Guardar");
-        botonGuardarFecha.setAlignmentX(Component.CENTER_ALIGNMENT);
+        botonCambiarFecha = new JButton("Cambiar");
+        botonCambiarFecha.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panelTelefonos = new JPanel();
         panelTelefonos.setBorder(BordeGeneral.crearBorde("Teléfonos"));
@@ -359,7 +361,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelNo.add(campoNoNuevo, gbc(1, 1, 1, 1));
         panelDireccion.add(panelNo);
 
-        panelDireccion.add(botonGuardarDireccion);
+        panelDireccion.add(botonCambiarDireccion);
 
         // Añadir el panel para editar dirección
         panelNorte.add(panelDireccion, gbc(0, 1, 1, 2, 0.2, 0.67));
@@ -369,6 +371,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         // Se instancia JLabel de poca importancia para separar día y mes
         JLabel l = new JLabel(" de ");
+        JLabel m = new JLabel(" de ");
 
         panelFechaActual.add(comboDiaActual);
         panelFechaActual.add(l);
@@ -376,11 +379,11 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelFechaCumple.add(panelFechaActual);
 
         panelFechaNueva.add(comboDiaNuevo);
-        panelFechaNueva.add(l);
+        panelFechaNueva.add(m);
         panelFechaNueva.add(comboMesNuevo);
         panelFechaCumple.add(panelFechaNueva);
 
-        panelFechaCumple.add(botonGuardarFecha);
+        panelFechaCumple.add(botonCambiarFecha);
         // Añadir el panel para editar fecha de cumpleaños
         panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.2, 0.67));
 
@@ -454,8 +457,8 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Implementa listeners para otros botones
         botonGuardarCambios.addActionListener(this);
         botonCambiarNombre.addActionListener(this);
-        botonGuardarDireccion.addActionListener(this);
-        botonGuardarFecha.addActionListener(this);
+        botonCambiarDireccion.addActionListener(this);
+        botonCambiarFecha.addActionListener(this);
     }
 
     @Override
@@ -465,7 +468,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Título
         setTitle("Editando contacto \"" + aux.getNombre() + "\"");
         // Tamaño inicial
-        setSize(900, 500);
+        setSize(1000, 600);
         // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
         setLocationRelativeTo(null);
     }
@@ -476,33 +479,57 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         super.actionPerformed(e);
 
         if (e.getSource() == botonCambiarNombre) {
+
+            // Validación de entrada
             if (campoNombreNuevo.getText().equals("")) {
-                // Muestra mensaje de error en algún lugar
+                new MensajeError("No puede ingresar un nombre vacío.");
             }
+
+            // Si la entrada no es válida...
             else {
                 // Cambia el nombre del contacto auxiliar
                 aux.setNombre(campoNombreNuevo.getText());
-                // Cambia el nombre actual
+                // Cambia el nombre del aux
                 campoNombreActual.setText(campoNombreNuevo.getText());
-                // Borra el texto del nombre nuevo
-                campoNombreNuevo.setText("");
             }
         }
 
-        if (e.getSource() == botonGuardarDireccion) {
+        if (e.getSource() == botonCambiarDireccion) {
 
-            // Nueva direccion con datos campo
+            // Cambia la dirección del aux usando los datos del campo
             Direccion newD = new Direccion(campoCiudadNueva.getText(), campoCalleNueva.getText(), Integer.parseInt(campoNoNuevo.getText()));
             aux.setDireccion(newD);
-            // Cambio de nombre
+            // Cambio de dirección actual
             campoCiudadActual.setText(campoCiudadNueva.getText());
             campoCalleActual.setText(campoCalleNueva.getText());
             campoNoActual.setText(campoNoNuevo.getText());
 
         }
 
-        if (e.getSource() == botonGuardarFecha) {
+        if (e.getSource() == botonCambiarFecha) {
 
+            // Validación de entrada
+            if(comboDiaNuevo.getSelectedIndex()==0 && comboMesNuevo.getSelectedIndex()==0){
+                new MensajeError("Debe escoger un día y un mes de la lista.");
+            }
+            else if(comboDiaNuevo.getSelectedIndex()==0){
+                new MensajeError("No ha seleccionado un día de la lista.");
+            }
+            else if(comboMesNuevo.getSelectedIndex()==0){
+                new MensajeError("No ha seleccionado un mes de la lista.");
+            }
+
+            // Si la entrada es válida...
+            else {
+                // Cambia los JComboBox
+                comboDiaActual.removeItemAt(0);
+                comboDiaActual.addItem("" + comboDiaNuevo.getSelectedItem());
+                comboMesActual.removeItemAt(0);
+                comboMesActual.addItem("" + comboMesNuevo.getSelectedItem());
+
+                FechaCumple newFC = new FechaCumple((int)comboDiaNuevo.getSelectedItem(), ""+comboMesNuevo.getSelectedItem());
+                aux.setFechaCumple(newFC);
+            }
         }
 
         if (e.getSource() == botonGuardarCambios) {

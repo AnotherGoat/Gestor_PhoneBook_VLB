@@ -32,6 +32,11 @@ public class FechaCumple {
         this.mes = lista_meses[numeroMes - 1];
     }
 
+    public FechaCumple(int dia, String mes) {
+        this.dia = dia;
+        this.mes = mes;
+    }
+
     public FechaCumple(FechaCumple fc) {
         if (fc != null) {
             this.dia = fc.dia;
