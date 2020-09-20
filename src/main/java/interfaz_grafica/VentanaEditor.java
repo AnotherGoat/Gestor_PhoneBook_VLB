@@ -56,10 +56,10 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JPanel panelFechaCumple;
 
     private JPanel panelFechaActual;
-    private JComboBox<Integer> comboDiaActual;
+    private JComboBox<String> comboDiaActual;
     private JComboBox<String> comboMesActual;
     private JPanel panelFechaNueva;
-    private JComboBox<Integer> comboDiaNuevo;
+    private JComboBox<String> comboDiaNuevo;
     private JComboBox<String> comboMesNuevo;
     private JButton botonGuardarFecha;
 
@@ -214,9 +214,29 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelFechaActual.setBorder(BordeGeneral.crearBorde("Fecha actual"));
 
         comboDiaActual = new JComboBox();
+        comboDiaActual.setEditable(false);
+        comboMesActual = new JComboBox();
+        comboMesActual.setEditable(false);
+
+        if(aux.getFechaCumple()==null) {
+            comboDiaActual.addItem("--");
+            comboMesActual.addItem("--");
+        }
+        else{
+            comboDiaActual.addItem(""+aux.getFechaCumple().getDia());
+            comboMesActual.addItem(aux.getFechaCumple().getMes());
+        }
 
         panelFechaNueva = new JPanel();
         panelFechaNueva.setBorder(BordeGeneral.crearBorde("Fecha nueva"));
+
+        comboDiaNuevo = new JComboBox<>();
+        comboDiaNuevo.addItem("--");
+        agregarDias();
+
+        comboMesNuevo = new JComboBox<>();
+        comboMesNuevo.addItem("--");
+        agregarMeses();
 
         botonGuardarFecha = new JButton("Guardar");
         botonGuardarFecha.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -285,6 +305,27 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         botonGuardarCambios = new JButton("Guardar cambios");
     }
 
+    private void agregarDias(){
+        for(int i=1; i<=31; i++){
+            comboDiaNuevo.addItem(""+i);
+        }
+    }
+
+    private void agregarMeses(){
+        comboMesNuevo.addItem("enero");
+        comboMesNuevo.addItem("febrero");
+        comboMesNuevo.addItem("marzo");
+        comboMesNuevo.addItem("abril");
+        comboMesNuevo.addItem("mayo");
+        comboMesNuevo.addItem("junio");
+        comboMesNuevo.addItem("julio");
+        comboMesNuevo.addItem("agosto");
+        comboMesNuevo.addItem("septiembre");
+        comboMesNuevo.addItem("octubre");
+        comboMesNuevo.addItem("noviembre");
+        comboMesNuevo.addItem("diciembre");
+    }
+
     private void ubicarComponentes() {
 
         // Añadir componentes del panel para editar nombre
@@ -326,8 +367,19 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Añadir el panel para editar foto
         panelNorte.add(panelFoto, gbc(1, 0, 1, 1, 0.2, 0.33));
 
+        // Se instancia JLabel de poca importancia para separar día y mes
+        JLabel l = new JLabel(" de ");
+
+        panelFechaActual.add(comboDiaActual);
+        panelFechaActual.add(l);
+        panelFechaActual.add(comboMesActual);
         panelFechaCumple.add(panelFechaActual);
+
+        panelFechaNueva.add(comboDiaNuevo);
+        panelFechaNueva.add(l);
+        panelFechaNueva.add(comboMesNuevo);
         panelFechaCumple.add(panelFechaNueva);
+
         panelFechaCumple.add(botonGuardarFecha);
         // Añadir el panel para editar fecha de cumpleaños
         panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.2, 0.67));
