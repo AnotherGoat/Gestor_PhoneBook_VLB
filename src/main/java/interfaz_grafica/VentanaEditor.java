@@ -527,7 +527,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
                 comboMesActual.removeItemAt(0);
                 comboMesActual.addItem("" + comboMesNuevo.getSelectedItem());
 
-                FechaCumple newFC = new FechaCumple((int)comboDiaNuevo.getSelectedItem(), ""+comboMesNuevo.getSelectedItem());
+                FechaCumple newFC = new FechaCumple(Integer.parseInt(""+comboDiaNuevo.getSelectedItem()), ""+comboMesNuevo.getSelectedItem());
                 aux.setFechaCumple(newFC);
             }
         }
