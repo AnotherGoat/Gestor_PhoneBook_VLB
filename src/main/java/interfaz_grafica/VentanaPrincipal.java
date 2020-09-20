@@ -525,7 +525,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
         if(e.getSource() == botonGuardar) {
             if(campoIngreseNombre.getText().equals("")){
-                // Muestra mensaje de error en algún lugar
+                new MensajeError("El nombre del contacto no puede estar vacío.");
             }
 
             else {
@@ -608,5 +608,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public JListGeneral getListaC() {
+        return listaC;
     }
 }

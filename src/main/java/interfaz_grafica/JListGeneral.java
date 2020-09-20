@@ -54,6 +54,10 @@ public class JListGeneral extends JPanel {
         modelo.insertElementAt(elemento, posicion);
     }
 
+    public void borrar(int posicion){
+        modelo.remove(posicion);
+    }
+
     public void borrarElegido(){
         modelo.remove(lista.getSelectedIndex());
     }

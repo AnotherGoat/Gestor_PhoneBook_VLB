@@ -548,12 +548,15 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         }
 
         if (e.getSource() == botonGuardarCambios) {
-            // Copia el contacto auxiliar de vuelta a la agenda
-            Principal.agenda.getLista_Contactos().set(posicion, new Contacto(aux));
-            // Ordena la lista de contactos
-            Principal.agenda.ordenarContactos();
-            // Guarda los cambios hechos en "agenda.json"
-            GestorJSON.guardarJSON("agenda.json");
+            // Borra el contacto de la posición original
+            Principal.agenda.borrarContacto(posicion);
+            // Borra el contacto del modelo de la ventana principal
+            Principal.vPrincipal.getListaC().borrar(posicion);
+
+            // Copia el contacto auxiliar de vuelta a la agenda (y lo reordena)
+            int posicionNueva = Principal.agenda.crearContacto(aux);
+            // Añade el contacto auxiliar al modelo, en la posición nueva
+            Principal.vPrincipal.getListaC().agregarElemento(aux.getNombre(), posicionNueva);
         }
     }
 }

@@ -46,11 +46,11 @@ public class Principal {
      */
     public static JSONArray agenda_json = new JSONArray();
 
+    public static VentanaPrincipal vPrincipal;
+
     public static void main(String[] args) {
-        // Instancia el menú principal
-        // new MenuPrincipal();
         // Instancia la ventana principal
-        VentanaPrincipal vPrincipal = new VentanaPrincipal();
+        vPrincipal = new VentanaPrincipal();
         // Hace que sea visible
         vPrincipal.setVisible(true);
     }
