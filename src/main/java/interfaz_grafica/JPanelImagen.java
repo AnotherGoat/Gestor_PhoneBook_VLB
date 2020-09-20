@@ -29,6 +29,7 @@ public class JPanelImagen extends JPanel {
                 imagen = ImageIO.read(new File("archivos/contacto_generico.png"));
             } catch(IOException f){
                 // Si falla en esta parte, debería tirar una excepción especial
+                new MensajeError("No se ha podido cargar la foto de contacto por defecto.");
             }
 
         }
