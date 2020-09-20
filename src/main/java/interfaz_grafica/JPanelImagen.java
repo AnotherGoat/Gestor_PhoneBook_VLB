@@ -23,7 +23,22 @@ public class JPanelImagen extends JPanel {
         try {
             imagen = ImageIO.read(new File(ruta));
         } catch(IOException e){
+
             // Si falla, debería cargar una imagen por defecto
+            try {
+                imagen = ImageIO.read(new File("archivos/contacto_generico.png"));
+            } catch(IOException f){
+                // Si falla en esta parte, debería tirar una excepción especial
+            }
+
+        }
+
+        // Este truco hará que la imagen quede en la misma razón que la original
+        if(imagen.getHeight() >= imagen.getWidth()){
+            ancho = -1;
+        }
+        else{
+            altura = -1;
         }
 
         // Crea un label con la imagen, y usando el ancho y la altura especificada
