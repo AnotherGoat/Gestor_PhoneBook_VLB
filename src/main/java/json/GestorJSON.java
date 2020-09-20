@@ -264,11 +264,12 @@ public class GestorJSON {
             System.out.println("Datos de \""+ruta+"\" cargados correctamente");
 
             // Cuando llega a esta sección, significa que la agenda principal cargó los datos correctamente
+
             // Para terminar, se ordenan alfabéticamente los contactos para la ejecución del programa
             Principal.agenda.ordenarContactos();
         }
 
-        // Si el archivo "agenda.json" no existe, no hace nada
+        // Si el archivo de la ruta no existe, no hace nada
     }
 
     /**

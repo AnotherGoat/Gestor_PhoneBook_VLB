@@ -422,9 +422,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
                     // Si el usuario escoge "Sí"
                     if(n == JOptionPane.YES_OPTION){
+
+                        // Crea una copia de seguridad de los datos que ya existen
+                        GestorJSON.importarJSON(destino, "backup.json");
+
                         // Borra todos los datos
                         Principal.agenda.borrarTodo();
-
                         // Limpia los datos del modelo
                         listaC.limpiar();
 
@@ -432,11 +435,26 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
                         try {
                             GestorJSON.importarJSON(ruta, destino);
                         } catch(Exception f){
+                            // Muestra mensaje de error
                             new MensajeError("Los datos que intentó cargar no son válidos.");
+
+                            // Borra el archivo
                             GestorJSON.borrarJSON("agenda.json");
+                            // Borra todos los datos
+                            Principal.agenda.borrarTodo();
+                            // Limpia los datos del modelo
+                            listaC.limpiar();
+
+                            // Carga el backup
+                            GestorJSON.cargarJSON("backup.json");
+                            // Guarda los datos cargados
+                            GestorJSON.guardarJSON("agenda.json");
                         }
 
-                        // Añada todos los nombres de los contactos al modelo
+                        // Borra el backup
+                        GestorJSON.borrarJSON("backup.json");
+
+                        // Añade todos los nombres de los contactos al modelo
                         for (String s : Principal.agenda.getLista_Nombres()) {
                             listaC.agregarElemento(s);
                         }
@@ -444,20 +462,21 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
                 }
 
                 else{
-                    // Borra todos los datos
-                    Principal.agenda.borrarTodo();
-
-                    // Limpia los datos del modelo
-                    listaC.limpiar();
-
                     // Intenta cargar los datos del archivo "agenda.json"
                     try {
                         GestorJSON.importarJSON(ruta, destino);
                     } catch(Exception f){
                         new MensajeError("Los datos que intentó cargar no son válidos.");
+
+                        // Borra el archivo
+                        GestorJSON.borrarJSON("agenda.json");
+                        // Borra todos los datos
+                        Principal.agenda.borrarTodo();
+                        // Limpia los datos del modelo
+                        listaC.limpiar();
                     }
 
-                    // Añada todos los nombres de los contactos al modelo
+                    // Añade todos los nombres de los contactos al modelo
                     for (String s : Principal.agenda.getLista_Nombres()) {
                         listaC.agregarElemento(s);
                     }
