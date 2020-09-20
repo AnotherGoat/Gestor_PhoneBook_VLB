@@ -116,8 +116,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
      * Método que carga los datos del archivo JSON y de las fotos de contactos
      */
     private void cargarDatos() {
-        // Carga datos del archivo "agenda.json"
-        GestorJSON.cargarJSON("agenda.json");
+        // Intenta cargar los datos del archivo "agenda.json"
+        try {
+            GestorJSON.cargarJSON("agenda.json");
+        } catch(Exception e){
+            new MensajeError("Datos de \"agenda.json\" no válidos.");
+            GestorJSON.borrarJSON("agenda.json");
+        }
     }
 
     /**
@@ -423,7 +428,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
                         // Limpia los datos del modelo
                         listaC.limpiar();
 
-                        GestorJSON.importarJSON(ruta, destino);
+                        // Intenta cargar los datos del archivo "agenda.json"
+                        try {
+                            GestorJSON.importarJSON(ruta, destino);
+                        } catch(Exception f){
+                            new MensajeError("Los datos que intentó cargar no son válidos.");
+                            GestorJSON.borrarJSON("agenda.json");
+                        }
 
                         // Añada todos los nombres de los contactos al modelo
                         for (String s : Principal.agenda.getLista_Nombres()) {
@@ -439,7 +450,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
                     // Limpia los datos del modelo
                     listaC.limpiar();
 
-                    GestorJSON.importarJSON(ruta, destino);
+                    // Intenta cargar los datos del archivo "agenda.json"
+                    try {
+                        GestorJSON.importarJSON(ruta, destino);
+                    } catch(Exception f){
+                        new MensajeError("Los datos que intentó cargar no son válidos.");
+                    }
 
                     // Añada todos los nombres de los contactos al modelo
                     for (String s : Principal.agenda.getLista_Nombres()) {
