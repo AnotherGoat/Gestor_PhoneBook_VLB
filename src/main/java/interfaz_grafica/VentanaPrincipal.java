@@ -66,7 +66,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
     /**
      * Panel que tiene la lista de contactos
      */
-    private JListGeneral listaC;
+    private JPanelLista listaC;
     /**
      * Panel que tendrá los componentes necesarios para crear un contacto
      */
@@ -170,7 +170,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         // Crea un borde para el panel con las opciones
         panelOpciones.setBorder(BordeGeneral.crearBorde("Opciones"));
 
-        listaC = new JListGeneral("Lista de contactos");
+        listaC = new JPanelLista("Lista de contactos");
         // Añade todos los nombres de los contactos al modelo de la lista
         for (String s : Principal.agenda.getLista_Nombres()) {
             listaC.agregarElemento(s);
@@ -645,7 +645,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
     }
 
-    public JListGeneral getListaC() {
+    public JPanelLista getListaC() {
         return listaC;
     }
 }

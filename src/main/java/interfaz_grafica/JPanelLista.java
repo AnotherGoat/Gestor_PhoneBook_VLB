@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class JListGeneral extends JPanel {
+public class JPanelLista extends JPanel {
 
     //// Atributos
     private String titulo;
@@ -13,7 +13,7 @@ public class JListGeneral extends JPanel {
     private JScrollPane scroll;
 
     //// Constructores
-    public JListGeneral(String titulo){
+    public JPanelLista(String titulo){
         this.titulo = titulo;
 
         inicializarComponentes();

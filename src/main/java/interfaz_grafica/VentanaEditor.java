@@ -65,40 +65,44 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     private JComboBox<String> comboMesNuevo;
     private JButton botonCambiarFecha;
 
-    //Panel que contiene componentes para editar telefono
+    //Panel que contiene componentes para editar teléfono
     private JPanel panelTelefonos;
 
-    private JPanel panelNuevoTelefono;
     /**
      * Panel que tiene la lista de teléfonos
      */
-    private JListGeneral listaT;
+    private JPanelLista listaT;
 
     private JPanel panelOpcionesT;
+    private JLabel labelTelefono;
+    private JTextField campoTelefono;
+    private JComboBox<String> comboTelefono;
+    private JButton botonAgregarTelefono;
+    private JButton botonBorrarTelefono;
 
     //Panel que contiene componentes para editar Email
     private JPanel panelEmails;
     /**
      * Panel que tiene la lista de emails
      */
-    private JListGeneral listaE;
-    private JPanel panelOpcionesE;
+    private JPanelLista listaE;
+    private JPanelNuevoBorrar panelOpcionesE;
 
     //Panel que contiene componentes para editar Apodos
     private JPanel panelApodos;
     /**
      * Panel que tiene la lista de apodos
      */
-    private JListGeneral listaA;
-    private JPanel panelOpcionesA;
+    private JPanelLista listaA;
+    private JPanelNuevoBorrar panelOpcionesA;
 
     //Panel que contiene componentes para editar Notas
     private JPanel panelNotas;
     /**
      * Panel que tiene la lista de notas
      */
-    private JListGeneral listaN;
-    private JPanel panelOpcionesN;
+    private JPanelLista listaN;
+    private JPanelNuevoBorrar panelOpcionesN;
 
     /**
      * Panel que tendrá el botón para guardar cambios y el botón para salir
@@ -247,10 +251,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelTelefonos.setBorder(BordeGeneral.crearBorde("Teléfonos"));
         panelTelefonos.setLayout(new GridBagLayout());
 
-        panelNuevoTelefono = new JPanel();
-        panelNuevoTelefono.setBorder(BordeGeneral.crearBorde("Nuevo teléfono"));
-
-        listaT = new JListGeneral("Lista de teléfonos");
+        listaT = new JPanelLista("Lista de teléfonos");
         // Añade todos los teléfonos al modelo de la lista
         for (Telefono t : aux.getLista_Telefonos()) {
             listaT.agregarElemento(t.getNumero()+" ("+t.getTipo()+")");
@@ -260,47 +261,51 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelOpcionesT.setBorder(BordeGeneral.crearBorde("Opciones"));
         panelOpcionesT.setLayout(new GridBagLayout());
 
+        labelTelefono = new JLabel("Nuevo teléfono:");
+        campoTelefono = new JTextField(10);
+        comboTelefono = new JComboBox();
+        comboTelefono.addItem("Celular");
+        comboTelefono.addItem("Casa");
+        comboTelefono.addItem("Trabajo");
+
+        botonAgregarTelefono = new JButton("Añadir");
+        botonBorrarTelefono = new JButton("Borrar seleccionado");
+
         panelEmails = new JPanel();
         panelEmails.setBorder(BordeGeneral.crearBorde("Emails"));
         panelEmails.setLayout(new GridBagLayout());
 
-        listaE = new JListGeneral("Lista de emails");
+        listaE = new JPanelLista("Lista de emails");
         // Añade todos los emails al modelo de la lista
         for (String s : aux.getLista_Emails()) {
             listaE.agregarElemento(s);
         }
 
-        panelOpcionesE = new JPanel();
-        panelOpcionesE.setBorder(BordeGeneral.crearBorde("Opciones"));
-        panelOpcionesE.setLayout(new GridBagLayout());
+        panelOpcionesE = new JPanelNuevoBorrar("Opciones", 'o');
 
         panelApodos = new JPanel();
         panelApodos.setBorder(BordeGeneral.crearBorde("Apodos"));
         panelApodos.setLayout(new GridBagLayout());
 
-        listaA = new JListGeneral("Lista de apodos");
+        listaA = new JPanelLista("Lista de apodos");
         // Añade todos los apodos al modelo de la lista
         for (String s : aux.getLista_Apodos()) {
             listaA.agregarElemento(s);
         }
 
-        panelOpcionesA = new JPanel();
-        panelOpcionesA.setBorder(BordeGeneral.crearBorde("Opciones"));
-        panelOpcionesA.setLayout(new GridBagLayout());
+        panelOpcionesA = new JPanelNuevoBorrar("Opciones", 'o');
 
         panelNotas = new JPanel();
         panelNotas.setBorder(BordeGeneral.crearBorde("Notas"));
         panelNotas.setLayout(new GridBagLayout());
 
-        listaN = new JListGeneral("Lista de notas");
+        listaN = new JPanelLista("Lista de notas");
         // Añade todas las notas al modelo de la lista
         for (String s : aux.getLista_Notas()) {
             listaN.agregarElemento(s);
         }
 
-        panelOpcionesN = new JPanel();
-        panelOpcionesN.setBorder(BordeGeneral.crearBorde("Opciones"));
-        panelOpcionesN.setLayout(new GridBagLayout());
+        panelOpcionesN = new JPanelNuevoBorrar("Opciones", 'a');
 
         panelSur = new JPanel();
 
@@ -388,9 +393,15 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Añadir el panel para editar fecha de cumpleaños
         panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.2, 0.67));
 
-        panelTelefonos.add(panelNuevoTelefono, gbc(0, 0, 1, 1, 1, 0.25));
-        panelTelefonos.add(listaT, gbc(0, 1, 1, 1, 1, 0.5));
+        panelTelefonos.add(listaT, gbc(0, 0, 1, 2, 1, 0.75));
+
+        panelOpcionesT.add(labelTelefono, gbc(0, 0, 2, 1));
+        panelOpcionesT.add(campoTelefono, gbc(0, 1, 1, 1));
+        panelOpcionesT.add(comboTelefono, gbc(1, 1, 1, 1));
+        panelOpcionesT.add(botonAgregarTelefono, gbc(0, 2, 2, 1));
+        panelOpcionesT.add(botonBorrarTelefono, gbc(0, 3, 2, 1));
         panelTelefonos.add(panelOpcionesT, gbc(0, 2, 1, 1, 1, 0.25));
+
         // Añadir el panel para editar teléfonos
         panelNorte.add(panelTelefonos, gbc(2, 0, 1, 3, 0.2, 1));
 
@@ -469,7 +480,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Título
         setTitle("Editando contacto \"" + aux.getNombre() + "\"");
         // Tamaño inicial
-        setSize(1000, 600);
+        setSize(1200, 600);
         // La ventana inicia centrada (no funciona bien si se pone en las clases padres)
         setLocationRelativeTo(null);
     }
