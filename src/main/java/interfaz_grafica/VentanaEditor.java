@@ -344,7 +344,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelNombre.add(botonCambiarNombre, gbc(0, 2, 2, 1));
 
         // Añade el panel para editar nombre
-        panelNorte.add(panelNombre, gbc(0, 0, 1, 1, 0.2, 0.33));
+        panelNorte.add(panelNombre, gbc(0, 0, 1, 1, 0.25, 0.33));
 
         // Añadir componentes del panel para editar ciudad
         panelCiudad.add(labelCiudadActual, gbc(0, 0, 1, 1));
@@ -370,10 +370,10 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelDireccion.add(botonCambiarDireccion);
 
         // Añadir el panel para editar dirección
-        panelNorte.add(panelDireccion, gbc(0, 1, 1, 2, 0.2, 0.67));
+        panelNorte.add(panelDireccion, gbc(0, 1, 1, 2, 0.25, 0.67));
 
         // Añadir el panel para editar foto
-        panelNorte.add(panelFoto, gbc(1, 0, 1, 1, 0.2, 0.33));
+        panelNorte.add(panelFoto, gbc(1, 0, 1, 1, 0.15, 0.33));
 
         // Se instancia JLabel de poca importancia para separar día y mes
         JLabel l = new JLabel(" de ");
@@ -391,7 +391,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         panelFechaCumple.add(botonCambiarFecha);
         // Añadir el panel para editar fecha de cumpleaños
-        panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.2, 0.67));
+        panelNorte.add(panelFechaCumple, gbc(1, 1, 1, 2, 0.15, 0.67));
 
         panelTelefonos.add(listaT, gbc(0, 0, 1, 2, 1, 0.75));
 
