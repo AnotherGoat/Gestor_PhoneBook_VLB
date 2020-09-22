@@ -613,6 +613,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
                     int num = 1;
 
+                    // Revisa hasta que el archivo no exista
                     while(true){
                         if(Files.exists(Paths.get("fotos/"+num+".jpg"))){
                             num++;
@@ -628,6 +629,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
                     int num = 1;
 
+                    // Revisa hasta que el archivo no exista
                     while(true){
                         if(Files.exists(Paths.get("fotos/"+num+".png"))){
                             num++;
