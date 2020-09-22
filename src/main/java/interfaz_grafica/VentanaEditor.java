@@ -645,11 +645,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
                 aux.setRutaFoto(destino);
 
                 // Vuelve a cargar la foto
-                panelFoto.remove(foto);
-                panelFoto.remove(botonCambiarFoto);
-                foto = new JPanelImagen(destino, 200, 200);
-                panelFoto.add(foto);
-                panelFoto.add(botonCambiarFoto);
+                foto.recargar(destino);
+                panelFoto.repaint();
+                panelFoto.revalidate();
             }
         }
 
