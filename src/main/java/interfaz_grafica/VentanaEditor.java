@@ -586,30 +586,124 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         if (e.getSource() == botonBorrarTelefono) {
 
+            // Validación de entrada
+            if(listaT.getEleccion()==-1){
+                new MensajeError("No ha seleccionado un teléfono de la lista.");
+            }
+
+            // Si la entrada es válida...
+            else {
+                // Borra la selección del contacto aux
+                aux.getLista_Telefonos().remove(listaT.getEleccion());
+                // Borra la selección del modelo
+                listaT.borrarElegido();
+                // Reinicia la elección (para evitar errores del tipo IndexOutOfBounds)
+                listaT.reiniciarEleccion();
+            }
         }
 
         if (e.getSource() == panelOpcionesE.getBotonAgregar()) {
+            // Validación de entrada
+            if(panelOpcionesE.getCampo().getText().equals("")){
+                new MensajeError("El campo de texto está vacío.");
+            }
+            else if(!Validador.esEmail(panelOpcionesE.getCampo().getText())){
+                new MensajeError("El email ingresado no es válido.");
+            }
 
+            // Si la entrada es válida...
+            else{
+                aux.getLista_Emails().add(panelOpcionesE.getCampo().getText());
+                listaE.agregarElemento(panelOpcionesE.getCampo().getText());
+                // Limpía el campo
+                panelOpcionesE.getCampo().setText("");
+            }
         }
 
         if (e.getSource() == panelOpcionesE.getBotonBorrar()) {
 
+            // Validación de entrada
+            if(listaE.getEleccion()==-1){
+                new MensajeError("No ha seleccionado un email de la lista.");
+            }
+
+            // Si la entrada es válida...
+            else {
+                // Borra la selección del contacto aux
+                aux.getLista_Emails().remove(listaE.getEleccion());
+                // Borra la selección del modelo
+                listaE.borrarElegido();
+                // Reinicia la elección (para evitar errores del tipo IndexOutOfBounds)
+                listaE.reiniciarEleccion();
+            }
+
         }
 
         if (e.getSource() == panelOpcionesA.getBotonAgregar()) {
+            // Validación de entrada
+            if(panelOpcionesA.getCampo().getText().equals("")){
+                new MensajeError("El campo de texto está vacío.");
+            }
 
+            // Si la entrada es válida...
+            else{
+                aux.getLista_Apodos().add(panelOpcionesA.getCampo().getText());
+                listaA.agregarElemento(panelOpcionesA.getCampo().getText());
+                // Limpía el campo
+                panelOpcionesA.getCampo().setText("");
+            }
         }
 
         if (e.getSource() == panelOpcionesA.getBotonBorrar()) {
 
+            // Validación de entrada
+            if(listaA.getEleccion()==-1){
+                new MensajeError("No ha seleccionado un apodo de la lista.");
+            }
+
+            // Si la entrada es válida...
+            else {
+                // Borra la selección del contacto aux
+                aux.getLista_Apodos().remove(listaA.getEleccion());
+                // Borra la selección del modelo
+                listaA.borrarElegido();
+                // Reinicia la elección (para evitar errores del tipo IndexOutOfBounds)
+                listaA.reiniciarEleccion();
+            }
+
         }
 
         if (e.getSource() == panelOpcionesN.getBotonAgregar()) {
+            // Validación de entrada
+            if(panelOpcionesN.getCampo().getText().equals("")){
+                new MensajeError("El campo de texto está vacío.");
+            }
 
+            // Si la entrada es válida...
+            else{
+                aux.getLista_Notas().add(panelOpcionesN.getCampo().getText());
+                listaN.agregarElemento(panelOpcionesN.getCampo().getText());
+                // Limpía el campo
+                panelOpcionesN.getCampo().setText("");
+            }
         }
 
         if (e.getSource() == panelOpcionesN.getBotonBorrar()) {
 
+            // Validación de entrada
+            if(listaN.getEleccion()==-1){
+                new MensajeError("No ha seleccionado una nota de la lista.");
+            }
+
+            // Si la entrada es válida...
+            else {
+                // Borra la selección del contacto aux
+                aux.getLista_Notas().remove(listaN.getEleccion());
+                // Borra la selección del modelo
+                listaN.borrarElegido();
+                // Reinicia la elección (para evitar errores del tipo IndexOutOfBounds)
+                listaN.reiniciarEleccion();
+            }
         }
 
         if (e.getSource() == botonGuardarCambios) {

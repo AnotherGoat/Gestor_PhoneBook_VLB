@@ -58,6 +58,10 @@ public class JPanelNuevoBorrar extends JPanel {
     }
 
     //// Getters
+    public JTextField getCampo() {
+        return campo;
+    }
+
     public JButton getBotonAgregar() {
         return botonAgregar;
     }
