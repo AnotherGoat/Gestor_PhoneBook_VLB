@@ -564,6 +564,24 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         if (e.getSource() == botonAgregarTelefono) {
 
+            // Validación de entrada
+            if(campoTelefono.getText().equals("")){
+                new MensajeError("No puede dejar el campo de texto vacío.");
+            }
+            else if(!Validador.esNumeroTelefonico(campoTelefono.getText())){
+                new MensajeError("Debe ingresar un número de teléfono con formato válido.");
+            }
+
+            // Si la entrada es válida...
+            else{
+                // Borra el + si empieza con uno
+                campoTelefono.getText().replace("+", "");
+
+                aux.getLista_Telefonos().add(new Telefono(Integer.parseInt(campoTelefono.getText()), ""+comboTelefono.getSelectedItem()));
+                listaT.agregarElemento(campoTelefono.getText()+" ("+comboTelefono.getSelectedItem()+")");
+                // Limpía el campo
+                campoTelefono.setText("");
+            }
         }
 
         if (e.getSource() == botonBorrarTelefono) {

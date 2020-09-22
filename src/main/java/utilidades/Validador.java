@@ -62,7 +62,7 @@ public class Validador {
         }
 
         // El patrón es: puede tener "+" en la primera posición + entre 1 y 15 dígitos, en una sola línea
-        Pattern pattern = Pattern.compile("^[+]?[0-9]{1,15}]$");
+        Pattern pattern = Pattern.compile("^[+]?[0-9]{1,15}$");
         Matcher matcher = pattern.matcher(entrada);
         return matcher.matches();
     }
