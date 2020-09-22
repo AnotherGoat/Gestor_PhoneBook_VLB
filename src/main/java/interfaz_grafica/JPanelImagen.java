@@ -72,6 +72,14 @@ public class JPanelImagen extends JPanel {
 
         }
 
+        // Tomará el ancho o la altura (el que sea mayor) y conservará la relación de aspecto
+        if(imagen.getHeight() >= imagen.getWidth()){
+            ancho = -1;
+        }
+        else{
+            altura = -1;
+        }
+
         label.setIcon(new ImageIcon(imagen.getScaledInstance(ancho, altura, Image.SCALE_SMOOTH)));
 
         // remove(label);
