@@ -575,9 +575,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
             // Si la entrada es válida...
             else{
                 // Borra el + si empieza con uno
-                campoTelefono.getText().replace("+", "");
+                campoTelefono.setText(campoTelefono.getText().replace("+", ""));
 
-                aux.getLista_Telefonos().add(new Telefono(Integer.parseInt(campoTelefono.getText()), ""+comboTelefono.getSelectedItem()));
+                aux.getLista_Telefonos().add(new Telefono(Long.parseLong(campoTelefono.getText()), ""+comboTelefono.getSelectedItem()));
                 listaT.agregarElemento(campoTelefono.getText()+" ("+comboTelefono.getSelectedItem()+")");
                 // Limpía el campo
                 campoTelefono.setText("");

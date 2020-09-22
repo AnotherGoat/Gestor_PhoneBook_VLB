@@ -9,24 +9,24 @@ public class Telefono {
     /**
      * Número de teléfono
      */
-    int numero;
+    long numero;
     /**
      * Tipo de teléfono ("Celular", "Casa", "Trabajo")
      */
     String tipo;
 
     //// Constructores
-    public Telefono(int numero, String tipo) {
+    public Telefono(long numero, String tipo) {
         this.numero = numero;
         this.tipo = tipo;
     }
 
     //// Getters y Setters
-    public int getNumero() {
+    public long getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(long numero) {
         this.numero = numero;
     }
 
