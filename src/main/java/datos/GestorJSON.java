@@ -126,7 +126,7 @@ public class GestorJSON {
             }
 
             // Si el contacto "c" tiene una ruta de foto guardada...
-            if(c.getRutaFoto() != null && c.getRutaFoto()!=""){
+            if(c.getRutaFoto() != null && !c.getRutaFoto().equals("")){
                 // Añade el nombre al JSONObject con los datos del contacto
                 datosContacto_json.put("rutafoto", c.getRutaFoto());
             }

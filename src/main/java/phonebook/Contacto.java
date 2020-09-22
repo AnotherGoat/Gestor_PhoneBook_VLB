@@ -46,6 +46,7 @@ public class Contacto {
 
     public Contacto(String nombre) {
         this.nombre = nombre;
+        this.rutaFoto = "";
     }
 
     // Constructor para copiar un contacto
@@ -75,6 +76,9 @@ public class Contacto {
 
             // Copia las notas desde c
             this.lista_notas.addAll(c.lista_notas);
+
+            // Copia la ruta de la foto
+            this.rutaFoto=c.rutaFoto;
         }
     }
 

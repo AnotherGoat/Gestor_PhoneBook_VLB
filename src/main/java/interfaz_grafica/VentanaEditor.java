@@ -223,7 +223,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelFoto.setBorder(BordeGeneral.crearBorde("Foto de contacto"));
         panelFoto.setLayout(new BoxLayout(panelFoto, BoxLayout.Y_AXIS));
 
-        foto = new JPanelImagen("", 200, 200);
+        foto = new JPanelImagen(aux.getRutaFoto(), 200, 200);
         botonCambiarFoto = new JButton("Cambiar");
         botonCambiarFoto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -269,9 +269,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelFechaActual = new JPanel();
         panelFechaActual.setBorder(BordeGeneral.crearBorde("Fecha actual"));
 
-        comboDiaActual = new JComboBox();
+        comboDiaActual = new JComboBox<>();
         comboDiaActual.setEditable(false);
-        comboMesActual = new JComboBox();
+        comboMesActual = new JComboBox<>();
         comboMesActual.setEditable(false);
 
         if(aux.getFechaCumple()==null) {
@@ -313,7 +313,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         labelTelefono = new JLabel("Nuevo teléfono:");
         campoTelefono = new JTextField(10);
-        comboTelefono = new JComboBox();
+        comboTelefono = new JComboBox<>();
         comboTelefono.addItem("Celular");
         comboTelefono.addItem("Casa");
         comboTelefono.addItem("Trabajo");
@@ -604,9 +604,14 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
                 GestorArchivo ga = new GestorArchivo();
                 ga.crearDirectorio("fotos");
 
+                // Borra la foto actual, si es que existe
+                if(aux.getRutaFoto()!=null && !aux.getRutaFoto().equals("")) {
+                    ga.eliminarArchivo(aux.getRutaFoto());
+                }
+
                 if(ruta.toLowerCase().endsWith(".jpg") || ruta.toLowerCase().endsWith(".jpeg")){
 
-                    int num = 0;
+                    int num = 1;
 
                     for(int i=1; Files.exists(Paths.get("fotos/"+i+".jpg")); i++){
                         num = i;
@@ -616,7 +621,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
                 }
                 else if(ruta.toLowerCase().endsWith(".png")){
 
-                    int num = 0;
+                    int num = 1;
 
                     for(int i=1; Files.exists(Paths.get("fotos/"+i+".png")); i++){
                         num = i;
