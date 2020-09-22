@@ -45,7 +45,9 @@ public class Principal {
      * JSONArray que representa la agenda global
      */
     public static JSONArray agenda_json = new JSONArray();
-
+    /**
+     * JFrame que contiene la ventana principal del programa
+     */
     public static VentanaPrincipal ventana;
 
     public static void main(String[] args) {

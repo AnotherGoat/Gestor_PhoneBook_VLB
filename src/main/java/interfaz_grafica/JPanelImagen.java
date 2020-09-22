@@ -34,7 +34,7 @@ public class JPanelImagen extends JPanel {
 
         }
 
-        // Este truco hará que la imagen quede en la misma razón que la original
+        // Tomará el ancho o la altura (el que sea mayor) y conservará la relación de aspecto
         if(imagen.getHeight() >= imagen.getWidth()){
             ancho = -1;
         }

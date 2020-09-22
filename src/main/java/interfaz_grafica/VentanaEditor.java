@@ -53,6 +53,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
     //Panel que contiene componentes para editar Foto
     private JPanel panelFoto;
+    private JPanelImagen foto;
+    private JButton botonCambiarFoto;
+    private JFileChooser selectorFoto;
 
     //Panel que contiene componentes para editar fecha de cumpleaños
     private JPanel panelFechaCumple;
@@ -209,8 +212,14 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         botonCambiarDireccion = new JButton("Cambiar");
         botonCambiarDireccion.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Tomará el ancho o la altura (el que sea mayor) y conservará la relación de aspecto
         panelFoto = new JPanel();
         panelFoto.setBorder(BordeGeneral.crearBorde("Foto de contacto"));
+        panelFoto.setLayout(new BoxLayout(panelFoto, BoxLayout.Y_AXIS));
+
+        foto = new JPanelImagen("", 200, 200);
+        botonCambiarFoto = new JButton("Cambiar");
+        botonCambiarFoto.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panelFechaCumple = new JPanel();
         panelFechaCumple.setBorder(BordeGeneral.crearBorde("Fecha de cumpleaños"));
@@ -371,6 +380,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         // Añadir el panel para editar dirección
         panelNorte.add(panelDireccion, gbc(0, 1, 1, 2, 0.25, 0.67));
+
+        panelFoto.add(foto);
+        panelFoto.add(botonCambiarFoto);
 
         // Añadir el panel para editar foto
         panelNorte.add(panelFoto, gbc(1, 0, 1, 1, 0.15, 0.33));

@@ -160,7 +160,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         // Usa el GridBagLayout para organizar los componentes
         panel.setLayout(new GridBagLayout());
 
-        // El logo está en la razón 5:2
+        // El logo está en razón 5:2
         panelLogo = new JPanelImagen("archivos/logo_phonebook.png", 200, 80);
         // Le añade un borde al logo
         panelLogo.setBorder(BordeGeneral.crearBorde("Información del proyecto"));
