@@ -604,19 +604,19 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         if (e.getSource() == panelOpcionesE.getBotonAgregar()) {
             // Validación de entrada
-            if(panelOpcionesE.getCampo().getText().equals("")){
+            if(panelOpcionesE.getText().equals("")){
                 new MensajeError("El campo de texto está vacío.");
             }
-            else if(!Validador.esEmail(panelOpcionesE.getCampo().getText())){
+            else if(!Validador.esEmail(panelOpcionesE.getText())){
                 new MensajeError("El email ingresado no es válido.");
             }
 
             // Si la entrada es válida...
             else{
-                aux.getLista_Emails().add(panelOpcionesE.getCampo().getText());
-                listaE.agregarElemento(panelOpcionesE.getCampo().getText());
+                aux.getLista_Emails().add(panelOpcionesE.getText());
+                listaE.agregarElemento(panelOpcionesE.getText());
                 // Limpía el campo
-                panelOpcionesE.getCampo().setText("");
+                panelOpcionesE.limpiar();
             }
         }
 
@@ -641,16 +641,16 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         if (e.getSource() == panelOpcionesA.getBotonAgregar()) {
             // Validación de entrada
-            if(panelOpcionesA.getCampo().getText().equals("")){
+            if(panelOpcionesA.getText().equals("")){
                 new MensajeError("El campo de texto está vacío.");
             }
 
             // Si la entrada es válida...
             else{
-                aux.getLista_Apodos().add(panelOpcionesA.getCampo().getText());
-                listaA.agregarElemento(panelOpcionesA.getCampo().getText());
+                aux.getLista_Apodos().add(panelOpcionesA.getText());
+                listaA.agregarElemento(panelOpcionesA.getText());
                 // Limpía el campo
-                panelOpcionesA.getCampo().setText("");
+                panelOpcionesA.limpiar();
             }
         }
 
@@ -675,16 +675,16 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
         if (e.getSource() == panelOpcionesN.getBotonAgregar()) {
             // Validación de entrada
-            if(panelOpcionesN.getCampo().getText().equals("")){
+            if(panelOpcionesN.getText().equals("")){
                 new MensajeError("El campo de texto está vacío.");
             }
 
             // Si la entrada es válida...
             else{
-                aux.getLista_Notas().add(panelOpcionesN.getCampo().getText());
-                listaN.agregarElemento(panelOpcionesN.getCampo().getText());
+                aux.getLista_Notas().add(panelOpcionesN.getText());
+                listaN.agregarElemento(panelOpcionesN.getText());
                 // Limpía el campo
-                panelOpcionesN.getCampo().setText("");
+                panelOpcionesN.limpiar();
             }
         }
 

@@ -57,11 +57,15 @@ public class JPanelNuevoBorrar extends JPanel {
         return c;
     }
 
-    //// Getters
-    public JTextField getCampo() {
-        return campo;
+    public String getText(){
+        return campo.getText();
     }
 
+    public void limpiar(){
+        campo.setText("");
+    }
+
+    //// Getters
     public JButton getBotonAgregar() {
         return botonAgregar;
     }
