@@ -11,18 +11,14 @@ public class Telefono {
      */
     int numero;
     /**
-     * Tipo de teléfono (CELULAR, FIJO, TRABAJO)
+     * Tipo de teléfono ("Celular", "Casa", "Trabajo")
      */
-    TipoTelefono tipo;
+    String tipo;
 
     //// Constructores
     public Telefono(int numero, String tipo) {
         this.numero = numero;
-        switch (tipo) {
-            case "Celular" -> this.tipo=TipoTelefono.CELULAR;
-            case "Fijo" -> this.tipo=TipoTelefono.FIJO;
-            case "Trabajo" ->  this.tipo=TipoTelefono.TRABAJO;
-        }
+        this.tipo = tipo;
     }
 
     //// Getters y Setters
@@ -39,11 +35,7 @@ public class Telefono {
      * @return Tipo en forma de String
      */
     public String getTipo() {
-        return switch (tipo) {
-            case CELULAR -> "Celular";
-            case FIJO -> "Fijo";
-            case TRABAJO -> "Trabajo";
-        };
+        return tipo;
     }
 
     /**
@@ -53,32 +45,12 @@ public class Telefono {
     public void setTipo(String tipo) {
         // Siempre que el tipo no sea nulo...
         if(tipo!=null) {
-
-            // Define el tipo del teléfono
-            switch (tipo) {
-                case "Celular" -> this.tipo = TipoTelefono.CELULAR;
-                case "Fijo" -> this.tipo = TipoTelefono.FIJO;
-                case "Trabajo" -> this.tipo = TipoTelefono.TRABAJO;
-
-                // Normalmente, este último paso no debería pasar a no ser que el código esté mal hecho
-                default -> System.out.println("Error: Parámetros incorrectos");
-            }
-
+            this.tipo = tipo;
         }
     }
 
     @Override
     public String toString() {
-        return switch (tipo) {
-            case CELULAR -> "Celular: " + numero;
-            case FIJO -> "Fijo: " + numero;
-            case TRABAJO -> "Trabajo: " + numero;
-        };
+        return tipo+": "+numero;
     }
-}
-
-enum TipoTelefono{
-    CELULAR,
-    FIJO,
-    TRABAJO;
 }
