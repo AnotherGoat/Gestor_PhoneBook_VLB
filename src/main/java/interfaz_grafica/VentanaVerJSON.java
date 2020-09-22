@@ -1,6 +1,6 @@
 package interfaz_grafica;
 
-import json.GestorArchivo;
+import datos.GestorArchivo;
 
 import javax.swing.*;
 import java.awt.*;

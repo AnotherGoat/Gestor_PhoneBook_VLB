@@ -1,6 +1,6 @@
 package interfaz_grafica;
 
-import json.GestorJSON;
+import datos.GestorJSON;
 import lanzador.Principal;
 
 import java.awt.*;

@@ -1,6 +1,6 @@
 package phonebook;
 
-import json.GestorJSON;
+import datos.GestorJSON;
 import utilidades.Validador;
 
 import java.util.Collections;
@@ -82,16 +82,7 @@ public class Agenda {
         // Actualiza el json
         GestorJSON.guardarJSON("agenda.json");
     }
-
-    /**
-     * Método para mostrar una lista de todos los contactos guardados
-     */
-    public void listarContactos() {
-        // Mostrar nombres de los contactos guardados
-        System.out.println("Contactos guardados:");
-        System.out.println(Menu.enumerarListaString(lista_nombres));
-    }
-
+    
     /**
      * Método para mostrar detalles de un contacto específico
      */
