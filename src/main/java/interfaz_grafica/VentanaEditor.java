@@ -710,12 +710,12 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
             // Borra el contacto de la posición original
             Principal.agenda.borrarContacto(posicion);
             // Borra el contacto del modelo de la ventana principal
-            Principal.vPrincipal.getListaC().borrar(posicion);
+            Principal.ventana.getListaC().borrar(posicion);
 
             // Copia el contacto auxiliar de vuelta a la agenda (y lo reordena)
             int posicionNueva = Principal.agenda.crearContacto(aux);
             // Añade el contacto auxiliar al modelo, en la posición nueva
-            Principal.vPrincipal.getListaC().agregarElemento(aux.getNombre(), posicionNueva);
+            Principal.ventana.getListaC().agregarElemento(aux.getNombre(), posicionNueva);
         }
 
         if(e.getSource() == botonVolverAtras){
