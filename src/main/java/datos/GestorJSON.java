@@ -125,6 +125,12 @@ public class GestorJSON {
                 datosContacto_json.put("notas", lista_notas_json);
             }
 
+            // Si el contacto "c" tiene una ruta de foto guardada...
+            if(c.getRutaFoto() != null && c.getRutaFoto()!=""){
+                // Añade el nombre al JSONObject con los datos del contacto
+                datosContacto_json.put("rutafoto", c.getRutaFoto());
+            }
+
             // Añade los datos del contacto a un par ordenado
             contacto_json.put("contacto", datosContacto_json);
 
@@ -247,6 +253,11 @@ public class GestorJSON {
                             // Se añade la nota al contacto nuevo
                             contactoNuevo.getLista_Notas().add(listaNotas.getString(j));
                         }
+                    }
+
+                    // Si el JSON tiene una ruta de foto establecida...
+                    if(contacto_json.has("rutafoto")){
+                        contactoNuevo.setRutaFoto(contacto_json.getString("rutafoto"));
                     }
 
                     // Añade el contacto a la agenda principal

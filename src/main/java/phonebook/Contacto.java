@@ -38,6 +38,8 @@ public class Contacto {
      */
     private List<String> lista_notas = new ArrayList<>();
 
+    private String rutaFoto;
+
     //// Constructores
     public Contacto(){
     }
@@ -117,6 +119,14 @@ public class Contacto {
         return lista_notas;
     }
 
+    public String getRutaFoto() {
+        return rutaFoto;
+    }
+
+    public void setRutaFoto(String rutaFoto) {
+        this.rutaFoto = rutaFoto;
+    }
+
     // toString
     /**
      * Método toString con un formato personalizado
@@ -161,6 +171,10 @@ public class Contacto {
             for(String n: lista_notas) {
                 s.append("\n    ").append(n);
             }
+        }
+
+        if (rutaFoto!=null && rutaFoto!=""){
+            s.append("\nRuta foto: "+rutaFoto);
         }
 
         return s.toString();

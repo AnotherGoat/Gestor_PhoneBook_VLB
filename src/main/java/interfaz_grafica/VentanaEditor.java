@@ -1,5 +1,6 @@
 package interfaz_grafica;
 
+import datos.GestorArchivo;
 import lanzador.Principal;
 import phonebook.Contacto;
 import phonebook.Direccion;
@@ -9,7 +10,12 @@ import utilidades.Validador;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Locale;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 
 /**
  * Clase que representa una ventana para editar los datos de un contacto
@@ -220,6 +226,41 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         foto = new JPanelImagen("", 200, 200);
         botonCambiarFoto = new JButton("Cambiar");
         botonCambiarFoto.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Instancia el selectorFoto que se usa para elegir la foto
+        selectorFoto = new JFileChooser();
+        // Instancia un FileFilter para sólo mostrar directorios y archivos .jpg/.jpeg y .png
+        FileFilter filtroFoto = new FileFilter(){
+
+            public String getDescription(){
+                // Se cambia la descripción
+                return "Imágenes (*.jpg/*jpeg/*.png)";
+            }
+
+            @Override
+            public boolean accept(File f) {
+                // Mostrará directorios
+                if(f.isDirectory()){
+                    return true;
+                }
+
+                // También mostrará imágenes
+                else{
+                    // Pasa el nombre del archivo a minúsculas
+                    // Lo hace para aceptar cualquier combinación de mayúsculas o minúsculas al final
+                    String nombreArchivo = f.getName().toLowerCase();
+
+                    // Retorna true sólo si el archivo termina con ".json"
+                    return nombreArchivo.endsWith(".jpg") || nombreArchivo.endsWith(".jpeg") || nombreArchivo.endsWith(".png");
+                }
+            }
+        };
+        // Usar ese filtro en el selector de archivos
+        selectorFoto.setFileFilter(filtroFoto);
+        selectorFoto.setLocale(Locale.getDefault());
+        selectorFoto.updateUI();
+        // Cambia el título
+        selectorFoto.setDialogTitle("Cargar una foto nueva");
 
         panelFechaCumple = new JPanel();
         panelFechaCumple.setBorder(BordeGeneral.crearBorde("Fecha de cumpleaños"));
@@ -481,6 +522,7 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         // Implementa listeners para otros botones
         botonGuardarCambios.addActionListener(this);
         botonCambiarNombre.addActionListener(this);
+        botonCambiarFoto.addActionListener(this);
         botonCambiarDireccion.addActionListener(this);
         botonCambiarFecha.addActionListener(this);
         botonAgregarTelefono.addActionListener(this);
@@ -545,6 +587,64 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
                 campoCiudadActual.setText(campoCiudadNueva.getText());
                 campoCalleActual.setText(campoCalleNueva.getText());
                 campoNoActual.setText(campoNoNuevo.getText());
+            }
+        }
+
+        if (e.getSource() == botonCambiarFoto) {
+            // El resultado indica si se eligió algo válido o no
+            int resultado = selectorFoto.showOpenDialog(panel.getParent());
+
+            // Si el resultado se puede abrir...
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+
+                // Guarda la ruta de la imagen elegida
+                String ruta = selectorFoto.getSelectedFile().getPath();
+                String destino ="";
+
+                GestorArchivo ga = new GestorArchivo();
+                ga.crearDirectorio("fotos");
+
+                if(ruta.toLowerCase().endsWith(".jpg") || ruta.toLowerCase().endsWith(".jpeg")){
+
+                    int num = 0;
+
+                    for(int i=1; Files.exists(Paths.get("fotos/"+i+".jpg")); i++){
+                        num = i;
+                    }
+
+                    destino = "fotos/"+num+".jpg";
+                }
+                else if(ruta.toLowerCase().endsWith(".png")){
+
+                    int num = 0;
+
+                    for(int i=1; Files.exists(Paths.get("fotos/"+i+".png")); i++){
+                        num = i;
+                    }
+
+                    destino = "fotos/"+num+".png";
+
+                }
+                else{
+                    new MensajeError("Extensión de archivo desconocida.");
+                }
+
+                // Intenta copiar el archivo
+                try{
+                    ga.copiarArchivo(ruta, destino);
+                } catch(Exception f){
+                    new MensajeError("No se ha podido cargar el archivo.");
+                }
+
+                // Le entrega la ruta de la foto al contacto auxiliar
+                aux.setRutaFoto(destino);
+
+                // Vuelve a cargar la foto
+                panelFoto.remove(foto);
+                panelFoto.remove(botonCambiarFoto);
+                foto = new JPanelImagen(destino, 200, 200);
+                panelFoto.add(foto);
+                panelFoto.add(botonCambiarFoto);
             }
         }
 
