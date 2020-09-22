@@ -613,8 +613,13 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
                     int num = 1;
 
-                    for(int i=1; Files.exists(Paths.get("fotos/"+i+".jpg")); i++){
-                        num = i;
+                    while(true){
+                        if(Files.exists(Paths.get("fotos/"+num+".jpg"))){
+                            num++;
+                        }
+                        else{
+                            break;
+                        }
                     }
 
                     destino = "fotos/"+num+".jpg";
@@ -623,8 +628,13 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
 
                     int num = 1;
 
-                    for(int i=1; Files.exists(Paths.get("fotos/"+i+".png")); i++){
-                        num = i;
+                    while(true){
+                        if(Files.exists(Paths.get("fotos/"+num+".png"))){
+                            num++;
+                        }
+                        else{
+                            break;
+                        }
                     }
 
                     destino = "fotos/"+num+".png";
