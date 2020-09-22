@@ -183,7 +183,7 @@ public class GestorJSON {
                             JSONObject telefono_json = lista_telefonos_json.getJSONObject(j);
 
                             // Crea un objeto de tipo Telefono obteniendo los datos del JSON
-                            Telefono telefonoNuevo = new Telefono(telefono_json.getInt("numero"), telefono_json.getString("tipo"));
+                            Telefono telefonoNuevo = new Telefono(telefono_json.getLong("numero"), telefono_json.getString("tipo"));
 
                             // Añade el Telefono nuevo al contacto nuevo
                             contactoNuevo.getLista_Telefonos().add(telefonoNuevo);
