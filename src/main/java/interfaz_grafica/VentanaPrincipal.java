@@ -574,42 +574,69 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         }
 
         if (e.getSource() == botonDatosContacto) {
-            // Si el usuario ha seleccionado un objeto de la lista
-            if(listaC.getEleccion()!=-1) {
-                // Instancia una ventana para elegir un contacto y la hace visible
-                VentanaDatosContacto vdc = new VentanaDatosContacto(listaC.getEleccion());
-                vdc.setVisible(true);
+
+            // Validación de entrada
+            if(listaC.getEleccion()==-1){
+                new MensajeError("No ha seleccionado un contacto de la lista.");
+            }
+
+            // Si la entrada es válida...
+            else {
+                // Si el usuario ha seleccionado un objeto de la lista
+                if (listaC.getEleccion() != -1) {
+                    // Instancia una ventana para elegir un contacto y la hace visible
+                    VentanaDatosContacto vdc = new VentanaDatosContacto(listaC.getEleccion());
+                    vdc.setVisible(true);
+                }
             }
         }
 
         if (e.getSource() == botonEditarContacto) {
-            // Si el usuario ha seleccionado un objeto de la lista
-            if(listaC.getEleccion()!=-1) {
-                // Instancia una ventana que muestra el editor de datos del contacto elegido
-                VentanaEditor ve = new VentanaEditor(listaC.getEleccion());
-                ve.setVisible(true);
+
+            // Validación de entrada
+            if(listaC.getEleccion()==-1){
+                new MensajeError("No ha seleccionado un contacto de la lista.");
+            }
+
+            // Si la entrada es válida...
+            else {
+                // Si el usuario ha seleccionado un objeto de la lista
+                if (listaC.getEleccion() != -1) {
+                    // Instancia una ventana que muestra el editor de datos del contacto elegido
+                    VentanaEditor ve = new VentanaEditor(listaC.getEleccion());
+                    ve.setVisible(true);
+                }
             }
         }
 
         if (e.getSource() == botonEliminarContacto){
-            // Crea el panel para pedir confirmación
-            int n = JOptionPane.showConfirmDialog(panel.getParent(),
-                    "¿Está seguro de que quiere borrar el contacto \""+
-                            Principal.agenda.getLista_Nombres().get(listaC.getEleccion())+
-                            "\"?\nEsta operación no se puede deshacer.",
-                    "Borrar el contacto \""+Principal.agenda.getLista_Nombres().get(listaC.getEleccion())+"\"",
-                    JOptionPane.YES_NO_OPTION);
 
-            // Si el usuario escoge "Sí"
-            if(n == JOptionPane.YES_OPTION){
-                // Borra el contacto seleccionado
-                Principal.agenda.eliminarContacto(listaC.getEleccion());
+            // Validación de entrada
+            if(listaC.getEleccion()==-1){
+                new MensajeError("No ha seleccionado un contacto de la lista.");
+            }
 
-                // Borra el contacto del modelo
-                listaC.borrarElegido();
+            // Si la entrada es válida...
+            else {
+                // Crea el panel para pedir confirmación
+                int n = JOptionPane.showConfirmDialog(panel.getParent(),
+                        "¿Está seguro de que quiere borrar el contacto \"" +
+                                Principal.agenda.getLista_Nombres().get(listaC.getEleccion()) +
+                                "\"?\nEsta operación no se puede deshacer.",
+                        "Borrar el contacto \"" + Principal.agenda.getLista_Nombres().get(listaC.getEleccion()) + "\"",
+                        JOptionPane.YES_NO_OPTION);
 
-                // Reinicia la elección (para evitar errores del tipo IndexOutOfBounds)
-                listaC.reiniciarEleccion();
+                // Si el usuario escoge "Sí"
+                if (n == JOptionPane.YES_OPTION) {
+                    // Borra el contacto seleccionado
+                    Principal.agenda.eliminarContacto(listaC.getEleccion());
+
+                    // Borra el contacto del modelo
+                    listaC.borrarElegido();
+
+                    // Reinicia la elección (para evitar errores del tipo IndexOutOfBounds)
+                    listaC.reiniciarEleccion();
+                }
             }
         }
     }
