@@ -31,7 +31,7 @@ public class JPanelLista extends JPanel {
         // Instancia una JList con los datos del modelo
         lista = new JList(modelo);
         // Instancia el JScrollPane, usando la JList (y define el funcionamiento vertical y horizontal)
-        scroll = new JScrollPane(lista, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll = new JScrollPane(lista, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     }
 
     private void ubicarComponentes(){
