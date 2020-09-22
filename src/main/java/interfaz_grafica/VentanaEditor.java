@@ -471,6 +471,14 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         botonCambiarNombre.addActionListener(this);
         botonCambiarDireccion.addActionListener(this);
         botonCambiarFecha.addActionListener(this);
+        botonAgregarTelefono.addActionListener(this);
+        botonBorrarTelefono.addActionListener(this);
+        panelOpcionesE.getBotonAgregar().addActionListener(this);
+        panelOpcionesE.getBotonBorrar().addActionListener(this);
+        panelOpcionesA.getBotonAgregar().addActionListener(this);
+        panelOpcionesA.getBotonBorrar().addActionListener(this);
+        panelOpcionesN.getBotonAgregar().addActionListener(this);
+        panelOpcionesN.getBotonBorrar().addActionListener(this);
     }
 
     @Override
@@ -552,6 +560,38 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
                 FechaCumple newFC = new FechaCumple(Integer.parseInt(""+comboDiaNuevo.getSelectedItem()), ""+comboMesNuevo.getSelectedItem());
                 aux.setFechaCumple(newFC);
             }
+        }
+
+        if (e.getSource() == botonAgregarTelefono) {
+
+        }
+
+        if (e.getSource() == botonBorrarTelefono) {
+
+        }
+
+        if (e.getSource() == panelOpcionesE.getBotonAgregar()) {
+
+        }
+
+        if (e.getSource() == panelOpcionesE.getBotonBorrar()) {
+
+        }
+
+        if (e.getSource() == panelOpcionesA.getBotonAgregar()) {
+
+        }
+
+        if (e.getSource() == panelOpcionesA.getBotonBorrar()) {
+
+        }
+
+        if (e.getSource() == panelOpcionesN.getBotonAgregar()) {
+
+        }
+
+        if (e.getSource() == panelOpcionesN.getBotonBorrar()) {
+
         }
 
         if (e.getSource() == botonGuardarCambios) {

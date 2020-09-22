@@ -56,4 +56,13 @@ public class JPanelNuevoBorrar extends JPanel {
 
         return c;
     }
+
+    //// Getters
+    public JButton getBotonAgregar() {
+        return botonAgregar;
+    }
+
+    public JButton getBotonBorrar() {
+        return botonBorrar;
+    }
 }
