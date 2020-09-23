@@ -168,7 +168,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         panelOpciones = new JPanel();
         panelOpciones.setLayout(new BoxLayout(panelOpciones, BoxLayout.Y_AXIS));
         // Crea un borde para el panel con las opciones
-        panelOpciones.setBorder(BordeGeneral.crearBorde("Opciones"));
+        panelOpciones.setBorder(BordeGeneral.crearBorde("Opciones generales"));
 
         listaC = new JPanelLista("Lista de contactos");
         // Añade todos los nombres de los contactos al modelo de la lista
