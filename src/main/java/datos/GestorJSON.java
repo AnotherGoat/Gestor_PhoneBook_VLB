@@ -3,12 +3,11 @@ package datos;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import interfaz_grafica.MensajeError;
 import lanzador.Principal;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import phonebook.*;
-/*Relación de Dependencia: Gestor JSON usa recursos de las clases GestorArchivo,Agenda,Principal es decir, depende de las funcionalidades de las otras clases
+/*Relacion de Dependencia: Gestor JSON usa recursos de las clases GestorArchivo,Agenda,Principal es decir, depende de las funcionalidades de las otras clases
 y no de forma inversa,es decir, las otras clases no necesitan de la clase GestorJson*/
 public class GestorJSON {
 
@@ -267,9 +266,13 @@ public class GestorJSON {
 
                 // En caso de que el contacto del JSON no tenga un nombre...
                 else{
-                    // Excepción
+                    // Muestra un mensaje de error
+                    System.out.println("Error: Contacto en el JSON no tiene nombre guardado");
                 }
             }
+
+            // Muestra un mensaje de éxito
+            System.out.println("Datos de \""+ruta+"\" cargados correctamente");
 
             // Cuando llega a esta sección, significa que la agenda principal cargó los datos correctamente
 
