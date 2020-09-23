@@ -1,5 +1,6 @@
 package datos;
 
+import interfaz_grafica.MensajeError;
 import org.json.JSONArray;
 
 import java.io.IOException;
@@ -7,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Scanner;
 
 public class GestorArchivo {
     /**
@@ -24,6 +24,7 @@ public class GestorArchivo {
             try{
                 Files.createDirectories(directorio);
             }catch(IOException e){
+                new MensajeError("El directorio no pudo ser creado.");
             }
         }
 
@@ -38,6 +39,7 @@ public class GestorArchivo {
         try{
             Files.write(archivo, "".getBytes());
         }catch(IOException e){
+            new MensajeError("El archivo no pudo ser creado.");
         }
     }
 
@@ -50,6 +52,7 @@ public class GestorArchivo {
         try{
             Files.write(archivo, contenido.getBytes());
         }catch(IOException e){
+            new MensajeError("El archivo no pudo ser copiado.");
         }
     }
 
@@ -65,6 +68,7 @@ public class GestorArchivo {
         try{
             contenido = new String(Files.readAllBytes(archivo));
         } catch(IOException e){
+            new MensajeError("El archivo no pudo ser leído.");
         }
 
         return contenido;
@@ -84,6 +88,7 @@ public class GestorArchivo {
             // Mueve el archivo
             Files.move(archivoOriginal, archivoNuevo, StandardCopyOption.COPY_ATTRIBUTES);
         } catch(IOException e){
+            new MensajeError("El archivo no pudo ser movido.");
         }
     }
 
@@ -101,6 +106,7 @@ public class GestorArchivo {
             // Mueve el archivo
             Files.move(archivoOriginal, archivoNuevo, StandardCopyOption.REPLACE_EXISTING);
         } catch(IOException e){
+            new MensajeError("El archivo no pudo ser movido.");
         }
     }
 
@@ -118,6 +124,7 @@ public class GestorArchivo {
             // Copia el archivo
             Files.copy(archivoOriginal, archivoNuevo, StandardCopyOption.COPY_ATTRIBUTES);
         } catch(IOException e){
+            new MensajeError("El archivo no pudo ser copiado.");
         }
     }
 
@@ -135,6 +142,7 @@ public class GestorArchivo {
             // Copia el archivo
             Files.copy(archivoOriginal, archivoNuevo, StandardCopyOption.REPLACE_EXISTING);
         } catch(IOException e){
+            new MensajeError("El archivo no pudo ser copiado.");
         }
     }
 
@@ -148,6 +156,7 @@ public class GestorArchivo {
         try{
             Files.deleteIfExists(archivo);
         } catch (IOException e){
+            new MensajeError("El archivo no pudo ser eliminado.");
         }
     }
 
@@ -163,7 +172,7 @@ public class GestorArchivo {
         try{
             texto = new String(Files.readAllBytes(archivo));
         }catch(IOException e){
-            System.out.println("El archivo no pudo ser leído");
+            new MensajeError("El archivo no pudo ser leído.");
         }
 
         return new JSONArray(texto);
