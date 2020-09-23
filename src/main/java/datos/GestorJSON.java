@@ -267,12 +267,8 @@ public class GestorJSON {
                 // En caso de que el contacto del JSON no tenga un nombre...
                 else{
                     // Muestra un mensaje de error
-                    System.out.println("Error: Contacto en el JSON no tiene nombre guardado");
                 }
             }
-
-            // Muestra un mensaje de éxito
-            System.out.println("Datos de \""+ruta+"\" cargados correctamente");
 
             // Cuando llega a esta sección, significa que la agenda principal cargó los datos correctamente
 

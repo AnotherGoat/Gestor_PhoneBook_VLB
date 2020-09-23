@@ -163,7 +163,6 @@ public class GestorArchivo {
         try{
             texto = new String(Files.readAllBytes(archivo));
         }catch(IOException e){
-            System.out.println("El archivo no pudo ser leído");
         }
 
         return new JSONArray(texto);

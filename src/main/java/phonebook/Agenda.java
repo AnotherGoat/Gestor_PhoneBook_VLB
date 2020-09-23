@@ -47,8 +47,6 @@ public class Agenda {
 
         GestorJSON.guardarJSON("agenda.json");
 
-        System.out.println("El contacto fue guardado exitosamente.");
-
         // Retorna el índice del contacto nuevo
         return lista_contactos.indexOf(nuevo);
     }
@@ -68,8 +66,6 @@ public class Agenda {
         ordenarContactos();
 
         GestorJSON.guardarJSON("agenda.json");
-
-        System.out.println("El contacto fue guardado exitosamente.");
 
         // Retorna el índice del contacto nuevo
         return lista_contactos.indexOf(nuevo);
