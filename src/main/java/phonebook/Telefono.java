@@ -7,48 +7,53 @@ public class Telefono {
 
     //// Atributos
     /**
-     * Número de teléfono
+     * Número de teléfono, almacenado en un long
      */
-    long numero;
+    private long numero;
     /**
-     * Tipo de teléfono ("Celular", "Casa", "Trabajo")
+     * String con el tipo del teléfono
+     * @see Telefono#lista_tipos
      */
-    String tipo;
+    private String tipo;
+    /**
+     * Arreglo con la lista de tipos válidos (se escogíó no usar un enum)
+     */
+    final String[] lista_tipos = {"Celular", "Casa", "Trabajo"};
 
     //// Constructores
+    /**
+     * Construye un teléfono con los datos entregados
+     * @param numero Número de teléfono, puede ser de hasta 15 dígitos
+     * @param tipo String con el tipo de teléfono
+     * @see Telefono#lista_tipos
+     */
     public Telefono(long numero, String tipo) {
         this.numero = numero;
         this.tipo = tipo;
     }
 
     //// Getters y Setters
+    /**
+     * Getter para obtener el número de teléfono
+     * @return Long (clase primitiva) con el número de teléfono
+     */
     public long getNumero() {
         return numero;
     }
 
-    public void setNumero(long numero) {
-        this.numero = numero;
-    }
-
     /**
-     * Este getter toma el tipo del Telefono y lo convierte en un String
+     * Este getter retorna el tipo de teléfono
      * @return Tipo en forma de String
      */
     public String getTipo() {
         return tipo;
     }
 
+    //// toString
     /**
-     * Este setter toma un String y lo convierte en el tipo
-     * @param tipo String que tiene el nombre del tipo2
+     * Convierte los datos del teléfono a un String
+     * @return Datos del teléfono
      */
-    public void setTipo(String tipo) {
-        // Siempre que el tipo no sea nulo...
-        if(tipo!=null) {
-            this.tipo = tipo;
-        }
-    }
-
     @Override
     public String toString() {
         return tipo+": "+numero;
