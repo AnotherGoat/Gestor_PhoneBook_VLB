@@ -172,6 +172,7 @@ public class Agenda {
     //// toString
     /**
      * Convierte la información guardada en la agenda a un String
+     * @see String
      * @see Contacto#toString()
      */
     @Override

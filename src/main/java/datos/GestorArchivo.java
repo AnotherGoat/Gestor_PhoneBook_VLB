@@ -7,12 +7,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Scanner;
 
+/**
+ * Esta clase contiene métodos que se encargan de la gestión de archivos en el proyecto
+ */
 public class GestorArchivo {
     /**
      * Crea un directorio en la ruta específica, sólo si no existe
-     * @param ruta Ruta deonde se va a crear el directorio
+     * @param ruta Ruta donde se va a crear el directorio
      */
     public void crearDirectorio(String ruta){
         Path directorio = Paths.get(ruta);
@@ -156,6 +158,7 @@ public class GestorArchivo {
      * Método que retorna un JSONArray construido con un archivo JSON, o retorna un JSONArray nuevo si no existe
      * @param ruta Ruta del archivo JSON
      * @return JSONArray creado con el texto del archivo JSON
+     * @see JSONArray
      */
     public JSONArray convertirArchivoAJSONArray(String ruta){
         Path archivo = Paths.get(ruta);

@@ -67,7 +67,8 @@ public class FechaCumple {
     //// toString
     /**
      * Convierte los datos de la fecha de cumpleaños a un String
-     * @return Strin con los datos
+     * @return String con los datos
+     * @see String
      */
     @Override
     public String toString() {

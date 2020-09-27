@@ -53,6 +53,7 @@ public class Telefono {
     /**
      * Convierte los datos del teléfono a un String
      * @return Datos del teléfono
+     * @see String
      */
     @Override
     public String toString() {

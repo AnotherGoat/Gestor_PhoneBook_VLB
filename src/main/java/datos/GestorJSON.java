@@ -7,6 +7,10 @@ import lanzador.Principal;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import phonebook.*;
+
+/**
+ * Esta clase contiene métodos estáticos para manejo de datos JSON, no se puede instanciar
+ */
 /*Relacion de Dependencia: Gestor JSON usa recursos de las clases GestorArchivo,Agenda,Principal es decir, depende de las funcionalidades de las otras clases
 y no de forma inversa,es decir, las otras clases no necesitan de la clase GestorJson*/
 public class GestorJSON {
@@ -14,13 +18,24 @@ public class GestorJSON {
     //// Atributos
     /**
      * Instancia del gestor de archivos
+     * @see GestorArchivo
      */
     static GestorArchivo ga = new GestorArchivo();
+
+    //// Constructores
+    /**
+     * Constructor vacío de GestorJSON. Es privado para que no se pueda instanciar de ninguna forma
+     */
+    private GestorJSON(){
+        // Vacío para que no se pueda instanciar
+    }
 
     //// Métodos
     /**
      * Este método recibe los datos de la agenda principal y los guarda en un archivo
      * @param ruta Ruta donde se guardará el archivo
+     * @see Agenda
+     * @see Contacto
      */
     public static void guardarJSON(String ruta){
 
@@ -149,6 +164,9 @@ public class GestorJSON {
     /**
      * Método que carga un el archivo "agenda.json" (si este existe), y carga sus datos en en JSONArray agenda_json
      * @param ruta Ruta del archivo que se va a cargar
+     * @see Principal#agenda_json
+     * @see GestorArchivo#convertirArchivoAJSONArray(String)
+     * @see Agenda
      */
     public static void cargarJSON(String ruta){
 
@@ -282,6 +300,8 @@ public class GestorJSON {
     /**
      * Reinstancia la agenda principal y borra el archivo de la ruta indicada
      * @param ruta Ruta del archivo JSON que se va a borrar
+     * @see Principal#agenda_json
+     * @see GestorArchivo#eliminarArchivo(String)
      */
     public static void borrarJSON(String ruta){
         // Vuelve a instanciar la agenda en principal
@@ -294,6 +314,10 @@ public class GestorJSON {
      * Importa un archivo JSON externo al programa, y carga todos sus datos
      * @param ruta Ruta del archivo original
      * @param destino Ruta de destino
+     * @see Principal#agenda_json
+     * @see GestorArchivo#eliminarArchivo(String)
+     * @see GestorArchivo#copiarArchivo(String, String)
+     * @see GestorJSON#cargarJSON(String)
      */
     public static void importarJSON(String ruta, String destino){
         // Vuelve a instanciar la agenda_json en Principal
@@ -310,6 +334,7 @@ public class GestorJSON {
      * Exporta un archivo JSON con los datos actuales de la agenda a la ruta especificada
      * @param ruta Ruta del archivo original
      * @param destino Ruta de destino a donde se copiará el archivo
+     * @see GestorArchivo#copiarArchivo(String, String)
      */
     public static void exportarJSON(String ruta, String destino){
         // Copia el archivo usando el gestor de archivos

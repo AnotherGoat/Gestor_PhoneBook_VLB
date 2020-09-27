@@ -104,6 +104,7 @@ public class Direccion {
     /**
      * Convierte los datos de la dirección a un String
      * @return String con los datos de la dirección
+     * @see String
      */
     @Override
     public String toString() {
