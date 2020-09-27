@@ -5,11 +5,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Esta clase tiene todos los métodos para validar y recibir entrada
+ * Esta clase tiene métodos para validar entrada
  */
 public class Validador {
 
     //// Constructores
+    /**
+     * Constructor de Validador. Es privado para que esta clase no pueda instanciarse
+     */
     private Validador(){
         // Para que no pueda ser construido
     }
