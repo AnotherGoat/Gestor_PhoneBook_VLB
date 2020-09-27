@@ -204,6 +204,8 @@ public class Contacto {
     /**
      * Método toString con un formato personalizado, usando un StringBuilder
      * @return String detallando los datos del contacto, no muestra los que todavía no existen
+     * @see Direccion#toString()
+     * @see FechaCumple#toString()
      */
     @Override
     public String toString() {

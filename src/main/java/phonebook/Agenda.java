@@ -1,7 +1,6 @@
 package phonebook;
 
 import datos.GestorJSON;
-import utilidades.Validador;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,7 +8,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Esta clase almacena todos los contactos y métodos para trabajar con ellos
+ * Esta clase se encarga de almacenar contactos y métodos para trabajar con ellos
+ * @see Contacto
  */
 /*Relación de Dependencia: Agenda usa recursos de la clase Validador, es decir, depende de las funcionalidades de las otras clases
 y no de forma inversa,es decir, la otra clase no necesitan de la clase Agenda.
@@ -19,6 +19,7 @@ public class Agenda {
     //// Atributos
     /**
      * List con los contactos guardados
+     * @see Contacto
      */
     private List<Contacto> lista_contactos = new ArrayList<>();
     /**
@@ -27,13 +28,20 @@ public class Agenda {
     List<String> lista_nombres = new ArrayList<>();
 
     //// Constructores
+    /**
+     * Constructor vacío de la clase Agenda
+     */
     public Agenda() {
     }
 
     //// Métodos
     /**
      * Método para crear un contacto nuevo a partir de un String
+     * @param entrada String con la entrada del usuario
      * @return int con la posición en la que se añadió el contacto
+     * @see Contacto#Contacto(String)
+     * @see Agenda#ordenarContactos()
+     * @see GestorJSON#guardarJSON(String)
      */
     public int crearContacto(String entrada) {
 
@@ -51,12 +59,13 @@ public class Agenda {
 
     /**
      * Método para crear un contacto nuevo a partir de otro contacto
+     * @param original Contacto que se quiere copiar
      * @return int con la posición en la que se añadió el contacto
+     * @see Contacto#Contacto(Contacto)
+     * @see Agenda#ordenarContactos()
+     * @see GestorJSON#guardarJSON(String)
      */
     public int crearContacto(Contacto original) {
-        // Pide el nombre del contacto
-        // String nombreContacto = v.recibirString("Ingrese el nombre del contacto: ");
-
         // Crea el contacto nuevo y lo agrega a la List
         Contacto nuevo = new Contacto(original);
         lista_contactos.add(nuevo);
@@ -69,6 +78,12 @@ public class Agenda {
         return lista_contactos.indexOf(nuevo);
     }
 
+    /**
+     * Borra el contacto en la posición indicada
+     * @param posicion Int con la posición del contacto que se desea borrar
+     * @see Contacto
+     * @see GestorJSON#guardarJSON(String)
+     */
     public void borrarContacto(int posicion){
         this.lista_contactos.remove(posicion);
         this.lista_nombres.remove(posicion);
@@ -79,7 +94,9 @@ public class Agenda {
 
     /**
      * Método para eliminar un contacto
-     * @param posicion int con la posición del contacto, debe ser negativo
+     * @param posicion Int con la posición del contacto
+     * @see Contacto
+     * @see GestorJSON#guardarJSON(String)
      */
     public void eliminarContacto(int posicion) {
         // Borra el contacto de las listas de contactos y de nombres
@@ -91,6 +108,7 @@ public class Agenda {
 
     /**
      * Ordena la lista de contactos alfabéticamente según el nombre de cada uno y actualiza la lista de nombres
+     * @see Agenda#actualizarListaNombres()
      */
     public void ordenarContactos(){
         // Se necesita crear un comparador para ordenar contactos
@@ -109,6 +127,7 @@ public class Agenda {
 
     /**
      * Este método actualiza la lista de nombres de la agenda en base a la lista de contactos actual
+     * @see Contacto
      */
     public void actualizarListaNombres(){
         // Limpia la lista
@@ -122,6 +141,7 @@ public class Agenda {
 
     /**
      * Borra todos los datos guardados en la agenda y el archivo "agenda.json"
+     * @see GestorJSON#borrarJSON(String)
      */
     public void borrarTodo(){
         // Limpia los 2 ArrayLists que contienen todos los datos
@@ -132,23 +152,29 @@ public class Agenda {
     }
 
     //// Getters y Setters
+    /**
+     * Getter para obtener la lista de contactos de la agenda
+     * @return ArrayList con la lista de contactos
+     * @see Contacto
+     */
     public List<Contacto> getLista_Contactos() {
         return lista_contactos;
     }
 
-    public void setLista_Contactos(List<Contacto> contactos) {
-        this.lista_contactos = contactos;
-    }
-
+    /**
+     * Getter para obtener la lista de nombres de la agenda
+     * @return ArrayList con los nombres  de los contactos
+     */
     public List<String> getLista_Nombres() {
         return lista_nombres;
     }
 
     //// toString
-    @Override
     /**
      * Convierte la información guardada en la agenda a un String
+     * @see Contacto#toString()
      */
+    @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
 

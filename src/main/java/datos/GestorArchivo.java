@@ -44,6 +44,7 @@ public class GestorArchivo {
     /**
      * Crea un archivo en la ruta especificada, y con el contenido ingresado
      * @param ruta Ruta donde se va a crear el archivo
+     * @param contenido String con el contenido que tendrá el archivo
      */
     public void crearArchivo(String ruta, String contenido){
         Path archivo = Paths.get(ruta);
