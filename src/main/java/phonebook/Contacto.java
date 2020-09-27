@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Esta clase contiene los datos que se guardarán para cada contacto
+ * Esta clase representa un contacto y contiene los datos que se guardarán para cada uno
  */
 public class Contacto {
 
@@ -37,19 +37,25 @@ public class Contacto {
      * ArrayList con las notas adicionales que se quieran agregar sobre el contacto
      */
     private List<String> lista_notas = new ArrayList<>();
-
+    /**
+     * String con la ruta de la foto del contacto
+     */
     private String rutaFoto;
 
     //// Constructores
-    public Contacto(){
-    }
-
+    /**
+     * Constructor básico de un objeto de la clase Contacto, el cual sólo necesita un nombre para existir
+     * @param nombre String que contiene el nombre del contacto
+     */
     public Contacto(String nombre) {
         this.nombre = nombre;
         this.rutaFoto = "";
     }
 
-    // Constructor para copiar un contacto
+    /**
+     * Constructor para crear una instancia de un contacto con los mismos datos que tiene otro contacto
+     * @param c Contacto que se quiere copiar
+     */
     public Contacto(Contacto c){
         if(c!=null) {
             // Copia el nombre desde c
@@ -83,6 +89,10 @@ public class Contacto {
     }
 
     //// Getters y Setters
+    /**
+     * Getter para obtener el nombre del contacto
+     * @return String con el nombre del contacto
+     */
     public String getNombre() {
         return nombre;
     }
@@ -91,10 +101,18 @@ public class Contacto {
         this.nombre = nombre;
     }
 
+    /**
+     * Getter para obtener la lista de teléfonos del contacto
+     * @return ArrayList con la lista de teléfonos del contacto
+     */
     public List<Telefono> getLista_Telefonos() {
         return lista_telefonos;
     }
 
+    /**
+     * Getter para obtener la dirección del contacto
+     * @return Dirección del contacto
+     */
     public Direccion getDireccion() {
         return direccion;
     }
@@ -103,6 +121,10 @@ public class Contacto {
         this.direccion = direccion;
     }
 
+    /**
+     * Getter para obtener la fecha de cumpleaños del contacto
+     * @return FechaCumple del contacto
+     */
     public FechaCumple getFechaCumple() {
         return fechaCumple;
     }
@@ -111,22 +133,42 @@ public class Contacto {
         this.fechaCumple = fechaCumple;
     }
 
+    /**
+     * Getter para obtener la lista de emails del contacto
+     * @return ArrayList con la lista de emails del contacto
+     */
     public List<String> getLista_Emails() {
         return lista_emails;
     }
 
+    /**
+     * Getter para obtener la lista de apodos del contacto
+     * @return ArrayList con la lista de apodos del contacto
+     */
     public List<String> getLista_Apodos() {
         return lista_apodos;
     }
 
+    /**
+     * Getter para obtener la lista de notas sobre el contacto
+     * @return ArrayList con la lista de notas sobre el contacto
+     */
     public List<String> getLista_Notas() {
         return lista_notas;
     }
 
+    /**
+     * Getter para obtener la ruta donde se guarda la foto del contacto
+     * @return String con la ruta donde se guarda la foto
+     */
     public String getRutaFoto() {
         return rutaFoto;
     }
 
+    /**
+     * Getter para cambiar la ruta de la foto del contacto
+     * @param rutaFoto String que contiene la ruta nueva
+     */
     public void setRutaFoto(String rutaFoto) {
         this.rutaFoto = rutaFoto;
     }
