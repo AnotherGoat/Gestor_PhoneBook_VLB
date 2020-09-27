@@ -36,8 +36,6 @@ public class Agenda {
      * @return int con la posición en la que se añadió el contacto
      */
     public int crearContacto(String entrada) {
-        // Pide el nombre del contacto
-        // String nombreContacto = v.recibirString("Ingrese el nombre del contacto: ");
 
         // Crea el contacto nuevo y lo agrega a la List
         Contacto nuevo = new Contacto(entrada);

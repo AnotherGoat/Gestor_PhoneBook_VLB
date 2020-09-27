@@ -15,14 +15,17 @@ public class Contacto {
     private String nombre;
     /**
      * ArrayList con los números de teléfono del contacto
+     * @see Telefono
      */
     private List<Telefono> lista_telefonos = new ArrayList<>();
     /**
      * Dirección de residencia del contacto
+     * @see Direccion
      */
     private Direccion direccion;
     /**
      * Fecha de cumpleaños del contacto
+     * @see FechaCumple
      */
     private FechaCumple fechaCumple;
     /**
@@ -44,6 +47,12 @@ public class Contacto {
 
     //// Constructores
     /**
+     * Constructor por defecto de la clase Contacto, no se debería usar fuera de tests
+     */
+    public Contacto() {
+    }
+
+    /**
      * Constructor básico de un objeto de la clase Contacto, el cual sólo necesita un nombre para existir
      * @param nombre String que contiene el nombre del contacto
      */
@@ -55,6 +64,7 @@ public class Contacto {
     /**
      * Constructor para crear una instancia de un contacto con los mismos datos que tiene otro contacto
      * @param c Contacto que se quiere copiar
+     * @see Contacto
      */
     public Contacto(Contacto c){
         if(c!=null) {
@@ -97,6 +107,10 @@ public class Contacto {
         return nombre;
     }
 
+    /**
+     * Setter para cambiar el nombre del contacto
+     * @param nombre String con el nombre nuevo que se le quiere dar al contacto
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -104,6 +118,7 @@ public class Contacto {
     /**
      * Getter para obtener la lista de teléfonos del contacto
      * @return ArrayList con la lista de teléfonos del contacto
+     * @see Telefono
      */
     public List<Telefono> getLista_Telefonos() {
         return lista_telefonos;
@@ -111,24 +126,36 @@ public class Contacto {
 
     /**
      * Getter para obtener la dirección del contacto
-     * @return Dirección del contacto
+     * @return Dirección del contacto, en un objeto de clase Direccion
+     * @see Direccion
      */
     public Direccion getDireccion() {
         return direccion;
     }
 
+    /**
+     * Setter para cambiar la dirección del contacto
+     * @param direccion Objeto de la clase Direccion con la dirección nueva
+     * @see Direccion
+     */
     public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
 
     /**
      * Getter para obtener la fecha de cumpleaños del contacto
-     * @return FechaCumple del contacto
+     * @return FechaCumple con la fecha de cumpleaños del contacto
+     * @see FechaCumple
      */
     public FechaCumple getFechaCumple() {
         return fechaCumple;
     }
 
+    /**
+     * Setter para cambiar la fecha de cumpleaños del contacto
+     * @param fechaCumple Objeto de la clase FechaCumple con la fecha nueva
+     * @see FechaCumple
+     */
     public void setFechaCumple(FechaCumple fechaCumple) {
         this.fechaCumple = fechaCumple;
     }
@@ -166,16 +193,16 @@ public class Contacto {
     }
 
     /**
-     * Getter para cambiar la ruta de la foto del contacto
+     * Setter para cambiar la ruta de la foto del contacto
      * @param rutaFoto String que contiene la ruta nueva
      */
     public void setRutaFoto(String rutaFoto) {
         this.rutaFoto = rutaFoto;
     }
 
-    // toString
+    //// toString
     /**
-     * Método toString con un formato personalizado
+     * Método toString con un formato personalizado, usando un StringBuilder
      * @return String detallando los datos del contacto, no muestra los que todavía no existen
      */
     @Override
