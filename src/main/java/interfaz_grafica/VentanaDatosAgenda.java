@@ -1,14 +1,28 @@
 package interfaz_grafica;
 
 import lanzador.Principal;
+import phonebook.Agenda;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * JDialog que muestra los datos guardados en la agenda
+ * @see JDialogTextoGeneral
+ */
 public class VentanaDatosAgenda extends JDialogTextoGeneral {
 
     //// Constructores
+    /**
+     * Construye una ventana con los datos de la agenda
+     * @see Agenda#toString
+     * @see JDialogGeneral#cargarIcono()
+     * @see JDialogTextoGeneral#inicializarComponentes()
+     * @see JDialogTextoGeneral#ubicarComponentes()
+     * @see JDialogGeneral#implementarListeners()
+     * @see VentanaDatosAgenda#configurarVentana()
+     */
     public VentanaDatosAgenda() {
         this.texto = Principal.agenda.toString();
 
@@ -20,6 +34,10 @@ public class VentanaDatosAgenda extends JDialogTextoGeneral {
     }
 
     //// Métodos
+    /**
+     * Configura el JDialog
+     * @see JDialogTextoGeneral#configurarVentana()
+     */
     @Override
     protected void configurarVentana() {
         super.configurarVentana();

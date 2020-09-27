@@ -8,16 +8,45 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+/**
+ * Panel que contiene una imagen
+ * @see JPanel
+ * @see BufferedImage
+ */
 public class JPanelImagen extends JPanel {
 
     //// Atributos
+    /**
+     * Imagen que cargará el JPanel
+     * @see BufferedImage
+     */
     private BufferedImage imagen;
+    /**
+     * Label que contiene la imagen (porque los paneles no pueden contener una)
+     * @see JLabel
+     */
     private JLabel label;
+    /**
+     * Ruta de la imagen
+     */
     private String ruta;
+    /**
+     * Ancho de la imagen
+     */
     private int ancho;
+    /**
+     * Altura de la imagen
+     */
     private int altura;
 
     //// Constructores
+    /**
+     * <p>Construye un panel con la imagen y el tamaño indicados (manteniendo la relación de aspecto)</p>
+     * <p>Si el ancho y la altura de la imagen cargada son distintos, se asegura de que el que sea más grande se mantiene</p>
+     * @param ruta Ruta de la imagen
+     * @param ancho Ancho de la imagen, en píxeles
+     * @param altura Altura de la imagen, en píxeles
+     */
     public JPanelImagen(String ruta, int ancho, int altura) {
         this.ruta = ruta;
         this.ancho = ancho;
@@ -54,6 +83,12 @@ public class JPanelImagen extends JPanel {
     }
 
     //// Métodos
+    /**
+     * Se usa para recargar la imagen
+     * @param rutaNueva Ruta de la imagen nueva
+     * @see JPanel#repaint()
+     * @see JPanel#revalidate()
+     */
     public void recargar(String rutaNueva){
         ruta = rutaNueva;
 
@@ -82,13 +117,16 @@ public class JPanelImagen extends JPanel {
 
         label.setIcon(new ImageIcon(imagen.getScaledInstance(ancho, altura, Image.SCALE_SMOOTH)));
 
-        // remove(label);
-        // add(label);
         repaint();
         revalidate();
     }
 
     //// Getters
+    /**
+     * Getter para obtener el label
+     * @return JLabel que contiene la imagen
+     * @see JLabel
+     */
     public JLabel getLabel() {
         return label;
     }

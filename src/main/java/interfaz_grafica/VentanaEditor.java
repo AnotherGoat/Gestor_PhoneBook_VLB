@@ -485,8 +485,18 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         add(panel);
     }
 
+    /**
+     * Retorna un objeto GridBagConstraints con las especificaciones dadas
+     * @param x Posición en X
+     * @param y Posición en Y
+     * @param ancho Medida del ancho (en láminas)
+     * @param altura Medida de altura (en láminas)
+     * @return Objeto GridBagConstraints con los datos
+     * @see GridBagConstraints
+     * @see VentanaEditor#gbc(int, int, int, int, double, double)
+     */
     private GridBagConstraints gbc(int x, int y, int ancho, int altura) {
-        // Instancia GriadBagConstraints para configurar un GridBagLayout
+        // Instancia GridBagConstraints para configurar un GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
 
         c.gridx = x;
@@ -500,6 +510,18 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         return c;
     }
 
+    /**
+     * Retorna un objeto GridBagConstraints con las especificaciones dadas
+     * @param x Posición en X
+     * @param y Posición en Y
+     * @param ancho Medida del ancho (en láminas)
+     * @param altura Medida de altura (en láminas)
+     * @param pesox Peso en X (en porcentaje)
+     * @param pesoy Peso en Y (en porcentaje)
+     * @return Objeto GridBagConstraints con los datos
+     * @see GridBagConstraints
+     * @see VentanaEditor#gbc(int, int, int, int)
+     */
     private GridBagConstraints gbc(int x, int y, int ancho, int altura, double pesox, double pesoy) {
         // Instancia GriadBagConstraints para configurar un GridBagLayout
         GridBagConstraints c = new GridBagConstraints();

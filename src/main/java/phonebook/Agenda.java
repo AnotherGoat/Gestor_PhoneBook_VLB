@@ -42,6 +42,7 @@ public class Agenda {
      * @see Contacto#Contacto(String)
      * @see Agenda#ordenarContactos()
      * @see GestorJSON#guardarJSON(String)
+     * @see Agenda#crearContacto(Contacto)
      */
     public int crearContacto(String entrada) {
 
@@ -64,6 +65,7 @@ public class Agenda {
      * @see Contacto#Contacto(Contacto)
      * @see Agenda#ordenarContactos()
      * @see GestorJSON#guardarJSON(String)
+     * @see Agenda#crearContacto(String)
      */
     public int crearContacto(Contacto original) {
         // Crea el contacto nuevo y lo agrega a la List

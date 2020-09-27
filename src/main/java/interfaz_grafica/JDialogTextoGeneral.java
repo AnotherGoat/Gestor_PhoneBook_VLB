@@ -17,7 +17,7 @@ public class JDialogTextoGeneral extends JDialogGeneral {
      */
     protected String texto;
     /**
-     * Área con el texto
+     * Área con el texto, no será editable
      * @see JTextArea
      */
     protected JTextArea textArea;

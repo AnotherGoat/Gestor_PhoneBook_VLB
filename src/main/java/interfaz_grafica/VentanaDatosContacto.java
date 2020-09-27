@@ -1,11 +1,17 @@
 package interfaz_grafica;
 
 import lanzador.Principal;
+import phonebook.Agenda;
+import phonebook.Contacto;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * JDialog que muestra los datos guardados sobre un contacto
+ * @see JDialogTextoGeneral
+ */
 public class VentanaDatosContacto extends JDialogTextoGeneral{
 
     //// Atributos
@@ -15,6 +21,16 @@ public class VentanaDatosContacto extends JDialogTextoGeneral{
     private int posicion;
 
     //// Constructores
+    /**
+     * Construye una ventana con los datos del contacto
+     * @param posicion Posición del contacto en la agenda
+     * @see Contacto#toString
+     * @see JDialogGeneral#cargarIcono()
+     * @see JDialogTextoGeneral#inicializarComponentes()
+     * @see JDialogTextoGeneral#ubicarComponentes()
+     * @see JDialogGeneral#implementarListeners()
+     * @see VentanaDatosContacto#configurarVentana()
+     */
     public VentanaDatosContacto(int posicion) {
         this.posicion = posicion;
         this.texto = Principal.agenda.getLista_Contactos().get(posicion).toString();
@@ -27,6 +43,10 @@ public class VentanaDatosContacto extends JDialogTextoGeneral{
     }
 
     //// Métodos
+    /**
+     * Configura el JDialog
+     * @see JDialogTextoGeneral#configurarVentana()
+     */
     @Override
     protected void configurarVentana() {
         super.configurarVentana();
