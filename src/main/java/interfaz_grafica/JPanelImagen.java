@@ -121,7 +121,7 @@ public class JPanelImagen extends JPanel {
         revalidate();
     }
 
-    //// Getters
+    //// Getters y Setters
     /**
      * Getter para obtener el label
      * @return JLabel que contiene la imagen

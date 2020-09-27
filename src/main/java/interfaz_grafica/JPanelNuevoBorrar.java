@@ -120,7 +120,7 @@ public class JPanelNuevoBorrar extends JPanel {
         campo.setText("");
     }
 
-    //// Getters
+    //// Getters y Setters
     /**
      * Getter para obtener el Botón agregar
      * @return Botón con el texto "Agregar"

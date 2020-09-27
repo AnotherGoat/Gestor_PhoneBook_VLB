@@ -25,113 +25,336 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     //// Atributos
     /**
      * JPanel que contiene los otros paneles donde se puede editar un contacto
+     * @see JPanel
      */
     private JPanel panelNorte;
 
-    //Panel que contiene componentes para editar nombre
-    private JPanel panelNombre;
+    //// Panel que contiene componentes para editar nombre
+    /**
+     * Panel con el texto "Nombre"
+     * @see JPanel
+     */
 
+    private JPanel panelNombre;
+    /**
+     * Label con el texto "Nombre actual"
+     * @see JLabel
+     */
     private JLabel labelNombreActual;
+    /**
+     * Campo de texto con el nombre actual, no editable
+     * @see JTextField
+     */
     private JTextField campoNombreActual;
+    /**
+     * Label con el texto "Nombre nuevo"
+     * @see JLabel
+     */
     private JLabel labelNombreNuevo;
+    /**
+     * Campo de texto para cambiar el nombre
+     * @see JTextField
+     */
     private JTextField campoNombreNuevo;
+    /**
+     * Botón para cambiar el nombre
+     * @see JButton
+     */
     private JButton botonCambiarNombre;
 
-    //Panel que contiene componentes para editar Direccion
+    //// Panel que contiene componentes para editar Direccion
+    /**
+     * Panel con el texto "Direccion"
+     * @see JPanel
+     */
     private JPanel panelDireccion;
 
+    /**
+     * Panel con el texto "Ciudad"
+     * @see JPanel
+     */
     private JPanel panelCiudad;
+    /**
+     * Label con el texto "Ciudad actual"
+     * @see JLabel
+     */
     private JLabel labelCiudadActual;
+    /**
+     * Campo de texto con la ciudad actual, no editable
+     * @see JTextField
+     */
     private JTextField campoCiudadActual;
+    /**
+     * Label con el texto "Ciudad nueva"
+     * @see JLabel
+     */
     private JLabel labelCiudadNueva;
+    /**
+     * Campo de texto para cambiar la ciudad
+     * @see JTextField
+     */
     private JTextField campoCiudadNueva;
+
+    /**
+     * Panel con el texto "Calle"
+     * @see JPanel
+     */
     private JPanel panelCalle;
+    /**
+     * Label con el texto "Calle actual"
+     * @see JLabel
+     */
     private JLabel labelCalleActual;
+    /**
+     * Campo de texto con la calle actual, no editable
+     * @see JTextField
+     */
     private JTextField campoCalleActual;
+    /**
+     * Label con el texto "Calle nueva"
+     * @see JLabel
+     */
     private JLabel labelCalleNueva;
+    /**
+     * Campo de texto para cambiar la calle
+     * @see JTextField
+     */
     private JTextField campoCalleNueva;
+
+    /**
+     * Panel con el texto "Número" (de dirección)
+     * @see JPanel
+     */
     private JPanel panelNo;
+    /**
+     * Label con el texto "Número actual" (de dirección)
+     * @see JLabel
+     */
     private JLabel labelNoActual;
+    /**
+     * Campo de texto con el número actual (de dirección), no editable
+     * @see JTextField
+     */
     private JTextField campoNoActual;
+    /**
+     * Label con el texto "Número nuevo" (de dirección)
+     * @see JLabel
+     */
     private JLabel labelNoNuevo;
+    /**
+     * Campo de texto para cambiar el número (de dirección)
+     * @see JTextField
+     */
     private JTextField campoNoNuevo;
+
+    /**
+     * Botón para cambiar la dirección
+     * @see JButton
+     */
     private JButton botonCambiarDireccion;
 
-    //Panel que contiene componentes para editar Foto
+    //// Panel que contiene componentes para editar Foto
+    /**
+     * Panel donde va la foto
+     * @see JPanel
+     */
     private JPanel panelFoto;
+
+    /**
+     * PanelImagen que tiene la foto
+     * @see JPanelImagen
+     */
     private JPanelImagen foto;
+    /**
+     * Botón para cambiar la foto
+     * @see JButton
+     */
     private JButton botonCambiarFoto;
+    /**
+     * Selector de archivos para cambiar la foto
+     * @see JFileChooser
+     */
     private JFileChooser selectorFoto;
 
-    //Panel que contiene componentes para editar fecha de cumpleaños
+    //// Panel que contiene componentes para editar fecha de cumpleaños
+    /**
+     * Panel con el texto "Fecha de cumpleaños"
+     * @see JPanel
+     */
     private JPanel panelFechaCumple;
 
+    /**
+     * Panel con el texto "Fecha actual"
+     * @see JPanel
+     */
     private JPanel panelFechaActual;
+    /**
+     * ComboBox con el día actual
+     * @see JComboBox
+     */
     private JComboBox<String> comboDiaActual;
+    /**
+     * ComboBox con el mes actual
+     * @see JComboBox
+     */
     private JComboBox<String> comboMesActual;
+    /**
+     * Panel con el texto "Fecha nueva"
+     * @see JPanel
+     */
     private JPanel panelFechaNueva;
+    /**
+     * ComboBox con el día nuevo
+     * @see JComboBox
+     */
     private JComboBox<String> comboDiaNuevo;
+    /**
+     * ComboBox con el mes nuevo
+     * @see JComboBox
+     */
     private JComboBox<String> comboMesNuevo;
+    /**
+     * Botón para cambiar la fecha
+     * @see JButton
+     */
     private JButton botonCambiarFecha;
 
-    //Panel que contiene componentes para editar teléfono
+    //// Panel que contiene componentes para editar teléfono
+    /**
+     * Panel para editar teléfonos
+     * @see JPanel
+     */
     private JPanel panelTelefonos;
 
     /**
      * Panel que tiene la lista de teléfonos
+     * @see JPanelLista
      */
     private JPanelLista listaT;
 
+    /**
+     * Panel con las opciones para editar teléfonos
+     * @see JPanel
+     */
     private JPanel panelOpcionesT;
+
+    /**
+     * Label con el texto "Nuevo teléfono"
+     * @see JLabel
+     */
     private JLabel labelTelefono;
+    /**
+     * Campo de texto para escribir un teléfono nuevo
+     * @see JTextField
+     */
     private JTextField campoTelefono;
+    /**
+     * ComboBox para elegir el tipo de teléfono
+     * @see JComboBox
+     */
     private JComboBox<String> comboTelefono;
+    /**
+     * Botón para agregar el teléfono escrito en el campo
+     * @see JButton
+     */
     private JButton botonAgregarTelefono;
+    /**
+     * Botón para borrar el teléfono seleccionado
+     * @see JButton
+     */
     private JButton botonBorrarTelefono;
 
-    //Panel que contiene componentes para editar Email
+    //// Panel que contiene componentes para editar Email
+    /**
+     * Panel para editar emails
+     * @see JPanel
+     */
     private JPanel panelEmails;
+
     /**
      * Panel que tiene la lista de emails
+     * @see JPanelLista
      */
     private JPanelLista listaE;
+
+    /**
+     * Panel con las opciones para editar emails
+     * @see JPanelNuevoBorrar
+     */
     private JPanelNuevoBorrar panelOpcionesE;
 
-    //Panel que contiene componentes para editar Apodos
+    //// Panel que contiene componentes para editar Apodos
+    /**
+     * Panel para editar apodos
+     * @see JPanel
+     */
     private JPanel panelApodos;
     /**
      * Panel que tiene la lista de apodos
+     * @see JPanelLista
      */
     private JPanelLista listaA;
+    /**
+     * Panel con las opciones para editar apodos
+     * @see JPanelNuevoBorrar
+     */
     private JPanelNuevoBorrar panelOpcionesA;
 
-    //Panel que contiene componentes para editar Notas
+    //// Panel que contiene componentes para editar Notas
+    /**
+     * Panel para editar notas
+     * @see JPanel
+     */
     private JPanel panelNotas;
     /**
      * Panel que tiene la lista de notas
+     * @see JPanelLista
      */
     private JPanelLista listaN;
+    /**
+     * Panel con las opciones para editar notas
+     * @see JPanelNuevoBorrar
+     */
     private JPanelNuevoBorrar panelOpcionesN;
 
+    //// Panel sur
     /**
      * Panel que tendrá el botón para guardar cambios y el botón para salir
+     * @see JPanel
      */
     private JPanel panelSur;
+
+    /**
+     * Botón para guardar los cambios
+     * @see JButton
+     */
     private JButton botonGuardarCambios;
     /**
-     * Posicion del contacto original en la agenda
+     * Posición del contacto original en la agenda
      */
     private final int posicion;
     /**
      * Contacto original de la agenda
+     * @see Contacto
      */
     private Contacto original;
     /**
      * Contacto auxiliar, se usa para permitir elegir si guardar los cambios o no
+     * @see Contacto
      */
     private Contacto aux;
 
     //// Constructores
+    /**
+     * Construye una ventana para editar el contacto de la posicón escogida
+     * @param posicion Int con la posición del contacto
+     * @see Contacto
+     * @see JDialogGeneral#cargarIcono()
+     * @see VentanaEditor#inicializarComponentes()
+     * @see VentanaEditor#ubicarComponentes()
+     * @see VentanaEditor#implementarListeners()
+     * @see VentanaEditor#configurarVentana()
+     */
     public VentanaEditor(int posicion) {
         this.posicion = posicion;
         // Tomar contacto que se va a editar (paso por referencia)
@@ -148,6 +371,10 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
     }
 
     //// Métodos
+    /**
+     * Inicializa los componentes de VentanaEditor
+     * @see JDialogGeneral#inicializarComponentes()
+     */
     @Override
     protected void inicializarComponentes() {
         super.inicializarComponentes();
@@ -363,12 +590,20 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         botonVolverAtras.setText("Salir del editor");
     }
 
+    /**
+     * Agrega los días del mes al JComboBox comboDiaNuevo
+     * @see VentanaEditor#comboDiaNuevo
+     */
     private void agregarDias(){
         for(int i=1; i<=31; i++){
             comboDiaNuevo.addItem(""+i);
         }
     }
 
+    /**
+     * Agrega los meses al JComboBox comboMesNuevo
+     * @see VentanaEditor#comboMesNuevo
+     */
     private void agregarMeses(){
         comboMesNuevo.addItem("enero");
         comboMesNuevo.addItem("febrero");
@@ -384,6 +619,9 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         comboMesNuevo.addItem("diciembre");
     }
 
+    /**
+     * Ubica los componentes en la VentanaEditor
+     */
     private void ubicarComponentes() {
 
         // Añadir componentes del panel para editar nombre
@@ -537,6 +775,10 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         return c;
     }
 
+    /**
+     * Implementa los listeners para el JDialog
+     * @see JDialogGeneral#implementarListeners()
+     */
     @Override
     protected void implementarListeners() {
         super.implementarListeners();
@@ -557,6 +799,10 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         panelOpcionesN.getBotonBorrar().addActionListener(this);
     }
 
+    /**
+     * Configura el JDialog
+     * @see JDialogGeneral#configurarVentana()
+     */
     @Override
     protected void configurarVentana() {
         super.configurarVentana();
@@ -569,6 +815,11 @@ public class VentanaEditor extends JDialogGeneral implements ActionListener {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Método añadido al implementar la interfaz ActionListener
+     * @param e Evento
+     * @see ActionListener
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botonCambiarNombre) {
