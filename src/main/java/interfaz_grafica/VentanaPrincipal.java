@@ -12,95 +12,132 @@ import java.util.Locale;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
+/**
+ * JFrame de la ventana principal del programa
+ * @see JFrame
+ * @see ActionListener
+ * @see KeyListener
+ */
 public class VentanaPrincipal extends JFrame implements ActionListener, KeyListener{
 
     //// Atributos
     /**
      * WindowListener para el JFrame
+     * @see WindowListener
      */
     private WindowListener windowListener;
     /**
      * Panel principal
+     * @see JPanel
      */
     private JPanel panel;
     /**
      * Panel con el logo del programa
+     * @see JPanelImagen
      */
     private JPanelImagen panelLogo;
     /**
      * Label con el nombre del programa
+     * @see JLabel
      */
     private JLabel labelGestorPhoneBook;
     /**
      * Panel con las opciones del menú principal
+     * @see JLabel
      */
     private JPanel panelOpciones;
     /**
      * Botón para ver los datos guardados en la agenda
+     * @see JButton
      */
     private JButton botonDatosAgenda;
     /**
      * Botón para ver datos guardados en el archivo "agenda.json"
+     * @see JButton
      */
     private JButton botonVerJSON;
     /**
      * Selector de archivos que se usa para importar y exportar
+     * @see JFileChooser
      */
     private JFileChooser selectorArchivo;
     /**
      * Botón para importar un archivo JSON al programa
+     * @see JButton
      */
     private JButton botonImportarJSON;
     /**
      * Botón para exportar un archivo JSON
+     * @see JButton
      */
     private JButton botonExportarJSON;
     /**
      * Botón para borrar todos los datos guardados
+     * @see JButton
      */
     private JButton botonBorrarTodo;
     /**
      * Botón para salir del programa
+     * @see JButton
      */
     private JButton botonSalir;
     /**
      * Panel que tiene la lista de contactos
+     * @see JPanelLista
      */
     private JPanelLista listaC;
     /**
      * Panel que tendrá los componentes necesarios para crear un contacto
+     * @see JPanel
      */
     private JPanel panelNuevoContacto;
     /**
      * Label con el nombre del programa
+     * @see JLabel
      */
     private JLabel labelIngreseNombre;
     /**
      * TextField para ingresar el nombre
+     * @see JTextField
      */
     private JTextField campoIngreseNombre;
     /**
      * Botón para guardar el contacto
+     * @see JButton
      */
     private JButton botonGuardar;
     /**
      * Panel con las opciones para el contacto seleccionado de la lista
+     * @see JPanel
      */
     private JPanel panelOpcionesLista;
     /**
      * Botón para ver los datos de un contacto
+     * @see JButton
      */
     private JButton botonDatosContacto;
     /**
      * Botón para acceder al menú de edición de un contacto
+     * @see JButton
      */
     private JButton botonEditarContacto;
     /**
      * Botón para eliminar a un contacto
+     * @see JButton
      */
     private JButton botonEliminarContacto;
 
     //// Constructores
+    /**
+     * Construye una ventana principal
+     * @see VentanaPrincipal#cargarDatos()
+     * @see VentanaPrincipal#traducirTextos()
+     * @see VentanaPrincipal#cargarIcono()
+     * @see VentanaPrincipal#inicializarComponentes()
+     * @see VentanaPrincipal#ubicarComponentes()
+     * @see VentanaPrincipal#implementarListeners()
+     * @see VentanaPrincipal#configurarVentana()
+     */
     public VentanaPrincipal(){
         cargarDatos();
         traducirTextos();
@@ -113,7 +150,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
     //// Métodos
     /**
-     * Método que carga los datos del archivo JSON y de las fotos de contactos
+     * Método que carga los datos del archivo JSON
+     * @see GestorJSON#cargarJSON(String)
      */
     private void cargarDatos() {
         // Intenta cargar los datos del archivo "agenda.json"
@@ -126,7 +164,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
     }
 
     /**
-     * Método para traducir los textos de los componentes
+     * Método para traducir los textos de los componentes que lo necesitan
+     * @see Locale
+     * @see UIManager#put(Object, Object)
+     * @see JOptionPane
+     * @see JFileChooser
      */
     private void traducirTextos() {
         // Por algún motivo, se puede traducir a chino pero no a español
@@ -144,6 +186,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
     /**
      * Método que carga el ícono de la aplicación desde un archivo externo
+     * @see Image
      */
     private void cargarIcono() {
         Image icono = Toolkit.getDefaultToolkit().getImage("archivos/icono_phonebook_nuevo.png");
@@ -404,6 +447,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         addWindowListener(windowListener);
     }
 
+    /**
+     * Método añadido al implementar la interfaz ActionListener
+     * @param e Evento
+     * @see ActionListener
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botonDatosAgenda){
@@ -663,11 +711,21 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         }
     }
 
+    /**
+     * Método añadido al implementar la interfaz KeyListener
+     * @param e Evento
+     * @see KeyListener
+     */
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
+    /**
+     * Método añadido al implementar la interfaz KeyListener
+     * @param e Evento
+     * @see KeyListener
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         // Si se pulsa enter al estar escribiendo en el textField
@@ -689,11 +747,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
         }
     }
 
+    /**
+     * Método añadido al implementar la interfaz KeyListener
+     * @param e Evento
+     * @see KeyListener
+     */
     @Override
     public void keyReleased(KeyEvent e) {
 
     }
 
+    //// Getters y Setters
+    /**
+     * Getter para obtener la lista de contactos
+     * @return JPanelLista con la lista de contactos
+     * @see JPanelLista
+     * @see phonebook.Contacto
+     */
     public JPanelLista getListaC() {
         return listaC;
     }

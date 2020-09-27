@@ -1,8 +1,6 @@
 package interfaz_grafica;
 
 import lanzador.Principal;
-import phonebook.Agenda;
-import phonebook.Contacto;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -24,7 +22,7 @@ public class VentanaDatosContacto extends JDialogTextoGeneral{
     /**
      * Construye una ventana con los datos del contacto
      * @param posicion Posición del contacto en la agenda
-     * @see Contacto#toString
+     * @see phonebook.Contacto#toString
      * @see JDialogGeneral#cargarIcono()
      * @see JDialogTextoGeneral#inicializarComponentes()
      * @see JDialogTextoGeneral#ubicarComponentes()

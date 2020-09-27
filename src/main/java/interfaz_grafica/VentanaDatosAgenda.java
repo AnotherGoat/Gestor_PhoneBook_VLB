@@ -1,7 +1,6 @@
 package interfaz_grafica;
 
 import lanzador.Principal;
-import phonebook.Agenda;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +15,7 @@ public class VentanaDatosAgenda extends JDialogTextoGeneral {
     //// Constructores
     /**
      * Construye una ventana con los datos de la agenda
-     * @see Agenda#toString
+     * @see phonebook.Agenda#toString
      * @see JDialogGeneral#cargarIcono()
      * @see JDialogTextoGeneral#inicializarComponentes()
      * @see JDialogTextoGeneral#ubicarComponentes()
