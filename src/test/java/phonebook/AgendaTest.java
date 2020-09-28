@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Clase que contiene las pruebas unitarias de la clase Agenda
+ */
 public class AgendaTest {
 
     Agenda a;
@@ -25,6 +28,7 @@ public class AgendaTest {
 
     /**
      * Test para revisar que crearContacto() guarda contactos a partir de un nombre ingresado
+     * @throws Exception No debería
      */
     @Test
     public void crearContacto1() throws Exception {
@@ -39,6 +43,7 @@ public class AgendaTest {
 
     /**
      * Test para revisar que crearContacto() guarda contactos a partir de otro contacto
+     * @throws Exception No debería
      */
     @Test
     public void crearContacto2() throws Exception {
@@ -55,6 +60,7 @@ public class AgendaTest {
 
     /**
      * Test para revisar que crearContacto() lanza una excepción si se ingresa un String nulo
+     * @throws Exception Debería
      */
     @Test (expected = Exception.class)
     public void crearContacto3() throws Exception {
@@ -63,6 +69,7 @@ public class AgendaTest {
 
     /**
      * Test para revisar que crearContacto() lanza una excepción si se ingresa un Contacto nulo
+     * @throws Exception Debería
      */
     @Test (expected = Exception.class)
     public void crearContacto4() throws Exception {
@@ -71,6 +78,7 @@ public class AgendaTest {
 
     /**
      * Test para revisar que eliminarContacto() funciona correctamente
+     * @throws Exception No debería
      */
     @Test
     public void eliminarContacto1() throws Exception {

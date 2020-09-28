@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Clase que incluye las pruebas unitarias de la clase Validador
+ * Clase que contiene las pruebas unitarias de la clase Validador
  */
 public class ValidadorTest {
 

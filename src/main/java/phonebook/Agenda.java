@@ -39,6 +39,7 @@ public class Agenda {
      * Método para crear un contacto nuevo a partir de un String
      * @param entrada String con la entrada del usuario
      * @return int con la posición en la que se añadió el contacto
+     * @throws Exception Si la entrada es nula
      * @see Contacto#Contacto(String)
      * @see Agenda#ordenarContactos()
      * @see GestorJSON#guardarJSON(String)
@@ -68,6 +69,7 @@ public class Agenda {
      * Método para crear un contacto nuevo a partir de otro contacto
      * @param original Contacto que se quiere copiar
      * @return int con la posición en la que se añadió el contacto
+     * @throws Exception Si el contacto original es nulo
      * @see Contacto#Contacto(Contacto)
      * @see Agenda#ordenarContactos()
      * @see GestorJSON#guardarJSON(String)
