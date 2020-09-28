@@ -64,7 +64,7 @@ public class FechaCumple {
         return mes;
     }
 
-    //// toString
+    //// toString()
     /**
      * Convierte los datos de la fecha de cumpleaños a un String
      * @return String con los datos

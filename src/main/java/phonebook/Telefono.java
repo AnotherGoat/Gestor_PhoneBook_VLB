@@ -49,7 +49,7 @@ public class Telefono {
         return tipo;
     }
 
-    //// toString
+    //// toString()
     /**
      * Convierte los datos del teléfono a un String
      * @return Datos del teléfono

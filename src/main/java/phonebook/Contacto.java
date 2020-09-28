@@ -200,7 +200,7 @@ public class Contacto {
         this.rutaFoto = rutaFoto;
     }
 
-    //// toString
+    //// toString()
     /**
      * Método toString con un formato personalizado, usando un StringBuilder
      * @return String detallando los datos del contacto, no muestra los que todavía no existen

@@ -171,7 +171,7 @@ public class Agenda {
         return lista_nombres;
     }
 
-    //// toString
+    //// toString()
     /**
      * Convierte la información guardada en la agenda a un String
      * @see String

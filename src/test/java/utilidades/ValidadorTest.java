@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Clase que incluye los tests unitarios de la clase Validador
+ * Clase que incluye las pruebas unitarias de la clase Validador
  */
 public class ValidadorTest {
 
@@ -20,37 +20,42 @@ public class ValidadorTest {
     }
 
     /**
-     * Test para revisar que la entrada acepta ints válidos
+     * Test para revisar que esInt() acepta ints válidos
      */
     @Test
     public void esInt1() {
-        assertTrue(Validador.esInt("1"));
+        assertTrue(Validador.esInt("0"));
         assertTrue(Validador.esInt("100"));
         assertTrue(Validador.esInt("-256"));
+        assertTrue(Validador.esInt("-2147483648")); // Valor mínimo de un int
+        assertTrue(Validador.esInt("2147483647")); // Valor máximo de un int
     }
 
     /**
-     * Test para revisar que al ingresar símbolos o letras no se valida como un int
+     * Test para revisar que esInt() no acepta números demasiado grandes
      */
     @Test
     public void esInt2() {
-        assertFalse(Validador.esInt("a"));
-        assertFalse(Validador.esInt(" "));
-        assertFalse(Validador.esInt("asdasda"));
-        assertFalse(Validador.esInt("!\"#=?"));
+        assertFalse(Validador.esInt("23172617381238"));
+        assertFalse(Validador.esInt("-92347821332912"));
+        assertFalse(Validador.esInt("-2147483649")); // Valor mínimo de un int -1
+        assertFalse(Validador.esInt("2147483648")); // Valor máximo de un int +1
     }
 
     /**
-     * Test para revisar que al ingresar un número demasiado grande no se valida como un int
+     * Test para revisar que esInt() no acepta símbolos o letras
      */
     @Test
     public void esInt3() {
-        assertFalse(Validador.esInt("23172617381238"));
-        assertFalse(Validador.esInt("-92347821332912"));
+        assertFalse(Validador.esInt("A"));
+        assertFalse(Validador.esInt("asdasda"));
+        assertFalse(Validador.esInt("!\"#=?"));
+        assertFalse(Validador.esInt(" "));
+        assertFalse(Validador.esInt("         "));
     }
 
     /**
-     * Test para revisar que al ingresar un String null no se valida como un int
+     * Test para revisar que esInt() no acepta entrada nula
      */
     @Test
     public void esInt4() {
@@ -58,37 +63,64 @@ public class ValidadorTest {
     }
 
     /**
-     * Test que revisa los casos donde se ingresa un número de teléfono válido
+     * Test para revisar que esNumeroTelefonico() acepta números de teléfono válidos
      */
     @Test
-    public void esTelefono1() {
-        assertTrue(Validador.esTelefono(912345678));
-        assertTrue(Validador.esTelefono(133));
-        assertTrue(Validador.esTelefono(911));
+    public void esNumeroTelefonico1() {
+        assertTrue(Validador.esNumeroTelefonico("912345678"));
+        assertTrue(Validador.esNumeroTelefonico("133"));
+        assertTrue(Validador.esNumeroTelefonico("911"));
     }
 
     /**
-     * Test que revisa los casos donde se ingresa un número de teléfono no válido
+     * Test para revisar que esNumeroTelefonico() también acepta números de teléfonos válidos si se antepone un +
      */
     @Test
-    public void esTelefono2() {
-        assertFalse(Validador.esTelefono(0));
-        assertFalse(Validador.esTelefono(-12312312));
-        assertFalse(Validador.esTelefono(1000000000));
+    public void esNumeroTelefonico2() {
+        assertTrue(Validador.esNumeroTelefonico("+56971717171"));
+        assertTrue(Validador.esNumeroTelefonico("+123456789"));
     }
 
     /**
-     * Test para revisar que el método acepta emails válidos
+     * Test para revisar que esNumeroTelefonico() no acepta números en otros formatos
+     */
+    @Test
+    public void esNumeroTelefonico3() {
+        assertFalse(Validador.esNumeroTelefonico("+56 111 222 333"));
+        assertFalse(Validador.esNumeroTelefonico("+123-456-789"));
+        assertFalse(Validador.esNumeroTelefonico("1 0 3"));
+    }
+
+    /**
+     * Test para revisar que esNumeroTelefonico() no acepta entrada que tenga símbolos
+     */
+    @Test
+    public void esNumeroTelefonico4() {
+        assertFalse(Validador.esNumeroTelefonico("+"));
+        assertFalse(Validador.esNumeroTelefonico("asdfsdghasd"));
+        assertFalse(Validador.esNumeroTelefonico(" "));
+    }
+
+    /**
+     * Test para revisar que esNumeroTelefonico() no acepta entrada nula
+     */
+    @Test
+    public void esNumeroTelefonico5() {
+        assertFalse(Validador.esNumeroTelefonico(null));
+    }
+
+    /**
+     * Test para revisar que esEmail() acepta emails válidos
      */
     @Test
     public void esEmail1() {
-        assertTrue(Validador.esEmail("v.mardones04@gmail.com"));
-        assertTrue(Validador.esEmail("l.burgos02@ufromail.cl"));
+        assertTrue(Validador.esEmail("v.mardones07@gmail.com"));
+        assertTrue(Validador.esEmail("l.burgos08@ufromail.cl"));
         assertTrue(Validador.esEmail("b.munoz15@hotmail.com"));
     }
 
     /**
-     * Test para revisar que el método rechaza emails no válidos
+     * Test para revisar que esEmail() no acepta emails no válidos
      */
     @Test
     public void esEmail2() {
@@ -98,7 +130,7 @@ public class ValidadorTest {
     }
 
     /**
-     * Test para revisar que si se ingresa un String null, el email no es válido
+     * Test para revisar que esEmail() no acepta entrada nula
      */
     @Test
     public void esEmail3() {

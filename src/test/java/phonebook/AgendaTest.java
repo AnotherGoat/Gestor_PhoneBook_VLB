@@ -3,14 +3,14 @@ package phonebook;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import utilidades.Validador;
 
 import static org.junit.Assert.*;
 
 public class AgendaTest {
 
-    Validador v;
     Agenda a;
+    Contacto c;
+    String nombreContacto;
 
     @Before
     public void setUp() throws Exception {
@@ -19,17 +19,17 @@ public class AgendaTest {
 
     @After
     public void tearDown() throws Exception {
-        v = null;
         a = null; // Liberar memoria
+        c = null;
     }
 
     /**
-     * Prueba para verificar que el nombre de un contacto se guarda correctamente al crear uno nuevo
+     * Test para revisar que crearContacto() guarda contactos a partir de un nombre ingresado
      */
     @Test
     public void crearContacto1() {
         a.crearContacto("Juan Pérez");
-        String nombreContacto = a.getLista_Contactos().get(0).getNombre();
+        nombreContacto = a.getLista_Contactos().get(0).getNombre();
         assertEquals("Juan Pérez", nombreContacto);
 
         a.crearContacto("Pablo");
@@ -38,7 +38,23 @@ public class AgendaTest {
     }
 
     /**
-     * Esta prueba revisa que se borran contactos correctamente
+     * Test para revisar que crearContacto() guarda contactos a partir de otro contacto
+     */
+    @Test
+    public void crearContacto2() {
+        c = new Contacto("Diego");
+        a.crearContacto(c);
+        nombreContacto = a.getLista_Contactos().get(0).getNombre();
+        assertEquals("Diego", nombreContacto);
+
+        c = new Contacto("Paula");
+        a.crearContacto(c);
+        nombreContacto = a.getLista_Contactos().get(1).getNombre();
+        assertEquals("Paula", nombreContacto);
+    }
+
+    /**
+     * Test para revisar que eliminarContacto() funciona correctamente
      */
     @Test
     public void eliminarContacto1() {
@@ -49,15 +65,12 @@ public class AgendaTest {
         assertEquals(2, a.getLista_Contactos().size()); // Tamaño original
 
         // Simula el borrado del contacto 1 (Camila)
-        v.simularInput("1");
-        //int idContacto = a.elegirContacto("eliminar"); // id Contacto = número con el que se identifica
-        // Simula la confirmación
-        v.simularInput("1");
-        //a.confirmarBorrado(idContacto-1);
-
-        // Verifica el tamaño y el borrado del contacto correcto
+        a.eliminarContacto(0);
         assertEquals(1, a.getLista_Contactos().size()); // Tamaño cambia
-        assertEquals("Francisca", a.getLista_Contactos().get(0).getNombre());
+
+        // Revisa que el nombre del contacto en la posición 0 es "Francisca"
+        nombreContacto = a.getLista_Contactos().get(0).getNombre();
+        assertEquals("Francisca", nombreContacto);
     }
 
 }

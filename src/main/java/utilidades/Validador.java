@@ -43,18 +43,6 @@ public class Validador {
     }
 
     /**
-     * Revisa si el int del parámetro es un teléfono (no tiene más de 9 dígitos)
-     * @param numero Número que se quiere verificar
-     * @return Boolean que indica si el número es un número de teléfono válido o no
-     */
-    public static boolean esTelefono(int numero){
-        if(numero>=1 && numero <=999999999){
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Revisa si la entrada un número de teléfono válido
      * @param entrada String que representa la entrada del usuario
      * @return Boolean que indica si el número es un número de teléfono válido o no
@@ -83,17 +71,5 @@ public class Validador {
         Pattern pattern = Pattern.compile("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$");
         Matcher matcher = pattern.matcher(entrada);
         return matcher.matches();
-    }
-
-    //// Métodos que sólo se usan en las pruebas unitarias
-    /**
-     * Método para simular entrada de usuario en los tests
-     * @param entrada String que representa la entrada del usuario
-     */
-    public void simularInput(String entrada){
-        if(entrada!=null) {
-            ByteArrayInputStream in = new ByteArrayInputStream(entrada.getBytes());
-            System.setIn(in);
-        }
     }
 }

@@ -100,7 +100,7 @@ public class Direccion {
         this.numero = numero;
     }
 
-    //// toString
+    //// toString()
     /**
      * Convierte los datos de la dirección a un String
      * @return String con los datos de la dirección
