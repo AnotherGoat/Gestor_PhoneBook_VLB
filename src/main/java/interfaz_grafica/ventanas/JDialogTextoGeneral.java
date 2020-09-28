@@ -1,4 +1,4 @@
-package interfaz_grafica;
+package interfaz_grafica.ventanas;
 
 import javax.swing.*;
 import java.awt.*;

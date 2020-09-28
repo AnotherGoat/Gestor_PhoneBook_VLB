@@ -8,7 +8,7 @@ En la opción "Other command line arguments" poner lo siguiente:
 Para abrir el javadoc, abrir el archivo "index.html" con un navegador
  */
 
-import interfaz_grafica.VentanaPrincipal;
+import interfaz_grafica.ventanas.VentanaPrincipal;
 import org.json.JSONArray;
 import phonebook.Agenda;
 

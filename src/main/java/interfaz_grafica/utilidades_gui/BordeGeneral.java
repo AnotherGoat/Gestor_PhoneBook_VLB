@@ -1,4 +1,4 @@
-package interfaz_grafica;
+package interfaz_grafica.utilidades_gui;
 
 import java.awt.*;
 import java.awt.event.*;

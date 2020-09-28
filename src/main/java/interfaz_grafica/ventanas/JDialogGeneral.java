@@ -1,4 +1,4 @@
-package interfaz_grafica;
+package interfaz_grafica.ventanas;
 
 import java.awt.*;
 import java.awt.event.*;

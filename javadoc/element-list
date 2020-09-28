@@ -1,5 +1,7 @@
 datos
-interfaz_grafica
+interfaz_grafica.paneles
+interfaz_grafica.utilidades_gui
+interfaz_grafica.ventanas
 lanzador
 phonebook
 utilidades

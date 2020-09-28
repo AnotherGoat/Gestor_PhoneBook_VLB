@@ -1,6 +1,10 @@
-package interfaz_grafica;
+package interfaz_grafica.ventanas;
 
 import datos.GestorJSON;
+import interfaz_grafica.paneles.JPanelImagen;
+import interfaz_grafica.paneles.JPanelLista;
+import interfaz_grafica.utilidades_gui.BordeGeneral;
+import interfaz_grafica.utilidades_gui.MensajeError;
 import lanzador.Principal;
 
 import java.awt.*;

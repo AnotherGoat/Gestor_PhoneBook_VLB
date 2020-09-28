@@ -1,4 +1,6 @@
-package interfaz_grafica;
+package interfaz_grafica.paneles;
+
+import interfaz_grafica.utilidades_gui.MensajeError;
 
 import java.awt.*;
 import java.awt.event.*;
