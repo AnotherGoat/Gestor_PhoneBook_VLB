@@ -635,7 +635,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
             else {
                 // Crea un contacto con el nombre ingresado
-                int posicionNueva = Principal.agenda.crearContacto(campoIngreseNombre.getText());
+                int posicionNueva = 0;
+                try {
+                    posicionNueva = Principal.agenda.crearContacto(campoIngreseNombre.getText());
+                } catch (Exception exception) {
+                    new MensajeError("Entrada nula");
+                }
+
                 // Añade el contacto nuevo al modelo, en la misma posición que el ArrayList
                 listaC.agregarElemento(campoIngreseNombre.getText(), posicionNueva);
                 // Borra el texto del textField
@@ -736,7 +742,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener, KeyListe
 
             else {
                 // Obtiene la posición en la que se agregó el contacto
-                int posicionNueva = Principal.agenda.crearContacto(campoIngreseNombre.getText());
+
+                int posicionNueva = 0;
+                try {
+                    posicionNueva = Principal.agenda.crearContacto(campoIngreseNombre.getText());
+                } catch (Exception exception) {
+                    new MensajeError("Entrada nula");
+                }
 
                 // Añade el contacto nuevo al modelo, en la misma posición que el ArrayList
                 listaC.agregarElemento(campoIngreseNombre.getText(), posicionNueva);

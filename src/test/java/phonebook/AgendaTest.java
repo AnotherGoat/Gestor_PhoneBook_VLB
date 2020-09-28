@@ -27,7 +27,7 @@ public class AgendaTest {
      * Test para revisar que crearContacto() guarda contactos a partir de un nombre ingresado
      */
     @Test
-    public void crearContacto1() {
+    public void crearContacto1() throws Exception {
         a.crearContacto("Juan Pérez");
         nombreContacto = a.getLista_Contactos().get(0).getNombre();
         assertEquals("Juan Pérez", nombreContacto);
@@ -41,7 +41,7 @@ public class AgendaTest {
      * Test para revisar que crearContacto() guarda contactos a partir de otro contacto
      */
     @Test
-    public void crearContacto2() {
+    public void crearContacto2() throws Exception {
         c = new Contacto("Diego");
         a.crearContacto(c);
         nombreContacto = a.getLista_Contactos().get(0).getNombre();
@@ -54,17 +54,33 @@ public class AgendaTest {
     }
 
     /**
+     * Test para revisar que crearContacto() lanza una excepción si se ingresa un String nulo
+     */
+    @Test (expected = Exception.class)
+    public void crearContacto3() throws Exception {
+        a.crearContacto((String) null);
+    }
+
+    /**
+     * Test para revisar que crearContacto() lanza una excepción si se ingresa un Contacto nulo
+     */
+    @Test (expected = Exception.class)
+    public void crearContacto4() throws Exception {
+        a.crearContacto((Contacto) null);
+    }
+
+    /**
      * Test para revisar que eliminarContacto() funciona correctamente
      */
     @Test
-    public void eliminarContacto1() {
+    public void eliminarContacto1() throws Exception {
         // Crea 2 contactos
         a.crearContacto("Camila");
         a.crearContacto("Francisca");
 
         assertEquals(2, a.getLista_Contactos().size()); // Tamaño original
 
-        // Simula el borrado del contacto 1 (Camila)
+        // Simula el borrado del contacto 0 (Camila)
         a.eliminarContacto(0);
         assertEquals(1, a.getLista_Contactos().size()); // Tamaño cambia
 

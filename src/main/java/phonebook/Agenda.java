@@ -44,18 +44,24 @@ public class Agenda {
      * @see GestorJSON#guardarJSON(String)
      * @see Agenda#crearContacto(Contacto)
      */
-    public int crearContacto(String entrada) {
+    public int crearContacto(String entrada) throws Exception{
 
-        // Crea el contacto nuevo y lo agrega a la List
-        Contacto nuevo = new Contacto(entrada);
-        lista_contactos.add(nuevo);
-        // Ordena la lista de contactos
-        ordenarContactos();
+        if(entrada==null){
+            throw new Exception("Entrada vacía");
+        }
 
-        GestorJSON.guardarJSON("agenda.json");
+        else {
+            // Crea el contacto nuevo y lo agrega a la List
+            Contacto nuevo = new Contacto(entrada);
+            lista_contactos.add(nuevo);
+            // Ordena la lista de contactos
+            ordenarContactos();
 
-        // Retorna el índice del contacto nuevo
-        return lista_contactos.indexOf(nuevo);
+            GestorJSON.guardarJSON("agenda.json");
+
+            // Retorna el índice del contacto nuevo
+            return lista_contactos.indexOf(nuevo);
+        }
     }
 
     /**
@@ -67,17 +73,24 @@ public class Agenda {
      * @see GestorJSON#guardarJSON(String)
      * @see Agenda#crearContacto(String)
      */
-    public int crearContacto(Contacto original) {
-        // Crea el contacto nuevo y lo agrega a la List
-        Contacto nuevo = new Contacto(original);
-        lista_contactos.add(nuevo);
-        // Ordena la lista de contactos
-        ordenarContactos();
+    public int crearContacto(Contacto original) throws Exception {
 
-        GestorJSON.guardarJSON("agenda.json");
+        if(original==null){
+            throw new Exception("Contacto nulo");
+        }
 
-        // Retorna el índice del contacto nuevo
-        return lista_contactos.indexOf(nuevo);
+        else {
+            // Crea el contacto nuevo y lo agrega a la List
+            Contacto nuevo = new Contacto(original);
+            lista_contactos.add(nuevo);
+            // Ordena la lista de contactos
+            ordenarContactos();
+
+            GestorJSON.guardarJSON("agenda.json");
+
+            // Retorna el índice del contacto nuevo
+            return lista_contactos.indexOf(nuevo);
+        }
     }
 
     /**
